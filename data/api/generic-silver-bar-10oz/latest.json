@@ -1,18 +1,18 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-02-22T14:00:00Z",
+  "window_start": "2026-02-22T15:00:00Z",
   "median_price": 898.3,
   "lowest_price": 892.19,
   "vendors": {
-    "sdbullion": {
-      "price": 958.06,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 892.19,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 958.06,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -24,15 +24,19 @@
     }
   },
   "availability_by_site": {
-    "sdbullion": true,
     "bullionexchanges": true,
-    "herobullion": false,
+    "sdbullion": true,
     "apmex": true,
-    "jmbullion": true,
-    "monumentmetals": true
+    "jmbullion": false,
+    "monumentmetals": true,
+    "herobullion": true
   },
-  "last_known_price_by_site": {},
-  "last_available_date_by_site": {},
+  "last_known_price_by_site": {
+    "jmbullion": 951.1
+  },
+  "last_available_date_by_site": {
+    "jmbullion": "2026-02-22"
+  },
   "windows_24h": [
     {
       "window": "2026-02-21T17:15:00Z",
@@ -617,6 +621,16 @@
       "vendors": {
         "sdbullion": 958.06,
         "bullionexchanges": 892.19,
+        "apmex": 898.3
+      }
+    },
+    {
+      "window": "2026-02-22T15:00:00Z",
+      "median": 898.3,
+      "low": 892.19,
+      "vendors": {
+        "bullionexchanges": 892.19,
+        "sdbullion": 958.06,
         "apmex": 898.3
       }
     }
