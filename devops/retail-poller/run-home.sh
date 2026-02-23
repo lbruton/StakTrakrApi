@@ -1,6 +1,7 @@
 #!/bin/bash
 # StakTrakr Home Poller — LXC run script
-# Runs price extraction via direct Playwright (no Firecrawl), writes to Turso.
+# Runs full Firecrawl + Playwright stack, writes to shared Turso DB.
+# Auto-syncs providers.json from api branch before each run.
 # Cron: 30 * * * * (runs at :30 past every hour, offset from Fly.io :00 run)
 
 set -e
@@ -26,9 +27,15 @@ fi
 DATE=$(date -u +%Y-%m-%d)
 echo "[$(date -u +%H:%M:%S)] Starting home retail price run for $DATE"
 
-# Run price extraction — Playwright local launch, no Firecrawl
+# Sync providers.json from api branch — picks up URL corrections automatically
+PROVIDERS_PATH="${DATA_DIR:-$SCRIPT_DIR/data}/retail/providers.json"
+echo "[$(date -u +%H:%M:%S)] Syncing providers.json from api branch..."
+curl -sf "https://raw.githubusercontent.com/lbruton/StakTrakrApi/api/data/retail/providers.json" \
+  -o "$PROVIDERS_PATH" \
+  || echo "[$(date -u +%H:%M:%S)] WARN: providers.json sync failed — using cached copy"
+
+# Run price extraction via local Firecrawl stack
 DATA_DIR="${DATA_DIR:-$SCRIPT_DIR/data}" \
-PLAYWRIGHT_LAUNCH=1 \
 POLLER_ID="${POLLER_ID:-home}" \
 node "$SCRIPT_DIR/price-extract.js"
 
