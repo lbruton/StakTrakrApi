@@ -44,11 +44,11 @@ BROWSERLESS_URL="${BROWSERLESS_URL:-}" \
 BROWSER_MODE=local \
 node /app/price-extract.js
 
-# Vision pipeline — non-fatal, requires GEMINI_API_KEY + BROWSERLESS_URL
-if [ -n "${GEMINI_API_KEY:-}" ] && [ -n "${BROWSERLESS_URL:-}" ]; then
+# Vision pipeline — non-fatal, requires GEMINI_API_KEY (uses local Chromium)
+if [ -n "${GEMINI_API_KEY:-}" ]; then
   _ARTIFACT_DIR="${ARTIFACT_DIR:-/tmp/retail-screenshots/$(date -u +%Y-%m-%d)}"
   echo "[$(date -u +%H:%M:%S)] Running vision capture..."
-  BROWSER_MODE=browserless \
+  BROWSER_MODE=local \
     ARTIFACT_DIR="$_ARTIFACT_DIR" \
     DATA_DIR="$API_EXPORT_DIR/data" \
     node /app/capture.js \
@@ -61,7 +61,7 @@ if [ -n "${GEMINI_API_KEY:-}" ] && [ -n "${BROWSERLESS_URL:-}" ]; then
     node /app/extract-vision.js \
     || echo "[$(date -u +%H:%M:%S)] WARN: vision extraction failed (non-fatal)"
 else
-  echo "[$(date -u +%H:%M:%S)] Skipping vision pipeline (GEMINI_API_KEY or BROWSERLESS_URL not set)"
+  echo "[$(date -u +%H:%M:%S)] Skipping vision pipeline (GEMINI_API_KEY not set)"
 fi
 
 # Export REST API JSON endpoints from SQLite
