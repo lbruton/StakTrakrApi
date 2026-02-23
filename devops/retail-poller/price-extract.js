@@ -522,53 +522,115 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
  * Called when Firecrawl returns null or throws for a target.
  * Returns the HTML content as a string (to be passed through extractPrice).
  *
+ * Proxy strategy (PLAYWRIGHT_LAUNCH mode):
+ *   1. Try direct (no proxy) — saves bandwidth, works for most US-accessible sites.
+ *   2. If geo-blocked (HTTP 403 or geo-block text detected), retry with proxy.
+ * This ensures proxy bandwidth is only used when strictly necessary.
+ *
+ * Bandwidth optimisation: images, fonts, stylesheets and media are blocked via
+ * Playwright route interception — reduces per-page transfer by ~60-80%.
+ *
  * @param {string} url
  * @param {string} [providerId]
+ * @param {boolean} [useProxy]  force proxy on first attempt (skip direct try)
  * @returns {Promise<string|null>}  raw HTML/text content, or null on failure
  */
-async function scrapeWithPlaywright(url, providerId = "") {
+async function scrapeWithPlaywright(url, providerId = "", useProxy = false) {
   if (!BROWSERLESS_URL && !PLAYWRIGHT_LAUNCH) return null;
 
-  let browser;
-  try {
-    // Dynamic import so the module is only loaded when needed
-    const { chromium } = await import("playwright-core");
+  // Geo-block signals in page text (HTTP-level 403s surface as page content)
+  const GEO_BLOCK_PATTERNS = [
+    /unavailable in your (country|location|region)/i,
+    /not available in your (country|location|region)/i,
+    /access denied/i,
+    /403 forbidden/i,
+  ];
 
-    if (PLAYWRIGHT_LAUNCH) {
-      // Local launch: headless Chromium with installed browsers (Fly.io container).
-      // Note: direct Playwright launch gets bot-blocked by some sites (JM Bullion).
-      // For those, use Browserbase/Stagehand hourly fallback instead.
-      browser = await chromium.launch({
-        headless: true,
-        args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
-        ...(PROXY_HTTP ? { proxy: { server: PROXY_HTTP, username: PROXY_USER, password: PROXY_PASS } } : {}),
+  const { chromium } = await import("playwright-core");
+
+  async function attempt(withProxy) {
+    let browser;
+    try {
+      if (PLAYWRIGHT_LAUNCH) {
+        const proxyConfig = (withProxy && PROXY_HTTP)
+          ? { proxy: { server: PROXY_HTTP, username: PROXY_USER, password: PROXY_PASS } }
+          : {};
+        browser = await chromium.launch({
+          headless: true,
+          args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+          ...proxyConfig,
+        });
+      } else {
+        browser = await chromium.connect(BROWSERLESS_URL);
+      }
+
+      const context = await browser.newContext({
+        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        viewport: { width: 1920, height: 1080 },
       });
-    } else {
-      // Remote connect: browserless WebSocket endpoint (local Mac Docker)
-      browser = await chromium.connect(BROWSERLESS_URL);
+      const page = await context.newPage();
+
+      // Block non-essential resource types to reduce bandwidth ~60-80%
+      await page.route("**/*", (route) => {
+        const type = route.request().resourceType();
+        if (["image", "font", "stylesheet", "media"].includes(type)) {
+          route.abort();
+        } else {
+          route.continue();
+        }
+      });
+
+      await page.setExtraHTTPHeaders({ "Accept-Language": "en-US,en;q=0.9" });
+      const response = await page.goto(url, { waitUntil: "networkidle", timeout: SCRAPE_TIMEOUT_MS });
+
+      // Detect HTTP-level geo-block
+      if (response && response.status() === 403) {
+        await browser.close();
+        return { content: null, geoBlocked: true };
+      }
+
+      // Extra wait for JS-heavy SPAs
+      if (SLOW_PROVIDERS.has(providerId)) {
+        await page.waitForTimeout(8_000);
+      }
+
+      const content = await page.evaluate(() => document.body.innerText);
+      await browser.close();
+
+      // Detect geo-block in page text
+      const geoBlocked = GEO_BLOCK_PATTERNS.some(p => p.test(content.slice(0, 2000)));
+      return { content: geoBlocked ? null : content, geoBlocked };
+
+    } catch (err) {
+      if (browser) { try { await browser.close(); } catch { /* ignore */ } }
+      throw err;
+    }
+  }
+
+  try {
+    // First attempt: direct (no proxy) unless proxy forced
+    const first = await attempt(useProxy);
+    if (first.content) return first.content;
+
+    // Geo-blocked and proxy available — retry with proxy
+    if (first.geoBlocked && PROXY_HTTP && !useProxy) {
+      log(`  ↩ ${providerId}: geo-blocked direct, retrying via proxy`);
+      const second = await attempt(true);
+      return second.content;
     }
 
-    const context = await browser.newContext({
-      userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-      viewport: { width: 1920, height: 1080 },
-    });
-    const page = await context.newPage();
-    // Spoof a realistic user-agent to reduce bot detection
-    await page.setExtraHTTPHeaders({ "Accept-Language": "en-US,en;q=0.9" });
-    await page.goto(url, { waitUntil: "networkidle", timeout: SCRAPE_TIMEOUT_MS });
-    // Extra wait for JS-heavy SPAs (Monument Metals, JM Bullion, Hero Bullion)
-    if (SLOW_PROVIDERS.has(providerId)) {
-      await page.waitForTimeout(8_000);
-    }
-    // Return innerText (plain text) instead of raw HTML so extractPrice
-    // regex patterns work the same way as with Firecrawl markdown output.
-    const content = await page.evaluate(() => document.body.innerText);
-    await browser.close();
-    return content;
+    return null;
   } catch (err) {
     warn(`Playwright fallback failed for ${url}: ${err.message.slice(0, 120)}`);
-    if (browser) {
-      try { await browser.close(); } catch { /* ignore close error */ }
+    // If direct attempt threw (not geo-block), try proxy as last resort
+    if (PROXY_HTTP && !useProxy) {
+      try {
+        log(`  ↩ ${providerId}: direct threw, retrying via proxy`);
+        const fallback = await attempt(true);
+        return fallback.content;
+      } catch (proxyErr) {
+        warn(`Playwright proxy fallback also failed for ${url}: ${proxyErr.message.slice(0, 80)}`);
+      }
     }
     return null;
   }
