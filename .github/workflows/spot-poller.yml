@@ -1,0 +1,18 @@
+# Spot Price Poller — RETIRED 2026-02-23
+# Spot polling is now handled by run-spot.sh cron inside the Fly.io container.
+# This workflow is kept for emergency manual triggering only.
+name: Spot Price Poller (retired)
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why are you running this manually?'
+        required: false
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retired
+        run: echo "Spot polling is now handled by Fly.io container cron. See run-spot.sh."

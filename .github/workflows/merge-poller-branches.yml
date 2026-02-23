@@ -1,0 +1,21 @@
+# Merge Poller Branches — RETIRED 2026-02-23
+# Data publishing is now handled by run-publish.sh cron inside the Fly.io container.
+# run-publish.sh force-pushes the full data directory from the volume to main every 15 min.
+# This workflow is kept for emergency manual triggering only.
+name: Merge Poller Branches (retired)
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why are you running this manually?'
+        required: false
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retired
+        run: |
+          echo "Data publishing is now handled by Fly.io container."
+          echo "See run-publish.sh. Fly.io force-pushes to main every 15 min."

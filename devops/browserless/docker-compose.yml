@@ -1,0 +1,22 @@
+services:
+  browserless:
+    image: ghcr.io/browserless/chromium
+    container_name: staktrakr-browserless
+    ports:
+      - "3000:3000"
+    # TOKEN uses an inline default so the service works without copying .env.example.
+    # Docker Compose also auto-loads .env for variable substitution when it exists.
+    environment:
+      - TOKEN=${BROWSERLESS_TOKEN:-local_dev_token}
+      - CONCURRENT=5
+      - QUEUED=10
+      - TIMEOUT=120000
+      - HEALTH=true
+      - TZ=${TZ:-America/New_York}
+    volumes:
+      # Optional read-only workspace mount — set WORKSPACE_DIR to the repo root if needed.
+      # On macOS: WORKSPACE_DIR=/Volumes/DATA/GitHub/StakTrakr
+      # On Ubuntu: WORKSPACE_DIR=/home/user/StakTrakr (or wherever the repo lives)
+      # Leave unset to skip the mount entirely (pure CDP mode, no file:// access needed).
+      - ${WORKSPACE_DIR:-/dev/null}:/workspace/StakTrakr:ro
+    restart: unless-stopped
