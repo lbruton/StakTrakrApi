@@ -46,13 +46,13 @@ const DATA_DIR = resolve(process.env.DATA_DIR || join(__dirname, "../../data"));
 const DRY_RUN = process.env.DRY_RUN === "1";
 const COIN_FILTER = process.env.COINS ? process.env.COINS.split(",").map(s => s.trim()) : null;
 // Webshare rotating residential proxy — set WEBSHARE_PROXY_USER and WEBSHARE_PROXY_PASS
-// to route all scrape requests through a rotating residential IP pool.
-// HTTP endpoint (port 80) used for Firecrawl; SOCKS5 (port 1080) for Playwright local launch.
+// to route Playwright requests through a rotating residential IP pool.
+// Self-hosted Firecrawl reads PROXY_SERVER env var directly (set as fly secret).
+// Playwright uses HTTP proxy (port 80) — Chromium doesn't support SOCKS5 auth.
 const PROXY_USER = process.env.WEBSHARE_PROXY_USER || null;
 const PROXY_PASS = process.env.WEBSHARE_PROXY_PASS || null;
 const PROXY_HOST = "p.webshare.io";
-const PROXY_HTTP  = PROXY_USER ? `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:80`   : null;
-const PROXY_SOCKS = PROXY_USER ? `socks5://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:1080` : null;
+const PROXY_HTTP  = PROXY_USER ? `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:80` : null;
 // PATCH_GAPS: queries SQLite for today's failed vendors, scrapes FBP only for
 // those coins, and writes recovered prices back to SQLite.
 // Run at 3pm ET after the 11am full scrape.
@@ -476,7 +476,6 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
     // JM Bullion's React pages sometimes return empty markdown with onlyMainContent.
     // Disable it for JM — our MARKDOWN_CUTOFF_PATTERNS handle noise removal instead.
     onlyMainContent: providerId !== "jmbullion",
-    ...(PROXY_HTTP ? { proxy: { server: PROXY_HTTP } } : {}),
   };
   // JS-heavy SPAs need time to mount and render prices; 6s covers all slow providers
   if (SLOW_PROVIDERS.has(providerId)) {
@@ -542,7 +541,7 @@ async function scrapeWithPlaywright(url, providerId = "") {
       browser = await chromium.launch({
         headless: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
-        ...(PROXY_SOCKS ? { proxy: { server: PROXY_SOCKS, username: PROXY_USER, password: PROXY_PASS } } : {}),
+        ...(PROXY_HTTP ? { proxy: { server: PROXY_HTTP, username: PROXY_USER, password: PROXY_PASS } } : {}),
       });
     } else {
       // Remote connect: browserless WebSocket endpoint (local Mac Docker)
