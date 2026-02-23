@@ -580,9 +580,11 @@ async function scrapeWithPlaywright(url, providerId = "") {
 
 async function main() {
   const isLocal = !FIRECRAWL_BASE_URL.includes("api.firecrawl.dev");
-  if (!FIRECRAWL_API_KEY && !isLocal) {
+  // PLAYWRIGHT_LAUNCH=1 runs Chromium directly — no Firecrawl needed (home poller mode)
+  if (!FIRECRAWL_API_KEY && !isLocal && !PLAYWRIGHT_LAUNCH) {
     console.error("Error: FIRECRAWL_API_KEY is required for cloud Firecrawl.");
     console.error("For self-hosted: set FIRECRAWL_BASE_URL=http://localhost:3002");
+    console.error("For home poller (Playwright only): set PLAYWRIGHT_LAUNCH=1");
     process.exit(1);
   }
 
