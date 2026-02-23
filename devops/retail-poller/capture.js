@@ -44,6 +44,17 @@ const PROVIDERS = (process.env.PROVIDERS || "apmex,sdbullion,jmbullion,monumentm
 const PAGE_LOAD_WAIT = 4000;    // wait after domcontentloaded for JS rendering
 const INTER_PAGE_DELAY = 1000;  // pause between pages within a session
 
+// Per-provider wait overrides (ms) — for JS-heavy SPAs that need more render time.
+// JMBullion: Next.js app, pricing table takes ~8s to populate after domcontentloaded.
+// monumentmetals: React Native Web SPA, router doesn't mount until ~6s.
+// bullionexchanges: React/Magento SPA, pricing grid renders at ~6-8s.
+const PROVIDER_PAGE_LOAD_WAIT = {
+  jmbullion:       10000,
+  monumentmetals:   7000,
+  bullionexchanges: 8000,
+  herobullion:      6000,
+};
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -191,7 +202,8 @@ async function captureCoin(coinSlug, targets, outDir) {
       });
       const status = response ? response.status() : 0;
 
-      await page.waitForTimeout(PAGE_LOAD_WAIT);
+      const providerWait = PROVIDER_PAGE_LOAD_WAIT[target.provider] ?? PAGE_LOAD_WAIT;
+      await page.waitForTimeout(providerWait);
       await page.screenshot({ path: filepath, fullPage: false });
       const title = await page.title();
 
