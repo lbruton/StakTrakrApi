@@ -52,7 +52,9 @@ const COIN_FILTER = process.env.COINS ? process.env.COINS.split(",").map(s => s.
 const PROXY_USER = process.env.WEBSHARE_PROXY_USER || null;
 const PROXY_PASS = process.env.WEBSHARE_PROXY_PASS || null;
 const PROXY_HOST = "p.webshare.io";
-const PROXY_HTTP  = PROXY_USER ? `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:80` : null;
+const PROXY_HTTP  = (PROXY_USER && process.env.PROXY_DISABLED !== '1')
+  ? `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:80`
+  : null;
 // PATCH_GAPS: queries SQLite for today's failed vendors, scrapes FBP only for
 // those coins, and writes recovered prices back to SQLite.
 // Run at 3pm ET after the 11am full scrape.
@@ -812,7 +814,7 @@ async function main() {
         warn(`  ? ${coinSlug}/${provider.id}: page loaded but no price found`);
       }
 
-      scrapeResults.push({ coinSlug, coin, providerId: provider.id, url: provider.url, price, source, ok: price !== null, error: price === null ? "price_not_found" : null });
+      scrapeResults.push({ coinSlug, coin, providerId: provider.id, url: provider.url, price, source, ok: price !== null, inStock, error: price === null ? "price_not_found" : null });
     } catch (err) {
       // Firecrawl threw — try Playwright before giving up
       if (BROWSERLESS_URL || PLAYWRIGHT_LAUNCH) {
@@ -846,7 +848,7 @@ async function main() {
       if (price === null && inStock) {
         warn(`  ✗ ${coinSlug}/${provider.id}: ${err.message.slice(0, 120)}`);
       }
-      scrapeResults.push({ coinSlug, coin, providerId: provider.id, url: provider.url, price, source, ok: price !== null, error: price === null && inStock ? err.message.slice(0, 200) : null });
+      scrapeResults.push({ coinSlug, coin, providerId: provider.id, url: provider.url, price, source, ok: price !== null, inStock, error: price === null && inStock ? err.message.slice(0, 200) : null });
     }
 
     // Record to SQLite
