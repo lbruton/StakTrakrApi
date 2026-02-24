@@ -1,15 +1,9 @@
 {
   "slug": "ase",
-  "window_start": "2026-02-24T19:30:00Z",
-  "median_price": 103.72,
+  "window_start": "2026-02-24T19:45:00Z",
+  "median_price": 102.59,
   "lowest_price": 97.39,
   "vendors": {
-    "apmex": {
-      "price": 103.74,
-      "confidence": 70,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 97.39,
       "confidence": 50,
@@ -17,7 +11,7 @@
       "inStock": true
     },
     "herobullion": {
-      "price": 102.6,
+      "price": 99.81,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -28,8 +22,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "monumentmetals": {
+      "price": 100.07,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "sdbullion": {
-      "price": 104.01,
+      "price": 103.91,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -39,20 +39,23 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 103.74,
+      "confidence": 80,
+      "source": "vision"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "monumentmetals": false,
+    "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": true,
+    "apmex": true
   },
-  "last_known_price_by_site": {
-    "monumentmetals": 100.76
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
@@ -2247,14 +2250,24 @@
     },
     {
       "window": "2026-02-24T19:30:00Z",
-      "median": 102.6,
+      "median": 103.72,
       "low": 97.39,
       "vendors": {
+        "monumentmetals": 100.07,
+        "jmbullion": 103.72,
+        "sdbullion": 103.91,
         "herobullion": 102.6,
         "summitmetals": 102.59,
         "bullionexchanges": 97.39,
-        "jmbullion": 103.72,
         "apmex": 103.77
+      }
+    },
+    {
+      "window": "2026-02-24T19:45:00Z",
+      "median": 99.81,
+      "low": 99.81,
+      "vendors": {
+        "herobullion": 99.81
       }
     }
   ]
