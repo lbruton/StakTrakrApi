@@ -311,6 +311,31 @@ export function readCoinWindow(db, coinSlug, windowStart) {
 }
 
 /**
+ * Returns the most recent row per vendor for a coin within the last N hours.
+ * Used for current-price display when multiple pollers write to different windows.
+ *
+ * @param {Database.Database} db
+ * @param {string} coinSlug
+ * @param {number} lookbackHours
+ * @returns {Array<object>}
+ */
+export function readLatestPerVendor(db, coinSlug, lookbackHours = 2) {
+  return db.prepare(`
+    SELECT ps.*
+    FROM price_snapshots ps
+    INNER JOIN (
+      SELECT vendor, MAX(scraped_at) AS max_scraped_at
+      FROM price_snapshots
+      WHERE coin_slug = ?
+        AND scraped_at >= datetime('now', ? || ' hours')
+      GROUP BY vendor
+    ) latest ON ps.vendor = latest.vendor
+             AND ps.scraped_at = latest.max_scraped_at
+             AND ps.coin_slug = ?
+  `).all(coinSlug, `-${lookbackHours}`, coinSlug);
+}
+
+/**
  * Returns all distinct window_starts in descending order, up to limit.
  *
  * @param {Database.Database} db

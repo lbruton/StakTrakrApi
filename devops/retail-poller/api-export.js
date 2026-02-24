@@ -33,6 +33,7 @@ import {
   readLatestWindow,
   readCoinSlugs,
   readCoinWindow,
+  readLatestPerVendor,
   readRecentWindows,
   readRecentWindowStarts,
   readDailyAggregates,
@@ -516,7 +517,7 @@ async function main() {
   // --------------------------------------------------------------------------
   const globalLatestCoins = {};
   for (const slug of coinSlugs) {
-    const rows = readCoinWindow(db, slug, latestWindow);
+    const rows = readLatestPerVendor(db, slug, 2);
     if (!rows.length) continue;
     globalLatestCoins[slug] = {
       window_start:  latestWindow,
@@ -542,8 +543,9 @@ async function main() {
   const windowCount = recentWindowStarts.length;
 
   for (const slug of coinSlugs) {
-    // latest.json per slug
-    const latestRows = readCoinWindow(db, slug, latestWindow);
+    // latest.json per slug — use most recent row per vendor across last 2h
+    // so data from both pollers (Fly.io :00 and home :30) is represented
+    const latestRows = readLatestPerVendor(db, slug, 2);
     const vendors = vendorMap(latestRows);
 
     // Confidence scoring: score each vendor's price, update SQLite
