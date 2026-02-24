@@ -1,8 +1,8 @@
 {
   "slug": "ase",
-  "window_start": "2026-02-24T17:15:00Z",
-  "median_price": 103.56,
-  "lowest_price": 98.43,
+  "window_start": "2026-02-24T17:30:00Z",
+  "median_price": 103.6,
+  "lowest_price": 98.36,
   "vendors": {
     "apmex": {
       "price": 104.51,
@@ -13,26 +13,20 @@
     "bullionexchanges": {
       "price": 98.43,
       "confidence": 50,
-      "source": "firecrawl",
+      "source": "vision",
       "inStock": true
     },
     "herobullion": {
-      "price": 103.56,
+      "price": 103.6,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 104.53,
-      "confidence": 70,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "monumentmetals": {
-      "price": 100.69,
       "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "source": "vision",
+      "inStock": false
     },
     "sdbullion": {
       "price": 104.13,
@@ -52,12 +46,16 @@
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "monumentmetals": true,
+    "monumentmetals": false,
     "sdbullion": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {},
-  "last_available_date_by_site": {},
+  "last_known_price_by_site": {
+    "monumentmetals": 100.69
+  },
+  "last_available_date_by_site": {
+    "monumentmetals": "2026-02-24"
+  },
   "windows_24h": [
     {
       "window": "2026-02-21T17:15:00Z",
@@ -2210,6 +2208,15 @@
       "vendors": {
         "bullionexchanges": 98.43,
         "jmbullion": 104.53
+      }
+    },
+    {
+      "window": "2026-02-24T17:30:00Z",
+      "median": 103.6,
+      "low": 98.36,
+      "vendors": {
+        "herobullion": 103.6,
+        "bullionexchanges": 98.36
       }
     }
   ]
