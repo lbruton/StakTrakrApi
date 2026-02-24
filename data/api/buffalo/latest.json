@@ -1,8 +1,8 @@
 {
   "slug": "buffalo",
-  "window_start": "2026-02-24T13:30:00Z",
-  "median_price": 5394.99,
-  "lowest_price": 5367.7,
+  "window_start": "2026-02-24T13:45:00Z",
+  "median_price": 5454.52,
+  "lowest_price": 5374.52,
   "vendors": {
     "apmex": {
       "price": 5484.39,
@@ -10,23 +10,11 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 5370.4,
-      "confidence": 70,
-      "source": "vision",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 5394.99,
+      "price": 5374.52,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "jmbullion": {
-      "price": 5542.23,
-      "confidence": 80,
-      "source": "vision",
-      "inStock": false
     },
     "monumentmetals": {
       "price": 5394.45,
@@ -39,18 +27,27 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 5365.2,
+      "confidence": 80,
+      "source": "vision"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
+    "jmbullion": false,
     "monumentmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "bullionexchanges": true
   },
-  "last_known_price_by_site": {},
-  "last_available_date_by_site": {},
+  "last_known_price_by_site": {
+    "jmbullion": 5542.23
+  },
+  "last_available_date_by_site": {
+    "jmbullion": "2026-02-24"
+  },
   "windows_24h": [
     {
       "window": "2026-02-21T17:15:00Z",
@@ -1807,13 +1804,21 @@
     {
       "window": "2026-02-24T13:30:00Z",
       "median": 5394.99,
-      "low": 5367.7,
+      "low": 5365.2,
       "vendors": {
+        "bullionexchanges": 5367.7,
         "herobullion": 5394.99,
         "monumentmetals": 5394.45,
         "apmex": 5484.39,
-        "bullionexchanges": 5367.7,
         "sdbullion": 5454.52
+      }
+    },
+    {
+      "window": "2026-02-24T13:45:00Z",
+      "median": 5374.52,
+      "low": 5374.52,
+      "vendors": {
+        "herobullion": 5374.52
       }
     }
   ]
