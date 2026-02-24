@@ -732,8 +732,9 @@ async function main() {
   for (const [coinSlug, coin] of Object.entries(providersJson.coins)) {
     if (COIN_FILTER && !COIN_FILTER.includes(coinSlug)) continue;
     for (const provider of coin.providers) {
-      if (!provider.enabled || !provider.url) continue;
-      targets.push({ coinSlug, coin, provider });
+      const providerUrls = provider.urls ?? (provider.url ? [provider.url] : []);
+      if (!provider.enabled || providerUrls.length === 0) continue;
+      targets.push({ coinSlug, coin, provider, urls: providerUrls });
     }
   }
   shuffleArray(targets);
@@ -751,105 +752,98 @@ async function main() {
   // Scrape all targets sequentially with per-request jitter
   const scrapeResults = [];
   for (let targetIdx = 0; targetIdx < targets.length; targetIdx++) {
-    const { coinSlug, coin, provider } = targets[targetIdx];
-    log(`Scraping ${coinSlug}/${provider.id}`);
+    const { coinSlug, coin, provider, urls } = targets[targetIdx];
+    log(`Scraping ${coinSlug}/${provider.id}${urls.length > 1 ? ` (${urls.length} URL(s))` : ""}`);
+
     let price = null;
     let source = "firecrawl";
     let inStock = true;
-    let stockReason = "in_stock";
-    let detectedText = null;
+    let finalUrl = urls[0];
 
-    try {
-      const markdown = await scrapeUrl(provider.url, provider.id);
-      const cleanedMarkdown = preprocessMarkdown(markdown, provider.id);
+    // ── Phase 1: Try all URLs via Firecrawl ──────────────────────────────────
+    for (let i = 0; i < urls.length; i++) {
+      const url = urls[i];
+      if (i > 0) log(`  → ${coinSlug}/${provider.id}: fallback URL [${i}]: ${url}`);
 
-      // Detect stock status BEFORE price extraction
-      const stockStatus = detectStockStatus(cleanedMarkdown, coin.weight_oz || 1, provider.id);
-      inStock = stockStatus.inStock;
-      stockReason = stockStatus.reason;
-      detectedText = stockStatus.detectedText;
+      try {
+        const markdown = await scrapeUrl(url, provider.id);
+        const cleaned = preprocessMarkdown(markdown, provider.id);
+        const stock = detectStockStatus(cleaned, coin.weight_oz || 1, provider.id);
 
-      if (!inStock) {
-        log(`  ⚠ ${provider.id}: ${stockReason} — ${detectedText || "detected"}`);
-        // Skip price extraction if out of stock
-        price = null;
-      } else {
-        // Extract price only if in stock
-        price = extractPrice(cleanedMarkdown, coin.metal, coin.weight_oz || 1, provider.id);
+        if (!stock.inStock) {
+          log(`  ⚠ ${provider.id} [url${i}]: ${stock.reason} — ${stock.detectedText || "detected"}`);
+          if (i < urls.length - 1) { await jitter(); continue; }
+          // Last URL and OOS — exit loop with inStock=false
+          inStock = false;
+          finalUrl = url;
+          break;
+        }
+
+        const p = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
+        if (p !== null) {
+          price = p;
+          finalUrl = url;
+          log(`  ✓ ${coinSlug}/${provider.id}: $${p.toFixed(2)} (firecrawl)${urls.length > 1 ? ` [url${i}]` : ""}`);
+          break;
+        }
+
+        // Parse failure on this URL — try next if available
+        warn(`  ? ${coinSlug}/${provider.id} [url${i}]: page loaded, no price — trying next URL`);
+        if (i < urls.length - 1) { await jitter(); continue; }
+
+        // Last URL, Firecrawl parse failure — fall through to Playwright phase
+        finalUrl = url;
+
+      } catch (err) {
+        warn(`  ✗ ${provider.id} [url${i}] firecrawl error: ${err.message.slice(0, 100)}`);
+        if (i < urls.length - 1) { await jitter(); continue; }
+        // Last URL threw — fall through to Playwright phase
+        finalUrl = url;
       }
+    }
 
-      // Playwright fallback: if Firecrawl returned a page but no price was found AND in stock
-      if (price === null && inStock && (BROWSERLESS_URL || PLAYWRIGHT_LAUNCH)) {
-        log(`  ? ${coinSlug}/${provider.id}: no price via Firecrawl — trying Playwright`);
-        const html = await scrapeWithPlaywright(provider.url, provider.id);
+    // ── Phase 2: Playwright only if Firecrawl chain failed ───────────────────
+    if (price === null && inStock && (BROWSERLESS_URL || PLAYWRIGHT_LAUNCH)) {
+      log(`  ↩ ${coinSlug}/${provider.id}: Firecrawl chain exhausted — trying Playwright on ${finalUrl}`);
+      try {
+        const html = await scrapeWithPlaywright(finalUrl, provider.id);
         if (html) {
-          const cleanedHtml = preprocessMarkdown(html, provider.id);
-          // Re-check stock status with Playwright HTML
-          const pwStockStatus = detectStockStatus(cleanedHtml, coin.weight_oz || 1, provider.id);
-          inStock = pwStockStatus.inStock;
-          stockReason = pwStockStatus.reason;
-          detectedText = pwStockStatus.detectedText;
-
-          if (!inStock) {
-            log(`  ⚠ ${provider.id}: ${stockReason} — ${detectedText || "detected"} (playwright)`);
-            price = null;
-          } else {
-            // extractPrice works on HTML too — regex patterns match dollar amounts in either format
-            price = extractPrice(cleanedHtml, coin.metal, coin.weight_oz || 1, provider.id);
-            if (price !== null) {
+          const cleaned = preprocessMarkdown(html, provider.id);
+          const stock = detectStockStatus(cleaned, coin.weight_oz || 1, provider.id);
+          inStock = stock.inStock;
+          if (stock.inStock) {
+            const p = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
+            if (p !== null) {
+              price = p;
               source = "playwright";
-              log(`  ✓ ${coinSlug}/${provider.id}: $${price.toFixed(2)} (playwright)`);
+              log(`  ✓ ${coinSlug}/${provider.id}: $${p.toFixed(2)} (playwright)`);
             } else {
               warn(`  ? ${coinSlug}/${provider.id}: Playwright page loaded but no price found`);
             }
+          } else {
+            log(`  ⚠ ${provider.id}: ${stock.reason} — ${stock.detectedText || "detected"} (playwright)`);
           }
         }
-      } else if (price !== null) {
-        log(`  ✓ ${coinSlug}/${provider.id}: $${price.toFixed(2)}`);
-      } else if (!inStock) {
-        // Already logged above
-      } else {
-        warn(`  ? ${coinSlug}/${provider.id}: page loaded but no price found`);
+      } catch (pwErr) {
+        warn(`  ✗ Playwright failed for ${coinSlug}/${provider.id}: ${pwErr.message.slice(0, 100)}`);
       }
-
-      scrapeResults.push({ coinSlug, coin, providerId: provider.id, url: provider.url, price, source, ok: price !== null, error: price === null ? "price_not_found" : null });
-    } catch (err) {
-      // Firecrawl threw — try Playwright before giving up
-      if (BROWSERLESS_URL || PLAYWRIGHT_LAUNCH) {
-        log(`  ✗ Firecrawl threw for ${coinSlug}/${provider.id} — trying Playwright`);
-        try {
-          const html = await scrapeWithPlaywright(provider.url, provider.id);
-          if (html) {
-            const cleanedHtml = preprocessMarkdown(html, provider.id);
-            // Check stock status with Playwright HTML
-            const pwStockStatus = detectStockStatus(cleanedHtml, coin.weight_oz || 1, provider.id);
-            inStock = pwStockStatus.inStock;
-            stockReason = pwStockStatus.reason;
-            detectedText = pwStockStatus.detectedText;
-
-            if (!inStock) {
-              log(`  ⚠ ${provider.id}: ${stockReason} — ${detectedText || "detected"} (playwright)`);
-              price = null;
-            } else {
-              price = extractPrice(cleanedHtml, coin.metal, coin.weight_oz || 1, provider.id);
-              if (price !== null) {
-                source = "playwright";
-                log(`  ✓ ${coinSlug}/${provider.id}: $${price.toFixed(2)} (playwright)`);
-              }
-            }
-          }
-        } catch (pwErr) {
-          warn(`  ✗ Playwright also failed for ${coinSlug}/${provider.id}: ${pwErr.message.slice(0, 80)}`);
-        }
-      }
-
-      if (price === null && inStock) {
-        warn(`  ✗ ${coinSlug}/${provider.id}: ${err.message.slice(0, 120)}`);
-      }
-      scrapeResults.push({ coinSlug, coin, providerId: provider.id, url: provider.url, price, source, ok: price !== null, error: price === null && inStock ? err.message.slice(0, 200) : null });
     }
 
-    // Record to SQLite
+    // Log terminal state if not already logged
+    if (price === null && inStock) {
+      warn(`  ? ${coinSlug}/${provider.id}: all URLs exhausted, no price found`);
+    } else if (price === null && !inStock) {
+      // OOS already logged per-URL above
+    }
+
+    // ── Store result ──────────────────────────────────────────────────────────
+    scrapeResults.push({
+      coinSlug, coin, providerId: provider.id, url: finalUrl,
+      price, source, ok: price !== null,
+      error: price === null ? (inStock ? "price_not_found" : "out_of_stock") : null,
+    });
+
+    // Record to Turso
     if (db) {
       await writeSnapshot(db, {
         scrapedAt,
