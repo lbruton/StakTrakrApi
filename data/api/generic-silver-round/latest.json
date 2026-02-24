@@ -1,12 +1,18 @@
 {
   "slug": "generic-silver-round",
   "window_start": "2026-02-24T21:30:00Z",
-  "median_price": 95.22,
-  "lowest_price": 92.04,
+  "median_price": 92.5,
+  "lowest_price": 90.2,
   "vendors": {
     "apmex": {
       "price": 97.85,
-      "confidence": 80,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 90.2,
+      "confidence": 70,
       "source": "firecrawl",
       "inStock": true
     },
@@ -16,33 +22,26 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 92.04,
-      "confidence": 50,
+    "monumentmetals": {
+      "price": 92.5,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 87.7,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-02-24T20:30:04.553Z"
-    },
-    "bullionexchanges": {
-      "price": 90.18,
-      "confidence": 70,
-      "source": "vision"
+    "sdbullion": {
+      "price": 92.04,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": false,
-    "sdbullion": true,
     "monumentmetals": true,
-    "bullionexchanges": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "jmbullion": 94.91
@@ -1884,10 +1883,21 @@
       }
     },
     {
-      "window": "2026-02-24T21:30:00Z",
-      "median": 95.22,
-      "low": 92.04,
+      "window": "2026-02-24T21:15:00Z",
+      "median": 91.92,
+      "low": 87.4,
       "vendors": {
+        "sdbullion": 91.92,
+        "monumentmetals": 87.4
+      }
+    },
+    {
+      "window": "2026-02-24T21:30:00Z",
+      "median": 92.5,
+      "low": 90.2,
+      "vendors": {
+        "bullionexchanges": 90.2,
+        "monumentmetals": 92.5,
         "sdbullion": 92.04,
         "herobullion": 95.22,
         "apmex": 97.85
