@@ -1,26 +1,26 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-02-24T07:45:00Z",
-  "median_price": 5252.5,
-  "lowest_price": 5190.79,
+  "window_start": "2026-02-24T08:30:00Z",
+  "median_price": 5252.49,
+  "lowest_price": 5197.49,
   "vendors": {
-    "bullionexchanges": {
-      "price": 5199.79,
-      "confidence": 70,
-      "source": "vision",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 5267.83,
+    "apmex": {
+      "price": 5252.49,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 5320.42,
-      "confidence": 80,
-      "source": "vision",
-      "inStock": false
+    "bullionexchanges": {
+      "price": 5197.49,
+      "confidence": 70,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 5258.85,
+      "confidence": 99,
+      "source": "firecrawl+vision",
+      "inStock": true
     },
     "monumentmetals": {
       "price": 5252.5,
@@ -36,15 +36,19 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
+    "jmbullion": false,
     "monumentmetals": true,
-    "sdbullion": true,
-    "apmex": true
+    "sdbullion": true
   },
-  "last_known_price_by_site": {},
-  "last_available_date_by_site": {},
+  "last_known_price_by_site": {
+    "jmbullion": 5320.42
+  },
+  "last_available_date_by_site": {
+    "jmbullion": "2026-02-24"
+  },
   "windows_24h": [
     {
       "window": "2026-02-21T17:15:00Z",
@@ -1613,6 +1617,25 @@
         "bullionexchanges": 5190.79,
         "herobullion": 5267.83,
         "monumentmetals": 5252.5
+      }
+    },
+    {
+      "window": "2026-02-24T08:15:00Z",
+      "median": 5267.83,
+      "low": 5185.89,
+      "vendors": {
+        "bullionexchanges": 5185.89,
+        "herobullion": 5267.83
+      }
+    },
+    {
+      "window": "2026-02-24T08:30:00Z",
+      "median": 5256.74,
+      "low": 5197.49,
+      "vendors": {
+        "bullionexchanges": 5197.49,
+        "apmex": 5252.49,
+        "herobullion": 5256.74
       }
     }
   ]
