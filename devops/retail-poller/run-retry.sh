@@ -18,8 +18,15 @@ if [ ! -f "$RETRY_FILE" ]; then
   exit 0
 fi
 
+# Always clear the queue on exit — T4 handles any remaining gaps at :23 publish
+trap 'rm -f "$RETRY_FILE"' EXIT
+
 FAIL_COUNT=$(node -e "try { console.log(require('$RETRY_FILE').length); } catch { console.log(0); }")
 echo "[$(date -u +%H:%M:%S)] T3 retry: $FAIL_COUNT failed SKU(s)"
+
+if [ -z "${WEBSHARE_PROXY_USER:-}" ]; then
+  echo "[$(date -u +%H:%M:%S)] WARN: WEBSHARE_PROXY_USER not set — T3 retry will run without proxy (T4 will fill any gaps)"
+fi
 
 # Extract unique coin slugs from the retry queue
 COINS=$(node -e "
@@ -43,6 +50,4 @@ node /app/price-extract.js \
   && echo "[$(date -u +%H:%M:%S)] T3 retry: extraction complete" \
   || echo "[$(date -u +%H:%M:%S)] WARN: T3 retry had errors — T4 will fill gaps at :23 publish"
 
-# Always clear the queue — T4 handles any remaining gaps at the :23 publish run
-rm -f "$RETRY_FILE"
-echo "[$(date -u +%H:%M:%S)] T3 retry: queue cleared"
+echo "[$(date -u +%H:%M:%S)] T3 retry: done — queue will be cleared on exit"

@@ -224,11 +224,11 @@ function loadVisionData(dataDir, slug) {
 
 /**
  * Query SQLite for the most recent in-stock price for a coin+vendor.
- * Returns { price, date } or null if never had an in-stock price.
+ * Returns { price, scraped_at } or null if never had an in-stock price.
  */
 function getLastKnownPrice(db, coinSlug, vendorId) {
   const row = db.prepare(`
-    SELECT price, date(scraped_at) as date
+    SELECT price, scraped_at
     FROM price_snapshots
     WHERE coin_slug = ?
       AND vendor = ?
@@ -238,7 +238,7 @@ function getLastKnownPrice(db, coinSlug, vendorId) {
     LIMIT 1
   `).get(coinSlug, vendorId);
 
-  return row ? { price: row.price, date: row.date } : null;
+  return row ? { price: row.price, scraped_at: row.scraped_at } : null;
 }
 
 /**
@@ -632,7 +632,7 @@ async function main() {
               source:     "turso_last_known",
               inStock:    true,
               stale:      true,
-              stale_since: lastKnown.date,
+              stale_since: lastKnown.scraped_at,
             };
           } else {
             delete vendors[vendorId];
