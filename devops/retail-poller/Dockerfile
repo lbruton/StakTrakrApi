@@ -91,7 +91,7 @@ RUN npm install --omit=dev
 # Spot-poller Python deps
 RUN apt-get update && apt-get install -y --no-install-recommends python3-pip \
     && rm -rf /var/lib/apt/lists/* \
-    && python3 -m pip install --no-cache-dir --break-system-packages requests python-dotenv
+    && python3 -m pip install --no-cache-dir --break-system-packages "requests>=2.32.4" python-dotenv
 
 COPY *.js ./
 COPY run-local.sh run-fbp.sh run-goldback.sh run-spot.sh run-publish.sh ./
