@@ -60,6 +60,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libwayland-client0 \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Tailscale (stable Debian bookworm repo)
+RUN curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg \
+      > /usr/share/keyrings/tailscale-archive-keyring.gpg \
+    && curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.tailscale-keyring.list \
+      > /etc/apt/sources.list.d/tailscale.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends tailscale iptables \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install PostgreSQL 17
 RUN curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/pgdg.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/pgdg.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" \
@@ -94,8 +103,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3-pip \
     && python3 -m pip install --no-cache-dir --break-system-packages "requests>=2.32.4" python-dotenv
 
 COPY *.js ./
-COPY run-local.sh run-fbp.sh run-goldback.sh run-spot.sh run-publish.sh ./
-RUN chmod +x run-local.sh run-fbp.sh run-goldback.sh run-spot.sh run-publish.sh
+COPY run-local.sh run-fbp.sh run-goldback.sh run-spot.sh run-publish.sh run-retry.sh ./
+RUN chmod +x run-local.sh run-fbp.sh run-goldback.sh run-spot.sh run-publish.sh run-retry.sh
 
 # Spot-poller Python source (copied into build context by pre-deploy)
 COPY spot-poller/ /app/spot-poller/
