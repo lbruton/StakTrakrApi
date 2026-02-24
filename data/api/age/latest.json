@@ -1,9 +1,15 @@
 {
   "slug": "age",
-  "window_start": "2026-02-24T13:00:00Z",
+  "window_start": "2026-02-24T13:30:00Z",
   "median_price": 5328.69,
-  "lowest_price": 5236.29,
+  "lowest_price": 5228.89,
   "vendors": {
+    "apmex": {
+      "price": 5401.79,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
       "price": 5251.09,
       "confidence": 70,
@@ -19,15 +25,16 @@
     "jmbullion": {
       "price": 5413.26,
       "confidence": 80,
-      "source": "vision"
+      "source": "vision",
+      "inStock": false
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "monumentmetals": false,
     "jmbullion": true,
-    "apmex": true,
+    "monumentmetals": false,
     "sdbullion": true
   },
   "last_known_price_by_site": {
@@ -1705,9 +1712,19 @@
     {
       "window": "2026-02-24T13:00:00Z",
       "median": 5328.69,
-      "low": 5328.69,
+      "low": 5232.79,
       "vendors": {
+        "bullionexchanges": 5232.79,
         "herobullion": 5328.69
+      }
+    },
+    {
+      "window": "2026-02-24T13:30:00Z",
+      "median": 5401.79,
+      "low": 5228.89,
+      "vendors": {
+        "bullionexchanges": 5228.89,
+        "apmex": 5401.79
       }
     }
   ]
