@@ -36,6 +36,12 @@ if [ ! -d "$API_EXPORT_DIR/.git" ]; then
 fi
 cd "$API_EXPORT_DIR"
 
+# Sync providers.json from api branch — picks up URL corrections without a redeploy
+echo "[$(date -u +%H:%M:%S)] Syncing providers.json from api branch..."
+curl -sf "https://raw.githubusercontent.com/lbruton/StakTrakrApi/api/data/retail/providers.json" \
+  -o "$API_EXPORT_DIR/data/retail/providers.json" \
+  || echo "[$(date -u +%H:%M:%S)] WARN: providers.json sync failed — using cached copy"
+
 # Run Firecrawl extraction (with Playwright fallback) — writes results to SQLite
 echo "[$(date -u +%H:%M:%S)] Running price extraction..."
 DATA_DIR="$API_EXPORT_DIR/data" \
