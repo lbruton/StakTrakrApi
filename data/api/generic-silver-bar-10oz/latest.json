@@ -1,54 +1,58 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-02-24T17:30:00Z",
-  "median_price": 954.17,
-  "lowest_price": 921.9,
+  "window_start": "2026-02-24T17:45:00Z",
+  "median_price": 956.16,
+  "lowest_price": 931,
   "vendors": {
     "apmex": {
-      "price": 929.6,
+      "price": 931,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 921.9,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 954.17,
+      "price": 956.16,
       "confidence": 70,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 983.3,
-      "confidence": 70,
+      "confidence": 80,
       "source": "vision",
       "inStock": false
+    },
+    "monumentmetals": {
+      "price": 934.7,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "sdbullion": {
       "price": 992.04,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 921.9,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-02-24"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "monumentmetals": false,
-    "sdbullion": true
+    "monumentmetals": true,
+    "sdbullion": true,
+    "bullionexchanges": true
   },
-  "last_known_price_by_site": {
-    "monumentmetals": 933.9
-  },
-  "last_available_date_by_site": {
-    "monumentmetals": "2026-02-24"
-  },
+  "last_known_price_by_site": {},
+  "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-21T17:15:00Z",
@@ -1585,9 +1589,12 @@
     },
     {
       "window": "2026-02-24T17:30:00Z",
-      "median": 992.04,
+      "median": 934.7,
       "low": 921.9,
       "vendors": {
+        "monumentmetals": 934.7,
+        "herobullion": 956.16,
+        "apmex": 931,
         "sdbullion": 992.04,
         "bullionexchanges": 921.9
       }
