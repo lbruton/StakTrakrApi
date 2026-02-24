@@ -703,8 +703,9 @@ async function main() {
     for (const [slug, coinData] of Object.entries(providersJson.coins || {})) {
       frontendProviders[slug] = {};
       for (const provider of (coinData.providers || [])) {
-        if (provider.enabled !== false && provider.url) {
-          frontendProviders[slug][provider.id] = provider.url;
+        const canonicalUrl = provider.url ?? provider.urls?.[0];
+        if (provider.enabled !== false && canonicalUrl) {
+          frontendProviders[slug][provider.id] = canonicalUrl;
         }
       }
     }
