@@ -20,7 +20,7 @@
  *   DRY_RUN             Set to "1" to skip writing files
  */
 
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, writeFileSync, unlinkSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openTursoDb, writeSnapshot, windowFloor, readTodayFailures } from "./db.js";
@@ -928,6 +928,24 @@ async function main() {
   const ok = scrapeResults.filter(r => r.ok).length;
   const fail = scrapeResults.length - ok;
   log(`Done: ${ok}/${scrapeResults.length} prices captured, ${fail} failures`);
+  // T3 retry queue: vendors that failed direct scrape AND FBP backfill.
+  // Only in-stock failures — OOS is expected and not a retry candidate.
+  const RETRY_FILE = '/tmp/retail-failures.json';
+  const persistentFailures = scrapeResults
+    .filter(r => !r.ok && r.inStock !== false)
+    .filter(r => {
+      const fbp = fbpFillResults[r.coinSlug];
+      return !fbp || fbp[r.providerId] === undefined;
+    })
+    .map(r => ({ coinSlug: r.coinSlug, providerId: r.providerId, url: r.url, error: r.error }));
+
+  if (persistentFailures.length > 0) {
+    writeFileSync(RETRY_FILE, JSON.stringify(persistentFailures, null, 2));
+    log(`T3 queue: ${persistentFailures.length} SKU(s) written to ${RETRY_FILE}`);
+  } else {
+    try { unlinkSync(RETRY_FILE); } catch { /* already absent — no-op */ }
+    log('T3 queue: no persistent failures — cleared');
+  }
 
   if (ok === 0) {
     console.error("All scrapes failed.");
