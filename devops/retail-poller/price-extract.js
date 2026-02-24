@@ -106,6 +106,7 @@ const METAL_PRICE_RANGE_PER_OZ = {
   gold:      { min: 1500, max: 15000 },  // 1oz: $1500-15000
   platinum:  { min: 500,  max: 6000  },
   palladium: { min: 300,  max: 6000  },
+  goldback:  { min: 5,    max: 25    },  // G1 retail rate; weight_oz=1 so range is $5-25 flat
 };
 
 // Provider IDs that use "As Low As" as their primary price indicator.
@@ -473,7 +474,7 @@ function sleep(ms) {
 // jmbullion/herobullion: Next.js/React, needs ~5s to populate price tables.
 // monumentmetals: full SPA (React Native Web), router doesn't mount until ~6s.
 // bullionexchanges: React/Magento SPA, pricing grid doesn't render until ~6-8s.
-const SLOW_PROVIDERS = new Set(["jmbullion", "herobullion", "monumentmetals", "summitmetals", "bullionexchanges"]);
+const SLOW_PROVIDERS = new Set(["jmbullion", "herobullion", "monumentmetals", "summitmetals", "bullionexchanges", "goldback"]);
 
 async function scrapeUrl(url, providerId = "", attempt = 1) {
   const controller = new AbortController();

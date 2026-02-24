@@ -711,6 +711,33 @@ async function main() {
     writeApiFile("providers.json", frontendProviders);
   }
 
+  // --------------------------------------------------------------------------
+  // goldback-spot.json — generated from Turso goldback-g1 data; backward compat
+  // for api-health.js freshness check and denomination lookups
+  // --------------------------------------------------------------------------
+  if (coinSlugs.includes("goldback-g1")) {
+    const gbRows = readLatestPerVendor(db, "goldback-g1", 2);
+    const gbVendors = vendorMap(gbRows);
+    const g1Raw = gbVendors?.goldback?.price;
+    if (g1Raw != null) {
+      const g1 = Math.round(g1Raw * 100) / 100;
+      writeApiFile("goldback-spot.json", {
+        date:        generatedAt.slice(0, 10),
+        scraped_at:  generatedAt,
+        g1_usd:      g1,
+        denominations: {
+          g1:  g1,
+          g5:  Math.round(g1 * 5  * 100) / 100,
+          g10: Math.round(g1 * 10 * 100) / 100,
+          g25: Math.round(g1 * 25 * 100) / 100,
+          g50: Math.round(g1 * 50 * 100) / 100,
+        },
+        source:     "goldback.com",
+        confidence: "high",
+      });
+    }
+  }
+
   log(`API export complete: ${coinSlugs.length} coin(s), ${windowCount} window(s) in history`);
 
   } finally {

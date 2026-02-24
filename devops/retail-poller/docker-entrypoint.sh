@@ -55,8 +55,7 @@ echo "[entrypoint] Writing cron schedule: ${CRON_SCHEDULE}"
  echo "5,20,35,50 * * * * root . /etc/environment; /app/run-spot.sh >> /var/log/spot-poller.log 2>&1"; \
  echo "8,23,38,53 * * * * root . /etc/environment; /app/run-publish.sh >> /var/log/publish.log 2>&1"; \
  echo "15 * * * * root . /etc/environment; /app/run-retry.sh >> /var/log/retail-retry.log 2>&1"; \
- echo "0 20 * * * root . /etc/environment; /app/run-fbp.sh >> /var/log/retail-poller.log 2>&1"; \
- echo "1 17 * * * root . /etc/environment; /app/run-goldback.sh >> /var/log/goldback-poller.log 2>&1") \
+ echo "0 20 * * * root . /etc/environment; /app/run-fbp.sh >> /var/log/retail-poller.log 2>&1") \
   > /etc/cron.d/retail-poller
 chmod 0644 /etc/cron.d/retail-poller
 
@@ -64,7 +63,7 @@ chmod 0644 /etc/cron.d/retail-poller
 mkdir -p /data/tailscale /var/run/tailscale
 
 # ── 6. Create log files ───────────────────────────────────────────────
-touch /var/log/retail-poller.log /var/log/goldback-poller.log /var/log/http-server.log \
+touch /var/log/retail-poller.log /var/log/http-server.log \
       /var/log/spot-poller.log /var/log/publish.log /var/log/retail-retry.log
 
 echo "[entrypoint] Handing off to supervisord..."
