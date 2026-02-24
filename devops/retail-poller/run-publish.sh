@@ -21,6 +21,9 @@ fi
 
 cd "$REPO_DIR"
 
+# Export latest data from Turso → JSON files (picks up data from all pollers)
+DATA_DIR="$REPO_DIR/data" node /app/api-export.js
+
 # Stage all data changes (retail, spot hourly, goldback)
 git add data/
 

@@ -204,6 +204,24 @@ async function captureCoin(coinSlug, targets, outDir) {
 
       const providerWait = PROVIDER_PAGE_LOAD_WAIT[target.provider] ?? PAGE_LOAD_WAIT;
       await page.waitForTimeout(providerWait);
+
+      // Dismiss modals/popups before screenshot so they don't obscure prices
+      try {
+        await page.keyboard.press("Escape");
+        await page.waitForTimeout(300);
+        const closeSelectors = [
+          'button[aria-label="Close"]',
+          'button[aria-label="close"]',
+          '.modal-close', '.popup-close', '.close-button',
+          '[data-dismiss="modal"]', '[data-testid="close"]',
+          'button.close', '.klaviyo-close-form',
+        ];
+        for (const sel of closeSelectors) {
+          const btn = await page.$(sel);
+          if (btn) { await btn.click(); await page.waitForTimeout(300); break; }
+        }
+      } catch { /* non-fatal */ }
+
       await page.screenshot({ path: filepath, fullPage: false });
       const title = await page.title();
 
