@@ -125,6 +125,10 @@ const OUT_OF_STOCK_PATTERNS = [
   /notify\s+me/i,  // "Notify Me" buttons
 ];
 
+// Providers whose "Pre-Order" / "Presale" items still show live purchasable prices.
+// For these, skip the pre-?order OOS pattern — treat presale as in-stock.
+const PREORDER_TOLERANT_PROVIDERS = new Set(["jmbullion"]);
+
 const MARKDOWN_CUTOFF_PATTERNS = {
   sdbullion: [
     /^\*\*Add on Items\*\*/im,              // Firecrawl markdown bold header
@@ -206,15 +210,18 @@ const FBP_DEALER_NAME_MAP = {
  *
  * @param {string} markdown  Firecrawl-scraped markdown
  * @param {number} expectedWeightOz  Expected product weight (e.g., 1 for 1 oz)
+ * @param {string} [providerId]  Provider ID for per-provider OOS exceptions
  * @returns {{inStock: boolean, reason: string, detectedText: string|null}}
  */
-function detectStockStatus(markdown, expectedWeightOz = 1) {
+function detectStockStatus(markdown, expectedWeightOz = 1, providerId = "") {
   if (!markdown) {
     return { inStock: true, reason: "no_markdown", detectedText: null };
   }
 
   // Check for out-of-stock text patterns
+  const toleratesPreorder = PREORDER_TOLERANT_PROVIDERS.has(providerId);
   for (const pattern of OUT_OF_STOCK_PATTERNS) {
+    if (toleratesPreorder && /pre-?order/i.source === pattern.source) continue;
     const match = markdown.match(pattern);
     if (match) {
       return {
@@ -757,7 +764,7 @@ async function main() {
       const cleanedMarkdown = preprocessMarkdown(markdown, provider.id);
 
       // Detect stock status BEFORE price extraction
-      const stockStatus = detectStockStatus(cleanedMarkdown, coin.weight_oz || 1);
+      const stockStatus = detectStockStatus(cleanedMarkdown, coin.weight_oz || 1, provider.id);
       inStock = stockStatus.inStock;
       stockReason = stockStatus.reason;
       detectedText = stockStatus.detectedText;
@@ -778,7 +785,7 @@ async function main() {
         if (html) {
           const cleanedHtml = preprocessMarkdown(html, provider.id);
           // Re-check stock status with Playwright HTML
-          const pwStockStatus = detectStockStatus(cleanedHtml, coin.weight_oz || 1);
+          const pwStockStatus = detectStockStatus(cleanedHtml, coin.weight_oz || 1, provider.id);
           inStock = pwStockStatus.inStock;
           stockReason = pwStockStatus.reason;
           detectedText = pwStockStatus.detectedText;
@@ -815,7 +822,7 @@ async function main() {
           if (html) {
             const cleanedHtml = preprocessMarkdown(html, provider.id);
             // Check stock status with Playwright HTML
-            const pwStockStatus = detectStockStatus(cleanedHtml, coin.weight_oz || 1);
+            const pwStockStatus = detectStockStatus(cleanedHtml, coin.weight_oz || 1, provider.id);
             inStock = pwStockStatus.inStock;
             stockReason = pwStockStatus.reason;
             detectedText = pwStockStatus.detectedText;
