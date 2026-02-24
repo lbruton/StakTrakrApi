@@ -618,10 +618,28 @@ async function main() {
       }
     }
 
-    // Remove vendors where resolveVendorPrice found no price from either source
+    // Remove vendors where no price found; for in-stock failures, fill from Turso last-known (T4)
     for (const vendorId of Object.keys(vendors)) {
       if (vendors[vendorId].price === null) {
-        delete vendors[vendorId];
+        const isOos = availabilityBySite[vendorId] === false;
+        if (!isOos) {
+          // T4: use most recent in-stock price from Turso history
+          const lastKnown = getLastKnownPrice(db, slug, vendorId);
+          if (lastKnown) {
+            vendors[vendorId] = {
+              price:      Math.round(lastKnown.price * 100) / 100,
+              confidence: null,
+              source:     "turso_last_known",
+              inStock:    true,
+              stale:      true,
+              stale_since: lastKnown.date,
+            };
+          } else {
+            delete vendors[vendorId];
+          }
+        } else {
+          delete vendors[vendorId];
+        }
       }
     }
     if (confidenceUpdates.length > 0) {
