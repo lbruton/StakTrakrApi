@@ -1,29 +1,35 @@
 {
   "slug": "ase",
-  "window_start": "2026-02-24T23:15:00Z",
-  "median_price": 99.6,
+  "window_start": "2026-02-24T23:30:00Z",
+  "median_price": 103.35,
   "lowest_price": 97.39,
   "vendors": {
+    "apmex": {
+      "price": 103.44,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
       "price": 97.39,
-      "confidence": 70,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 99.6,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 103.48,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 103.87,
+    "sdbullion": {
+      "price": 103.35,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 110.32,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
@@ -32,18 +38,17 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": false,
     "monumentmetals": false,
     "sdbullion": true,
-    "summitmetals": false,
-    "apmex": true
+    "jmbullion": true,
+    "summitmetals": false
   },
   "last_known_price_by_site": {
-    "jmbullion": 110.32,
-    "monumentmetals": 100.02,
-    "summitmetals": 102.59
+    "monumentmetals": 86.83,
+    "summitmetals": 102.12
   },
   "last_available_date_by_site": {},
   "windows_24h": [
@@ -2351,11 +2356,22 @@
     },
     {
       "window": "2026-02-24T23:15:00Z",
-      "median": 99.6,
-      "low": 97.39,
+      "median": 97.39,
+      "low": 86.83,
       "vendors": {
+        "monumentmetals": 86.83,
         "herobullion": 99.6,
         "bullionexchanges": 97.39
+      }
+    },
+    {
+      "window": "2026-02-24T23:30:00Z",
+      "median": 103.35,
+      "low": 102.12,
+      "vendors": {
+        "summitmetals": 102.12,
+        "sdbullion": 103.33,
+        "apmex": 103.44
       }
     }
   ]
