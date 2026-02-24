@@ -6,6 +6,15 @@
 
 set -e
 
+# Lockfile guard — skip if previous publish is still running
+PUBLISH_LOCK=/tmp/retail-publish.lock
+if [ -f "$PUBLISH_LOCK" ]; then
+  echo "[$(date -u +%H:%M:%S)] Previous publish still running, skipping"
+  exit 0
+fi
+touch "$PUBLISH_LOCK"
+trap 'rm -f "$PUBLISH_LOCK"' EXIT
+
 REPO_DIR="/data/staktrakr-api-export"
 REMOTE="https://${GITHUB_TOKEN}@github.com/lbruton/StakTrakrApi.git"
 

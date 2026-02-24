@@ -64,14 +64,5 @@ else
   echo "[$(date -u +%H:%M:%S)] Skipping vision pipeline (GEMINI_API_KEY not set)"
 fi
 
-# Export REST API JSON endpoints from SQLite
-echo "[$(date -u +%H:%M:%S)] Exporting REST API JSON..."
-DATA_DIR="$API_EXPORT_DIR/data" \
-node /app/api-export.js
-
-# Stage updated data — run-publish.sh will commit and push on its own cadence
-cd "$API_EXPORT_DIR"
-git add data/api/ data/retail/ 2>/dev/null || git add data/api/
-echo "[$(date -u +%H:%M:%S)] Data staged. run-publish.sh will push on next cycle."
-
-echo "[$(date -u +%H:%M:%S)] Done."
+# Scrape complete — run-publish.sh handles export + push on its own cadence
+echo "[$(date -u +%H:%M:%S)] Scrape done. run-publish.sh will export and push on next cycle."
