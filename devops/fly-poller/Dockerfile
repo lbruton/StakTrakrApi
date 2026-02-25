@@ -150,7 +150,7 @@ RUN printf '%s\n' \
   '0.0.0.0 log.outbrain.com' \
   '0.0.0.0 assets.adobedtm.com' \
   '0.0.0.0 dpm.demdex.net' \
-  > /app/tracker-blocklist.txt
+  > /tmp/tracker-blocklist.txt
 
 # Install Tailscale (stable Debian bookworm repo)
 RUN curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg \
@@ -185,6 +185,7 @@ COPY nuq-postgres-init.sql /opt/postgres/nuq.sql
 
 # ── Retail poller app ───────────────────────────────────
 WORKDIR /app
+RUN mv /tmp/tracker-blocklist.txt /app/tracker-blocklist.txt
 
 COPY package.json ./
 RUN npm install --omit=dev
