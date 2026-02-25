@@ -15,6 +15,7 @@
  *   BROWSERLESS_URL       ws:// endpoint for Playwright fallback (optional)
  *   WEBSHARE_PROXY_USER   Webshare rotating proxy username (e.g. iazuuezc-rotate)
  *   WEBSHARE_PROXY_PASS   Webshare rotating proxy password
+ *   HOME_PROXY_URL_2      Cox WiFi tinyproxy URL (e.g. http://100.112.198.50:8889)
  *   DATA_DIR              Path to repo data/ folder (default: ../../data)
  *   COINS               Comma-separated coin slugs to run (default: all)
  *   DRY_RUN             Set to "1" to skip writing files
@@ -53,6 +54,9 @@ const PROXY_USER = process.env.WEBSHARE_PROXY_USER || null;
 const PROXY_PASS = process.env.WEBSHARE_PROXY_PASS || null;
 const PROXY_HOST = "p.webshare.io";
 const PROXY_HTTP  = PROXY_USER ? `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:80` : null;
+// Cox WiFi tinyproxy-2 (port 8889) — second residential proxy layer before Webshare.
+// Set as Fly.io secret: fly secrets set HOME_PROXY_URL_2=http://100.112.198.50:8889
+const HOME_PROXY_URL_2 = process.env.HOME_PROXY_URL_2 || null;
 // PATCH_GAPS: queries SQLite for today's failed vendors, scrapes FBP only for
 // those coins, and writes recovered prices back to SQLite.
 // Run at 3pm ET after the 11am full scrape.
@@ -236,7 +240,9 @@ function detectStockStatus(markdown, expectedWeightOz = 1, providerId = "") {
   // Only check the product title area (first H1/H2 or first ~500 chars of main content),
   // NOT the full page — nav menus on Bullion Exchanges etc. contain "1/2 oz" category
   // links that cause false positives on every page.
-  if (expectedWeightOz >= 1) {
+  // Skipped entirely for FRACTIONAL_EXEMPT_PROVIDERS whose global nav structurally
+  // includes fractional coin links on every product page.
+  if (expectedWeightOz >= 1 && !FRACTIONAL_EXEMPT_PROVIDERS.has(providerId)) {
     // Extract the product title: first markdown heading (# or ##) or first 500 chars
     const headingMatch = markdown.match(/^#{1,2}\s+(.+)$/m);
     const titleArea = headingMatch ? headingMatch[1] : markdown.slice(0, 500);
@@ -473,6 +479,22 @@ function sleep(ms) {
 // bullionexchanges: React/Magento SPA, pricing grid doesn't render until ~6-8s.
 const SLOW_PROVIDERS = new Set(["jmbullion", "herobullion", "monumentmetals", "summitmetals", "bullionexchanges"]);
 
+// Providers where self-hosted Firecrawl is unreliable — skip Phase 1 entirely,
+// fall straight through to Playwright Phase 2.
+//   jmbullion: self-hosted Firecrawl ignores waitFor → product table renders as "Loading..."
+//              → fractional_weight fires on nav links → inStock=false → Playwright never runs
+//   bullionexchanges: Cloudflare bot detection redirects to homepage → markdown is a single
+//                     banner image line regardless of what URL is requested
+const PLAYWRIGHT_ONLY_PROVIDERS = new Set(["jmbullion", "bullionexchanges"]);
+
+// Providers whose pages structurally include fractional coin thumbnails/links in
+// their global nav or mega-menu, causing false fractional_weight detection even
+// on the correct 1-oz product page. For these, skip the fractional_weight check
+// and rely on URL correctness (providers.json) + metal price range validation.
+//   jmbullion: mega-menu always lists "1/2 oz Gold Eagle", "1/4 oz Gold Eagle", etc.
+//              regardless of which product page is loaded.
+const FRACTIONAL_EXEMPT_PROVIDERS = new Set(["jmbullion"]);
+
 async function scrapeUrl(url, providerId = "", attempt = 1) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), SCRAPE_TIMEOUT_MS);
@@ -531,8 +553,11 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
  *
  * Proxy strategy (PLAYWRIGHT_LAUNCH mode):
  *   1. Try direct (no proxy) — saves bandwidth, works for most US-accessible sites.
- *   2. If geo-blocked (HTTP 403 or geo-block text detected), retry with proxy.
- * This ensures proxy bandwidth is only used when strictly necessary.
+ *   2. If geo-blocked (HTTP 403 or geo-block text detected), walk the proxy chain:
+ *      a. HOME_PROXY_URL_2 (Cox WiFi tinyproxy-2, residential IP) — if set
+ *      b. PROXY_HTTP (Webshare rotating commercial proxy) — if set
+ * This ensures proxy bandwidth is only used when strictly necessary, and cheaper
+ * residential hops are tried before the commercial Webshare pool.
  *
  * Bandwidth optimisation: images, fonts, stylesheets and media are blocked via
  * Playwright route interception — reduces per-page transfer by ~60-80%.
@@ -555,17 +580,24 @@ async function scrapeWithPlaywright(url, providerId = "", useProxy = false) {
 
   const { chromium } = await import("playwright-core");
 
-  async function attempt(withProxy) {
+  // Residential → commercial proxy fallback chain (tried in order when direct is blocked).
+  // Cox tinyproxy requires no auth (local network access via Tailscale).
+  // Webshare requires username/password credentials.
+  const PLAYWRIGHT_PROXY_CHAIN = [
+    HOME_PROXY_URL_2 ? { server: HOME_PROXY_URL_2 } : null,
+    PROXY_HTTP ? { server: PROXY_HTTP, username: PROXY_USER, password: PROXY_PASS } : null,
+  ].filter(Boolean);
+
+  // proxyConfig: { server, username?, password? } | null (null = direct, no proxy)
+  async function attempt(proxyConfig = null) {
     let browser;
     try {
       if (PLAYWRIGHT_LAUNCH) {
-        const proxyConfig = (withProxy && PROXY_HTTP)
-          ? { proxy: { server: PROXY_HTTP, username: PROXY_USER, password: PROXY_PASS } }
-          : {};
+        const launchProxy = proxyConfig ? { proxy: proxyConfig } : {};
         browser = await chromium.launch({
           headless: true,
           args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
-          ...proxyConfig,
+          ...launchProxy,
         });
       } else {
         browser = await chromium.connect(BROWSERLESS_URL);
@@ -616,27 +648,32 @@ async function scrapeWithPlaywright(url, providerId = "", useProxy = false) {
 
   try {
     // First attempt: direct (no proxy) unless proxy forced
-    const first = await attempt(useProxy);
+    const initProxy = useProxy ? (PLAYWRIGHT_PROXY_CHAIN[0] ?? null) : null;
+    const first = await attempt(initProxy);
     if (first.content) return first.content;
 
-    // Geo-blocked and proxy available — retry with proxy
-    if (first.geoBlocked && PROXY_HTTP && !useProxy) {
-      log(`  ↩ ${providerId}: geo-blocked direct, retrying via proxy`);
-      const second = await attempt(true);
-      return second.content;
+    // Geo-blocked — walk the proxy chain until one succeeds
+    if (first.geoBlocked && PLAYWRIGHT_PROXY_CHAIN.length > 0 && !useProxy) {
+      for (const proxy of PLAYWRIGHT_PROXY_CHAIN) {
+        log(`  ↩ ${providerId}: geo-blocked, retrying via ${proxy.server}`);
+        const result = await attempt(proxy);
+        if (result.content) return result.content;
+      }
     }
 
     return null;
   } catch (err) {
     warn(`Playwright fallback failed for ${url}: ${err.message.slice(0, 120)}`);
-    // If direct attempt threw (not geo-block), try proxy as last resort
-    if (PROXY_HTTP && !useProxy) {
-      try {
-        log(`  ↩ ${providerId}: direct threw, retrying via proxy`);
-        const fallback = await attempt(true);
-        return fallback.content;
-      } catch (proxyErr) {
-        warn(`Playwright proxy fallback also failed for ${url}: ${proxyErr.message.slice(0, 80)}`);
+    // If direct attempt threw (not geo-block), try proxy chain as last resort
+    if (PLAYWRIGHT_PROXY_CHAIN.length > 0 && !useProxy) {
+      for (const proxy of PLAYWRIGHT_PROXY_CHAIN) {
+        try {
+          log(`  ↩ ${providerId}: direct threw, retrying via ${proxy.server}`);
+          const result = await attempt(proxy);
+          if (result.content) return result.content;
+        } catch (proxyErr) {
+          warn(`Playwright proxy fallback also failed (${proxy.server}): ${proxyErr.message.slice(0, 80)}`);
+        }
       }
     }
     return null;
@@ -778,44 +815,49 @@ async function main() {
     let finalUrl = urls[0];
 
     // ── Phase 1: Try all URLs via Firecrawl ──────────────────────────────────
-    for (let i = 0; i < urls.length; i++) {
-      const url = urls[i];
-      if (i > 0) log(`  → ${coinSlug}/${provider.id}: fallback URL [${i}]: ${url}`);
+    // Skip Phase 1 for providers where Firecrawl is structurally unreliable
+    // (bot detection or waitFor-not-supported JS rendering). price/inStock stay
+    // at their defaults (null / true) so Phase 2 fires immediately below.
+    if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id)) {
+      for (let i = 0; i < urls.length; i++) {
+        const url = urls[i];
+        if (i > 0) log(`  → ${coinSlug}/${provider.id}: fallback URL [${i}]: ${url}`);
 
-      try {
-        const markdown = await scrapeUrl(url, provider.id);
-        const cleaned = preprocessMarkdown(markdown, provider.id);
-        const stock = detectStockStatus(cleaned, coin.weight_oz || 1, provider.id);
+        try {
+          const markdown = await scrapeUrl(url, provider.id);
+          const cleaned = preprocessMarkdown(markdown, provider.id);
+          const stock = detectStockStatus(cleaned, coin.weight_oz || 1, provider.id);
 
-        if (!stock.inStock) {
-          log(`  ⚠ ${provider.id} [url${i}]: ${stock.reason} — ${stock.detectedText || "detected"}`);
+          if (!stock.inStock) {
+            log(`  ⚠ ${provider.id} [url${i}]: ${stock.reason} — ${stock.detectedText || "detected"}`);
+            if (i < urls.length - 1) { await jitter(); continue; }
+            // Last URL and OOS — exit loop with inStock=false
+            inStock = false;
+            finalUrl = url;
+            break;
+          }
+
+          const p = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
+          if (p !== null) {
+            price = p;
+            finalUrl = url;
+            log(`  ✓ ${coinSlug}/${provider.id}: $${p.toFixed(2)} (firecrawl)${urls.length > 1 ? ` [url${i}]` : ""}`);
+            break;
+          }
+
+          // Parse failure on this URL — try next if available
+          warn(`  ? ${coinSlug}/${provider.id} [url${i}]: page loaded, no price — trying next URL`);
           if (i < urls.length - 1) { await jitter(); continue; }
-          // Last URL and OOS — exit loop with inStock=false
-          inStock = false;
+
+          // Last URL, Firecrawl parse failure — fall through to Playwright phase
           finalUrl = url;
-          break;
-        }
 
-        const p = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
-        if (p !== null) {
-          price = p;
+        } catch (err) {
+          warn(`  ✗ ${provider.id} [url${i}] firecrawl error: ${err.message.slice(0, 100)}`);
+          if (i < urls.length - 1) { await jitter(); continue; }
+          // Last URL threw — fall through to Playwright phase
           finalUrl = url;
-          log(`  ✓ ${coinSlug}/${provider.id}: $${p.toFixed(2)} (firecrawl)${urls.length > 1 ? ` [url${i}]` : ""}`);
-          break;
         }
-
-        // Parse failure on this URL — try next if available
-        warn(`  ? ${coinSlug}/${provider.id} [url${i}]: page loaded, no price — trying next URL`);
-        if (i < urls.length - 1) { await jitter(); continue; }
-
-        // Last URL, Firecrawl parse failure — fall through to Playwright phase
-        finalUrl = url;
-
-      } catch (err) {
-        warn(`  ✗ ${provider.id} [url${i}] firecrawl error: ${err.message.slice(0, 100)}`);
-        if (i < urls.length - 1) { await jitter(); continue; }
-        // Last URL threw — fall through to Playwright phase
-        finalUrl = url;
       }
     }
 
