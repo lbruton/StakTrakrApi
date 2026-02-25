@@ -108,6 +108,7 @@ const METAL_PRICE_RANGE_PER_OZ = {
   gold:      { min: 1500, max: 15000 },  // 1oz: $1500-15000
   platinum:  { min: 500,  max: 6000  },
   palladium: { min: 300,  max: 6000  },
+  goldback:  { min: 5,    max: 25    },  // G1 ($10 spot equivalent); G50 would be $500 but tracked separately
 };
 
 // Provider IDs that use "As Low As" as their primary price indicator.
