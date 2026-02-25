@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_updated": "2026-02-23",
+  "last_updated": "2026-02-25",
   "currency": "USD",
   "pricing_model": "per_coin",
   "notes": "URLs point to specific product pages (BU / random-year SKUs). All URLs verified 2026-02-19. fbp_url: FindBullionPrices comparison page used as fallback when primary scrapes fail.",
@@ -472,6 +472,234 @@
           "id": "bullionexchanges",
           "enabled": true,
           "url": "https://www.bullionexchanges.com/1-oz-platinum-american-eagle"
+        }
+      ]
+    },
+    "goldback-g1": {
+      "name": "Goldback G1 (1/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 1,
+      "notes": "G1 is the base denomination. G5/G10/G25/G50 prices are multiples. goldback.com/exchange-rate/ is the official rate. Vendor URLs point to a specific in-stock state variant — price is consistent across most states (~$9.83-$10.29).",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (official rate)",
+          "enabled": true,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": "https://www.jmbullion.com/1-nevada-goldback-gold-note/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": true,
+          "url": "https://www.apmex.com/product/255958/1-wyoming-goldback-aurum-gold-foil-note-24k"
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/1-utah-goldback-aurum-gold-note/"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-1-goldback-note"
+        }
+      ]
+    },
+    "goldback-g2": {
+      "name": "Goldback G2 (2/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 2,
+      "notes": "G2 is Arizona series across all vendors (new denomination, introduced 2025). Price = G1 rate × 2.",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (official rate)",
+          "enabled": true,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": true,
+          "url": "https://www.jmbullion.com/2-arizona-goldback-gold-note/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": true,
+          "url": "https://www.apmex.com/product/321896/2-arizona-goldback-aurum-gold-foil-note-24k"
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/2-arizona-goldback-aurum-gold-note-alpha/"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-2-goldback-note"
+        }
+      ]
+    },
+    "goldback-g5": {
+      "name": "Goldback G5 (5/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 5,
+      "notes": "Price = G1 rate × 5. SD Bullion Arizona G5 may be out of stock — poller will record null.",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (official rate)",
+          "enabled": true,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": true,
+          "url": "https://www.jmbullion.com/5-nevada-goldback-gold-note/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": true,
+          "url": "https://www.apmex.com/product/255959/5-wyoming-goldback-aurum-gold-foil-note-24k"
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/5-utah-goldback-aurum-gold-note/"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-5-goldback-note"
+        }
+      ]
+    },
+    "goldback-g10": {
+      "name": "Goldback G10 (10/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 10,
+      "notes": "Price = G1 rate × 10.",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (official rate)",
+          "enabled": true,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": true,
+          "url": "https://www.jmbullion.com/10-nevada-goldback-gold-note/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": true,
+          "url": "https://www.apmex.com/product/255960/10-wyoming-goldback-aurum-gold-foil-note-24k"
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/10-utah-goldback-aurum-gold-note/"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-10-goldback-note"
+        }
+      ]
+    },
+    "goldback-g25": {
+      "name": "Goldback G25 (25/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 25,
+      "notes": "Price = G1 rate × 25. SD Bullion Arizona G25 may be out of stock — poller will record null.",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (official rate)",
+          "enabled": true,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": true,
+          "url": "https://www.jmbullion.com/25-nevada-goldback-gold-note/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": true,
+          "url": "https://www.apmex.com/product/255961/25-wyoming-goldback-aurum-gold-foil-note-24k"
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/25-utah-goldback-aurum-gold-note/"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-25-goldback-note"
+        }
+      ]
+    },
+    "goldback-g50": {
+      "name": "Goldback G50 (50/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 50,
+      "notes": "Price = G1 rate × 50.",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (official rate)",
+          "enabled": true,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": true,
+          "url": "https://www.jmbullion.com/50-nevada-goldback-gold-note/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": true,
+          "url": "https://www.apmex.com/product/255963/50-wyoming-goldback-aurum-gold-foil-note-24k"
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/50-utah-goldback-aurum-gold-note/"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-50-goldback-note"
         }
       ]
     }
