@@ -747,11 +747,17 @@ async function main() {
   const scrapedAt = new Date().toISOString();
   const winStart = windowFloor();
 
-  // Start run log entry in Turso
+  // Start run log entry in Turso.
+  // First, mark any orphaned "running" rows from previous crashed runs as "error".
   const pollerId = process.env.POLLER_ID || "unknown";
   let runId = null;
   if (db) {
     try {
+      await db.execute({
+        sql: `UPDATE poller_runs SET status = 'error', error = 'orphaned — process crashed or was killed'
+              WHERE poller_id = ? AND status = 'running'`,
+        args: [pollerId],
+      });
       runId = await startRunLog(db, { pollerId, startedAt: scrapedAt, total: targets.length });
     } catch (err) {
       warn(`Run log start failed (non-fatal): ${err.message.slice(0, 80)}`);
