@@ -196,8 +196,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3-pip \
     && python3 -m pip install --no-cache-dir --break-system-packages "requests>=2.32.4" python-dotenv
 
 COPY *.js ./
-COPY run-local.sh run-fbp.sh run-goldback.sh run-spot.sh run-publish.sh run-retry.sh ./
-RUN chmod +x run-local.sh run-fbp.sh run-goldback.sh run-spot.sh run-publish.sh run-retry.sh
+COPY run-local.sh run-goldback.sh run-spot.sh run-publish.sh run-retry.sh ./
+RUN chmod +x run-local.sh run-goldback.sh run-spot.sh run-publish.sh run-retry.sh
 
 # Spot-poller Python source (copied into build context by pre-deploy)
 COPY spot-poller/ /app/spot-poller/
@@ -214,7 +214,6 @@ RUN mkdir -p /var/lib/rabbitmq /var/log/rabbitmq \
 
 # ── Cron jobs ───────────────────────────────────────────
 RUN (echo "15,45 * * * * root . /etc/environment; /app/run-local.sh >> /var/log/retail-poller.log 2>&1"; \
-     echo "0 20 * * * root . /etc/environment; /app/run-fbp.sh >> /var/log/retail-poller.log 2>&1"; \
      echo "1 17 * * * root . /etc/environment; /app/run-goldback.sh >> /var/log/goldback-poller.log 2>&1") \
     > /etc/cron.d/retail-poller \
     && chmod 0644 /etc/cron.d/retail-poller

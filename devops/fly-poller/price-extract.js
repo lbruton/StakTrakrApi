@@ -24,7 +24,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { openTursoDb, writeSnapshot, windowFloor, readTodayFailures, startRunLog, finishRunLog } from "./db.js";
+import { openTursoDb, writeSnapshot, windowFloor, startRunLog, finishRunLog } from "./db.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -57,10 +57,6 @@ const PROXY_HTTP  = PROXY_USER ? `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOS
 // Cox WiFi tinyproxy-2 (port 8889) — second residential proxy layer before Webshare.
 // Set as Fly.io secret: fly secrets set HOME_PROXY_URL_2=http://100.112.198.50:8889
 const HOME_PROXY_URL_2 = process.env.HOME_PROXY_URL_2 || null;
-// PATCH_GAPS: queries SQLite for today's failed vendors, scrapes FBP only for
-// those coins, and writes recovered prices back to SQLite.
-// Run at 3pm ET after the 11am full scrape.
-const PATCH_GAPS = process.env.PATCH_GAPS === "1";
 
 // Sequential with per-request jitter (2-8s) — avoids rate-limit fingerprinting.
 // Targets are shuffled so the same vendor is never hit consecutively;
@@ -192,23 +188,6 @@ function preprocessMarkdown(markdown, providerId) {
 }
 
 
-// Maps FBP table dealer names → our provider IDs.
-// Only covers providers we track; unrecognized dealers are ignored.
-const FBP_DEALER_NAME_MAP = {
-  "JM Bullion":          "jmbullion",
-  "APMEX":               "apmex",
-  "SD Bullion":          "sdbullion",
-  "Monument Metals":     "monumentmetals",
-  "Hero Bullion":        "herobullion",
-  "Bullion Exchanges":   "bullionexchanges",
-  "Summit Metals":       "summitmetals",
-  "Provident Metals":    "providentmetals",
-  "BGASC":               "bgasc",
-  "Money Metals Exchange": "moneymetals",
-  "BullionStar US":      "bullionstar",
-  "Silver.com":          "silverdotcom",
-  "Bullion Standard":    "bullionstandard",
-};
 
 /**
  * Detect stock status from Firecrawl markdown.
@@ -426,48 +405,6 @@ function extractPrice(markdown, metal, weightOz = 1, providerId = "") {
   return null;
 }
 
-/**
- * Parse a FindBullionPrices comparison table.
- *
- * FBP table columns: Dealer | icons | ACH/Cash Price | Credit Price | Premium | Link
- * Returns { providerId -> { ach: number, credit: number } } for all recognized dealers.
- * ACH price is the wire/check price (lowest); credit price is the card price (~3-4% higher).
- */
-function extractFbpPrices(markdown, metal, weightOz = 1) {
-  if (!markdown) return {};
-
-  const perOz = METAL_PRICE_RANGE_PER_OZ[metal] || { min: 5, max: 200_000 };
-  const range = { min: perOz.min * weightOz, max: perOz.max * weightOz };
-
-  const results = {};
-  const lines = markdown.split("\n");
-
-  for (const line of lines) {
-    if (!line.startsWith("|") || line.startsWith("| ---") || line.startsWith("| **")) continue;
-
-    // Extract dealer name from first cell (may contain markdown link)
-    const firstCell = line.split("|")[1] || "";
-    const nameMatch = firstCell.match(/\[([^\]]+)\]/) || firstCell.match(/([A-Z][^\[*\n]{2,40})/);
-    if (!nameMatch) continue;
-    const dealerName = nameMatch[1].trim();
-    const providerId = FBP_DEALER_NAME_MAP[dealerName];
-    if (!providerId) continue;
-
-    // Extract all dollar amounts in range from the row; first = ACH, second = credit
-    const prices = [];
-    let m;
-    const pat = /\$?([\d,]+\.\d{2})/g;
-    while ((m = pat.exec(line)) !== null) {
-      const p = parseFloat(m[1].replace(/,/g, ""));
-      if (p >= range.min && p <= range.max) prices.push(p);
-    }
-    if (prices.length > 0) {
-      results[providerId] = { ach: prices[0], credit: prices[1] ?? null };
-    }
-  }
-
-  return results;
-}
 
 // ---------------------------------------------------------------------------
 // Firecrawl API
@@ -707,67 +644,6 @@ async function main() {
   const providersJson = JSON.parse(readFileSync(providersPath, "utf-8"));
   const dateStr = new Date().toISOString().slice(0, 10);
 
-  if (PATCH_GAPS) {
-    log(`Gap-fill run for ${dateStr}`);
-    if (DRY_RUN) log("DRY RUN — no SQLite writes");
-
-    const gapDb = DRY_RUN ? null : await openTursoDb();
-    try {
-      // Query SQLite for failed vendors today
-      const failures = DRY_RUN ? [] : readTodayFailures(gapDb);
-      if (failures.length === 0) {
-        log("No gaps found — all vendors succeeded today. Nothing to do.");
-        return;
-      }
-
-      // Group by coin slug
-      const gapsByCoin = {};
-      for (const { coin_slug, vendor } of failures) {
-        if (!gapsByCoin[coin_slug]) gapsByCoin[coin_slug] = [];
-        gapsByCoin[coin_slug].push(vendor);
-      }
-
-      const gapCoins = Object.keys(gapsByCoin);
-      log(`Gaps found in ${gapCoins.length} coin(s): ${gapCoins.join(", ")}`);
-
-      let totalFilled = 0;
-      const scrapedAt = new Date().toISOString();
-      const winStart = windowFloor();
-
-      for (const [coinSlug, vendors] of Object.entries(gapsByCoin)) {
-        if (COIN_FILTER && !COIN_FILTER.includes(coinSlug)) continue;
-        const coinData = providersJson.coins[coinSlug];
-        if (!coinData?.fbp_url) { warn(`No fbp_url for ${coinSlug} — skipping`); continue; }
-        log(`Scraping FBP for ${coinSlug} (gaps: ${vendors.join(", ")})`);
-        try {
-          const md = await scrapeUrl(coinData.fbp_url, "fbp");
-          const fbpPrices = extractFbpPrices(md, coinData.metal, coinData.weight_oz || 1);
-
-          for (const providerId of vendors) {
-            const fbp = fbpPrices[providerId];
-            if (!fbp) { warn(`  FBP had no data for ${coinSlug}/${providerId}`); continue; }
-            const price = fbp.ach;
-            log(`  \u21a9 ${coinSlug}/${providerId}: $${price.toFixed(2)} ACH (fbp)`);
-            if (!DRY_RUN) {
-              await writeSnapshot(gapDb, { scrapedAt, windowStart: winStart, coinSlug, vendor: providerId, price, source: "fbp", isFailed: 0, inStock: true });
-            }
-            totalFilled++;
-          }
-        } catch (err) {
-          warn(`  \u2717 FBP scrape failed for ${coinSlug}: ${err.message.slice(0, 120)}`);
-        }
-      }
-
-      log(`Gap-fill done: ${totalFilled} price(s) recovered`);
-      if (totalFilled === 0 && gapCoins.length > 0) {
-        throw new Error("Gap-fill failed: no prices recovered from FBP.");
-      }
-    } finally {
-      if (gapDb) gapDb.close();
-    }
-    return;
-  }
-
   // Build scrape targets — shuffled to avoid rate-limit fingerprinting
   const targets = [];
   for (const [coinSlug, coin] of Object.entries(providersJson.coins)) {
@@ -926,70 +802,8 @@ async function main() {
     }
   }
 
-  // FBP backfill: for each coin with failures that has a fbp_url, scrape once
-  // and fill in any missing providers. Runs after primary scrapes complete.
-  const coinSlugs = [...new Set(scrapeResults.map(r => r.coinSlug))];
-  const fbpFillResults = {};  // coinSlug -> { providerId -> price }
-
-  const coinsNeedingBackfill = coinSlugs.filter(coinSlug => {
-    const failed = scrapeResults.filter(r => r.coinSlug === coinSlug && !r.ok);
-    return failed.length > 0 && providersJson.coins[coinSlug]?.fbp_url;
-  });
-
-  if (coinsNeedingBackfill.length > 0) {
-    log(`FBP backfill: ${coinsNeedingBackfill.length} coin(s) with failures`);
-    for (const coinSlug of coinsNeedingBackfill) {
-      const coinData = providersJson.coins[coinSlug];
-      log(`  Scraping FBP for ${coinSlug}`);
-      try {
-        const fbpMd = await scrapeUrl(coinData.fbp_url, "fbp");
-        const fbpPrices = extractFbpPrices(fbpMd, coinData.metal, coinData.weight_oz || 1);
-        fbpFillResults[coinSlug] = fbpPrices;
-        log(`  FBP ${coinSlug}: ${Object.keys(fbpPrices).length} dealer price(s) found`);
-      } catch (err) {
-        warn(`  FBP scrape failed for ${coinSlug}: ${err.message.slice(0, 120)}`);
-      }
-    }
-  }
-
-  // Aggregate per coin and apply FBP backfill
-  for (const coinSlug of coinSlugs) {
-    const coinResults = scrapeResults.filter(r => r.coinSlug === coinSlug);
-    const failed = coinResults.filter(r => !r.ok);
-
-    // Apply FBP backfill for any providers that failed
-    const fbpPrices = fbpFillResults[coinSlug] || {};
-    for (const r of failed) {
-      const fbp = fbpPrices[r.providerId];
-      if (fbp !== undefined) {
-        log(`  ↩ ${coinSlug}/${r.providerId}: $${fbp.ach.toFixed(2)} ACH (fbp_fallback)`);
-        // Record FBP fallback result to SQLite
-        if (db) {
-          await writeSnapshot(db, {
-            scrapedAt,
-            windowStart: winStart,
-            coinSlug,
-            vendor:   r.providerId,
-            price:    fbp.ach,
-            source:   "fbp",
-            isFailed: false,
-            inStock: true,
-          });
-        }
-      }
-    }
-  }
-
   const ok = scrapeResults.filter(r => r.ok).length;
   const fail = scrapeResults.length - ok;
-
-  // Count FBP fills
-  let fbpFilled = 0;
-  for (const coinSlug of coinSlugs) {
-    const coinResults = scrapeResults.filter(r => r.coinSlug === coinSlug);
-    const fbpPrices = fbpFillResults[coinSlug] || {};
-    fbpFilled += coinResults.filter(r => !r.ok && fbpPrices[r.providerId] !== undefined).length;
-  }
 
   log(`Done: ${ok}/${scrapeResults.length} prices captured, ${fail} failures`);
 
@@ -1001,7 +815,7 @@ async function main() {
         finishedAt: new Date().toISOString(),
         captured: ok,
         failures: fail,
-        fbpFilled,
+        fbpFilled: 0,
         error: ok === 0 ? "All scrapes failed" : null,
       });
     } catch (err) {

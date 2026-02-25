@@ -30,7 +30,6 @@ Fly.io container (staktrakr)          Home VM (192.168.1.48)
   retail cron :15/:45                   retail cron :30 (offset)
   spot cron :05/:20/:35/:50             NO spot — reads only
   goldback cron daily 17:01 UTC         NO goldback
-  fbp gap-fill daily 20:00 UTC          NO fbp
         │                                      │
         ▼                                      ▼
   git push → api branch               Turso only (no git push)

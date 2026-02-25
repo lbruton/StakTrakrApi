@@ -135,7 +135,7 @@ function appendPriceLog(row) {
  * @param {string} row.coinSlug
  * @param {string} row.vendor       provider id (e.g. "apmex")
  * @param {number|null} row.price   null if scrape failed
- * @param {string} row.source       "firecrawl" | "playwright" | "fbp"
+ * @param {string} row.source       "firecrawl" | "playwright"
  * @param {number|null} [row.confidence]  populated later by merge step
  * @param {boolean} [row.isFailed]  true if this scrape returned no price
  * @param {boolean} [row.inStock]   false if product is out of stock (defaults to true)
@@ -187,21 +187,6 @@ export function writeConfidenceScores(db, scores) {
   updateMany(scores);
 }
 
-/**
- * Returns all (coin_slug, vendor) pairs that failed today (is_failed = 1).
- * Used by PATCH_GAPS mode to find which vendors need FBP gap-fill.
- * @param {import('better-sqlite3').Database} db
- * @returns {Array<{coin_slug: string, vendor: string}>}
- */
-export function readTodayFailures(db) {
-  const today = new Date().toISOString().slice(0, 10);
-  return db.prepare(`
-    SELECT coin_slug, vendor FROM price_snapshots
-    WHERE is_failed = 1 AND substr(window_start, 1, 10) = ?
-    GROUP BY coin_slug, vendor
-    HAVING SUM(CASE WHEN is_failed = 0 THEN 1 ELSE 0 END) = 0
-  `).all(today);
-}
 
 // ---------------------------------------------------------------------------
 // Read operations
