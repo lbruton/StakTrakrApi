@@ -26,28 +26,31 @@ There is no build step for the data files. The poller code in `devops/` is what 
 ## Architecture
 
 ```
-Fly.io container (staktrakr)          GitHub Actions (this repo)
-  retail-poller cron (*/15 min)         spot-poller.yml (:05/:20/:35/:50)
-  goldback cron (daily 17:01 UTC)              │
-  fbp gap-fill cron (daily 20:00 UTC)          │
+Fly.io container (staktrakr)          Home VM (192.168.1.48)
+  retail cron :15/:45                   retail cron :30 (offset)
+  spot cron :05/:20/:35/:50             NO spot — reads only
+  goldback cron daily 17:01 UTC         NO goldback
+  fbp gap-fill daily 20:00 UTC          NO fbp
         │                                      │
         ▼                                      ▼
-  StakTrakrApi  api  branch  ◄─────────────────
+  git push → api branch               Turso only (no git push)
         │
         │  Merge Poller Branches (*/15 min GHA — this repo)
         ▼
   StakTrakrApi  main  branch  →  GitHub Pages  →  api.staktrakr.com
 ```
 
+> **Home VM writes to Turso only** — it does NOT push to the api branch or write data files to git. Only the Fly.io container runs `run-publish.sh`.
+
 ### Three Data Feeds
 
 | Feed | File | Writer | Stale threshold |
 |------|------|--------|-----------------|
 | Market prices | `data/api/manifest.json` | Fly.io `run-local.sh` (*/15 min) | 30 min |
-| Spot prices | `data/hourly/YYYY/MM/DD/HH.json` | `spot-poller.yml` GHA (:05 and :35) | 75 min |
+| Spot prices | `data/hourly/YYYY/MM/DD/HH.json` | Fly.io `run-spot.sh` cron (5,20,35,50 * * * *) | 75 min |
 | Goldback | `data/api/goldback-spot.json` | Fly.io `run-goldback.sh` (daily 17:01 UTC) | 25h |
 
-`spot-history-YYYY.json` is a **seed file** (one noon-UTC entry per day from a local Docker poller). It is NOT live spot data — do not use it for freshness checks.
+`spot-history-YYYY.json` is a **seed file** (one noon-UTC entry per day). It is NOT live spot data — do not use it for freshness checks.
 
 ### Fly.io Container (retail + goldback)
 
@@ -113,8 +116,7 @@ EOF
 ```
 
 ```bash
-# GHA workflow status
-gh run list --repo lbruton/StakTrakrApi --workflow "spot-poller.yml" --limit 5
+# GHA workflow status (spot-poller.yml is RETIRED — check Fly logs instead)
 gh run list --repo lbruton/StakTrakrApi --workflow "Merge Poller Branches" --limit 5
 
 # Fly.io container
@@ -134,7 +136,7 @@ fly ssh console --app staktrakr -C "/app/run-goldback.sh"
 |---------|-------------|-------|
 | `manifest.json` > 30 min stale | Fly.io cron missed | `fly logs --app staktrakr \| grep retail` |
 | `manifest.json` > 4h stale | Fly.io container down | `fly status --app staktrakr` |
-| Spot hourly > 75 min stale | GHA paused or secret expired | `METAL_PRICE_API_KEY` secret; MetalPriceAPI quota |
+| Spot hourly > 75 min stale | Fly.io run-spot.sh cron missed | `fly logs --app staktrakr \| grep spot`; check `METAL_PRICE_API_KEY` |
 | `goldback-spot.json` > 25h stale | Fly.io goldback cron | `fly logs --app staktrakr \| grep goldback` |
 | Merge workflow failing | Branch missing or jq parse error | GHA run logs in this repo |
 
@@ -145,7 +147,7 @@ fly ssh console --app staktrakr -C "/app/run-goldback.sh"
 | File | Purpose |
 |------|---------|
 | `.github/workflows/merge-poller-branches.yml` | Merges `api` + `api1` poller branches → `main` every 15 min |
-| `.github/workflows/spot-poller.yml` | Runs spot price poller 4×/hour; writes to `api` branch |
+| `.github/workflows/spot-poller.yml` | **RETIRED** — spot polling moved to Fly.io `run-spot.sh` |
 | `data/api/manifest.json` | Market prices root; `generated_at` is the freshness timestamp |
 | `data/api/providers.json` | Vendor config on `api` branch (not in `main`) |
 | `data/hourly/YYYY/MM/DD/HH.json` | Live spot price arrays |
@@ -161,5 +163,25 @@ fly ssh console --app staktrakr -C "/app/run-goldback.sh"
 |------|------|
 | `lbruton/StakTrakr` | Frontend app code, Cloudflare Pages deployment, local dev tools only |
 | `lbruton/StakTrakrApi` (this repo) | All API backend: poller code (`devops/`), GHA workflows, data files served via GH Pages |
+| `lbruton/stakscrapr` | Home VM poller — runs same scraper code, writes Turso only (no git push) |
 
-To deploy the Fly.io container: `cd devops/retail-poller && fly deploy`.
+To deploy the Fly.io container: `cd devops/fly-poller && fly deploy`.
+
+## devops/ Folder Structure
+
+| Folder | Contains |
+|--------|---------|
+| `devops/fly-poller/` | Fly.io container: fly.toml, Dockerfile, all run-*.sh, AND shared scraper code (price-extract.js, api-export.js, etc.) |
+| `devops/home-scraper/` | Home VM additions: run-home.sh, setup-lxc.sh, sync-from-fly.sh |
+| `devops/home-vm/` | Infrastructure: tinyproxy-cox, cox-auth, sysctl |
+
+**fly-poller/ is the single source of truth** for all scraper code. The home VM runs identical copies. Use `devops/home-scraper/sync-from-fly.sh` to keep them in sync.
+
+## Keeping Home VM in Sync
+
+```bash
+cd devops/home-scraper
+./sync-from-fly.sh              # dry-run — see what changed
+./sync-from-fly.sh --apply      # copy files to stakscrapr
+./sync-from-fly.sh --apply --push  # copy + commit + push
+```
