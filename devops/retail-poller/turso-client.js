@@ -61,4 +61,25 @@ export async function initTursoSchema(client) {
   for (const sql of indexes) {
     await client.execute(sql);
   }
+
+  // Poller run log — one row per scrape run, written by each poller instance
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS poller_runs (
+      id           INTEGER PRIMARY KEY AUTOINCREMENT,
+      run_id       TEXT NOT NULL UNIQUE,
+      poller_id    TEXT NOT NULL,
+      started_at   TEXT NOT NULL,
+      finished_at  TEXT,
+      status       TEXT NOT NULL DEFAULT 'running',
+      total        INTEGER,
+      captured     INTEGER,
+      failures     INTEGER,
+      fbp_filled   INTEGER,
+      error        TEXT
+    );
+  `);
+
+  await client.execute(
+    "CREATE INDEX IF NOT EXISTS idx_runs_poller_started ON poller_runs(poller_id, started_at DESC);"
+  );
 }
