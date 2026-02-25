@@ -311,31 +311,6 @@ export function readCoinWindow(db, coinSlug, windowStart) {
 }
 
 /**
- * Returns the most recent row per vendor for a coin within the last N hours.
- * Used for current-price display when multiple pollers write to different windows.
- *
- * @param {Database.Database} db
- * @param {string} coinSlug
- * @param {number} lookbackHours
- * @returns {Array<object>}
- */
-export function readLatestPerVendor(db, coinSlug, lookbackHours = 2) {
-  return db.prepare(`
-    SELECT ps.*
-    FROM price_snapshots ps
-    INNER JOIN (
-      SELECT vendor, MAX(scraped_at) AS max_scraped_at
-      FROM price_snapshots
-      WHERE coin_slug = ?
-        AND scraped_at >= datetime('now', ? || ' hours')
-      GROUP BY vendor
-    ) latest ON ps.vendor = latest.vendor
-             AND ps.scraped_at = latest.max_scraped_at
-             AND ps.coin_slug = ?
-  `).all(coinSlug, `-${lookbackHours}`, coinSlug);
-}
-
-/**
  * Returns all distinct window_starts in descending order, up to limit.
  *
  * @param {Database.Database} db
@@ -348,6 +323,77 @@ export function readRecentWindowStarts(db, limit = 96) {
     .all(limit)
     .map((r) => r.window_start)
     .reverse();
+}
+
+// ---------------------------------------------------------------------------
+// Poller run log
+// ---------------------------------------------------------------------------
+
+/**
+ * Insert a new poller run row with status "running".
+ * Returns the run_id (used to update the row when the run finishes).
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {{ pollerId: string, startedAt: string, total: number }} opts
+ * @returns {Promise<string>}  run_id
+ */
+export async function startRunLog(client, { pollerId, startedAt, total }) {
+  const runId = `${pollerId}-${startedAt.replace(/[^0-9T]/g, "")}`;
+  await client.execute({
+    sql: `
+      INSERT INTO poller_runs (run_id, poller_id, started_at, status, total)
+      VALUES (?, ?, ?, 'running', ?)
+      ON CONFLICT(run_id) DO NOTHING
+    `,
+    args: [runId, pollerId, startedAt, total],
+  });
+  return runId;
+}
+
+/**
+ * Update a poller run row to finished status.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {{ runId: string, finishedAt: string, captured: number, failures: number, fbpFilled: number, error?: string }} opts
+ */
+export async function finishRunLog(client, { runId, finishedAt, captured, failures, fbpFilled, error }) {
+  await client.execute({
+    sql: `
+      UPDATE poller_runs
+      SET finished_at = ?, status = ?, captured = ?, failures = ?, fbp_filled = ?, error = ?
+      WHERE run_id = ?
+    `,
+    args: [
+      finishedAt,
+      error ? "error" : "ok",
+      captured,
+      failures,
+      fbpFilled,
+      error || null,
+      runId,
+    ],
+  });
+}
+
+/**
+ * Read the most recent N runs across all pollers (for the dashboard).
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {number} [limit=20]
+ * @returns {Promise<Array<object>>}
+ */
+export async function readRecentRuns(client, limit = 20) {
+  const result = await client.execute({
+    sql: `
+      SELECT run_id, poller_id, started_at, finished_at, status,
+             total, captured, failures, fbp_filled, error
+      FROM poller_runs
+      ORDER BY started_at DESC
+      LIMIT ?
+    `,
+    args: [limit],
+  });
+  return result.rows;
 }
 
 /**
