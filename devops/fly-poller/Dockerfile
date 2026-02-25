@@ -64,6 +64,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Prevents Chromium from loading trackers during scrapes, reducing CPU and
 # bandwidth by ~30-50%. Domains resolve to 0.0.0.0 instantly (no TCP handshake).
 # Source: AdGuard base list + observed bullion dealer page trackers.
+# NOTE: /etc/hosts is read-only during Docker build (BuildKit restriction).
+# We write to a staging file here; docker-entrypoint.sh appends it at runtime.
 RUN printf '%s\n' \
   '# --- Ad networks & trackers (blocked for scraper performance) ---' \
   '0.0.0.0 www.googletagmanager.com' \
@@ -148,7 +150,7 @@ RUN printf '%s\n' \
   '0.0.0.0 log.outbrain.com' \
   '0.0.0.0 assets.adobedtm.com' \
   '0.0.0.0 dpm.demdex.net' \
-  >> /etc/hosts
+  > /app/tracker-blocklist.txt
 
 # Install Tailscale (stable Debian bookworm repo)
 RUN curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg \

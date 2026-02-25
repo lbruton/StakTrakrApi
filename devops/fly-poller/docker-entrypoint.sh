@@ -3,6 +3,13 @@ set -e
 
 echo "[entrypoint] Starting StakTrakr all-in-one container..."
 
+# ── 0. Inject tracker blocklist into /etc/hosts ─────────────────────────
+# /etc/hosts is read-only during Docker build but writable at runtime.
+if [ -f /app/tracker-blocklist.txt ]; then
+  cat /app/tracker-blocklist.txt >> /etc/hosts
+  echo "[entrypoint] Tracker blocklist injected ($(wc -l < /app/tracker-blocklist.txt) entries)"
+fi
+
 # ── 1. Export env vars for cron jobs (cron doesn't inherit Docker env) ──
 printenv | grep -v '^_=' > /etc/environment
 
