@@ -45,7 +45,7 @@ fi
 # API repo is no longer cloned at entrypoint — stateless clone in run-local.sh
 
 # ── 5.5. Dynamic cron schedule (overrides Dockerfile baked-in crontab) ──
-CRON_SCHEDULE="${CRON_SCHEDULE:-*/15}"
+CRON_SCHEDULE="${CRON_SCHEDULE:-15,45}"
 if ! echo "$CRON_SCHEDULE" | grep -qE '^[0-9*/,\-]+$'; then
   echo "[entrypoint] ERROR: Invalid CRON_SCHEDULE '${CRON_SCHEDULE}' — aborting." >&2
   exit 1

@@ -311,6 +311,36 @@ export function readCoinWindow(db, coinSlug, windowStart) {
 }
 
 /**
+ * Returns the most recent non-failed row per vendor for a given coin,
+ * looking back `lookbackHours` hours from now.  Used by api-export to
+ * merge data from both pollers (Fly.io :00/:15 and home :30) into a
+ * single vendor map.
+ *
+ * @param {Database.Database} db
+ * @param {string} coinSlug
+ * @param {number} [lookbackHours=2]
+ * @returns {Array<object>}
+ */
+export function readLatestPerVendor(db, coinSlug, lookbackHours = 2) {
+  const cutoff = new Date(Date.now() - lookbackHours * 60 * 60 * 1000)
+    .toISOString()
+    .replace(".000Z", "Z");
+  return db
+    .prepare(`
+      SELECT ps.*
+      FROM price_snapshots ps
+      INNER JOIN (
+        SELECT vendor, MAX(scraped_at) AS max_scraped
+        FROM price_snapshots
+        WHERE coin_slug = ? AND scraped_at >= ? AND is_failed = 0 AND price IS NOT NULL
+        GROUP BY vendor
+      ) latest ON ps.vendor = latest.vendor AND ps.scraped_at = latest.max_scraped
+      WHERE ps.coin_slug = ? AND ps.is_failed = 0 AND ps.price IS NOT NULL
+    `)
+    .all(coinSlug, cutoff, coinSlug);
+}
+
+/**
  * Returns all distinct window_starts in descending order, up to limit.
  *
  * @param {Database.Database} db
