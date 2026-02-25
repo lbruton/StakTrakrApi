@@ -388,19 +388,19 @@ function extractPrice(markdown, metal, weightOz = 1, providerId = "") {
   }
 
   if (providerId === "jmbullion") {
-    // JM Bullion: pipe table → prose table → "As Low As" → plain prose fallback.
+    // JM Bullion: pipe table → prose table → "As Low As" fallback.
     // Silver pages often render pipe tables; gold pages render as plain text.
     // jmPriceFromProseTable() handles the plain-text layout:
     //   "(e)Check/Wire" header → "1-9" qty tier → first dollar amount.
-    // firstInRangePriceProse() is the final fallback for product types (e.g. Goldbacks)
-    // that display a simple "$9.83" price without "As Low As" or a (e)Check/Wire table.
+    // NOTE: firstInRangePriceProse() is intentionally NOT used here — JMBullion's
+    // mega-menu (after nav stripping) can contain goldback category prices in the
+    // $5-$25 range that appear before the product price and produce false matches.
     const tblFirst = firstTableRowFirstPrice();
     if (tblFirst !== null) return tblFirst;
     const proseTbl = jmPriceFromProseTable();
     if (proseTbl !== null) return proseTbl;
     const ala = asLowAsPrices();
     if (ala.length > 0) return Math.min(...ala);
-    return firstInRangePriceProse();
   } else if (USES_AS_LOW_AS.has(providerId)) {
     // Reserved for vendors that have no pricing table, only "As Low As" display.
     // Currently empty — all vendors now use table-first extraction.
