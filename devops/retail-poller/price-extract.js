@@ -20,10 +20,10 @@
  *   DRY_RUN             Set to "1" to skip writing files
  */
 
-import { readFileSync, existsSync, writeFileSync, unlinkSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { openTursoDb, writeSnapshot, windowFloor, readTodayFailures } from "./db.js";
+import { openTursoDb, writeSnapshot, windowFloor, readTodayFailures, startRunLog, finishRunLog } from "./db.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -52,9 +52,7 @@ const COIN_FILTER = process.env.COINS ? process.env.COINS.split(",").map(s => s.
 const PROXY_USER = process.env.WEBSHARE_PROXY_USER || null;
 const PROXY_PASS = process.env.WEBSHARE_PROXY_PASS || null;
 const PROXY_HOST = "p.webshare.io";
-const PROXY_HTTP  = (PROXY_USER && process.env.PROXY_DISABLED !== '1')
-  ? `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:80`
-  : null;
+const PROXY_HTTP  = PROXY_USER ? `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:80` : null;
 // PATCH_GAPS: queries SQLite for today's failed vendors, scrapes FBP only for
 // those coins, and writes recovered prices back to SQLite.
 // Run at 3pm ET after the 11am full scrape.
@@ -106,7 +104,6 @@ const METAL_PRICE_RANGE_PER_OZ = {
   gold:      { min: 1500, max: 15000 },  // 1oz: $1500-15000
   platinum:  { min: 500,  max: 6000  },
   palladium: { min: 300,  max: 6000  },
-  goldback:  { min: 5,    max: 25    },  // G1 retail rate; weight_oz=1 so range is $5-25 flat
 };
 
 // Provider IDs that use "As Low As" as their primary price indicator.
@@ -474,7 +471,7 @@ function sleep(ms) {
 // jmbullion/herobullion: Next.js/React, needs ~5s to populate price tables.
 // monumentmetals: full SPA (React Native Web), router doesn't mount until ~6s.
 // bullionexchanges: React/Magento SPA, pricing grid doesn't render until ~6-8s.
-const SLOW_PROVIDERS = new Set(["jmbullion", "herobullion", "monumentmetals", "summitmetals", "bullionexchanges", "goldback"]);
+const SLOW_PROVIDERS = new Set(["jmbullion", "herobullion", "monumentmetals", "summitmetals", "bullionexchanges"]);
 
 async function scrapeUrl(url, providerId = "", attempt = 1) {
   const controller = new AbortController();
@@ -750,6 +747,17 @@ async function main() {
   const scrapedAt = new Date().toISOString();
   const winStart = windowFloor();
 
+  // Start run log entry in Turso
+  const pollerId = process.env.POLLER_ID || "unknown";
+  let runId = null;
+  if (db) {
+    try {
+      runId = await startRunLog(db, { pollerId, startedAt: scrapedAt, total: targets.length });
+    } catch (err) {
+      warn(`Run log start failed (non-fatal): ${err.message.slice(0, 80)}`);
+    }
+  }
+
   try {
 
   // Scrape all targets sequentially with per-request jitter
@@ -842,7 +850,7 @@ async function main() {
     // ── Store result ──────────────────────────────────────────────────────────
     scrapeResults.push({
       coinSlug, coin, providerId: provider.id, url: finalUrl,
-      price, source, ok: price !== null, inStock,
+      price, source, ok: price !== null,
       error: price === null ? (inStock ? "price_not_found" : "out_of_stock") : null,
     });
 
@@ -922,24 +930,31 @@ async function main() {
 
   const ok = scrapeResults.filter(r => r.ok).length;
   const fail = scrapeResults.length - ok;
-  log(`Done: ${ok}/${scrapeResults.length} prices captured, ${fail} failures`);
-  // T3 retry queue: vendors that failed direct scrape AND FBP backfill.
-  // Only in-stock failures — OOS is expected and not a retry candidate.
-  const RETRY_FILE = '/tmp/retail-failures.json';
-  const persistentFailures = scrapeResults
-    .filter(r => !r.ok && r.inStock !== false)
-    .filter(r => {
-      const fbp = fbpFillResults[r.coinSlug];
-      return !fbp || fbp[r.providerId] === undefined;
-    })
-    .map(r => ({ coinSlug: r.coinSlug, providerId: r.providerId, url: r.url, error: r.error }));
 
-  if (persistentFailures.length > 0) {
-    writeFileSync(RETRY_FILE, JSON.stringify(persistentFailures, null, 2));
-    log(`T3 queue: ${persistentFailures.length} SKU(s) written to ${RETRY_FILE}`);
-  } else {
-    try { unlinkSync(RETRY_FILE); } catch { /* already absent — no-op */ }
-    log('T3 queue: no persistent failures — cleared');
+  // Count FBP fills
+  let fbpFilled = 0;
+  for (const coinSlug of coinSlugs) {
+    const coinResults = scrapeResults.filter(r => r.coinSlug === coinSlug);
+    const fbpPrices = fbpFillResults[coinSlug] || {};
+    fbpFilled += coinResults.filter(r => !r.ok && fbpPrices[r.providerId] !== undefined).length;
+  }
+
+  log(`Done: ${ok}/${scrapeResults.length} prices captured, ${fail} failures`);
+
+  // Finish run log entry in Turso
+  if (db && runId) {
+    try {
+      await finishRunLog(db, {
+        runId,
+        finishedAt: new Date().toISOString(),
+        captured: ok,
+        failures: fail,
+        fbpFilled,
+        error: ok === 0 ? "All scrapes failed" : null,
+      });
+    } catch (err) {
+      warn(`Run log finish failed (non-fatal): ${err.message.slice(0, 80)}`);
+    }
   }
 
   if (ok === 0) {
