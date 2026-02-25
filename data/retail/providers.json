@@ -3,7 +3,7 @@
   "last_updated": "2026-02-25",
   "currency": "USD",
   "pricing_model": "per_coin",
-  "notes": "URLs point to specific product pages (BU / random-year SKUs). All URLs verified 2026-02-19. fbp_url: FindBullionPrices comparison page used as fallback when primary scrapes fail.",
+  "notes": "URLs point to specific product pages (BU / random-year SKUs). fbp_url: FindBullionPrices comparison page used as fallback when primary scrapes fail. Goldback slugs use format goldback-{state}-g{denom} (STAK-335). Legacy goldback-g{N} slugs retained for frontend backward compat \u2014 marked deprecated. Enable vendors one at a time as product URLs are verified.",
   "coins": {
     "ase": {
       "name": "American Silver Eagle 1 oz",
@@ -479,7 +479,7 @@
       "name": "Goldback G1 (1/1000 oz gold)",
       "metal": "goldback",
       "weight_oz": 1,
-      "notes": "G1 is the base denomination. G5/G10/G25/G50 prices are multiples. goldback.com/exchange-rate/ is the official rate. Vendor URLs point to a specific in-stock state variant — price is consistent across most states (~$9.83-$10.29).",
+      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g1) instead. Will be removed after frontend migration.",
       "providers": [
         {
           "id": "goldback",
@@ -511,13 +511,15 @@
           "enabled": true,
           "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-1-goldback-note"
         }
-      ]
+      ],
+      "deprecated": true,
+      "deprecated_by": "goldback-{state}-g1"
     },
     "goldback-g2": {
       "name": "Goldback G2 (2/1000 oz gold)",
       "metal": "goldback",
       "weight_oz": 2,
-      "notes": "G2 is Arizona series across all vendors (new denomination, introduced 2025). Price = G1 rate × 2.",
+      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g2) instead. Will be removed after frontend migration.",
       "providers": [
         {
           "id": "goldback",
@@ -549,13 +551,15 @@
           "enabled": true,
           "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-2-goldback-note"
         }
-      ]
+      ],
+      "deprecated": true,
+      "deprecated_by": "goldback-{state}-g2"
     },
     "goldback-g5": {
       "name": "Goldback G5 (5/1000 oz gold)",
       "metal": "goldback",
       "weight_oz": 5,
-      "notes": "Price = G1 rate × 5. SD Bullion Arizona G5 may be out of stock — poller will record null.",
+      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g5) instead. Will be removed after frontend migration.",
       "providers": [
         {
           "id": "goldback",
@@ -587,13 +591,15 @@
           "enabled": true,
           "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-5-goldback-note"
         }
-      ]
+      ],
+      "deprecated": true,
+      "deprecated_by": "goldback-{state}-g5"
     },
     "goldback-g10": {
       "name": "Goldback G10 (10/1000 oz gold)",
       "metal": "goldback",
       "weight_oz": 10,
-      "notes": "Price = G1 rate × 10.",
+      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g10) instead. Will be removed after frontend migration.",
       "providers": [
         {
           "id": "goldback",
@@ -625,13 +631,15 @@
           "enabled": true,
           "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-10-goldback-note"
         }
-      ]
+      ],
+      "deprecated": true,
+      "deprecated_by": "goldback-{state}-g10"
     },
     "goldback-g25": {
       "name": "Goldback G25 (25/1000 oz gold)",
       "metal": "goldback",
       "weight_oz": 25,
-      "notes": "Price = G1 rate × 25. SD Bullion Arizona G25 may be out of stock — poller will record null.",
+      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g25) instead. Will be removed after frontend migration.",
       "providers": [
         {
           "id": "goldback",
@@ -663,13 +671,15 @@
           "enabled": true,
           "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-25-goldback-note"
         }
-      ]
+      ],
+      "deprecated": true,
+      "deprecated_by": "goldback-{state}-g25"
     },
     "goldback-g50": {
       "name": "Goldback G50 (50/1000 oz gold)",
       "metal": "goldback",
       "weight_oz": 50,
-      "notes": "Price = G1 rate × 50.",
+      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g50) instead. Will be removed after frontend migration.",
       "providers": [
         {
           "id": "goldback",
@@ -700,6 +710,2192 @@
           "name": "SD Bullion",
           "enabled": true,
           "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-50-goldback-note"
+        }
+      ],
+      "deprecated": true,
+      "deprecated_by": "goldback-{state}-g50"
+    },
+    "goldback-utah-ghalf": {
+      "name": "Utah Goldback G\u00bd (\u00bd/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 0.5,
+      "state": "utah",
+      "denomination": "ghalf",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-utah-g1": {
+      "name": "Utah Goldback G1 (1/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 1,
+      "state": "utah",
+      "denomination": "g1",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-utah-g2": {
+      "name": "Utah Goldback G2 (2/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 2,
+      "state": "utah",
+      "denomination": "g2",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-utah-g5": {
+      "name": "Utah Goldback G5 (5/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 5,
+      "state": "utah",
+      "denomination": "g5",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-utah-g10": {
+      "name": "Utah Goldback G10 (10/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 10,
+      "state": "utah",
+      "denomination": "g10",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-utah-g25": {
+      "name": "Utah Goldback G25 (25/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 25,
+      "state": "utah",
+      "denomination": "g25",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-utah-g50": {
+      "name": "Utah Goldback G50 (50/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 50,
+      "state": "utah",
+      "denomination": "g50",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-nevada-ghalf": {
+      "name": "Nevada Goldback G\u00bd (\u00bd/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 0.5,
+      "state": "nevada",
+      "denomination": "ghalf",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-nevada-g1": {
+      "name": "Nevada Goldback G1 (1/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 1,
+      "state": "nevada",
+      "denomination": "g1",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-nevada-g2": {
+      "name": "Nevada Goldback G2 (2/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 2,
+      "state": "nevada",
+      "denomination": "g2",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-nevada-g5": {
+      "name": "Nevada Goldback G5 (5/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 5,
+      "state": "nevada",
+      "denomination": "g5",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-nevada-g10": {
+      "name": "Nevada Goldback G10 (10/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 10,
+      "state": "nevada",
+      "denomination": "g10",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-nevada-g25": {
+      "name": "Nevada Goldback G25 (25/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 25,
+      "state": "nevada",
+      "denomination": "g25",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-nevada-g50": {
+      "name": "Nevada Goldback G50 (50/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 50,
+      "state": "nevada",
+      "denomination": "g50",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-wyoming-ghalf": {
+      "name": "Wyoming Goldback G\u00bd (\u00bd/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 0.5,
+      "state": "wyoming",
+      "denomination": "ghalf",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-wyoming-g1": {
+      "name": "Wyoming Goldback G1 (1/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 1,
+      "state": "wyoming",
+      "denomination": "g1",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-wyoming-g2": {
+      "name": "Wyoming Goldback G2 (2/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 2,
+      "state": "wyoming",
+      "denomination": "g2",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-wyoming-g5": {
+      "name": "Wyoming Goldback G5 (5/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 5,
+      "state": "wyoming",
+      "denomination": "g5",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-wyoming-g10": {
+      "name": "Wyoming Goldback G10 (10/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 10,
+      "state": "wyoming",
+      "denomination": "g10",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-wyoming-g25": {
+      "name": "Wyoming Goldback G25 (25/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 25,
+      "state": "wyoming",
+      "denomination": "g25",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-wyoming-g50": {
+      "name": "Wyoming Goldback G50 (50/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 50,
+      "state": "wyoming",
+      "denomination": "g50",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-new-hampshire-ghalf": {
+      "name": "New Hampshire Goldback G\u00bd (\u00bd/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 0.5,
+      "state": "new-hampshire",
+      "denomination": "ghalf",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-new-hampshire-g1": {
+      "name": "New Hampshire Goldback G1 (1/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 1,
+      "state": "new-hampshire",
+      "denomination": "g1",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-new-hampshire-g2": {
+      "name": "New Hampshire Goldback G2 (2/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 2,
+      "state": "new-hampshire",
+      "denomination": "g2",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-new-hampshire-g5": {
+      "name": "New Hampshire Goldback G5 (5/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 5,
+      "state": "new-hampshire",
+      "denomination": "g5",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-new-hampshire-g10": {
+      "name": "New Hampshire Goldback G10 (10/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 10,
+      "state": "new-hampshire",
+      "denomination": "g10",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-new-hampshire-g25": {
+      "name": "New Hampshire Goldback G25 (25/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 25,
+      "state": "new-hampshire",
+      "denomination": "g25",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-new-hampshire-g50": {
+      "name": "New Hampshire Goldback G50 (50/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 50,
+      "state": "new-hampshire",
+      "denomination": "g50",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-south-dakota-ghalf": {
+      "name": "South Dakota Goldback G\u00bd (\u00bd/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 0.5,
+      "state": "south-dakota",
+      "denomination": "ghalf",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-south-dakota-g1": {
+      "name": "South Dakota Goldback G1 (1/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 1,
+      "state": "south-dakota",
+      "denomination": "g1",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-south-dakota-g2": {
+      "name": "South Dakota Goldback G2 (2/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 2,
+      "state": "south-dakota",
+      "denomination": "g2",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-south-dakota-g5": {
+      "name": "South Dakota Goldback G5 (5/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 5,
+      "state": "south-dakota",
+      "denomination": "g5",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-south-dakota-g10": {
+      "name": "South Dakota Goldback G10 (10/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 10,
+      "state": "south-dakota",
+      "denomination": "g10",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-south-dakota-g25": {
+      "name": "South Dakota Goldback G25 (25/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 25,
+      "state": "south-dakota",
+      "denomination": "g25",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-south-dakota-g50": {
+      "name": "South Dakota Goldback G50 (50/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 50,
+      "state": "south-dakota",
+      "denomination": "g50",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-arizona-ghalf": {
+      "name": "Arizona Goldback G\u00bd (\u00bd/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 0.5,
+      "state": "arizona",
+      "denomination": "ghalf",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-arizona-g1": {
+      "name": "Arizona Goldback G1 (1/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 1,
+      "state": "arizona",
+      "denomination": "g1",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-arizona-g2": {
+      "name": "Arizona Goldback G2 (2/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 2,
+      "state": "arizona",
+      "denomination": "g2",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-arizona-g5": {
+      "name": "Arizona Goldback G5 (5/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 5,
+      "state": "arizona",
+      "denomination": "g5",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-arizona-g10": {
+      "name": "Arizona Goldback G10 (10/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 10,
+      "state": "arizona",
+      "denomination": "g10",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-arizona-g25": {
+      "name": "Arizona Goldback G25 (25/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 25,
+      "state": "arizona",
+      "denomination": "g25",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-arizona-g50": {
+      "name": "Arizona Goldback G50 (50/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 50,
+      "state": "arizona",
+      "denomination": "g50",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-oklahoma-ghalf": {
+      "name": "Oklahoma Goldback G\u00bd (\u00bd/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 0.5,
+      "state": "oklahoma",
+      "denomination": "ghalf",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-oklahoma-g1": {
+      "name": "Oklahoma Goldback G1 (1/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 1,
+      "state": "oklahoma",
+      "denomination": "g1",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": true,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": true,
+          "url": "https://www.apmex.com/product/314866/1-oklahoma-goldback-aurum-gold-foil-note-24k"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/1-oklahoma-goldback-aurum-gold-note/"
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-oklahoma-g2": {
+      "name": "Oklahoma Goldback G2 (2/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 2,
+      "state": "oklahoma",
+      "denomination": "g2",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-oklahoma-g5": {
+      "name": "Oklahoma Goldback G5 (5/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 5,
+      "state": "oklahoma",
+      "denomination": "g5",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-oklahoma-g10": {
+      "name": "Oklahoma Goldback G10 (10/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 10,
+      "state": "oklahoma",
+      "denomination": "g10",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-oklahoma-g25": {
+      "name": "Oklahoma Goldback G25 (25/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 25,
+      "state": "oklahoma",
+      "denomination": "g25",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-oklahoma-g50": {
+      "name": "Oklahoma Goldback G50 (50/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 50,
+      "state": "oklahoma",
+      "denomination": "g50",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-dc-ghalf": {
+      "name": "Washington DC Goldback G\u00bd (\u00bd/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 0.5,
+      "state": "dc",
+      "denomination": "ghalf",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-dc-g1": {
+      "name": "Washington DC Goldback G1 (1/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 1,
+      "state": "dc",
+      "denomination": "g1",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-dc-g2": {
+      "name": "Washington DC Goldback G2 (2/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 2,
+      "state": "dc",
+      "denomination": "g2",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-dc-g5": {
+      "name": "Washington DC Goldback G5 (5/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 5,
+      "state": "dc",
+      "denomination": "g5",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-dc-g10": {
+      "name": "Washington DC Goldback G10 (10/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 10,
+      "state": "dc",
+      "denomination": "g10",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-dc-g25": {
+      "name": "Washington DC Goldback G25 (25/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 25,
+      "state": "dc",
+      "denomination": "g25",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
+        }
+      ]
+    },
+    "goldback-dc-g50": {
+      "name": "Washington DC Goldback G50 (50/1000 oz gold)",
+      "metal": "goldback",
+      "weight_oz": 50,
+      "state": "dc",
+      "denomination": "g50",
+      "providers": [
+        {
+          "id": "goldback",
+          "name": "Goldback (exchange rate)",
+          "enabled": false,
+          "url": "https://www.goldback.com/exchange-rate/"
+        },
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": false,
+          "url": null
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": false,
+          "url": null
         }
       ]
     }
