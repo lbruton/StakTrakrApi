@@ -1,19 +1,31 @@
 {
   "slug": "buffalo",
-  "window_start": "2026-02-26T22:00:00Z",
+  "window_start": "2026-02-26T22:15:00Z",
   "median_price": 5487.19,
   "lowest_price": 5266.49,
   "vendors": {
     "apmex": {
       "price": 5517.19,
-      "confidence": 70,
-      "source": "firecrawl",
+      "confidence": 99,
+      "source": "firecrawl+vision",
       "inStock": true
     },
     "bullionexchanges": {
-      "price": 5382.6,
-      "confidence": 70,
-      "source": "vision",
+      "price": 5371.5,
+      "confidence": 99,
+      "source": "firecrawl+vision",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 5430.28,
+      "confidence": 99,
+      "source": "firecrawl+vision",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 5570.7,
+      "confidence": 80,
+      "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
@@ -24,23 +36,20 @@
     },
     "sdbullion": {
       "price": 5487.19,
-      "confidence": 70,
-      "source": "firecrawl",
+      "confidence": 99,
+      "source": "firecrawl+vision",
       "inStock": true
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": false,
-    "jmbullion": false,
+    "herobullion": true,
+    "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true
   },
-  "last_known_price_by_site": {
-    "herobullion": 5430.28,
-    "jmbullion": 5574.7
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
@@ -3792,14 +3801,26 @@
     },
     {
       "window": "2026-02-26T22:00:00Z",
-      "median": 5430.28,
+      "median": 5487.19,
       "low": 5266.49,
       "vendors": {
+        "jmbullion": 5570.7,
         "apmex": 5517.19,
         "bullionexchanges": 5371.5,
         "herobullion": 5430.28,
         "sdbullion": 5487.19,
         "monumentmetals": 5266.49
+      }
+    },
+    {
+      "window": "2026-02-26T22:15:00Z",
+      "median": 5487.19,
+      "low": 5371.5,
+      "vendors": {
+        "herobullion": 5430.28,
+        "sdbullion": 5487.19,
+        "bullionexchanges": 5371.5,
+        "apmex": 5517.19
       }
     }
   ]
