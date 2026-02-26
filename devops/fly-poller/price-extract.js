@@ -24,7 +24,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { openTursoDb, writeSnapshot, windowFloor, startRunLog, finishRunLog } from "./db.js";
+import { openTursoDb, writeSnapshot, windowFloor, startRunLog, finishRunLog, recordFailure } from "./db.js";
 import { loadProviders } from "./provider-db.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -792,6 +792,21 @@ async function main() {
         isFailed:  price === null && inStock,  // Only failed if in stock but no price
         inStock,
       });
+
+      // Record individual failure for failure queue (R10)
+      if (price === null && inStock) {
+        try {
+          await recordFailure(db, {
+            coinSlug,
+            vendorId: provider.id,
+            url: finalUrl || urls[0],
+            error: "price_not_found",
+            failedAt: scrapedAt,
+          });
+        } catch (err) {
+          warn(`Failure log failed (non-fatal): ${err.message.slice(0, 80)}`);
+        }
+      }
     }
 
     // Jitter before next request (skip after last target)

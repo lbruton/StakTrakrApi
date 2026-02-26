@@ -82,4 +82,22 @@ export async function initTursoSchema(client) {
   await client.execute(
     "CREATE INDEX IF NOT EXISTS idx_runs_poller_started ON poller_runs(poller_id, started_at DESC);"
   );
+
+  // Provider failure tracking — one row per failed scrape attempt
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS provider_failures (
+      id         INTEGER PRIMARY KEY AUTOINCREMENT,
+      coin_slug  TEXT NOT NULL,
+      vendor_id  TEXT NOT NULL,
+      url        TEXT,
+      error      TEXT,
+      failed_at  TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+  `);
+  await client.execute(
+    "CREATE INDEX IF NOT EXISTS idx_pf_coin_vendor ON provider_failures(coin_slug, vendor_id);"
+  );
+  await client.execute(
+    "CREATE INDEX IF NOT EXISTS idx_pf_failed_at ON provider_failures(failed_at);"
+  );
 }

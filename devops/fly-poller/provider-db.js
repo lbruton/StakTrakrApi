@@ -274,6 +274,137 @@ export async function updateVendorUrl(client, coinSlug, vendorId, url) {
   });
 }
 
+/**
+ * Delete a coin and all its vendors (atomic batch).
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {string} slug
+ */
+export async function deleteCoin(client, slug) {
+  await client.batch([
+    { sql: "DELETE FROM provider_vendors WHERE coin_slug = ?", args: [slug] },
+    { sql: "DELETE FROM provider_coins WHERE slug = ?", args: [slug] },
+  ]);
+}
+
+/**
+ * Delete a single vendor.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {string} coinSlug
+ * @param {string} vendorId
+ */
+export async function deleteVendor(client, coinSlug, vendorId) {
+  await client.execute({
+    sql: "DELETE FROM provider_vendors WHERE coin_slug = ? AND vendor_id = ?",
+    args: [coinSlug, vendorId],
+  });
+}
+
+/**
+ * Update a vendor's selector and hints fields.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {string} coinSlug
+ * @param {string} vendorId
+ * @param {object} fields
+ * @param {string|null} [fields.selector]
+ * @param {string|null} [fields.hints]
+ */
+export async function updateVendorFields(client, coinSlug, vendorId, { selector, hints }) {
+  await client.execute({
+    sql: "UPDATE provider_vendors SET selector = ?, hints = ?, updated_at = datetime('now') WHERE coin_slug = ? AND vendor_id = ?",
+    args: [selector ?? null, hints ?? null, coinSlug, vendorId],
+  });
+}
+
+/**
+ * Get the latest scrape status for every vendor.
+ * Returns a Map keyed by "coinSlug:vendorId" with { price, isFailed, scrapedAt }.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @returns {Promise<Map<string, {price: number|null, isFailed: boolean, scrapedAt: string}>>}
+ */
+export async function getVendorScrapeStatus(client) {
+  const result = await client.execute(`
+    SELECT coin_slug, vendor, price, is_failed, scraped_at
+    FROM (
+      SELECT coin_slug, vendor, price, is_failed, scraped_at,
+             ROW_NUMBER() OVER (PARTITION BY coin_slug, vendor ORDER BY scraped_at DESC) AS rn
+      FROM price_snapshots
+    ) sub
+    WHERE rn = 1
+  `);
+  const map = new Map();
+  for (const row of result.rows) {
+    map.set(`${row.coin_slug}:${row.vendor}`, {
+      price: row.price,
+      isFailed: row.is_failed === 1,
+      scrapedAt: row.scraped_at,
+    });
+  }
+  return map;
+}
+
+/**
+ * Get vendors with 3+ failures in the last 10 days.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @returns {Promise<Array<{coinSlug: string, coinName: string, vendorId: string, url: string, failureCount: number, lastFailure: string, lastError: string}>>}
+ */
+export async function getFailureStats(client) {
+  const result = await client.execute(`
+    SELECT pf.coin_slug, pf.vendor_id, pv.url,
+           pc.name AS coin_name,
+           COUNT(*) AS failure_count,
+           MAX(pf.failed_at) AS last_failure,
+           (SELECT pf2.error FROM provider_failures pf2
+            WHERE pf2.coin_slug = pf.coin_slug AND pf2.vendor_id = pf.vendor_id
+            ORDER BY pf2.failed_at DESC LIMIT 1) AS last_error
+    FROM provider_failures pf
+    JOIN provider_coins pc ON pc.slug = pf.coin_slug
+    JOIN provider_vendors pv ON pv.coin_slug = pf.coin_slug AND pv.vendor_id = pf.vendor_id
+    WHERE pf.failed_at > datetime('now', '-10 days')
+    GROUP BY pf.coin_slug, pf.vendor_id
+    HAVING COUNT(*) >= 3
+    ORDER BY failure_count DESC
+  `);
+  return result.rows.map((row) => ({
+    coinSlug: row.coin_slug,
+    coinName: row.coin_name,
+    vendorId: row.vendor_id,
+    url: row.url,
+    failureCount: row.failure_count,
+    lastFailure: row.last_failure,
+    lastError: row.last_error,
+  }));
+}
+
+/**
+ * Get poller run stats for the last 24 hours.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @returns {Promise<{totalRuns: number, successRate: number, avgCaptureRate: number, avgDuration: string}>}
+ */
+export async function getRunStats(client) {
+  const result = await client.execute(`
+    SELECT
+      COUNT(*) AS total_runs,
+      SUM(CASE WHEN status = 'ok' THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS success_rate,
+      AVG(captured * 100.0 / NULLIF(captured + failures, 0)) AS avg_capture_rate,
+      AVG(CAST((julianday(finished_at) - julianday(started_at)) * 86400 AS INTEGER)) AS avg_duration_sec
+    FROM poller_runs
+    WHERE started_at > datetime('now', '-24 hours')
+  `);
+  const row = result.rows[0];
+  return {
+    totalRuns: row.total_runs ?? 0,
+    successRate: Math.round(row.success_rate ?? 0),
+    avgCaptureRate: Math.round(row.avg_capture_rate ?? 0),
+    avgDurationSec: Math.round(row.avg_duration_sec ?? 0),
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Export — generates providers.json content from Turso
 // ---------------------------------------------------------------------------
