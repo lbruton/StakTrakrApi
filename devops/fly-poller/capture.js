@@ -254,7 +254,7 @@ async function dismissPopups(page, providerId) {
           } else if (entry.selector) {
             const btn = await page.$(entry.selector);
             if (btn) {
-              await btn.click();
+              await btn.click({ timeout: 3000 });
               log(`[${providerId}] popup: dismissed "${entry.desc}"`);
               await page.waitForTimeout(wait);
             }
@@ -270,7 +270,7 @@ async function dismissPopups(page, providerId) {
       try {
         const btn = await page.$(sel);
         if (btn) {
-          await btn.click();
+          await btn.click({ timeout: 3000 });
           log(`[${providerId}] popup: dismissed generic "${sel}"`);
           await page.waitForTimeout(300);
           break;
@@ -319,7 +319,7 @@ async function captureCoin(coinSlug, targets, outDir) {
     try {
       const response = await page.goto(target.url, {
         waitUntil: "domcontentloaded",
-        timeout: 30000,
+        timeout: 45000,
       });
       const status = response ? response.status() : 0;
 
