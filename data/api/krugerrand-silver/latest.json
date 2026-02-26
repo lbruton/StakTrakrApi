@@ -1,32 +1,40 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-02-26T05:00:00Z",
-  "median_price": 100.95,
-  "lowest_price": 99.7,
+  "window_start": "2026-02-26T05:15:00Z",
+  "median_price": 101.73,
+  "lowest_price": 100.42,
   "vendors": {
     "apmex": {
-      "price": 100.95,
-      "confidence": 70,
-      "source": "firecrawl",
+      "price": 101.74,
+      "confidence": 99,
+      "source": "firecrawl+vision",
       "inStock": true
     },
     "herobullion": {
-      "price": 99.94,
+      "price": 100.42,
       "confidence": 70,
-      "source": "vision",
+      "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 101.73,
-      "confidence": 70,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 100.73,
-      "confidence": 70,
-      "source": "vision",
+      "price": 101.1,
+      "confidence": 80,
+      "source": "firecrawl",
       "inStock": true
+    },
+    "monumentmetals": {
+      "price": 99.47,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-02-25T18:26:47.167Z"
     }
   },
   "availability_by_site": {
@@ -34,11 +42,9 @@
     "herobullion": true,
     "jmbullion": true,
     "sdbullion": true,
-    "monumentmetals": false
+    "monumentmetals": true
   },
-  "last_known_price_by_site": {
-    "monumentmetals": 99.47
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
@@ -2869,12 +2875,22 @@
     },
     {
       "window": "2026-02-26T05:00:00Z",
-      "median": 100.52,
+      "median": 100.95,
       "low": 99.7,
       "vendors": {
+        "sdbullion": 100.52,
         "herobullion": 99.7,
-        "apmex": 100.95,
-        "sdbullion": 100.52
+        "apmex": 100.95
+      }
+    },
+    {
+      "window": "2026-02-26T05:15:00Z",
+      "median": 101.1,
+      "low": 100.32,
+      "vendors": {
+        "sdbullion": 101.1,
+        "apmex": 101.74,
+        "herobullion": 100.42
       }
     }
   ]
