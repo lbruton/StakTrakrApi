@@ -412,6 +412,24 @@ export async function readRecentRuns(client, limit = 20) {
 }
 
 /**
+ * Record a scrape failure for the failure queue.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {object} params
+ * @param {string} params.coinSlug
+ * @param {string} params.vendorId
+ * @param {string} [params.url]
+ * @param {string} [params.error]
+ * @param {string} params.failedAt  ISO8601 UTC timestamp
+ */
+export async function recordFailure(client, { coinSlug, vendorId, url, error, failedAt }) {
+  await client.execute({
+    sql: "INSERT INTO provider_failures (coin_slug, vendor_id, url, error, failed_at) VALUES (?, ?, ?, ?, ?)",
+    args: [coinSlug, vendorId, url ?? null, error ?? null, failedAt],
+  });
+}
+
+/**
  * Returns all price snapshots from the last N hours (for Turso async operations).
  *
  * @param {import("@libsql/client").Client} client
