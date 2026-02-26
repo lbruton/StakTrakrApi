@@ -124,7 +124,6 @@ const OUT_OF_STOCK_PATTERNS = [
   /temporarily out of stock/i,
   /back ?order/i,
   /pre-?order/i,
-  /notify\s+me/i,  // "Notify Me" buttons
 ];
 
 // Providers whose "Pre-Order" / "Presale" items still show live purchasable prices.
@@ -423,11 +422,12 @@ const SLOW_PROVIDERS = new Set(["jmbullion", "herobullion", "monumentmetals", "s
 
 // Providers where self-hosted Firecrawl is unreliable — skip Phase 1 entirely,
 // fall straight through to Playwright Phase 2.
-//   jmbullion: self-hosted Firecrawl ignores waitFor → product table renders as "Loading..."
-//              → fractional_weight fires on nav links → inStock=false → Playwright never runs
-//   bullionexchanges: Cloudflare bot detection redirects to homepage → markdown is a single
-//                     banner image line regardless of what URL is requested
-const PLAYWRIGHT_ONLY_PROVIDERS = new Set(["jmbullion", "bullionexchanges"]);
+// UPDATE 2026-02-26: jmbullion and bullionexchanges REMOVED. Firecrawl now works
+// for both via the Playwright Service (port 3003) with waitFor from SLOW_PROVIDERS.
+// Raw chromium.launch() in Phase 2 gets 403'd by bot detection on both sites,
+// but Firecrawl's Playwright Service has stealth patches that bypass it.
+// Keeping the set empty — all vendors now go through Phase 1 (Firecrawl) first.
+const PLAYWRIGHT_ONLY_PROVIDERS = new Set([]);
 
 // Providers whose pages structurally include fractional coin thumbnails/links in
 // their global nav or mega-menu, causing false fractional_weight detection even
@@ -435,7 +435,9 @@ const PLAYWRIGHT_ONLY_PROVIDERS = new Set(["jmbullion", "bullionexchanges"]);
 // and rely on URL correctness (providers.json) + metal price range validation.
 //   jmbullion: mega-menu always lists "1/2 oz Gold Eagle", "1/4 oz Gold Eagle", etc.
 //              regardless of which product page is loaded.
-const FRACTIONAL_EXEMPT_PROVIDERS = new Set(["jmbullion"]);
+//   bullionexchanges: Related Products section lists fractional variants (e.g.
+//              "1/2 oz Platinum American Eagle") on every product page.
+const FRACTIONAL_EXEMPT_PROVIDERS = new Set(["jmbullion", "bullionexchanges"]);
 
 async function scrapeUrl(url, providerId = "", attempt = 1) {
   const controller = new AbortController();
@@ -448,9 +450,11 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
     // Disable it for JM — our MARKDOWN_CUTOFF_PATTERNS handle noise removal instead.
     onlyMainContent: providerId !== "jmbullion",
   };
-  // JS-heavy SPAs need time to mount and render prices; 6s covers all slow providers
+  // JS-heavy SPAs need time to mount and render prices; 8s covers all slow providers.
+  // (Bumped from 6s after jmbullion/bullionexchanges were removed from PLAYWRIGHT_ONLY;
+  // their React SPAs need the extra 2s to fully render pricing tables.)
   if (SLOW_PROVIDERS.has(providerId)) {
-    body.waitFor = 6000;
+    body.waitFor = 8000;
   }
 
   try {
