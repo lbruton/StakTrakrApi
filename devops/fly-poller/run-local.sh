@@ -36,11 +36,9 @@ if [ ! -d "$API_EXPORT_DIR/.git" ]; then
 fi
 cd "$API_EXPORT_DIR"
 
-# Sync providers.json from api branch — picks up URL corrections without a redeploy
-echo "[$(date -u +%H:%M:%S)] Syncing providers.json from api branch..."
-curl -sf "https://raw.githubusercontent.com/lbruton/StakTrakrApi/api/data/retail/providers.json" \
-  -o "$API_EXPORT_DIR/data/retail/providers.json" \
-  || echo "[$(date -u +%H:%M:%S)] WARN: providers.json sync failed — using cached copy"
+# providers.json is now read from Turso at runtime (STAK-348)
+# File sync removed — pollers query provider_coins + provider_vendors tables directly
+echo "[$(date -u +%H:%M:%S)] Providers loaded from Turso (file sync removed)"
 
 # Tailscale exit node — dynamically route through home residential IP if reachable,
 # fall back to Fly datacenter IP so scraping continues when home is offline.

@@ -25,6 +25,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { openTursoDb, writeSnapshot, windowFloor, startRunLog, finishRunLog } from "./db.js";
+import { loadProviders } from "./provider-db.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -635,13 +636,10 @@ async function main() {
     process.exit(1);
   }
 
-  const providersPath = join(DATA_DIR, "retail", "providers.json");
-  if (!existsSync(providersPath)) {
-    console.error(`Error: providers.json not found at ${providersPath}`);
-    process.exit(1);
-  }
-
-  const providersJson = JSON.parse(readFileSync(providersPath, "utf-8"));
+  // Load providers from Turso (falls back to local file if Turso is down)
+  let tursoClient = null;
+  try { tursoClient = (await import("./turso-client.js")).createTursoClient(); } catch {}
+  const providersJson = await loadProviders(tursoClient, DATA_DIR);
   const dateStr = new Date().toISOString().slice(0, 10);
 
   // Build scrape targets — shuffled to avoid rate-limit fingerprinting

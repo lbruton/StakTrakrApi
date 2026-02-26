@@ -21,6 +21,7 @@ import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { config } from "dotenv";
+import { loadProviders } from "./provider-db.js";
 
 config(); // load .env
 
@@ -67,14 +68,10 @@ function log(msg) {
   console.log(`[${new Date().toISOString().slice(11, 19)}] ${msg}`);
 }
 
-function loadProviders() {
-  const providerPath = join(DATA_DIR, "retail", "providers.json");
-  try {
-    return JSON.parse(readFileSync(providerPath, "utf-8"));
-  } catch (err) {
-    console.error(`Failed to read providers.json at ${providerPath}: ${err.message}`);
-    process.exit(1);
-  }
+async function loadProvidersData() {
+  let tursoClient = null;
+  try { tursoClient = (await import("./turso-client.js")).createTursoClient(); } catch {}
+  return loadProviders(tursoClient, DATA_DIR);
 }
 
 /**
@@ -272,7 +269,7 @@ async function captureAll() {
     process.exit(1);
   }
 
-  const providersJson = loadProviders();
+  const providersJson = await loadProvidersData();
   const byCoin = buildTargetsByCoin(providersJson);
 
   if (byCoin.size === 0) {

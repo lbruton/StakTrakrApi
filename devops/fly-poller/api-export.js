@@ -27,6 +27,7 @@ import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import Database from "better-sqlite3";
+import { loadProviders } from "./provider-db.js";
 import {
   openTursoDb,
   openLocalDb,
@@ -495,19 +496,18 @@ async function main() {
     return; // finally block closes db
   }
 
-  // Read coin slugs from providers.json for complete coverage
+  // Read coin slugs from Turso provider tables (falls back to local file)
   let coinSlugs = readCoinSlugs(db);
   let providersJson = null;
-  const providersPath = join(DATA_DIR, "retail", "providers.json");
-  if (existsSync(providersPath)) {
-    try {
-      providersJson = JSON.parse(readFileSync(providersPath, "utf-8"));
-      const allSlugs = Object.keys(providersJson.coins);
-      // Merge: include any slug in providers.json even if not yet in DB
-      coinSlugs = [...new Set([...allSlugs, ...coinSlugs])].sort();
-    } catch {
-      warn("Could not read providers.json — using slugs from DB only");
-    }
+  try {
+    let tursoClient = null;
+    try { tursoClient = (await import("./turso-client.js")).createTursoClient(); } catch {}
+    providersJson = await loadProviders(tursoClient, DATA_DIR);
+    const allSlugs = Object.keys(providersJson.coins);
+    // Merge: include any slug in provider DB even if not yet in price DB
+    coinSlugs = [...new Set([...allSlugs, ...coinSlugs])].sort();
+  } catch {
+    warn("Could not load providers from Turso or file — using slugs from DB only");
   }
 
   log(`API export: ${coinSlugs.length} coins, latest window: ${latestWindow}`);
