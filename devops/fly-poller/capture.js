@@ -56,6 +56,61 @@ const PROVIDER_PAGE_LOAD_WAIT = {
   herobullion:      6000,
 };
 
+// Per-dealer popup dismissal config.
+// Each entry is an array of dismissal attempts tried in order.
+//
+// Fields per entry:
+//   selector  — CSS selector for the close/dismiss element
+//   action    — "click" (default) or "evaluate" (run JS)
+//   js        — JavaScript string to evaluate (only when action="evaluate")
+//   wait      — ms to wait after action (default 500)
+//   desc      — human-readable description for logging
+const POPUP_CONFIG = {
+  summitmetals: [
+    {
+      selector: 'div[class*="popup"] button[class*="close"], div[class*="modal"] button[class*="close"]',
+      desc: "loyalty benefit popup close button",
+      wait: 800,
+    },
+    {
+      selector: 'button[class*="dismiss"], button[class*="no-thanks"], a[class*="close-popup"]',
+      desc: "loyalty popup dismiss link",
+      wait: 800,
+    },
+    {
+      // Fallback: click the overlay backdrop to dismiss
+      action: "evaluate",
+      js: `document.querySelector('div[class*="overlay"], div[class*="backdrop"]')?.click()`,
+      desc: "click overlay backdrop",
+      wait: 500,
+    },
+  ],
+
+  monumentmetals: [
+    {
+      selector: 'button.close, button[class*="close-modal"], [data-dismiss="modal"]',
+      desc: "site modal close button",
+      wait: 600,
+    },
+    {
+      action: "evaluate",
+      js: `document.querySelector('.modal-backdrop, div[class*="overlay"]')?.click()`,
+      desc: "click modal backdrop",
+      wait: 500,
+    },
+  ],
+
+  herobullion: [
+    {
+      // Click body to collapse any open dropdown menus
+      action: "evaluate",
+      js: `document.body.click()`,
+      desc: "click body to close dropdowns",
+      wait: 400,
+    },
+  ],
+};
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -159,6 +214,75 @@ async function connectBrowserlessSession() {
 }
 
 // ---------------------------------------------------------------------------
+// Popup dismissal
+// ---------------------------------------------------------------------------
+
+/**
+ * Dismiss popups/overlays before screenshot.
+ * Tries dealer-specific selectors first, then generic fallbacks.
+ * All actions are non-fatal — errors are logged but never thrown.
+ *
+ * @param {import('playwright-core').Page} page
+ * @param {string} providerId - dealer identifier (e.g. "summitmetals")
+ */
+async function dismissPopups(page, providerId) {
+  const GENERIC_SELECTORS = [
+    'button[aria-label="Close"]',
+    'button[aria-label="close"]',
+    '.modal-close', '.popup-close', '.close-button',
+    '[data-dismiss="modal"]', '[data-testid="close"]',
+    'button.close', '.klaviyo-close-form',
+  ];
+
+  try {
+    // Step 1: Universal Escape key press
+    await page.keyboard.press("Escape");
+    await page.waitForTimeout(300);
+
+    // Step 2: Dealer-specific selectors
+    const dealerConfig = POPUP_CONFIG[providerId];
+    if (dealerConfig) {
+      for (const entry of dealerConfig) {
+        try {
+          const action = entry.action || "click";
+          const wait = entry.wait || 500;
+
+          if (action === "evaluate" && entry.js) {
+            await page.evaluate(entry.js);
+            log(`[${providerId}] popup: dismissed "${entry.desc}"`);
+            await page.waitForTimeout(wait);
+          } else if (entry.selector) {
+            const btn = await page.$(entry.selector);
+            if (btn) {
+              await btn.click();
+              log(`[${providerId}] popup: dismissed "${entry.desc}"`);
+              await page.waitForTimeout(wait);
+            }
+          }
+        } catch (e) {
+          log(`[${providerId}] popup: "${entry.desc}" failed — ${e.message.slice(0, 60)}`);
+        }
+      }
+    }
+
+    // Step 3: Generic fallback selectors
+    for (const sel of GENERIC_SELECTORS) {
+      try {
+        const btn = await page.$(sel);
+        if (btn) {
+          await btn.click();
+          log(`[${providerId}] popup: dismissed generic "${sel}"`);
+          await page.waitForTimeout(300);
+          break;
+        }
+      } catch { /* non-fatal */ }
+    }
+  } catch (e) {
+    log(`[${providerId}] popup: dismissal error — ${e.message.slice(0, 80)}`);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Capture one coin's targets using a dedicated browser session
 // ---------------------------------------------------------------------------
 
@@ -203,21 +327,7 @@ async function captureCoin(coinSlug, targets, outDir) {
       await page.waitForTimeout(providerWait);
 
       // Dismiss modals/popups before screenshot so they don't obscure prices
-      try {
-        await page.keyboard.press("Escape");
-        await page.waitForTimeout(300);
-        const closeSelectors = [
-          'button[aria-label="Close"]',
-          'button[aria-label="close"]',
-          '.modal-close', '.popup-close', '.close-button',
-          '[data-dismiss="modal"]', '[data-testid="close"]',
-          'button.close', '.klaviyo-close-form',
-        ];
-        for (const sel of closeSelectors) {
-          const btn = await page.$(sel);
-          if (btn) { await btn.click(); await page.waitForTimeout(300); break; }
-        }
-      } catch { /* non-fatal */ }
+      await dismissPopups(page, target.provider);
 
       await page.screenshot({ path: filepath, fullPage: false });
       const title = await page.title();
