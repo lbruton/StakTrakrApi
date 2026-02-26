@@ -18,7 +18,7 @@ primary_region = 'iad'
   # Enable local Playwright launch for fallback scraping (JM Bullion gold pages)
   PLAYWRIGHT_LAUNCH = "1"
   PLAYWRIGHT_BROWSERS_PATH = "/usr/local/share/playwright"
-  # Home proxy placeholder — set as a Fly secret when the home tinyproxy is live.
+  # Home tinyproxy (Cox residential IP via Tailscale). Set as Fly secret.
   # Must be present (even as empty) so supervisord can expand %(ENV_HOME_PROXY_URL_2)s.
   HOME_PROXY_URL_2 = ""
 
