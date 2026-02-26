@@ -498,22 +498,25 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
  * Returns the HTML content as a string (to be passed through extractPrice).
  *
  * Proxy strategy (PLAYWRIGHT_LAUNCH mode):
- *   1. Try direct (no proxy) — saves bandwidth, works for most US-accessible sites.
- *   2. If geo-blocked (HTTP 403 or geo-block text detected), walk the proxy chain:
- *      a. HOME_PROXY_URL_2 (Cox WiFi tinyproxy-2, residential IP) — if set
- *      b. PROXY_HTTP (Webshare rotating commercial proxy) — if set
- * This ensures proxy bandwidth is only used when strictly necessary, and cheaper
- * residential hops are tried before the commercial Webshare pool.
+ *   1. If HOME_PROXY_URL_2 is set, use tinyproxy (residential IP) by default.
+ *      This avoids datacenter IP detection on dealer sites.
+ *   2. If tinyproxy fails or is unavailable, try Webshare commercial proxy.
+ *   3. Direct (no proxy) is the last resort — datacenter IPs trigger bot detection.
+ *
+ * The `useProxy` parameter can override this: pass `false` to force direct first,
+ * or `true` to confirm the default proxy-first behavior.
+ *
+ * This mirrors the home poller, which inherently exits from a residential IP.
  *
  * Bandwidth optimisation: images, fonts, stylesheets and media are blocked via
  * Playwright route interception — reduces per-page transfer by ~60-80%.
  *
  * @param {string} url
  * @param {string} [providerId]
- * @param {boolean} [useProxy]  force proxy on first attempt (skip direct try)
+ * @param {boolean} [useProxy]  undefined=proxy-first (default), true=force proxy, false=force direct
  * @returns {Promise<string|null>}  raw HTML/text content, or null on failure
  */
-async function scrapeWithPlaywright(url, providerId = "", useProxy = false) {
+async function scrapeWithPlaywright(url, providerId = "", useProxy = undefined) {
   if (!BROWSERLESS_URL && !PLAYWRIGHT_LAUNCH) return null;
 
   // Geo-block signals in page text (HTTP-level 403s surface as page content)
@@ -536,6 +539,7 @@ async function scrapeWithPlaywright(url, providerId = "", useProxy = false) {
 
   // proxyConfig: { server, username?, password? } | null (null = direct, no proxy)
   async function attempt(proxyConfig = null) {
+    log(`  → Playwright attempt via ${proxyConfig ? proxyConfig.server : "direct (no proxy)"}`);
     let browser;
     try {
       if (PLAYWRIGHT_LAUNCH) {
@@ -593,33 +597,41 @@ async function scrapeWithPlaywright(url, providerId = "", useProxy = false) {
   }
 
   try {
-    // First attempt: direct (no proxy) unless proxy forced
-    const initProxy = useProxy ? (PLAYWRIGHT_PROXY_CHAIN[0] ?? null) : null;
+    // Default: proxy-first when available (residential IP avoids datacenter detection).
+    // useProxy=false explicitly forces direct; useProxy=true/undefined uses proxy chain.
+    const proxyFirst = useProxy !== false && PLAYWRIGHT_PROXY_CHAIN.length > 0;
+    const initProxy = proxyFirst ? PLAYWRIGHT_PROXY_CHAIN[0] : null;
     const first = await attempt(initProxy);
     if (first.content) return first.content;
 
-    // Geo-blocked — walk the proxy chain until one succeeds
-    if (first.geoBlocked && PLAYWRIGHT_PROXY_CHAIN.length > 0 && !useProxy) {
-      for (const proxy of PLAYWRIGHT_PROXY_CHAIN) {
-        log(`  ↩ ${providerId}: geo-blocked, retrying via ${proxy.server}`);
-        const result = await attempt(proxy);
-        if (result.content) return result.content;
-      }
+    // First attempt failed — walk remaining proxies, then try direct as last resort
+    const remaining = proxyFirst ? PLAYWRIGHT_PROXY_CHAIN.slice(1) : PLAYWRIGHT_PROXY_CHAIN;
+    for (const proxy of remaining) {
+      log(`  ↩ ${providerId}: retrying via ${proxy.server}`);
+      const result = await attempt(proxy);
+      if (result.content) return result.content;
+    }
+
+    // All proxies exhausted — try direct as final fallback (if we started with proxy)
+    if (proxyFirst) {
+      log(`  ↩ ${providerId}: all proxies failed, trying direct`);
+      const directResult = await attempt(null);
+      if (directResult.content) return directResult.content;
     }
 
     return null;
   } catch (err) {
-    warn(`Playwright fallback failed for ${url}: ${err.message.slice(0, 120)}`);
-    // If direct attempt threw (not geo-block), try proxy chain as last resort
-    if (PLAYWRIGHT_PROXY_CHAIN.length > 0 && !useProxy) {
-      for (const proxy of PLAYWRIGHT_PROXY_CHAIN) {
-        try {
-          log(`  ↩ ${providerId}: direct threw, retrying via ${proxy.server}`);
-          const result = await attempt(proxy);
-          if (result.content) return result.content;
-        } catch (proxyErr) {
-          warn(`Playwright proxy fallback also failed (${proxy.server}): ${proxyErr.message.slice(0, 80)}`);
-        }
+    warn(`Playwright attempt failed for ${url}: ${err.message.slice(0, 120)}`);
+    // If first attempt threw, try remaining chain + direct fallback
+    const proxyFirst = useProxy !== false && PLAYWRIGHT_PROXY_CHAIN.length > 0;
+    const fallbacks = proxyFirst ? [...PLAYWRIGHT_PROXY_CHAIN.slice(1), null] : [...PLAYWRIGHT_PROXY_CHAIN, null];
+    for (const proxy of fallbacks) {
+      try {
+        log(`  ↩ ${providerId}: retrying via ${proxy ? proxy.server : "direct (no proxy)"}`);
+        const result = await attempt(proxy);
+        if (result.content) return result.content;
+      } catch (fallbackErr) {
+        warn(`Playwright fallback also failed (${proxy ? proxy.server : "direct"}): ${fallbackErr.message.slice(0, 80)}`);
       }
     }
     return null;
@@ -658,6 +670,7 @@ async function main() {
   }
   shuffleArray(targets);
 
+  log(`Proxy config: HOME_PROXY_URL_2=${HOME_PROXY_URL_2 ? "SET" : "NOT SET"}, WEBSHARE=${PROXY_HTTP ? "SET" : "NOT SET"}, PLAYWRIGHT_LAUNCH=${PLAYWRIGHT_LAUNCH}`);
   log(`Retail price extraction: ${targets.length} targets (sequential + jitter)`);
   if (DRY_RUN) log("DRY RUN — no SQLite writes");
 
@@ -712,10 +725,17 @@ async function main() {
 
           if (!stock.inStock) {
             log(`  ⚠ ${provider.id} [url${i}]: ${stock.reason} — ${stock.detectedText || "detected"}`);
-            if (i < urls.length - 1) { await jitter(); continue; }
-            // Last URL and OOS — exit loop with inStock=false
+            // Still attempt price extraction — OOS pages often show advertised price
+            const oosPrice = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
+            if (oosPrice !== null) {
+              price = oosPrice;
+              finalUrl = url;
+              log(`  ✓ ${coinSlug}/${provider.id}: $${oosPrice.toFixed(2)} (firecrawl, OOS)`);
+            }
+            if (i < urls.length - 1 && oosPrice === null) { await jitter(); continue; }
+            // Last URL or got a price — exit loop with inStock=false
             inStock = false;
-            finalUrl = url;
+            if (!finalUrl || finalUrl !== url) finalUrl = url;
             break;
           }
 
@@ -743,8 +763,8 @@ async function main() {
       }
     }
 
-    // ── Phase 2: Playwright only if Firecrawl chain failed ───────────────────
-    if (price === null && inStock && (BROWSERLESS_URL || PLAYWRIGHT_LAUNCH)) {
+    // ── Phase 2: Playwright if Firecrawl chain didn't get a price ────────────
+    if (price === null && (BROWSERLESS_URL || PLAYWRIGHT_LAUNCH)) {
       log(`  ↩ ${coinSlug}/${provider.id}: Firecrawl chain exhausted — trying Playwright on ${finalUrl}`);
       try {
         const html = await scrapeWithPlaywright(finalUrl, provider.id);
@@ -752,15 +772,13 @@ async function main() {
           const cleaned = preprocessMarkdown(html, provider.id);
           const stock = detectStockStatus(cleaned, coin.weight_oz || 1, provider.id);
           inStock = stock.inStock;
-          if (stock.inStock) {
-            const p = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
-            if (p !== null) {
-              price = p;
-              source = "playwright";
-              log(`  ✓ ${coinSlug}/${provider.id}: $${p.toFixed(2)} (playwright)`);
-            } else {
-              warn(`  ? ${coinSlug}/${provider.id}: Playwright page loaded but no price found`);
-            }
+          const p = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
+          if (p !== null) {
+            price = p;
+            source = "playwright";
+            log(`  ✓ ${coinSlug}/${provider.id}: $${p.toFixed(2)} (playwright${!inStock ? ", OOS" : ""})`);
+          } else if (inStock) {
+            warn(`  ? ${coinSlug}/${provider.id}: Playwright page loaded but no price found`);
           } else {
             log(`  ⚠ ${provider.id}: ${stock.reason} — ${stock.detectedText || "detected"} (playwright)`);
           }
@@ -778,10 +796,13 @@ async function main() {
     }
 
     // ── Store result ──────────────────────────────────────────────────────────
+    // OOS with a price is a successful scrape — the advertised price is valid data.
+    // Only count as failure if in-stock but no price found (actual scrape failure).
+    const scrapeOk = price !== null || !inStock;
     scrapeResults.push({
       coinSlug, coin, providerId: provider.id, url: finalUrl,
-      price, source, ok: price !== null,
-      error: price === null ? (inStock ? "price_not_found" : "out_of_stock") : null,
+      price, source, inStock, ok: scrapeOk,
+      error: price === null && inStock ? "price_not_found" : null,
     });
 
     // Record to Turso
