@@ -1,282 +1,10 @@
 {
-  "schema_version": 1,
-  "last_updated": "2026-02-25",
-  "currency": "USD",
-  "pricing_model": "per_coin",
-  "notes": "URLs point to specific product pages (BU / random-year SKUs). fbp_url: FindBullionPrices comparison page used as fallback when primary scrapes fail. Goldback slugs use format goldback-{state}-g{denom} (STAK-335). Legacy goldback-g{N} slugs retained for frontend backward compat \u2014 marked deprecated. Enable vendors one at a time as product URLs are verified.",
   "coins": {
-    "ase": {
-      "name": "American Silver Eagle 1 oz",
-      "metal": "silver",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/2026-american-silver-eagle-1-oz-bu-coin/",
-      "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/american-silver-eagle-varied-year/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/23331/1-oz-american-silver-eagle-coin-bu-random-year"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://sdbullion.com/1-oz-american-silver-eagle-coins-random-year"
-        },
-        {
-          "id": "monumentmetals",
-          "name": "Monument Metals",
-          "enabled": true,
-          "url": "https://monumentmetals.com/1-oz-american-silver-eagle-bu-dates-our-choice.html"
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/american-silver-eagle-1-oz-coin/"
-        },
-        {
-          "id": "bullionexchanges",
-          "name": "Bullion Exchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/1-oz-silver-american-eagle-bu-random-year"
-        },
-        {
-          "id": "summitmetals",
-          "name": "Summit Metals",
-          "enabled": true,
-          "url": "https://summitmetals.com/products/1-oz-american-silver-eagle"
-        }
-      ]
-    },
-    "maple-silver": {
-      "name": "Canadian Silver Maple Leaf 1 oz",
-      "metal": "silver",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/2026-canadian-silver-maple-leaf-1-oz/",
-      "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/2026-1-oz-canadian-silver-maple-leaf-coin/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/1090/1-oz-canadian-silver-maple-leaf-coin-bu-random-year"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://sdbullion.com/canadian-silver-maple-leaf-coin-random-year"
-        },
-        {
-          "id": "monumentmetals",
-          "name": "Monument Metals",
-          "enabled": true,
-          "url": "https://monumentmetals.com/2026-canada-silver-maple-leaf.html"
-        },
-        {
-          "id": "herobullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/canadian-silver-maple-1-oz-coin/"
-        },
-        {
-          "id": "bullionexchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/1-oz-silver-canadian-maple-leaf-bu-random-year"
-        }
-      ]
-    },
-    "britannia-silver": {
-      "name": "British Silver Britannia 1 oz",
-      "metal": "silver",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/2026-british-silver-britannia-1-oz/",
-      "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/1-oz-british-silver-britannia-coin-vy/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/53532/great-britain-1-oz-silver-britannia-bu-random-year"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://sdbullion.com/1-oz-britannia-silver-coin-random-year"
-        },
-        {
-          "id": "monumentmetals",
-          "name": "Monument Metals",
-          "enabled": true,
-          "url": "https://monumentmetals.com/doc-silver-britannia.html"
-        },
-        {
-          "id": "herobullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/1-oz-british-silver-britannia-coin/"
-        },
-        {
-          "id": "bullionexchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/great-britain-silver-1-oz-britannia-coin-bu-random-year"
-        }
-      ]
-    },
-    "krugerrand-silver": {
-      "name": "South African Silver Krugerrand 1 oz",
-      "metal": "silver",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/2026-south-african-silver-krugerrand-1-oz/",
-      "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/2026-1-oz-south-african-silver-krugerrand-coin/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/206258/south-africa-1-oz-silver-krugerrand-random"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://sdbullion.com/south-african-silver-krugerrand-coin-random-year"
-        },
-        {
-          "id": "monumentmetals",
-          "name": "Monument Metals",
-          "enabled": true,
-          "url": "https://monumentmetals.com/2026-south-africa-1-oz-silver-krugerrand-bu.html"
-        },
-        {
-          "id": "herobullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/1-oz-south-african-silver-krugerrand/"
-        },
-        {
-          "id": "bullionexchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/2026-south-africa-1-oz-silver-krugerrand-coin-bu"
-        }
-      ]
-    },
-    "generic-silver-round": {
-      "name": "Generic Silver Round 1 oz (.999)",
-      "metal": "silver",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/1-oz-silver-round-generic/",
-      "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/1-oz-silver-round/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/23/1-oz-silver-round-secondary-market"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://sdbullion.com/1-oz-silver-rounds-new"
-        },
-        {
-          "id": "monumentmetals",
-          "name": "Monument Metals",
-          "enabled": true,
-          "url": "https://monumentmetals.com/elemetal-1oz-silver-round.html"
-        },
-        {
-          "id": "herobullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/1-oz-silver-round-any-mint-any-condition/"
-        },
-        {
-          "id": "bullionexchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/1-oz-silver-generic-rounds"
-        }
-      ]
-    },
-    "generic-silver-bar-10oz": {
-      "name": "Generic Silver Bar 10 oz (.999)",
-      "metal": "silver",
-      "weight_oz": 10.0,
-      "fbp_url": "https://findbullionprices.com/p/10-oz-silver-bar-generic/",
-      "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/10-oz-silver-bar/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/21/10-oz-silver-bar-secondary-market"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://sdbullion.com/10-oz-sd-bullion-proclaim-liberty-silver-bar"
-        },
-        {
-          "id": "monumentmetals",
-          "name": "Monument Metals",
-          "enabled": true,
-          "url": "https://monumentmetals.com/10oz-elemetal-silver-bar.html"
-        },
-        {
-          "id": "herobullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/10-oz-silver-bar-any-mint-any-condition/"
-        },
-        {
-          "id": "bullionexchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/10-oz-generic-silver-bar"
-        }
-      ]
-    },
     "age": {
       "name": "American Gold Eagle 1 oz",
       "metal": "gold",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/2026-american-gold-eagle-1-oz-bu-coin/",
+      "weight_oz": 1,
       "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/1-oz-american-gold-eagle/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
@@ -284,167 +12,42 @@
           "url": "https://www.apmex.com/product/1/1-oz-american-gold-eagle-coin-bu-random-year"
         },
         {
-          "id": "sdbullion",
-          "name": "SD Bullion",
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
           "enabled": true,
-          "url": "https://sdbullion.com/1-oz-american-gold-eagle-coin-random-year"
-        },
-        {
-          "id": "monumentmetals",
-          "name": "Monument Metals",
-          "enabled": true,
-          "url": "https://monumentmetals.com/random-date-1oz-gold-eagle.html"
+          "url": "https://www.bullionexchanges.com/1-oz-american-eagle-gold-coin-random-year"
         },
         {
           "id": "herobullion",
+          "name": "herobullion",
           "enabled": true,
           "url": "https://www.herobullion.com/american-gold-eagle-1-oz-coin/"
         },
         {
-          "id": "bullionexchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/1-oz-american-eagle-gold-coin-random-year"
-        }
-      ]
-    },
-    "buffalo": {
-      "name": "American Gold Buffalo 1 oz",
-      "metal": "gold",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/2026-american-gold-buffalo-1-oz-bu-coin/",
-      "providers": [
-        {
           "id": "jmbullion",
           "name": "JM Bullion",
           "enabled": true,
-          "url": "https://www.jmbullion.com/2026-1-oz-american-gold-buffalo-coin/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/39598/1-oz-gold-buffalo-bu-random-year"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://sdbullion.com/1-oz-american-gold-buffalo-coin-random-year"
+          "url": "https://www.jmbullion.com/1-oz-american-gold-eagle/"
         },
         {
           "id": "monumentmetals",
           "name": "Monument Metals",
           "enabled": true,
-          "url": "https://monumentmetals.com/random-date-1oz-gold-buffalo.html"
-        },
-        {
-          "id": "herobullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/american-gold-buffalo-1-oz-coin/"
-        },
-        {
-          "id": "bullionexchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/1-oz-gold-american-buffalo-random-year"
-        }
-      ]
-    },
-    "maple-gold": {
-      "name": "Canadian Gold Maple Leaf 1 oz",
-      "metal": "gold",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/2026-canadian-gold-maple-leaf-1-oz/",
-      "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/1-oz-canadian-gold-maple-leaf-any-year/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/9/canada-1-oz-gold-maple-leaf-9999-fine-bu-random-year"
+          "url": "https://monumentmetals.com/2026-american-1-oz-gold-eagle-bu.html"
         },
         {
           "id": "sdbullion",
           "name": "SD Bullion",
           "enabled": true,
-          "url": "https://sdbullion.com/1-oz-canadian-gold-maple-leaf-coin-random-year"
-        },
-        {
-          "id": "monumentmetals",
-          "name": "Monument Metals",
-          "enabled": true,
-          "url": "https://monumentmetals.com/random-date-1oz-gold-maple.html"
-        },
-        {
-          "id": "herobullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/canadian-gold-maple-1-oz-coin/"
-        },
-        {
-          "id": "bullionexchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/1-oz-canadian-gold-maple-leaf-50-coin-random-year"
-        }
-      ]
-    },
-    "krugerrand-gold": {
-      "name": "South African Gold Krugerrand 1 oz",
-      "metal": "gold",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/2026-south-african-gold-krugerrand-1-oz/",
-      "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/1-oz-south-african-gold-krugerrand/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/62/south-african-1-oz-gold-krugerrand-coin-bu-random-year"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://sdbullion.com/1-oz-south-african-gold-krugerrand-coin-random-year"
-        },
-        {
-          "id": "monumentmetals",
-          "name": "Monument Metals",
-          "enabled": true,
-          "url": "https://monumentmetals.com/random-date-1oz-gold-krugerrand.html"
-        },
-        {
-          "id": "herobullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/south-african-gold-krugerrand-1-oz-coin/"
-        },
-        {
-          "id": "bullionexchanges",
-          "enabled": true,
-          "url": "https://www.bullionexchanges.com/1-oz-south-african-krugerrand-gold-coin-random-year"
+          "url": "https://sdbullion.com/2025-1-oz-american-gold-eagle-coin"
         }
       ]
     },
     "ape": {
       "name": "American Platinum Eagle 1 oz",
       "metal": "platinum",
-      "weight_oz": 1.0,
-      "fbp_url": "https://findbullionprices.com/p/2026-american-platinum-eagle-1-oz-bu-coin/",
+      "weight_oz": 1,
       "providers": [
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/1-oz-american-platinum-eagle-varied/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
@@ -452,10 +55,22 @@
           "url": "https://www.apmex.com/product/52/1-oz-american-platinum-eagle-coin-bu-random-year-1997-2023"
         },
         {
-          "id": "sdbullion",
-          "name": "SD Bullion",
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
           "enabled": true,
-          "url": "https://sdbullion.com/1-oz-platinum-american-eagle-coin-random-dates"
+          "url": "https://www.bullionexchanges.com/1-oz-platinum-american-eagle"
+        },
+        {
+          "id": "herobullion",
+          "name": "herobullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/american-platinum-eagle-1-oz-coin/"
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": true,
+          "url": "https://www.jmbullion.com/1-oz-american-platinum-eagle-varied/"
         },
         {
           "id": "monumentmetals",
@@ -464,2438 +79,403 @@
           "url": "https://monumentmetals.com/random-date-1oz-platinum-eagle.html"
         },
         {
-          "id": "herobullion",
+          "id": "sdbullion",
+          "name": "SD Bullion",
           "enabled": true,
-          "url": "https://www.herobullion.com/american-platinum-eagle-1-oz-coin/"
+          "url": "https://sdbullion.com/1-oz-platinum-american-eagle-coin-random-dates"
+        }
+      ]
+    },
+    "ase": {
+      "name": "American Silver Eagle 1 oz",
+      "metal": "silver",
+      "weight_oz": 1,
+      "providers": [
+        {
+          "id": "apmex",
+          "name": "APMEX",
+          "enabled": true,
+          "url": "https://www.apmex.com/product/23331/1-oz-american-silver-eagle-coin-bu-random-year"
         },
         {
           "id": "bullionexchanges",
+          "name": "Bullion Exchanges",
           "enabled": true,
-          "url": "https://www.bullionexchanges.com/1-oz-platinum-american-eagle"
+          "url": "https://www.bullionexchanges.com/1-oz-silver-american-eagle-bu-random-year"
+        },
+        {
+          "id": "herobullion",
+          "name": "Hero Bullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/2026-1-oz-american-silver-eagle-coin/"
+        },
+        {
+          "id": "jmbullion",
+          "name": "JM Bullion",
+          "enabled": true,
+          "url": "https://www.jmbullion.com/2026-1-oz-american-silver-eagle-coin/"
+        },
+        {
+          "id": "monumentmetals",
+          "name": "Monument Metals",
+          "enabled": true,
+          "url": "https://monumentmetals.com/2026-american-silver-eagle.html"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://sdbullion.com/2026-1-oz-american-silver-eagle-coin-bu"
+        },
+        {
+          "id": "summitmetals",
+          "name": "Summit Metals",
+          "enabled": true,
+          "url": "https://www.summitmetals.com/collections/american-silver-eagles/products/2026-1-oz-american-silver-eagle-bu-pre-sale"
         }
       ]
     },
-    "goldback-g1": {
-      "name": "Goldback G1 (1/1000 oz gold)",
-      "metal": "goldback",
+    "britannia-silver": {
+      "name": "British Silver Britannia 1 oz",
+      "metal": "silver",
       "weight_oz": 1,
-      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g1) instead. Will be removed after frontend migration.",
       "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (official rate)",
-          "enabled": true,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": "https://www.jmbullion.com/1-nevada-goldback-gold-note/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
           "enabled": true,
-          "url": "https://www.apmex.com/product/255958/1-wyoming-goldback-aurum-gold-foil-note-24k"
+          "url": "https://www.apmex.com/product/53532/great-britain-1-oz-silver-britannia-bu-random-year"
+        },
+        {
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
+          "enabled": true,
+          "url": "https://www.bullionexchanges.com/great-britain-silver-1-oz-britannia-coin-bu-random-year"
         },
         {
           "id": "herobullion",
-          "name": "Hero Bullion",
+          "name": "herobullion",
           "enabled": true,
-          "url": "https://www.herobullion.com/1-utah-goldback-aurum-gold-note/"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-1-goldback-note"
-        }
-      ],
-      "deprecated": true,
-      "deprecated_by": "goldback-{state}-g1"
-    },
-    "goldback-g2": {
-      "name": "Goldback G2 (2/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 2,
-      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g2) instead. Will be removed after frontend migration.",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (official rate)",
-          "enabled": true,
-          "url": "https://www.goldback.com/exchange-rate/"
+          "url": "https://www.herobullion.com/1-oz-british-silver-britannia-coin/"
         },
         {
           "id": "jmbullion",
           "name": "JM Bullion",
           "enabled": true,
-          "url": "https://www.jmbullion.com/2-arizona-goldback-gold-note/"
+          "url": "https://www.jmbullion.com/1-oz-british-silver-britannia-coin-vy/"
         },
         {
-          "id": "apmex",
-          "name": "APMEX",
+          "id": "monumentmetals",
+          "name": "Monument Metals",
           "enabled": true,
-          "url": "https://www.apmex.com/product/321896/2-arizona-goldback-aurum-gold-foil-note-24k"
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/2-arizona-goldback-aurum-gold-note-alpha/"
+          "url": "https://monumentmetals.com/doc-silver-britannia.html"
         },
         {
           "id": "sdbullion",
           "name": "SD Bullion",
           "enabled": true,
-          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-2-goldback-note"
-        }
-      ],
-      "deprecated": true,
-      "deprecated_by": "goldback-{state}-g2"
-    },
-    "goldback-g5": {
-      "name": "Goldback G5 (5/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 5,
-      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g5) instead. Will be removed after frontend migration.",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (official rate)",
-          "enabled": true,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/5-nevada-goldback-gold-note/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/255959/5-wyoming-goldback-aurum-gold-foil-note-24k"
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/5-utah-goldback-aurum-gold-note/"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-5-goldback-note"
-        }
-      ],
-      "deprecated": true,
-      "deprecated_by": "goldback-{state}-g5"
-    },
-    "goldback-g10": {
-      "name": "Goldback G10 (10/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 10,
-      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g10) instead. Will be removed after frontend migration.",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (official rate)",
-          "enabled": true,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/10-nevada-goldback-gold-note/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/255960/10-wyoming-goldback-aurum-gold-foil-note-24k"
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/10-utah-goldback-aurum-gold-note/"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-10-goldback-note"
-        }
-      ],
-      "deprecated": true,
-      "deprecated_by": "goldback-{state}-g10"
-    },
-    "goldback-g25": {
-      "name": "Goldback G25 (25/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 25,
-      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g25) instead. Will be removed after frontend migration.",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (official rate)",
-          "enabled": true,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/25-nevada-goldback-gold-note/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/255961/25-wyoming-goldback-aurum-gold-foil-note-24k"
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/25-utah-goldback-aurum-gold-note/"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-25-goldback-note"
-        }
-      ],
-      "deprecated": true,
-      "deprecated_by": "goldback-{state}-g25"
-    },
-    "goldback-g50": {
-      "name": "Goldback G50 (50/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 50,
-      "notes": "DEPRECATED 2026-02-25: This slug mixes states across vendors. Use per-state slugs (goldback-{state}-g50) instead. Will be removed after frontend migration.",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (official rate)",
-          "enabled": true,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": true,
-          "url": "https://www.jmbullion.com/50-nevada-goldback-gold-note/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": true,
-          "url": "https://www.apmex.com/product/255963/50-wyoming-goldback-aurum-gold-foil-note-24k"
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": true,
-          "url": "https://www.herobullion.com/50-utah-goldback-aurum-gold-note/"
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": true,
-          "url": "https://www.sdbullion.com/gold-aurum-24k-arizona-50-goldback-note"
-        }
-      ],
-      "deprecated": true,
-      "deprecated_by": "goldback-{state}-g50"
-    },
-    "goldback-utah-ghalf": {
-      "name": "Utah Goldback G\u00bd (\u00bd/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 0.5,
-      "state": "utah",
-      "denomination": "ghalf",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
+          "url": "https://sdbullion.com/2026-1-oz-silver-britannia-coin"
         }
       ]
     },
-    "goldback-utah-g1": {
-      "name": "Utah Goldback G1 (1/1000 oz gold)",
-      "metal": "goldback",
+    "buffalo": {
+      "name": "American Gold Buffalo 1 oz",
+      "metal": "gold",
       "weight_oz": 1,
-      "state": "utah",
-      "denomination": "g1",
       "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-utah-g2": {
-      "name": "Utah Goldback G2 (2/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 2,
-      "state": "utah",
-      "denomination": "g2",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-utah-g5": {
-      "name": "Utah Goldback G5 (5/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 5,
-      "state": "utah",
-      "denomination": "g5",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-utah-g10": {
-      "name": "Utah Goldback G10 (10/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 10,
-      "state": "utah",
-      "denomination": "g10",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-utah-g25": {
-      "name": "Utah Goldback G25 (25/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 25,
-      "state": "utah",
-      "denomination": "g25",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-utah-g50": {
-      "name": "Utah Goldback G50 (50/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 50,
-      "state": "utah",
-      "denomination": "g50",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-nevada-ghalf": {
-      "name": "Nevada Goldback G\u00bd (\u00bd/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 0.5,
-      "state": "nevada",
-      "denomination": "ghalf",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-nevada-g1": {
-      "name": "Nevada Goldback G1 (1/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 1,
-      "state": "nevada",
-      "denomination": "g1",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-nevada-g2": {
-      "name": "Nevada Goldback G2 (2/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 2,
-      "state": "nevada",
-      "denomination": "g2",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-nevada-g5": {
-      "name": "Nevada Goldback G5 (5/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 5,
-      "state": "nevada",
-      "denomination": "g5",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-nevada-g10": {
-      "name": "Nevada Goldback G10 (10/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 10,
-      "state": "nevada",
-      "denomination": "g10",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-nevada-g25": {
-      "name": "Nevada Goldback G25 (25/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 25,
-      "state": "nevada",
-      "denomination": "g25",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-nevada-g50": {
-      "name": "Nevada Goldback G50 (50/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 50,
-      "state": "nevada",
-      "denomination": "g50",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-wyoming-ghalf": {
-      "name": "Wyoming Goldback G\u00bd (\u00bd/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 0.5,
-      "state": "wyoming",
-      "denomination": "ghalf",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-wyoming-g1": {
-      "name": "Wyoming Goldback G1 (1/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 1,
-      "state": "wyoming",
-      "denomination": "g1",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-wyoming-g2": {
-      "name": "Wyoming Goldback G2 (2/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 2,
-      "state": "wyoming",
-      "denomination": "g2",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-wyoming-g5": {
-      "name": "Wyoming Goldback G5 (5/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 5,
-      "state": "wyoming",
-      "denomination": "g5",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-wyoming-g10": {
-      "name": "Wyoming Goldback G10 (10/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 10,
-      "state": "wyoming",
-      "denomination": "g10",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-wyoming-g25": {
-      "name": "Wyoming Goldback G25 (25/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 25,
-      "state": "wyoming",
-      "denomination": "g25",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-wyoming-g50": {
-      "name": "Wyoming Goldback G50 (50/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 50,
-      "state": "wyoming",
-      "denomination": "g50",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-new-hampshire-ghalf": {
-      "name": "New Hampshire Goldback G\u00bd (\u00bd/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 0.5,
-      "state": "new-hampshire",
-      "denomination": "ghalf",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-new-hampshire-g1": {
-      "name": "New Hampshire Goldback G1 (1/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 1,
-      "state": "new-hampshire",
-      "denomination": "g1",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-new-hampshire-g2": {
-      "name": "New Hampshire Goldback G2 (2/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 2,
-      "state": "new-hampshire",
-      "denomination": "g2",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-new-hampshire-g5": {
-      "name": "New Hampshire Goldback G5 (5/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 5,
-      "state": "new-hampshire",
-      "denomination": "g5",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-new-hampshire-g10": {
-      "name": "New Hampshire Goldback G10 (10/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 10,
-      "state": "new-hampshire",
-      "denomination": "g10",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-new-hampshire-g25": {
-      "name": "New Hampshire Goldback G25 (25/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 25,
-      "state": "new-hampshire",
-      "denomination": "g25",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-new-hampshire-g50": {
-      "name": "New Hampshire Goldback G50 (50/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 50,
-      "state": "new-hampshire",
-      "denomination": "g50",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-south-dakota-ghalf": {
-      "name": "South Dakota Goldback G\u00bd (\u00bd/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 0.5,
-      "state": "south-dakota",
-      "denomination": "ghalf",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-south-dakota-g1": {
-      "name": "South Dakota Goldback G1 (1/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 1,
-      "state": "south-dakota",
-      "denomination": "g1",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-south-dakota-g2": {
-      "name": "South Dakota Goldback G2 (2/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 2,
-      "state": "south-dakota",
-      "denomination": "g2",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-south-dakota-g5": {
-      "name": "South Dakota Goldback G5 (5/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 5,
-      "state": "south-dakota",
-      "denomination": "g5",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-south-dakota-g10": {
-      "name": "South Dakota Goldback G10 (10/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 10,
-      "state": "south-dakota",
-      "denomination": "g10",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-south-dakota-g25": {
-      "name": "South Dakota Goldback G25 (25/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 25,
-      "state": "south-dakota",
-      "denomination": "g25",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-south-dakota-g50": {
-      "name": "South Dakota Goldback G50 (50/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 50,
-      "state": "south-dakota",
-      "denomination": "g50",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-arizona-ghalf": {
-      "name": "Arizona Goldback G\u00bd (\u00bd/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 0.5,
-      "state": "arizona",
-      "denomination": "ghalf",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-arizona-g1": {
-      "name": "Arizona Goldback G1 (1/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 1,
-      "state": "arizona",
-      "denomination": "g1",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-arizona-g2": {
-      "name": "Arizona Goldback G2 (2/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 2,
-      "state": "arizona",
-      "denomination": "g2",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-arizona-g5": {
-      "name": "Arizona Goldback G5 (5/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 5,
-      "state": "arizona",
-      "denomination": "g5",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-arizona-g10": {
-      "name": "Arizona Goldback G10 (10/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 10,
-      "state": "arizona",
-      "denomination": "g10",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-arizona-g25": {
-      "name": "Arizona Goldback G25 (25/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 25,
-      "state": "arizona",
-      "denomination": "g25",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-arizona-g50": {
-      "name": "Arizona Goldback G50 (50/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 50,
-      "state": "arizona",
-      "denomination": "g50",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-oklahoma-ghalf": {
-      "name": "Oklahoma Goldback G\u00bd (\u00bd/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 0.5,
-      "state": "oklahoma",
-      "denomination": "ghalf",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-oklahoma-g1": {
-      "name": "Oklahoma Goldback G1 (1/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 1,
-      "state": "oklahoma",
-      "denomination": "g1",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": true,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
           "enabled": true,
-          "url": "https://www.apmex.com/product/314866/1-oklahoma-goldback-aurum-gold-foil-note-24k"
+          "url": "https://www.apmex.com/product/39598/1-oz-gold-buffalo-bu-random-year"
         },
         {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
           "enabled": true,
-          "url": "https://www.herobullion.com/1-oklahoma-goldback-aurum-gold-note/"
+          "url": "https://www.bullionexchanges.com/1-oz-gold-american-buffalo-random-year"
+        },
+        {
+          "id": "herobullion",
+          "name": "herobullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/american-gold-buffalo-1-oz-coin/"
         },
         {
           "id": "jmbullion",
           "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-oklahoma-g2": {
-      "name": "Oklahoma Goldback G2 (2/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 2,
-      "state": "oklahoma",
-      "denomination": "g2",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
+          "enabled": true,
+          "url": "https://www.jmbullion.com/2026-1-oz-american-gold-buffalo-coin/"
         },
         {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
+          "id": "monumentmetals",
+          "name": "Monument Metals",
+          "enabled": true,
+          "url": "https://monumentmetals.com/2026-1-oz-american-gold-buffalo-bu.html"
         },
         {
           "id": "sdbullion",
           "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://sdbullion.com/1-oz-american-gold-buffalo-coin-random-year"
         }
       ]
     },
-    "goldback-oklahoma-g5": {
-      "name": "Oklahoma Goldback G5 (5/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 5,
-      "state": "oklahoma",
-      "denomination": "g5",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-oklahoma-g10": {
-      "name": "Oklahoma Goldback G10 (10/1000 oz gold)",
-      "metal": "goldback",
+    "generic-silver-bar-10oz": {
+      "name": "Generic Silver Bar 10 oz (.999)",
+      "metal": "silver",
       "weight_oz": 10,
-      "state": "oklahoma",
-      "denomination": "g10",
       "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.apmex.com/product/21/10-oz-silver-bar-secondary-market"
         },
         {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
+          "enabled": true,
+          "url": "https://www.bullionexchanges.com/10-oz-generic-silver-bar"
         },
         {
           "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
+          "name": "herobullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/10-oz-silver-bar-any-mint-any-condition/"
         },
         {
           "id": "jmbullion",
           "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-oklahoma-g25": {
-      "name": "Oklahoma Goldback G25 (25/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 25,
-      "state": "oklahoma",
-      "denomination": "g25",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
+          "enabled": true,
+          "url": "https://www.jmbullion.com/10-oz-silver-bar/"
         },
         {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
+          "id": "monumentmetals",
+          "name": "Monument Metals",
+          "enabled": true,
+          "url": "https://monumentmetals.com/10oz-elemetal-silver-bar.html"
         },
         {
           "id": "sdbullion",
           "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://sdbullion.com/10-oz-sd-bullion-proclaim-liberty-silver-bar"
         }
       ]
     },
-    "goldback-oklahoma-g50": {
-      "name": "Oklahoma Goldback G50 (50/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 50,
-      "state": "oklahoma",
-      "denomination": "g50",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-dc-ghalf": {
-      "name": "Washington DC Goldback G\u00bd (\u00bd/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 0.5,
-      "state": "dc",
-      "denomination": "ghalf",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
-        {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-dc-g1": {
-      "name": "Washington DC Goldback G1 (1/1000 oz gold)",
-      "metal": "goldback",
+    "generic-silver-round": {
+      "name": "Generic Silver Round 1 oz (.999)",
+      "metal": "silver",
       "weight_oz": 1,
-      "state": "dc",
-      "denomination": "g1",
       "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.apmex.com/product/23/1-oz-silver-round-secondary-market"
         },
         {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
+          "enabled": true,
+          "url": "https://www.bullionexchanges.com/1-oz-silver-generic-rounds"
         },
         {
           "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
+          "name": "herobullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/1-oz-silver-round-any-mint-any-condition/"
         },
         {
           "id": "jmbullion",
           "name": "JM Bullion",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.jmbullion.com/1-oz-silver-round/"
+        },
+        {
+          "id": "monumentmetals",
+          "name": "Monument Metals",
+          "enabled": true,
+          "url": "https://monumentmetals.com/elemetal-1oz-silver-round.html"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://sdbullion.com/1-oz-silver-buffalo-round"
         }
       ]
     },
-    "goldback-dc-g2": {
-      "name": "Washington DC Goldback G2 (2/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 2,
-      "state": "dc",
-      "denomination": "g2",
+    "krugerrand-gold": {
+      "name": "South African Gold Krugerrand 1 oz",
+      "metal": "gold",
+      "weight_oz": 1,
       "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.apmex.com/product/62/south-african-1-oz-gold-krugerrand-coin-bu-random-year"
         },
         {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
+          "enabled": true,
+          "url": "https://www.bullionexchanges.com/1-oz-south-african-krugerrand-gold-coin-random-year"
         },
         {
           "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
+          "name": "herobullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/south-african-gold-krugerrand-1-oz-coin/"
         },
         {
           "id": "jmbullion",
           "name": "JM Bullion",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.jmbullion.com/1-oz-south-african-gold-krugerrand/"
+        },
+        {
+          "id": "monumentmetals",
+          "name": "Monument Metals",
+          "enabled": true,
+          "url": "https://monumentmetals.com/random-date-1oz-gold-krugerrand.html"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://sdbullion.com/1-oz-south-african-gold-krugerrand-coin-random-year"
         }
       ]
     },
-    "goldback-dc-g5": {
-      "name": "Washington DC Goldback G5 (5/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 5,
-      "state": "dc",
-      "denomination": "g5",
+    "krugerrand-silver": {
+      "name": "South African Silver Krugerrand 1 oz",
+      "metal": "silver",
+      "weight_oz": 1,
       "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.apmex.com/product/322171/2026-south-africa-1-oz-silver-krugerrand-bu"
         },
         {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
+          "enabled": true,
+          "url": "https://www.bullionexchanges.com/2026-south-africa-1-oz-silver-krugerrand-coin-bu"
         },
         {
           "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
+          "name": "herobullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/1-oz-south-african-silver-krugerrand/"
         },
         {
           "id": "jmbullion",
           "name": "JM Bullion",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.jmbullion.com/2026-1-oz-south-african-silver-krugerrand-coin/"
+        },
+        {
+          "id": "monumentmetals",
+          "name": "Monument Metals",
+          "enabled": true,
+          "url": "https://monumentmetals.com/2026-south-africa-1-oz-silver-krugerrand-bu.html"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://sdbullion.com/2026-1-oz-south-african-silver-krugerrand-coin-bu"
         }
       ]
     },
-    "goldback-dc-g10": {
-      "name": "Washington DC Goldback G10 (10/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 10,
-      "state": "dc",
-      "denomination": "g10",
+    "maple-gold": {
+      "name": "Canadian Gold Maple Leaf 1 oz",
+      "metal": "gold",
+      "weight_oz": 1,
       "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.apmex.com/product/9/canada-1-oz-gold-maple-leaf-9999-fine-bu-random-year"
         },
         {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
+          "enabled": true,
+          "url": "https://www.bullionexchanges.com/1-oz-canadian-gold-maple-leaf-50-coin-random-year"
         },
         {
           "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
+          "name": "herobullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/canadian-gold-maple-1-oz-coin/"
         },
         {
           "id": "jmbullion",
           "name": "JM Bullion",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.jmbullion.com/1-oz-canadian-gold-maple-leaf-any-year/"
+        },
+        {
+          "id": "monumentmetals",
+          "name": "Monument Metals",
+          "enabled": true,
+          "url": "https://monumentmetals.com/2026-1oz-gold-maple.html"
+        },
+        {
+          "id": "sdbullion",
+          "name": "SD Bullion",
+          "enabled": true,
+          "url": "https://sdbullion.com/2026-1-oz-gold-maple-leaf-coin"
         }
       ]
     },
-    "goldback-dc-g25": {
-      "name": "Washington DC Goldback G25 (25/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 25,
-      "state": "dc",
-      "denomination": "g25",
+    "maple-silver": {
+      "name": "Canadian Silver Maple Leaf 1 oz",
+      "metal": "silver",
+      "weight_oz": 1,
       "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
-        },
         {
           "id": "apmex",
           "name": "APMEX",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://www.apmex.com/product/1090/1-oz-canadian-silver-maple-leaf-coin-bu-random-year"
         },
         {
-          "id": "sdbullion",
-          "name": "SD Bullion",
-          "enabled": false,
-          "url": null
+          "id": "bullionexchanges",
+          "name": "bullionexchanges",
+          "enabled": true,
+          "url": "https://www.bullionexchanges.com/1-oz-silver-canadian-maple-leaf-bu-random-year"
         },
         {
           "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
+          "name": "herobullion",
+          "enabled": true,
+          "url": "https://www.herobullion.com/canadian-silver-maple-1-oz-coin/"
         },
         {
           "id": "jmbullion",
           "name": "JM Bullion",
-          "enabled": false,
-          "url": null
-        }
-      ]
-    },
-    "goldback-dc-g50": {
-      "name": "Washington DC Goldback G50 (50/1000 oz gold)",
-      "metal": "goldback",
-      "weight_oz": 50,
-      "state": "dc",
-      "denomination": "g50",
-      "providers": [
-        {
-          "id": "goldback",
-          "name": "Goldback (exchange rate)",
-          "enabled": false,
-          "url": "https://www.goldback.com/exchange-rate/"
+          "enabled": true,
+          "url": "https://www.jmbullion.com/2026-1-oz-canadian-silver-maple-leaf-coin/"
         },
         {
-          "id": "apmex",
-          "name": "APMEX",
-          "enabled": false,
-          "url": null
+          "id": "monumentmetals",
+          "name": "Monument Metals",
+          "enabled": true,
+          "url": "https://monumentmetals.com/2026-canada-silver-maple-leaf.html"
         },
         {
           "id": "sdbullion",
           "name": "SD Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "herobullion",
-          "name": "Hero Bullion",
-          "enabled": false,
-          "url": null
-        },
-        {
-          "id": "jmbullion",
-          "name": "JM Bullion",
-          "enabled": false,
-          "url": null
+          "enabled": true,
+          "url": "https://sdbullion.com/canadian-silver-maple-leaf-coin-random-year"
         }
       ]
     }
