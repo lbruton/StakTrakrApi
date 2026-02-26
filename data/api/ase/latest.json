@@ -1,13 +1,13 @@
 {
   "slug": "ase",
   "window_start": "2026-02-26T02:00:00Z",
-  "median_price": 105.79,
-  "lowest_price": 99.99,
+  "median_price": 104.13,
+  "lowest_price": 90.32,
   "vendors": {
     "apmex": {
       "price": 106.65,
       "confidence": 70,
-      "source": "firecrawl",
+      "source": "vision",
       "inStock": true
     },
     "bullionexchanges": {
@@ -17,28 +17,30 @@
       "inStock": true
     },
     "herobullion": {
-      "price": 104.57,
+      "price": 104.13,
+      "confidence": 70,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 106.14,
+      "confidence": 70,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 104.31,
       "confidence": 70,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 105.79,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 106.46,
-      "confidence": 70,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 104.47,
-      "confidence": 70,
-      "source": "vision",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-02-26T00:10:03.394Z"
     },
     "monumentmetals": {
       "price": 101.84,
@@ -53,9 +55,9 @@
     "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
     "sdbullion": true,
     "summitmetals": true,
+    "jmbullion": true,
     "monumentmetals": true
   },
   "last_known_price_by_site": {},
@@ -3476,10 +3478,13 @@
     },
     {
       "window": "2026-02-26T02:00:00Z",
-      "median": 104.26,
-      "low": 104.26,
+      "median": 104.31,
+      "low": 90.32,
       "vendors": {
-        "summitmetals": 104.26
+        "sdbullion": 106.14,
+        "apmex": 90.32,
+        "summitmetals": 104.26,
+        "herobullion": 104.13
       }
     }
   ]

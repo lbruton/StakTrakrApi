@@ -1,8 +1,8 @@
 {
   "slug": "goldback-g50",
   "window_start": "2026-02-26T02:00:00Z",
-  "median_price": 502.48,
-  "lowest_price": 260.75,
+  "median_price": 502.41,
+  "lowest_price": 498.6,
   "vendors": {
     "apmex": {
       "price": 515.4,
@@ -10,23 +10,25 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "goldback": {
-      "price": 260.75,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 498.74,
+      "price": 498.6,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 502.48,
+      "price": 502.41,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "goldback": {
+      "price": 260.75,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-02-26T00:10:03.394Z"
     },
     "jmbullion": {
       "price": 490.91,
@@ -39,9 +41,9 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "goldback": true,
     "herobullion": true,
     "sdbullion": true,
+    "goldback": true,
     "jmbullion": true
   },
   "last_known_price_by_site": {},
@@ -624,9 +626,11 @@
     },
     {
       "window": "2026-02-26T02:00:00Z",
-      "median": 515.4,
-      "low": 515.4,
+      "median": 502.41,
+      "low": 498.6,
       "vendors": {
+        "herobullion": 498.6,
+        "sdbullion": 502.41,
         "apmex": 515.4
       }
     }

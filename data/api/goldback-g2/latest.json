@@ -2,7 +2,7 @@
   "slug": "goldback-g2",
   "window_start": "2026-02-26T02:00:00Z",
   "median_price": 20.1,
-  "lowest_price": 10.43,
+  "lowest_price": 19.96,
   "vendors": {
     "apmex": {
       "price": 20.63,
@@ -10,14 +10,8 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "goldback": {
-      "price": 10.43,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 19.98,
+      "price": 19.96,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -27,6 +21,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "goldback": {
+      "price": 10.43,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-02-26T00:10:03.394Z"
     },
     "jmbullion": {
       "price": 22.3,
@@ -39,9 +41,9 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "goldback": true,
     "herobullion": true,
     "sdbullion": true,
+    "goldback": true,
     "jmbullion": true
   },
   "last_known_price_by_site": {},
@@ -626,9 +628,10 @@
     },
     {
       "window": "2026-02-26T02:00:00Z",
-      "median": 20.63,
-      "low": 20.1,
+      "median": 20.1,
+      "low": 19.96,
       "vendors": {
+        "herobullion": 19.96,
         "sdbullion": 20.1,
         "apmex": 20.63
       }
