@@ -715,8 +715,10 @@ ${renderNav("home", failureCount)}
   <h2>Combined Coverage — All Pollers (hourly union)</h2>
   ${renderCoverageCards(coverageStats, spotCoverage)}
   <div style="margin-top:12px;">
-    <h3 style="font-size:12px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Failure Trend (7 days)</h3>
-    ${renderFailureTrendChart(failureTrend)}
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 12px 6px;">
+      <div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Failure Trend (7 days)</div>
+      ${renderFailureTrendChart(failureTrend)}
+    </div>
   </div>
 </div>
 
