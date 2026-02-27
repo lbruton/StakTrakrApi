@@ -19,7 +19,7 @@ import { createClient } from "@libsql/client";
 import {
   initProviderSchema, getProviders, getAllCoins, upsertCoin, upsertVendor,
   updateVendorUrl, toggleVendor, deleteCoin, deleteVendor, updateVendorFields,
-  getVendorScrapeStatus, getFailureStats, getRunStats, getCoverageStats, getMissingItems, exportProvidersJson,
+  getVendorScrapeStatus, getFailureStats, getFailureTrend, getRunStats, getCoverageStats, getSpotCoverage, getMissingItems, exportProvidersJson,
   batchToggleVendor, batchDeleteVendor, getVendorSummary,
   loadProviders,
 } from "./provider-db.js";
@@ -417,25 +417,65 @@ function renderMissingItems(items) {
   </table>`;
 }
 
-function renderCoverageCards(cov) {
+function renderCoverageCards(cov, spotCov) {
   if (!cov || !cov.hours || cov.hours.length === 0) return '';
   const latest = cov.hours[0];
   const avg = cov.hours.length > 0
-    ? Math.round(cov.hours.reduce((s, h) => s + h.pct, 0) / cov.hours.length)
+    ? Math.min(100, Math.round(cov.hours.reduce((s, h) => s + h.pct, 0) / cov.hours.length))
     : 0;
   const covColor = latest.pct >= 90 ? 'var(--green)' : latest.pct >= 70 ? 'var(--amber)' : 'var(--red)';
   const avgColor = avg >= 90 ? 'var(--green)' : avg >= 70 ? 'var(--amber)' : 'var(--red)';
-  const sparkBars = cov.hours.slice(0, 12).reverse().map(h => {
+
+  // 24h hourly bars
+  const sparkBars = cov.hours.slice(0, 24).reverse().map(h => {
     const barH = Math.max(2, Math.round(h.pct * 0.4));
     const c = h.pct >= 90 ? '#22c55e' : h.pct >= 70 ? '#f59e0b' : '#ef4444';
     const hLabel = h.hour.slice(11, 16);
-    return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;" title="' + hLabel + ': ' + h.covered + '/' + cov.totalEnabled + ' (' + h.pct + '%)">'
-      + '<div style="width:14px;height:' + barH + 'px;background:' + c + ';border-radius:2px;"></div>'
-      + '<span style="font-size:9px;color:var(--muted);">' + hLabel + '</span>'
+    return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;" title="' + hLabel + ': ' + Math.min(h.covered, cov.totalEnabled) + '/' + cov.totalEnabled + ' (' + h.pct + '%)">'
+      + '<div style="width:10px;height:' + barH + 'px;background:' + c + ';border-radius:2px;"></div>'
+      + '<span style="font-size:8px;color:var(--muted);">' + hLabel + '</span>'
       + '</div>';
   }).join('');
-  const missingCount = cov.totalEnabled - latest.covered;
-  const missingLabel = missingCount > 0 ? missingCount + ' missing' : 'full coverage';
+
+  const missingCount = Math.max(0, cov.totalEnabled - latest.covered);
+
+  // Spot coverage card
+  let spotCard = '';
+  if (spotCov) {
+    const spotPct = spotCov.totalIntervals > 0
+      ? Math.round((spotCov.coveredIntervals / spotCov.totalIntervals) * 100) : 0;
+    const spotColor = spotPct >= 90 ? 'var(--green)' : spotPct >= 70 ? 'var(--amber)' : 'var(--red)';
+
+    // Spot 15-min bars (last 6h = 24 intervals)
+    const spotBars = spotCov.intervals.slice(-24).map(q => {
+      const full = q.metals >= 4; // 4 metals = full coverage
+      const c = full ? '#22c55e' : q.metals >= 2 ? '#f59e0b' : '#ef4444';
+      const label = q.quarter.slice(11);
+      const srcLabel = q.sources > 1 ? q.sources + ' src' : '1 src';
+      return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;" title="' + label + ': ' + q.metals + ' metals, ' + srcLabel + '">'
+        + '<div style="width:10px;height:' + (full ? '16' : Math.max(4, q.metals * 4)) + 'px;background:' + c + ';border-radius:2px;"></div>'
+        + '<span style="font-size:7px;color:var(--muted);">' + label + '</span>'
+        + '</div>';
+    }).join('');
+
+    // By-poller breakdown
+    const pollerParts = Object.entries(spotCov.byPoller || {}).map(([id, cnt]) => {
+      return '<span style="margin-right:12px;">' + id + ': <strong>' + cnt + '</strong>/' + spotCov.totalIntervals + '</span>';
+    }).join('');
+
+    spotCard = '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">'
+      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Spot Price Coverage (15-min intervals, 6h)</div>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px;">'
+      + '<div style="text-align:center;"><div style="color:var(--muted);font-size:10px;text-transform:uppercase;">Coverage</div>'
+      + '<div style="color:' + spotColor + ';font-size:20px;font-weight:700;">' + spotPct + '%</div>'
+      + '<div style="color:var(--muted);font-size:10px;">' + spotCov.coveredIntervals + ' / ' + spotCov.totalIntervals + ' intervals</div></div>'
+      + '<div style="text-align:center;"><div style="color:var(--muted);font-size:10px;text-transform:uppercase;">By Poller</div>'
+      + '<div style="font-size:12px;margin-top:4px;">' + (pollerParts || '<span style="color:var(--muted)">no data</span>') + '</div></div>'
+      + '</div>'
+      + '<div style="display:flex;gap:3px;align-items:flex-end;height:30px;">' + spotBars + '</div>'
+      + '</div>';
+  }
+
   return '<div style="margin-bottom:16px;">'
     + '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;">'
     + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
@@ -448,22 +488,58 @@ function renderCoverageCards(cov) {
     + '</div>'
     + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
     + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">Items Covered</div>'
-    + '<div style="color:var(--accent);font-size:24px;font-weight:700;">' + latest.covered + '<span style="font-size:14px;color:var(--muted)">/' + cov.totalEnabled + '</span></div>'
+    + '<div style="color:var(--accent);font-size:24px;font-weight:700;">' + Math.min(latest.covered, cov.totalEnabled) + '<span style="font-size:14px;color:var(--muted)">/' + cov.totalEnabled + '</span></div>'
     + '</div>'
     + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
     + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">Missing Items</div>'
     + '<div style="color:' + (missingCount > 0 ? 'var(--red)' : 'var(--green)') + ';font-size:24px;font-weight:700;">' + missingCount + '</div>'
     + '</div>'
     + '</div>'
+    + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">'
     + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">'
-    + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Hourly Coverage Trend</div>'
-    + '<div style="display:flex;gap:6px;align-items:flex-end;height:50px;">' + sparkBars + '</div>'
+    + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Retail Coverage Trend (24h)</div>'
+    + '<div style="display:flex;gap:3px;align-items:flex-end;height:50px;">' + sparkBars + '</div>'
+    + '</div>'
+    + spotCard
     + '</div>'
     + '</div>';
 }
 
+function renderFailureTrendChart(trend) {
+  if (!trend || trend.length === 0) {
+    return '<p style="color:var(--muted);font-size:13px;padding:8px 0;">No failure data available.</p>';
+  }
+
+  const maxF = Math.max(...trend.map(d => d.failures), 1);
+  const chartW = 500, chartH = 140, barGap = 8;
+  const barW = Math.min(50, (chartW - barGap * (trend.length + 1)) / trend.length);
+  const startX = (chartW - (barW + barGap) * trend.length + barGap) / 2;
+
+  let bars = '';
+  trend.forEach((d, i) => {
+    const barH = Math.max(2, (d.failures / maxF) * (chartH - 30));
+    const x = startX + i * (barW + barGap);
+    const y = chartH - 20 - barH;
+    const color = d.failures >= 20 ? '#ef4444' : d.failures >= 10 ? '#f59e0b' : '#22c55e';
+    const dayLabel = d.day.slice(5); // MM-DD
+    bars += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}" fill="${color}" rx="3"/>`;
+    bars += `<text x="${x + barW/2}" y="${chartH - 6}" text-anchor="middle" fill="#94a3b8" font-size="10">${dayLabel}</text>`;
+    bars += `<text x="${x + barW/2}" y="${y - 4}" text-anchor="middle" fill="#e2e8f0" font-size="10">${d.failures}</text>`;
+  });
+
+  return `<svg width="${chartW}" height="${chartH}" viewBox="0 0 ${chartW} ${chartH}" style="max-width:100%;height:auto;">
+    <line x1="0" y1="${chartH - 20}" x2="${chartW}" y2="${chartH - 20}" stroke="#334155" stroke-width="1"/>
+    ${bars}
+  </svg>
+  <div style="display:flex;gap:16px;margin-top:8px;font-size:11px;color:var(--muted);">
+    <span><span style="display:inline-block;width:10px;height:10px;background:#22c55e;border-radius:2px;margin-right:4px;"></span>&lt; 10 failures</span>
+    <span><span style="display:inline-block;width:10px;height:10px;background:#f59e0b;border-radius:2px;margin-right:4px;"></span>10-19</span>
+    <span><span style="display:inline-block;width:10px;height:10px;background:#ef4444;border-radius:2px;margin-right:4px;"></span>20+</span>
+  </div>`;
+}
+
 function renderMainPage(data) {
-  const { net, cpu, uptime, supervisord, systemd, logLines, tursoRuns, tursoError, flyioHealth, runStats, failureCount, coverageStats, missingItems } = data;
+  const { net, cpu, uptime, supervisord, systemd, logLines, tursoRuns, tursoError, flyioHealth, runStats, failureCount, coverageStats, spotCoverage, failureTrend } = data;
 
   const supRows = supervisord.map((s) => `
     <tr>
@@ -556,10 +632,10 @@ ${renderNav("home", failureCount)}
 
 <div class="wide-card">
   <h2>Combined Coverage — All Pollers (hourly union)</h2>
-  ${renderCoverageCards(coverageStats)}
+  ${renderCoverageCards(coverageStats, spotCoverage)}
   <div style="margin-top:12px;">
-    <h3 style="font-size:12px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Missing Items (no successful price this hour)</h3>
-    ${renderMissingItems(missingItems)}
+    <h3 style="font-size:12px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Failure Trend (7 days)</h3>
+    ${renderFailureTrendChart(failureTrend)}
   </div>
 </div>
 
@@ -1275,7 +1351,7 @@ if (btnExport) btnExport.addEventListener('click', async () => {
 // Failure queue page (GET /failures)
 // ---------------------------------------------------------------------------
 
-function renderFailuresPage(failures, failureCount) {
+function renderFailuresPage(failures, missingItems, failureCount) {
   const now = new Date().toUTCString();
   const isEmpty = !failures || failures.length === 0;
 
@@ -1317,8 +1393,13 @@ function renderFailuresPage(failures, failureCount) {
 ${renderNav("failures", failureCount)}
 <div style="padding:20px;">
 <h1 style="color:var(--accent);margin-bottom:4px;">Failure Queue</h1>
-<p class="subtitle">URLs with 3+ failures in the last 10 days &bull; Auto-refreshes every 5 min &bull; ${now}</p>
+<p class="subtitle">Chronic failures (3+ in 7 days) &amp; items missing this hour &bull; Auto-refreshes every 5 min &bull; ${now}</p>
 <div id="toast" style="display:none;position:fixed;bottom:20px;right:20px;padding:10px 16px;border-radius:6px;font-size:13px;z-index:200;"></div>
+<h2 style="color:var(--accent);font-size:16px;margin:24px 0 8px;">Missing This Hour</h2>
+<p style="color:var(--muted);font-size:12px;margin-bottom:12px;">Enabled vendor-coin pairs with no successful price in the current hour.</p>
+${renderMissingItems(missingItems)}
+
+<h2 style="color:var(--accent);font-size:16px;margin:32px 0 8px;">Chronic Failures (3+ in 7 days)</h2>
 ${isEmpty
   ? '<p class="empty">No providers failing above threshold \u2014 all URLs healthy.</p>'
   : `<table>
@@ -1618,14 +1699,17 @@ async function handleRequest(req, res) {
 
   // ── GET /failures ──────────────────────────────────────────────────────
   if (req.method === "GET" && url === "/failures") {
-    let failures = [], failureCount = 0;
+    let failures = [], missingItems = [], failureCount = 0;
     try {
       const client = getTursoClient();
-      failures = await getFailureStats(client);
+      [failures, missingItems] = await Promise.all([
+        getFailureStats(client),
+        getMissingItems(client),
+      ]);
       failureCount = failures.length;
     } catch { /* empty */ }
     res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(renderFailuresPage(failures, failureCount));
+    res.end(renderFailuresPage(failures, missingItems, failureCount));
     return;
   }
 
@@ -1919,7 +2003,7 @@ async function handleRequest(req, res) {
   }
 
   const client = getTursoClient();
-  const [tursoResult, runStats, failureCount, net, cpu, uptime, supervisord, systemd, logLines, flyioHealth, coverageStats, missingItems] = await Promise.all([
+  const [tursoResult, runStats, failureCount, net, cpu, uptime, supervisord, systemd, logLines, flyioHealth, coverageStats, spotCoverage, failureTrend] = await Promise.all([
     fetchRunsFromTurso().then(rows => ({ rows, error: null })).catch(err => ({ rows: null, error: err.message })),
     client ? getRunStats(client).catch(() => null) : Promise.resolve(null),
     client ? getFailureCount(client) : Promise.resolve(0),
@@ -1931,7 +2015,8 @@ async function handleRequest(req, res) {
     Promise.resolve(readLog()),
     Promise.resolve(getFlyioHealth()),
     client ? getCoverageStats(client).catch(() => null) : Promise.resolve(null),
-    client ? getMissingItems(client).catch(() => []) : Promise.resolve([]),
+    client ? getSpotCoverage(client).catch(() => null) : Promise.resolve(null),
+    client ? getFailureTrend(client).catch(() => []) : Promise.resolve([]),
   ]);
 
   const html = renderMainPage({
@@ -1941,7 +2026,8 @@ async function handleRequest(req, res) {
     runStats,
     failureCount,
     coverageStats,
-    missingItems,
+    spotCoverage,
+    failureTrend,
   });
 
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
