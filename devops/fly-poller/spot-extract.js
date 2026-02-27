@@ -112,7 +112,7 @@ async function main() {
 
     prices = {};
     for (const [code, name] of Object.entries(METAL_MAP)) {
-      const rateKey = `USD${code}`;
+      const rateKey = code;
       const rate = data.rates?.[rateKey];
       if (!rate || rate === 0) {
         throw new Error(`Missing or zero rate for ${rateKey}`);
