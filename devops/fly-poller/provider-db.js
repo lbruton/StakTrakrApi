@@ -347,7 +347,7 @@ export async function getVendorScrapeStatus(client) {
 }
 
 /**
- * Get vendors with 3+ failures in the last 10 days.
+ * Get vendors with 3+ failures in the last 24 hours.
  *
  * @param {import("@libsql/client").Client} client
  * @returns {Promise<Array<{coinSlug: string, coinName: string, vendorId: string, url: string, failureCount: number, lastFailure: string, lastError: string}>>}
@@ -364,7 +364,7 @@ export async function getFailureStats(client) {
     FROM provider_failures pf
     JOIN provider_coins pc ON pc.slug = pf.coin_slug
     JOIN provider_vendors pv ON pv.coin_slug = pf.coin_slug AND pv.vendor_id = pf.vendor_id
-    WHERE pf.failed_at > datetime('now', '-10 days')
+    WHERE pf.failed_at > datetime('now', '-24 hours')
     GROUP BY pf.coin_slug, pf.vendor_id
     HAVING COUNT(*) >= 3
     ORDER BY failure_count DESC
