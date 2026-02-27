@@ -406,6 +406,174 @@ export async function getRunStats(client) {
 }
 
 // ---------------------------------------------------------------------------
+// Bulk operations
+// ---------------------------------------------------------------------------
+
+/**
+ * Toggle enabled flag for all vendors of a given vendor ID + metal type.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {object} options
+ * @param {string} options.vendorId
+ * @param {string} options.metal
+ * @param {boolean} options.enabled
+ * @returns {Promise<{rowsAffected: number}>}
+ */
+export async function batchToggleVendor(client, { vendorId, metal, enabled }) {
+  const result = await client.execute({
+    sql: `UPDATE provider_vendors SET enabled = ?, updated_at = datetime('now')
+          WHERE vendor_id = ? AND coin_slug IN (SELECT slug FROM provider_coins WHERE metal = ?)`,
+    args: [enabled ? 1 : 0, vendorId, metal],
+  });
+  return { rowsAffected: result.rowsAffected };
+}
+
+/**
+ * Delete all vendor entries for a given vendor ID + metal type.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {object} options
+ * @param {string} options.vendorId
+ * @param {string} options.metal
+ * @returns {Promise<{rowsAffected: number}>}
+ */
+export async function batchDeleteVendor(client, { vendorId, metal }) {
+  const result = await client.execute({
+    sql: `DELETE FROM provider_vendors
+          WHERE vendor_id = ? AND coin_slug IN (SELECT slug FROM provider_coins WHERE metal = ?)`,
+    args: [vendorId, metal],
+  });
+  return { rowsAffected: result.rowsAffected };
+}
+
+/**
+ * Toggle enabled flag for a vendor across specific coin slugs.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {object} options
+ * @param {string} options.vendorId
+ * @param {string[]} options.coinSlugs
+ * @param {boolean} options.enabled
+ * @returns {Promise<{rowsAffected: number}>}
+ */
+export async function batchToggleVendorByCoins(client, { vendorId, coinSlugs, enabled }) {
+  if (!coinSlugs || coinSlugs.length === 0) return { rowsAffected: 0 };
+  const placeholders = coinSlugs.map(() => "?").join(", ");
+  const result = await client.execute({
+    sql: `UPDATE provider_vendors SET enabled = ?, updated_at = datetime('now')
+          WHERE vendor_id = ? AND coin_slug IN (${placeholders})`,
+    args: [enabled ? 1 : 0, vendorId, ...coinSlugs],
+  });
+  return { rowsAffected: result.rowsAffected };
+}
+
+/**
+ * Get a summary of all vendors grouped by vendor ID and metal type.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @returns {Promise<Object<string, {total: number, enabled: number, disabled: number, byMetal: Object<string, {total: number, enabled: number, disabled: number}>}>>}
+ */
+export async function getVendorSummary(client) {
+  const result = await client.execute(`
+    SELECT pv.vendor_id, pc.metal, pv.enabled, COUNT(*) AS cnt
+    FROM provider_vendors pv
+    JOIN provider_coins pc ON pc.slug = pv.coin_slug
+    GROUP BY pv.vendor_id, pc.metal, pv.enabled
+    ORDER BY pv.vendor_id, pc.metal
+  `);
+
+  const summary = {};
+  for (const row of result.rows) {
+    const vid = row.vendor_id;
+    if (!summary[vid]) summary[vid] = { total: 0, enabled: 0, disabled: 0, byMetal: {} };
+    const vendor = summary[vid];
+    const count = Number(row.cnt);
+    const isEnabled = row.enabled === 1;
+
+    vendor.total += count;
+    if (isEnabled) vendor.enabled += count;
+    else vendor.disabled += count;
+
+    if (!vendor.byMetal[row.metal]) vendor.byMetal[row.metal] = { total: 0, enabled: 0, disabled: 0 };
+    const m = vendor.byMetal[row.metal];
+    m.total += count;
+    if (isEnabled) m.enabled += count;
+    else m.disabled += count;
+  }
+  return summary;
+}
+
+// ---------------------------------------------------------------------------
+// Coverage & missing items (dashboard)
+// ---------------------------------------------------------------------------
+
+/**
+ * Get hourly coverage stats — how many enabled vendor-coin pairs had a
+ * successful price snapshot in each of the last N hours.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {number} [hours=12]
+ * @returns {Promise<{totalEnabled: number, hours: Array<{hour: string, covered: number, pct: number}>}>}
+ */
+export async function getCoverageStats(client, hours = 12) {
+  const enabledResult = await client.execute(
+    "SELECT COUNT(*) AS cnt FROM provider_vendors WHERE enabled = 1"
+  );
+  const totalEnabled = Number(enabledResult.rows[0].cnt);
+
+  const result = await client.execute({
+    sql: `
+      SELECT strftime('%Y-%m-%dT%H:00', scraped_at) AS hour,
+             COUNT(DISTINCT coin_slug || ':' || vendor) AS covered
+      FROM price_snapshots
+      WHERE is_failed = 0
+        AND scraped_at > datetime('now', ? || ' hours')
+      GROUP BY hour
+      ORDER BY hour DESC
+    `,
+    args: [`-${hours}`],
+  });
+
+  const hourlyStats = result.rows.map((row) => ({
+    hour: row.hour,
+    covered: Number(row.covered),
+    pct: totalEnabled > 0 ? Math.round((Number(row.covered) / totalEnabled) * 100) : 0,
+  }));
+
+  return { totalEnabled, hours: hourlyStats };
+}
+
+/**
+ * Get enabled vendor-coin pairs that had NO successful price in the current hour.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @returns {Promise<Array<{coinSlug: string, coinName: string, metal: string, vendor: string, url: string|null}>>}
+ */
+export async function getMissingItems(client) {
+  const result = await client.execute(`
+    SELECT pv.coin_slug, pc.name AS coin_name, pc.metal, pv.vendor_id AS vendor, pv.url
+    FROM provider_vendors pv
+    JOIN provider_coins pc ON pc.slug = pv.coin_slug
+    WHERE pv.enabled = 1
+      AND NOT EXISTS (
+        SELECT 1 FROM price_snapshots ps
+        WHERE ps.coin_slug = pv.coin_slug
+          AND ps.vendor = pv.vendor_id
+          AND ps.is_failed = 0
+          AND ps.scraped_at > strftime('%Y-%m-%dT%H:00', 'now')
+      )
+    ORDER BY pc.metal, pc.name, pv.vendor_id
+  `);
+  return result.rows.map((row) => ({
+    coinSlug: row.coin_slug,
+    coinName: row.coin_name,
+    metal: row.metal,
+    vendor: row.vendor,
+    url: row.url,
+  }));
+}
+
+// ---------------------------------------------------------------------------
 // Export — generates providers.json content from Turso
 // ---------------------------------------------------------------------------
 
