@@ -86,6 +86,11 @@ async function parseSpotFile(filePath) {
 
   if (!timestamp) return null;
 
+  // Ensure all four metals have non-null values before inserting.
+  if (Object.values(metals).some((value) => value == null)) {
+    return null;
+  }
+
   return { ...metals, timestamp };
 }
 

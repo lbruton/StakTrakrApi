@@ -763,7 +763,6 @@ async function main() {
     const dd = String(now.getUTCDate()).padStart(2, "0");
     const hh = String(now.getUTCHours()).padStart(2, "0");
     const dateStr = `${yyyy}-${mm}-${dd}`;
-    const mins = String(now.getUTCMinutes()).padStart(2, "0");
 
     /**
      * Transform a Turso spot_prices row into the standard JSON output format.
@@ -785,10 +784,6 @@ async function main() {
 
     // --- Hourly file (overwrite) ---
     const hourlyRows = await readSpotHourly(spotClient, dateStr, now.getUTCHours());
-    const hourlyPath = join("../hourly", yyyy, mm, dd, `${hh}.json`);
-    // FILE-READ FALLBACK (uncomment to revert to pre-Turso behavior):
-    // const hourlyData = JSON.parse(readFileSync(join(DATA_DIR, "hourly", yyyy, mm, dd, `${hh}.json`), 'utf-8'));
-
     if (hourlyRows.length) {
       const hourlyEntries = hourlyRows.map((r) => formatSpotRow(r, "hourly"));
       const hourlyFilePath = join(DATA_DIR, "hourly", yyyy, mm, dd, `${hh}.json`);
@@ -804,8 +799,20 @@ async function main() {
     }
 
     // --- 15-min file (immutable snapshot — write only if missing) ---
-    const floor = windowFloor(now);
-    const fifteenRows = await readSpot15min(spotClient, floor);
+    let floor = windowFloor(now);
+    let fifteenRows = await readSpot15min(spotClient, floor);
+
+    // If no data for current floor (race: api-export ran before spot poller),
+    // fall back to the most recently completed 15-min window.
+    if (!fifteenRows.length) {
+      const prevDate = new Date(now.getTime() - 15 * 60 * 1000);
+      const prevFloor = windowFloor(prevDate);
+      const prevRows = await readSpot15min(spotClient, prevFloor);
+      if (prevRows.length) {
+        floor = prevFloor;
+        fifteenRows = prevRows;
+      }
+    }
     const floorMin = floor.slice(11, 13) + floor.slice(14, 16); // "HHMM"
     const fifteenFilePath = join(DATA_DIR, "15min", yyyy, mm, dd, `${floorMin}.json`);
     // FILE-READ FALLBACK (uncomment to revert to pre-Turso behavior):

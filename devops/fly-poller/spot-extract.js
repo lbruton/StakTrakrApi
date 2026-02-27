@@ -10,7 +10,7 @@
  */
 
 import { mkdir, writeFile, access } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
 import { createTursoClient, initTursoSchema } from './turso-client.js';
 import { insertSpotPrices, startRunLog, finishRunLog, windowFloor } from './db.js';
 
@@ -62,7 +62,7 @@ async function fileExists(filePath) {
  * @param {Array} entries
  */
 async function writeJsonFile(filePath, entries) {
-  await mkdir(join(filePath, '..'), { recursive: true });
+  await mkdir(dirname(filePath), { recursive: true });
   await writeFile(filePath, JSON.stringify(entries, null, 2), 'utf-8');
 }
 
@@ -189,14 +189,15 @@ async function main() {
 
   // 15min file — immutable, skip if exists
   try {
-    const fifteenPath = join(dataDir, '15min', yyyy, mm, dd, `${hh}${min}.json`);
+    const floorMin = tsWindow.slice(11, 13) + tsWindow.slice(14, 16); // "HHMM" floored
+    const fifteenPath = join(dataDir, '15min', yyyy, mm, dd, `${floorMin}.json`);
     if (await fileExists(fifteenPath)) {
       console.log(`15min file exists, skipping: ${fifteenPath}`);
     } else {
       await writeJsonFile(fifteenPath, buildEntries('seed'));
       console.log(`Wrote 15min: ${fifteenPath}`);
+      filesWritten++;
     }
-    filesWritten++;
   } catch (err) {
     console.error('Failed to write 15min file:', err.message);
   }
@@ -205,11 +206,13 @@ async function main() {
   if (client && runId) {
     try {
       const error = dbOk ? null : 'Turso insert failed';
+      const captured = dbOk ? 4 : 0;
+      const failures = dbOk ? 0 : 4;
       await finishRunLog(client, {
         runId,
         finishedAt: new Date().toISOString(),
-        captured: 4,
-        failures: 0,
+        captured,
+        failures,
         fbpFilled: 0,
         error,
       });
