@@ -32,6 +32,8 @@ SHARED_FILES=(
   package.json
   package-lock.json
   monitor-oos.sh
+  spot-extract.js
+  backfill-spot.js
   spot-poller/poller.py
   spot-poller/requirements.txt
   spot-poller/update-seed-data.py

@@ -100,4 +100,25 @@ export async function initTursoSchema(client) {
   await client.execute(
     "CREATE INDEX IF NOT EXISTS idx_pf_failed_at ON provider_failures(failed_at);"
   );
+
+  // Spot price history — one row per metal per 15-minute floor
+  await client.execute(`
+    CREATE TABLE IF NOT EXISTS spot_prices (
+      id              INTEGER PRIMARY KEY AUTOINCREMENT,
+      metal           TEXT NOT NULL,
+      spot            REAL NOT NULL,
+      source          TEXT NOT NULL DEFAULT 'metalprice-api',
+      poller_id       TEXT NOT NULL,
+      timestamp       TEXT NOT NULL,
+      timestamp_floor TEXT NOT NULL,
+      scraped_at      TEXT NOT NULL DEFAULT (datetime('now')),
+      UNIQUE(metal, timestamp_floor)
+    );
+  `);
+  await client.execute(
+    "CREATE INDEX IF NOT EXISTS idx_spot_metal_floor ON spot_prices(metal, timestamp_floor DESC);"
+  );
+  await client.execute(
+    "CREATE INDEX IF NOT EXISTS idx_spot_floor ON spot_prices(timestamp_floor DESC);"
+  );
 }
