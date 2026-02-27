@@ -191,10 +191,27 @@ function statusColor(status) {
 }
 
 function pollerBadgeColor(pollerId) {
-  const palette = ["#818cf8", "#fb923c", "#34d399", "#f472b6", "#fbbf24"];
-  let hash = 0;
-  for (const c of (pollerId || "")) hash = (hash * 31 + c.charCodeAt(0)) & 0xffff;
-  return palette[hash % palette.length];
+  const colorMap = {
+    'home':      '#34d399', // green — home retail
+    'home-spot': '#818cf8', // indigo — home spot
+    'api':       '#fb923c', // orange — fly retail
+    'fly-spot':  '#38bdf8', // sky blue — fly spot
+    // Future names (STAK-367)
+    'home-retail':   '#34d399',
+    'home-goldback': '#a3e635',
+    'fly-retail':    '#fb923c',
+    'fly-goldback':  '#fbbf24',
+  };
+  return colorMap[pollerId] || '#94a3b8';
+}
+
+/** Map current poller_id to display label (bridges old→new naming) */
+function pollerDisplayName(pollerId) {
+  const nameMap = {
+    'home': 'home-retail',
+    'api':  'fly-retail',
+  };
+  return nameMap[pollerId] || pollerId;
 }
 
 function fmtDateTime(iso) {
@@ -319,7 +336,7 @@ function renderRunsTable(runs) {
       : "";
 
     return `<tr${warningClass}>
-      <td><span class="badge" style="background:${pollerBadgeColor(r.poller_id)}">${escHtml(r.poller_id)}</span></td>
+      <td><span class="badge" style="background:${pollerBadgeColor(r.poller_id)}">${escHtml(pollerDisplayName(r.poller_id))}</span></td>
       <td>${escHtml(fmtDateTime(r.started_at))}</td>
       <td>${escHtml(fmtDuration(r.started_at, r.finished_at))}</td>
       <td><span class="badge" style="background:${statusColor(r.status)}">${escHtml(r.status)}</span></td>
