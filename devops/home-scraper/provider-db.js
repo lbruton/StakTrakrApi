@@ -638,6 +638,7 @@ export async function getSpotCoverage(client, hours = 6) {
     coveredIntervals: intervals.length,
     intervals,
     byPoller,
+    hours,
   };
 }
 

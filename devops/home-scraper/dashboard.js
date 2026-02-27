@@ -467,35 +467,32 @@ function renderCoverageCards(cov, spotCov) {
     + '</div>'
     + '</div>';
 
-  // Retail bars — anchored to bottom
-  const barsData = last24.slice().reverse();
-  const retailBars = barsData.map((h, i) => {
-    const barH = Math.max(2, Math.round(h.pct * 0.4));
+  // Use all available hours (up to 48h)
+  const allHours = cov.hours.slice(0, 48).reverse();
+  const retailBars = allHours.map((h, i) => {
+    const barH = Math.max(2, Math.round(h.pct * 0.5));
     const c = h.pct >= 90 ? '#22c55e' : h.pct >= 70 ? '#f59e0b' : '#ef4444';
     const hLabel = h.hour.slice(11, 16);
-    const showLabel = i % 3 === 0;
-    return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:1;">'
-      + '<div style="width:100%;max-width:16px;height:' + barH + 'px;background:' + c + ';border-radius:2px;margin:0 auto;"></div>'
-      + (showLabel ? '<span style="font-size:8px;color:var(--muted);white-space:nowrap;margin-top:4px;">' + hLabel + '</span>' : '<span style="font-size:8px;margin-top:4px;">&nbsp;</span>')
+    return '<div style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-end;" title="' + hLabel + ': ' + Math.min(h.covered, cov.totalEnabled) + '/' + cov.totalEnabled + ' (' + h.pct + '%)">'
+      + '<div style="height:' + barH + 'px;background:' + c + ';border-radius:2px;"></div>'
+      + '<div style="text-align:center;overflow:hidden;height:28px;display:flex;align-items:flex-start;justify-content:center;"><span style="font-size:7px;color:var(--muted);white-space:nowrap;writing-mode:vertical-lr;transform:rotate(180deg);">' + hLabel + '</span></div>'
       + '</div>';
   }).join('');
 
   const retailBarCard = ''
-    + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">'
-    + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Retail Coverage Trend (24h)</div>'
-    + '<div style="display:flex;gap:2px;align-items:flex-end;height:60px;">' + retailBars + '</div>'
+    + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 12px 6px;">'
+    + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Retail Coverage Trend (' + allHours.length + 'h)</div>'
+    + '<div style="display:flex;gap:1px;align-items:flex-end;height:55px;">' + retailBars + '</div>'
     + '</div>';
 
   // ── Spot section ────────────────────────────────────────────────────
-  let spotStatCards = '';
-  let spotBarCard = '';
+  let spotSection = '';
 
   if (spotCov) {
     const spotPct = spotCov.totalIntervals > 0
       ? Math.round((spotCov.coveredIntervals / spotCov.totalIntervals) * 100) : 0;
     const spotColor = spotPct >= 90 ? 'var(--green)' : spotPct >= 70 ? 'var(--amber)' : 'var(--red)';
 
-    // Per-poller stats
     const pollerEntries = Object.entries(spotCov.byPoller || {});
     const pollerCards = pollerEntries.map(([id, cnt]) => {
       const pPct = spotCov.totalIntervals > 0 ? Math.round(cnt / spotCov.totalIntervals * 100) : 0;
@@ -503,11 +500,10 @@ function renderCoverageCards(cov, spotCov) {
       return '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
         + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">' + id + '</div>'
         + '<div style="color:' + pColor + ';font-size:24px;font-weight:700;">' + pPct + '%</div>'
-        + '<div style="color:var(--muted);font-size:10px;">' + cnt + '/' + spotCov.totalIntervals + ' intervals</div>'
+        + '<div style="color:var(--muted);font-size:10px;">' + cnt + '/' + spotCov.totalIntervals + '</div>'
         + '</div>';
     }).join('');
 
-    // Fill remaining grid slots if fewer than 2 pollers
     const emptySlots = Math.max(0, 2 - pollerEntries.length);
     const emptyCards = Array(emptySlots).fill(
       '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;opacity:0.3;">'
@@ -516,10 +512,10 @@ function renderCoverageCards(cov, spotCov) {
       + '</div>'
     ).join('');
 
-    spotStatCards = ''
+    const spotStatCards = ''
       + '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;">'
       + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
-      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">Spot Coverage (6h)</div>'
+      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">Spot Coverage (' + spotCov.hours + 'h)</div>'
       + '<div style="color:' + spotColor + ';font-size:24px;font-weight:700;">' + spotPct + '%</div>'
       + '</div>'
       + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
@@ -529,27 +525,54 @@ function renderCoverageCards(cov, spotCov) {
       + pollerCards + emptyCards
       + '</div>';
 
-    // Spot bars — same style as retail
+    // Spot bars — generate placeholders for ALL expected 15-min slots
     const spotIntervals = spotCov.intervals || [];
-    const spotBars = spotIntervals.map((q, i) => {
-      const full = q.metals >= 4;
-      const c = full ? '#22c55e' : q.metals >= 2 ? '#f59e0b' : '#ef4444';
-      const label = q.quarter.slice(11);
-      const srcLabel = q.sources > 1 ? q.sources + ' sources' : '1 source';
-      const showLabel = i % 4 === 0 || i === spotIntervals.length - 1;
-      const barH = full ? 24 : Math.max(4, q.metals * 6);
-      return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:1;">'
-        + '<div style="width:100%;max-width:16px;height:' + barH + 'px;background:' + c + ';border-radius:2px;margin:0 auto;" title="' + label + ': ' + q.metals + '/4 metals, ' + srcLabel + '"></div>'
-        + (showLabel ? '<span style="font-size:8px;color:var(--muted);white-space:nowrap;margin-top:4px;">' + label + '</span>' : '<span style="font-size:8px;margin-top:4px;">&nbsp;</span>')
+    const spotMap = new Map(spotIntervals.map(q => [q.quarter, q]));
+
+    // Build all expected quarters
+    const allQuarters = [];
+    const now = new Date();
+    const hoursBack = spotCov.hours || 6;
+    const start = new Date(now.getTime() - hoursBack * 3600000);
+    // Round start down to nearest 15 min
+    start.setMinutes(Math.floor(start.getMinutes() / 15) * 15, 0, 0);
+    for (let t = new Date(start); t <= now; t = new Date(t.getTime() + 15 * 60000)) {
+      const iso = t.toISOString();
+      const q = iso.slice(0, 13) + ':' + String(Math.floor(t.getUTCMinutes() / 15) * 15).padStart(2, '0');
+      allQuarters.push(q);
+    }
+
+    const spotBars = allQuarters.map((q, i) => {
+      const data = spotMap.get(q);
+      const label = q.slice(11);
+      if (!data) {
+        // Empty slot — no data
+        return '<div style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-end;" title="' + label + ': no data">'
+          + '<div style="height:2px;background:#334155;border-radius:2px;"></div>'
+          + '<div style="text-align:center;overflow:hidden;height:28px;display:flex;align-items:flex-start;justify-content:center;"><span style="font-size:7px;color:#475569;white-space:nowrap;writing-mode:vertical-lr;transform:rotate(180deg);">' + label + '</span></div>'
+          + '</div>';
+      }
+      const full = data.metals >= 4;
+      const c = full ? '#22c55e' : data.metals >= 2 ? '#f59e0b' : '#ef4444';
+      const barH = full ? 28 : Math.max(6, data.metals * 7);
+      const srcLabel = data.sources > 1 ? data.sources + ' sources' : '1 source';
+      return '<div style="flex:1;min-width:0;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-end;" title="' + label + ': ' + data.metals + '/4 metals, ' + srcLabel + '">'
+        + '<div style="height:' + barH + 'px;background:' + c + ';border-radius:2px;"></div>'
+        + '<div style="text-align:center;overflow:hidden;height:28px;display:flex;align-items:flex-start;justify-content:center;"><span style="font-size:7px;color:var(--muted);white-space:nowrap;writing-mode:vertical-lr;transform:rotate(180deg);">' + label + '</span></div>'
         + '</div>';
     }).join('');
 
-    spotBarCard = ''
-      + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">'
-      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Spot Price Trend (15-min intervals, 6h)</div>'
-      + (spotIntervals.length > 0
-        ? '<div style="display:flex;gap:2px;align-items:flex-end;height:60px;">' + spotBars + '</div>'
-        : '<div style="color:var(--muted);font-size:12px;font-style:italic;padding:16px 0;">No spot data in window</div>')
+    const spotBarCard = ''
+      + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 12px 6px;">'
+      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Spot Price Trend (15-min intervals, ' + hoursBack + 'h)</div>'
+      + '<div style="display:flex;gap:1px;align-items:flex-end;height:55px;">' + spotBars + '</div>'
+      + '</div>';
+
+    spotSection = ''
+      + '<div style="margin-bottom:16px;">'
+      + '<h3 style="font-size:12px;text-transform:uppercase;color:var(--muted);margin:0 0 8px;">Spot Price Coverage</h3>'
+      + spotStatCards
+      + spotBarCard
       + '</div>';
   }
 
@@ -559,13 +582,7 @@ function renderCoverageCards(cov, spotCov) {
     + retailStatCards
     + retailBarCard
     + '</div>'
-    + (spotCov
-      ? '<div style="margin-bottom:16px;">'
-        + '<h3 style="font-size:12px;text-transform:uppercase;color:var(--muted);margin:0 0 8px;">Spot Price Coverage</h3>'
-        + spotStatCards
-        + spotBarCard
-        + '</div>'
-      : '');
+    + spotSection;
 }
 
 
@@ -2078,8 +2095,8 @@ async function handleRequest(req, res) {
     Promise.resolve(getSystemdStatus(["redis-server", "rabbitmq-server", "cron", "tailscaled", "tinyproxy"])),
     Promise.resolve(readLog()),
     Promise.resolve(getFlyioHealth()),
-    client ? getCoverageStats(client).catch(() => null) : Promise.resolve(null),
-    client ? getSpotCoverage(client).catch(() => null) : Promise.resolve(null),
+    client ? getCoverageStats(client, 48).catch(() => null) : Promise.resolve(null),
+    client ? getSpotCoverage(client, 48).catch(() => null) : Promise.resolve(null),
     client ? getFailureTrend(client).catch(() => []) : Promise.resolve([]),
   ]);
 
