@@ -149,20 +149,20 @@ async function collectTurso() {
     }
 
     const pfail = await client.execute(`
-      SELECT coin_id, provider_id, COUNT(*) as cnt
+      SELECT coin_slug, vendor_id, COUNT(*) as cnt
       FROM provider_failures
       WHERE failed_at > datetime('now', '-10 days')
-      GROUP BY coin_id, provider_id
+      GROUP BY coin_slug, vendor_id
     `);
     for (const r of pfail.rows) {
-      metrics.push(`poller_provider_failures_total{coin_id="${r.coin_id}",provider_id="${r.provider_id}"} ${r.cnt}`);
+      metrics.push(`poller_provider_failures_total{coin_slug="${r.coin_slug}",vendor_id="${r.vendor_id}"} ${r.cnt}`);
     }
 
     const fcount = await client.execute(`
       SELECT COUNT(*) as cnt FROM (
-        SELECT provider_id FROM provider_failures
+        SELECT vendor_id FROM provider_failures
         WHERE failed_at > datetime('now', '-10 days')
-        GROUP BY coin_id, provider_id, url
+        GROUP BY coin_slug, vendor_id, url
         HAVING COUNT(*) >= 3
       )
     `);

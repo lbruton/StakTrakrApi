@@ -1564,6 +1564,8 @@ async function handleRequest(req, res) {
       try { providers = JSON.parse(readFileSync(PROVIDERS_FILE, "utf8")); } catch { providers = { coins: {} }; }
       scrapeStatus = null;
       failureCount = 0;
+    } finally {
+      if (client) try { await client.close(); } catch { /* ignore */ }
     }
     res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
     res.end(renderProvidersPage(providers, scrapeStatus, failureCount, readOnly));

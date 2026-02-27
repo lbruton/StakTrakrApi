@@ -8,7 +8,7 @@ set -euo pipefail
 DATE=$(date -u +%Y-%m-%d)
 echo "[$(date -u +%H:%M:%S)] Starting gap-fill run for $DATE"
 
-if [ -z "$DATA_REPO_PATH" ]; then
+if [ -z "${DATA_REPO_PATH:-}" ]; then
   echo "ERROR: DATA_REPO_PATH not set (path to data branch git checkout)"
   exit 1
 fi

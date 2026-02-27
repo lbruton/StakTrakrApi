@@ -50,7 +50,7 @@ RETRY_FILE=/tmp/retail-failures.json
 if [ -f "$RETRY_FILE" ]; then
   FAIL_COUNT=$(node -e "try { console.log(require('$RETRY_FILE').length); } catch { console.log(0); }")
   echo "[$(date -u +%H:%M:%S)] T3 queue: $FAIL_COUNT failed SKU(s) queued for retry"
-  TOTAL_TARGETS=$(node -e "
+  TOTAL_TARGETS=$(node --input-type=module -e "
     import { createTursoClient } from '$SCRIPT_DIR/turso-client.js';
     import { getProviders } from '$SCRIPT_DIR/provider-db.js';
     try {
