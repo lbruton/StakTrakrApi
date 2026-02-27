@@ -39,6 +39,10 @@ import {
   readRecentWindowStarts,
   readDailyAggregates,
   writeConfidenceScores,
+  readSpotCurrent,
+  readSpotHourly,
+  readSpot15min,
+  windowFloor,
 } from "./db.js";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
@@ -743,6 +747,97 @@ async function main() {
 
   } finally {
     db.close();
+  }
+
+  // --------------------------------------------------------------------------
+  // Spot price export — read from Turso, write hourly + 15min JSON files
+  // --------------------------------------------------------------------------
+
+  log("Exporting spot prices from Turso...");
+  const spotClient = await openTursoDb();
+
+  try {
+    const now = new Date();
+    const yyyy = String(now.getUTCFullYear());
+    const mm = String(now.getUTCMonth() + 1).padStart(2, "0");
+    const dd = String(now.getUTCDate()).padStart(2, "0");
+    const hh = String(now.getUTCHours()).padStart(2, "0");
+    const dateStr = `${yyyy}-${mm}-${dd}`;
+
+    /**
+     * Transform a Turso spot_prices row into the standard JSON output format.
+     * @param {object} row  Turso row with metal, spot, timestamp fields
+     * @param {string} source  "hourly" or "seed"
+     * @returns {object}
+     */
+    function formatSpotRow(row, source) {
+      const metal = String(row.metal).charAt(0).toUpperCase() + String(row.metal).slice(1);
+      const ts = String(row.timestamp).replace("T", " ").replace("Z", "").replace(/\.\d+$/, "");
+      return {
+        spot: row.spot,
+        metal,
+        source,
+        provider: "StakTrakr",
+        timestamp: ts,
+      };
+    }
+
+    // --- Hourly file (overwrite) ---
+    const hourlyRows = await readSpotHourly(spotClient, dateStr, now.getUTCHours());
+    if (hourlyRows.length) {
+      const hourlyEntries = hourlyRows.map((r) => formatSpotRow(r, "hourly"));
+      const hourlyFilePath = join(DATA_DIR, "hourly", yyyy, mm, dd, `${hh}.json`);
+      if (!DRY_RUN) {
+        mkdirSync(dirname(hourlyFilePath), { recursive: true });
+        writeFileSync(hourlyFilePath, JSON.stringify(hourlyEntries, null, 2) + "\n");
+        log(`Wrote ${hourlyFilePath}`);
+      } else {
+        log(`[DRY RUN] ${hourlyFilePath}`);
+      }
+    } else {
+      warn(`No Turso spot data for hourly window ${dateStr} ${hh}:00`);
+    }
+
+    // --- 15-min file (immutable snapshot — write only if missing) ---
+    let floor = windowFloor(now);
+    let fifteenRows = await readSpot15min(spotClient, floor);
+
+    // If no data for current floor (race: api-export ran before spot poller),
+    // fall back to the most recently completed 15-min window.
+    if (!fifteenRows.length) {
+      const prevDate = new Date(now.getTime() - 15 * 60 * 1000);
+      const prevFloor = windowFloor(prevDate);
+      const prevRows = await readSpot15min(spotClient, prevFloor);
+      if (prevRows.length) {
+        floor = prevFloor;
+        fifteenRows = prevRows;
+      }
+    }
+    const floorMin = floor.slice(11, 13) + floor.slice(14, 16); // "HHMM"
+    const fifteenFilePath = join(DATA_DIR, "15min", yyyy, mm, dd, `${floorMin}.json`);
+    // FILE-READ FALLBACK (uncomment to revert to pre-Turso behavior):
+    // const fifteenData = JSON.parse(readFileSync(fifteenFilePath, 'utf-8'));
+
+    if (fifteenRows.length) {
+      if (!existsSync(fifteenFilePath)) {
+        const fifteenEntries = fifteenRows.map((r) => formatSpotRow(r, "seed"));
+        if (!DRY_RUN) {
+          mkdirSync(dirname(fifteenFilePath), { recursive: true });
+          writeFileSync(fifteenFilePath, JSON.stringify(fifteenEntries, null, 2) + "\n");
+          log(`Wrote ${fifteenFilePath}`);
+        } else {
+          log(`[DRY RUN] ${fifteenFilePath}`);
+        }
+      } else {
+        log(`15min snapshot already exists: ${fifteenFilePath}`);
+      }
+    } else {
+      warn(`No Turso spot data for 15-min window ${floor}`);
+    }
+
+    log("Spot export complete");
+  } finally {
+    spotClient.close();
   }
 }
 

@@ -429,6 +429,111 @@ export async function recordFailure(client, { coinSlug, vendorId, url, error, fa
   });
 }
 
+// ---------------------------------------------------------------------------
+// Spot price operations
+// ---------------------------------------------------------------------------
+
+const SPOT_METALS = ["gold", "silver", "platinum", "palladium"];
+
+/**
+ * Insert spot prices for all four metals into spot_prices table.
+ * Uses INSERT OR REPLACE keyed on (metal, timestamp_floor).
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {{ gold: number, silver: number, platinum: number, palladium: number, timestamp: string }} prices
+ * @param {string} pollerId  e.g. "fly-spot" or "home-spot"
+ */
+export async function insertSpotPrices(client, { gold, silver, platinum, palladium, timestamp }, pollerId) {
+  const floor = windowFloor(timestamp);
+  const values = { gold, silver, platinum, palladium };
+
+  for (const metal of SPOT_METALS) {
+    await client.execute({
+      sql: `
+        INSERT OR REPLACE INTO spot_prices
+          (metal, spot, source, poller_id, timestamp, timestamp_floor)
+        VALUES (?, ?, 'metalprice-api', ?, ?, ?)
+      `,
+      args: [metal, values[metal], pollerId, timestamp, floor],
+    });
+  }
+}
+
+/**
+ * Returns the latest spot price per metal.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @returns {Promise<Array<object>>}
+ */
+export async function readSpotCurrent(client) {
+  const result = await client.execute({
+    sql: `
+      SELECT s.*
+      FROM spot_prices s
+      INNER JOIN (
+        SELECT metal, MAX(timestamp) AS max_ts
+        FROM spot_prices
+        GROUP BY metal
+      ) latest ON s.metal = latest.metal AND s.timestamp = latest.max_ts
+      ORDER BY s.metal
+    `,
+    args: [],
+  });
+  return result.rows;
+}
+
+/**
+ * Returns all spot entries whose timestamp_floor falls within a given UTC hour.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {string} date   'YYYY-MM-DD'
+ * @param {number} hour   0-23
+ * @returns {Promise<Array<object>>}
+ */
+export async function readSpotHourly(client, date, hour) {
+  const hh = String(hour).padStart(2, "0");
+  const hourStart = `${date}T${hh}:00:00Z`;
+  const nextHour = `${date}T${String(hour + 1).padStart(2, "0")}:00:00Z`;
+  // Handle hour 23 → next day 00:00
+  let upperBound = nextHour;
+  if (hour === 23) {
+    const next = new Date(`${date}T00:00:00Z`);
+    next.setUTCDate(next.getUTCDate() + 1);
+    upperBound = next.toISOString().replace(".000Z", "Z");
+  }
+
+  const result = await client.execute({
+    sql: `
+      SELECT *
+      FROM spot_prices
+      WHERE timestamp_floor >= ? AND timestamp_floor < ?
+      ORDER BY metal, timestamp_floor
+    `,
+    args: [hourStart, upperBound],
+  });
+  return result.rows;
+}
+
+/**
+ * Returns spot entries for a specific 15-minute window floor.
+ *
+ * @param {import("@libsql/client").Client} client
+ * @param {string} floor  ISO8601 UTC 15-min floor (e.g. "2026-02-20T14:15:00Z")
+ * @returns {Promise<Array<object>>}
+ */
+export async function readSpot15min(client, floor) {
+  const result = await client.execute({
+    sql: `
+      SELECT *
+      FROM spot_prices
+      WHERE timestamp_floor = ?
+      ORDER BY metal
+    `,
+    args: [floor],
+  });
+  return result.rows;
+}
+
 /**
  * Returns all price snapshots from the last N hours (for Turso async operations).
  *

@@ -1,12 +1,12 @@
 #!/bin/bash
 # StakTrakr Spot Price Poller — single-shot cron wrapper
-# Runs poller.py --once against the persistent volume data directory.
-# Cron: 5,20,35,50 * * * *  (4x/hr, offset from retail at */15)
+# Runs spot-extract.js against the persistent volume data directory.
+# Cron: 0,30 * * * *  (2x/hr, on the hour and half-hour)
 
 set -e
 
 DATA_DIR="/data/staktrakr-api-export/data"
-POLLER_DIR="/app/spot-poller"
+POLLER_DIR="/app/spot-poller"  # legacy reference — Python poller no longer active
 
 if [ ! -d "$DATA_DIR" ]; then
   echo "[$(date -u +%H:%M:%S)] ERROR: DATA_DIR $DATA_DIR not found — is volume mounted?"
@@ -21,6 +21,9 @@ fi
 echo "[$(date -u +%H:%M:%S)] Starting spot price poll..."
 METAL_PRICE_API_KEY="$METAL_PRICE_API_KEY" \
   DATA_DIR="$DATA_DIR" \
-  python3 "$POLLER_DIR/poller.py" --once
+  TURSO_DATABASE_URL="$TURSO_DATABASE_URL" \
+  TURSO_AUTH_TOKEN="$TURSO_AUTH_TOKEN" \
+  POLLER_ID=fly-spot \
+  node /app/spot-extract.js
 
 echo "[$(date -u +%H:%M:%S)] Spot poll complete."
