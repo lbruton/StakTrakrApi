@@ -436,80 +436,18 @@ function renderMissingItems(items) {
 
 function renderCoverageCards(cov, spotCov) {
   if (!cov || !cov.hours || cov.hours.length === 0) return '';
+
+  // ── Retail section ──────────────────────────────────────────────────
   const latest = cov.hours[0];
-  // Only use last 24 hours for avg
   const last24 = cov.hours.slice(0, 24);
   const avg = last24.length > 0
     ? Math.min(100, Math.round(last24.reduce((s, h) => s + h.pct, 0) / last24.length))
     : 0;
   const covColor = latest.pct >= 90 ? 'var(--green)' : latest.pct >= 70 ? 'var(--amber)' : 'var(--red)';
   const avgColor = avg >= 90 ? 'var(--green)' : avg >= 70 ? 'var(--amber)' : 'var(--red)';
-
-  // 24h hourly bars — show every other label to avoid crowding
-  const barsData = last24.slice().reverse();
-  const sparkBars = barsData.map((h, i) => {
-    const barH = Math.max(2, Math.round(h.pct * 0.4));
-    const c = h.pct >= 90 ? '#22c55e' : h.pct >= 70 ? '#f59e0b' : '#ef4444';
-    const hLabel = h.hour.slice(11, 16);
-    const showLabel = i % 3 === 0; // every 3rd label
-    return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;" title="' + hLabel + ': ' + Math.min(h.covered, cov.totalEnabled) + '/' + cov.totalEnabled + ' (' + h.pct + '%)">'
-      + '<div style="width:100%;max-width:16px;height:' + barH + 'px;background:' + c + ';border-radius:2px;margin:0 auto;"></div>'
-      + (showLabel ? '<span style="font-size:8px;color:var(--muted);white-space:nowrap;">' + hLabel + '</span>' : '<span style="font-size:8px;">&nbsp;</span>')
-      + '</div>';
-  }).join('');
-
   const missingCount = Math.max(0, cov.totalEnabled - latest.covered);
 
-  // Spot coverage card
-  let spotCard = '';
-  if (spotCov) {
-    const spotPct = spotCov.totalIntervals > 0
-      ? Math.round((spotCov.coveredIntervals / spotCov.totalIntervals) * 100) : 0;
-    const spotColor = spotPct >= 90 ? 'var(--green)' : spotPct >= 70 ? 'var(--amber)' : 'var(--red)';
-
-    // Spot 15-min bars — fill width evenly, show every 4th label
-    const spotIntervals = spotCov.intervals || [];
-    const spotBars = spotIntervals.map((q, i) => {
-      const full = q.metals >= 4;
-      const c = full ? '#22c55e' : q.metals >= 2 ? '#f59e0b' : '#ef4444';
-      const label = q.quarter.slice(11);
-      const srcLabel = q.sources > 1 ? q.sources + ' sources' : '1 source';
-      const showLabel = i % 4 === 0 || i === spotIntervals.length - 1;
-      return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;" title="' + label + ': ' + q.metals + '/4 metals, ' + srcLabel + '">'
-        + '<div style="width:100%;max-width:16px;height:' + (full ? '20' : Math.max(4, q.metals * 5)) + 'px;background:' + c + ';border-radius:2px;margin:0 auto;"></div>'
-        + (showLabel ? '<span style="font-size:8px;color:var(--muted);white-space:nowrap;">' + label + '</span>' : '<span style="font-size:8px;">&nbsp;</span>')
-        + '</div>';
-    }).join('');
-
-    // By-poller rows
-    const pollerRows = Object.entries(spotCov.byPoller || {}).map(([id, cnt]) => {
-      const pPct = spotCov.totalIntervals > 0 ? Math.round(cnt / spotCov.totalIntervals * 100) : 0;
-      const pColor = pPct >= 80 ? '#22c55e' : pPct >= 50 ? '#f59e0b' : '#ef4444';
-      return '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-        + '<code style="font-size:11px;color:var(--accent);">' + id + '</code>'
-        + '<div style="display:flex;align-items:center;gap:8px;">'
-        + '<div style="width:60px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;">'
-        + '<div style="width:' + pPct + '%;height:100%;background:' + pColor + ';border-radius:3px;"></div></div>'
-        + '<span style="font-size:11px;color:var(--muted);min-width:65px;text-align:right;">' + cnt + '/' + spotCov.totalIntervals + ' (' + pPct + '%)</span>'
-        + '</div></div>';
-    }).join('');
-
-    spotCard = '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;flex-direction:column;">'
-      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Spot Price Coverage (15-min, 6h)</div>'
-      + '<div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">'
-      + '<div style="text-align:center;min-width:80px;">'
-      + '<div style="color:' + spotColor + ';font-size:28px;font-weight:700;">' + spotPct + '%</div>'
-      + '<div style="color:var(--muted);font-size:10px;">' + spotCov.coveredIntervals + ' / ' + spotCov.totalIntervals + ' intervals</div>'
-      + '</div>'
-      + '<div style="flex:1;">' + pollerRows + '</div>'
-      + '</div>'
-      + (spotIntervals.length > 0
-        ? '<div style="display:flex;gap:2px;align-items:flex-end;height:36px;margin-top:auto;">' + spotBars + '</div>'
-        : '<div style="color:var(--muted);font-size:12px;font-style:italic;">No spot data in window</div>')
-      + '</div>';
-  }
-
-  return '<div style="margin-bottom:16px;">'
+  const retailStatCards = ''
     + '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;">'
     + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
     + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">Coverage (latest hour)</div>'
@@ -527,15 +465,107 @@ function renderCoverageCards(cov, spotCov) {
     + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">Missing Items</div>'
     + '<div style="color:' + (missingCount > 0 ? 'var(--red)' : 'var(--green)') + ';font-size:24px;font-weight:700;">' + missingCount + '</div>'
     + '</div>'
-    + '</div>'
-    + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">'
+    + '</div>';
+
+  // Retail bars — anchored to bottom
+  const barsData = last24.slice().reverse();
+  const retailBars = barsData.map((h, i) => {
+    const barH = Math.max(2, Math.round(h.pct * 0.4));
+    const c = h.pct >= 90 ? '#22c55e' : h.pct >= 70 ? '#f59e0b' : '#ef4444';
+    const hLabel = h.hour.slice(11, 16);
+    const showLabel = i % 3 === 0;
+    return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:1;">'
+      + '<div style="width:100%;max-width:16px;height:' + barH + 'px;background:' + c + ';border-radius:2px;margin:0 auto;"></div>'
+      + (showLabel ? '<span style="font-size:8px;color:var(--muted);white-space:nowrap;margin-top:4px;">' + hLabel + '</span>' : '<span style="font-size:8px;margin-top:4px;">&nbsp;</span>')
+      + '</div>';
+  }).join('');
+
+  const retailBarCard = ''
     + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">'
     + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Retail Coverage Trend (24h)</div>'
-    + '<div style="display:flex;gap:2px;align-items:flex-end;height:50px;">' + sparkBars + '</div>'
-    + '</div>'
-    + spotCard
-    + '</div>'
+    + '<div style="display:flex;gap:2px;align-items:flex-end;height:60px;">' + retailBars + '</div>'
     + '</div>';
+
+  // ── Spot section ────────────────────────────────────────────────────
+  let spotStatCards = '';
+  let spotBarCard = '';
+
+  if (spotCov) {
+    const spotPct = spotCov.totalIntervals > 0
+      ? Math.round((spotCov.coveredIntervals / spotCov.totalIntervals) * 100) : 0;
+    const spotColor = spotPct >= 90 ? 'var(--green)' : spotPct >= 70 ? 'var(--amber)' : 'var(--red)';
+
+    // Per-poller stats
+    const pollerEntries = Object.entries(spotCov.byPoller || {});
+    const pollerCards = pollerEntries.map(([id, cnt]) => {
+      const pPct = spotCov.totalIntervals > 0 ? Math.round(cnt / spotCov.totalIntervals * 100) : 0;
+      const pColor = pPct >= 80 ? 'var(--green)' : pPct >= 50 ? 'var(--amber)' : 'var(--red)';
+      return '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
+        + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">' + id + '</div>'
+        + '<div style="color:' + pColor + ';font-size:24px;font-weight:700;">' + pPct + '%</div>'
+        + '<div style="color:var(--muted);font-size:10px;">' + cnt + '/' + spotCov.totalIntervals + ' intervals</div>'
+        + '</div>';
+    }).join('');
+
+    // Fill remaining grid slots if fewer than 2 pollers
+    const emptySlots = Math.max(0, 2 - pollerEntries.length);
+    const emptyCards = Array(emptySlots).fill(
+      '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;opacity:0.3;">'
+      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">&mdash;</div>'
+      + '<div style="color:var(--muted);font-size:24px;font-weight:700;">&mdash;</div>'
+      + '</div>'
+    ).join('');
+
+    spotStatCards = ''
+      + '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;">'
+      + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
+      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">Spot Coverage (6h)</div>'
+      + '<div style="color:' + spotColor + ';font-size:24px;font-weight:700;">' + spotPct + '%</div>'
+      + '</div>'
+      + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">'
+      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:4px;">Intervals Hit</div>'
+      + '<div style="color:var(--accent);font-size:24px;font-weight:700;">' + spotCov.coveredIntervals + '<span style="font-size:14px;color:var(--muted)">/' + spotCov.totalIntervals + '</span></div>'
+      + '</div>'
+      + pollerCards + emptyCards
+      + '</div>';
+
+    // Spot bars — same style as retail
+    const spotIntervals = spotCov.intervals || [];
+    const spotBars = spotIntervals.map((q, i) => {
+      const full = q.metals >= 4;
+      const c = full ? '#22c55e' : q.metals >= 2 ? '#f59e0b' : '#ef4444';
+      const label = q.quarter.slice(11);
+      const srcLabel = q.sources > 1 ? q.sources + ' sources' : '1 source';
+      const showLabel = i % 4 === 0 || i === spotIntervals.length - 1;
+      const barH = full ? 24 : Math.max(4, q.metals * 6);
+      return '<div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:1;">'
+        + '<div style="width:100%;max-width:16px;height:' + barH + 'px;background:' + c + ';border-radius:2px;margin:0 auto;" title="' + label + ': ' + q.metals + '/4 metals, ' + srcLabel + '"></div>'
+        + (showLabel ? '<span style="font-size:8px;color:var(--muted);white-space:nowrap;margin-top:4px;">' + label + '</span>' : '<span style="font-size:8px;margin-top:4px;">&nbsp;</span>')
+        + '</div>';
+    }).join('');
+
+    spotBarCard = ''
+      + '<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;">'
+      + '<div style="color:var(--muted);font-size:11px;text-transform:uppercase;margin-bottom:8px;">Spot Price Trend (15-min intervals, 6h)</div>'
+      + (spotIntervals.length > 0
+        ? '<div style="display:flex;gap:2px;align-items:flex-end;height:60px;">' + spotBars + '</div>'
+        : '<div style="color:var(--muted);font-size:12px;font-style:italic;padding:16px 0;">No spot data in window</div>')
+      + '</div>';
+  }
+
+  // ── Assemble ────────────────────────────────────────────────────────
+  return '<div style="margin-bottom:16px;">'
+    + '<h3 style="font-size:12px;text-transform:uppercase;color:var(--muted);margin:0 0 8px;">Retail Price Coverage</h3>'
+    + retailStatCards
+    + retailBarCard
+    + '</div>'
+    + (spotCov
+      ? '<div style="margin-bottom:16px;">'
+        + '<h3 style="font-size:12px;text-transform:uppercase;color:var(--muted);margin:0 0 8px;">Spot Price Coverage</h3>'
+        + spotStatCards
+        + spotBarCard
+        + '</div>'
+      : '');
 }
 
 
