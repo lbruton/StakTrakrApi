@@ -1,13 +1,13 @@
 {
   "slug": "ase",
-  "window_start": "2026-02-27T22:00:00Z",
+  "window_start": "2026-02-27T22:30:00Z",
   "median_price": 107.69,
   "lowest_price": 104.19,
   "vendors": {
     "apmex": {
-      "price": 110.39,
-      "confidence": 70,
-      "source": "vision",
+      "price": 110.51,
+      "confidence": 80,
+      "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
@@ -18,7 +18,13 @@
     },
     "herobullion": {
       "price": 107.69,
-      "confidence": 70,
+      "confidence": 99,
+      "source": "firecrawl+vision",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 110.49,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -30,8 +36,8 @@
     },
     "sdbullion": {
       "price": 105.49,
-      "confidence": 80,
-      "source": "firecrawl",
+      "confidence": 99,
+      "source": "firecrawl+vision",
       "inStock": true
     },
     "summitmetals": {
@@ -45,36 +51,19 @@
     "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": false,
+    "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "jmbullion": 110.49
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
-      "window": "2026-02-24T00:15:00Z",
-      "median": 103.56,
-      "low": 99.26,
-      "vendors": {
-        "bullionexchanges": 99.26,
-        "herobullion": 103.56
-      }
-    },
-    {
       "window": "2026-02-24T00:30:00Z",
-      "median": 103.37,
+      "median": 99.19,
       "low": 99.19,
       "vendors": {
-        "jmbullion": 111.29,
-        "monumentmetals": 101.67,
-        "apmex": 104.23,
-        "sdbullion": 104.32,
-        "summitmetals": 103.37,
-        "herobullion": 103.17,
         "bullionexchanges": 99.19
       }
     },
@@ -4007,6 +3996,28 @@
         "jmbullion": 110.49,
         "summitmetals": 108.03,
         "sdbullion": 105.49
+      }
+    },
+    {
+      "window": "2026-02-27T22:15:00Z",
+      "median": 107.69,
+      "low": 104.19,
+      "vendors": {
+        "sdbullion": 105.49,
+        "summitmetals": 108.03,
+        "herobullion": 107.69,
+        "bullionexchanges": 104.19
+      }
+    },
+    {
+      "window": "2026-02-27T22:30:00Z",
+      "median": 108.03,
+      "low": 105.43,
+      "vendors": {
+        "monumentmetals": 105.43,
+        "apmex": 110.51,
+        "summitmetals": 108.03,
+        "herobullion": 107.69
       }
     }
   ]
