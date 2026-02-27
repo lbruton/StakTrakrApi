@@ -213,7 +213,7 @@ RUN mkdir -p /var/lib/rabbitmq /var/log/rabbitmq \
     && chown -R rabbitmq:rabbitmq /var/lib/rabbitmq /var/log/rabbitmq
 
 # ── Cron jobs ───────────────────────────────────────────
-RUN (echo "15,45 * * * * root . /etc/environment; /app/run-local.sh >> /var/log/retail-poller.log 2>&1"; \
+RUN (echo "0 * * * * root . /etc/environment; /app/run-local.sh >> /var/log/retail-poller.log 2>&1"; \
      echo "0,30 * * * * root . /etc/environment; /app/run-spot.sh >> /var/log/spot-poller.log 2>&1"; \
      echo "1 17 * * * root . /etc/environment; /app/run-goldback.sh >> /var/log/goldback-poller.log 2>&1") \
     > /etc/cron.d/retail-poller \
