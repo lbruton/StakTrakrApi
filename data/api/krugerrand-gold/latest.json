@@ -1,13 +1,13 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-02-28T01:00:00Z",
+  "window_start": "2026-02-28T01:15:00Z",
   "median_price": 5350.15,
   "lowest_price": 5291.4,
   "vendors": {
     "apmex": {
       "price": 5354.19,
-      "confidence": 99,
-      "source": "firecrawl+vision",
+      "confidence": 80,
+      "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
@@ -20,12 +20,6 @@
       "price": 5367.48,
       "confidence": 99,
       "source": "firecrawl+vision",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 5292.66,
-      "confidence": 80,
-      "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
@@ -45,29 +39,20 @@
     "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
+    "jmbullion": false,
     "monumentmetals": true,
     "sdbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "jmbullion": 5292.66
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
     {
-      "window": "2026-02-22T06:00:00Z",
-      "median": 5182.08,
-      "low": 5182.08,
-      "vendors": {
-        "monumentmetals": 5182.08
-      }
-    },
-    {
       "window": "2026-02-22T06:30:00Z",
-      "median": 5193.21,
+      "median": 5238.45,
       "low": 5125.99,
       "vendors": {
-        "herobullion": 5193.21,
-        "monumentmetals": 5182.08,
-        "apmex": 5252.59,
         "sdbullion": 5238.45,
         "bullionexchanges": 5125.99
       }
@@ -4668,13 +4653,24 @@
     },
     {
       "window": "2026-02-28T01:00:00Z",
-      "median": 5301.39,
+      "median": 5350.15,
       "low": 5291.4,
       "vendors": {
+        "apmex": 5354.19,
+        "sdbullion": 5350.15,
         "bullionexchanges": 5291.4,
         "herobullion": 5367.48,
         "jmbullion": 5292.66,
         "monumentmetals": 5301.39
+      }
+    },
+    {
+      "window": "2026-02-28T01:15:00Z",
+      "median": 5367.48,
+      "low": 5291.4,
+      "vendors": {
+        "herobullion": 5367.48,
+        "bullionexchanges": 5291.4
       }
     }
   ]
