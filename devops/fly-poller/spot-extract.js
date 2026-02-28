@@ -117,7 +117,14 @@ async function main() {
       if (!rate || rate === 0) {
         throw new Error(`Missing or zero rate for ${rateKey}`);
       }
-      prices[name.toLowerCase()] = round2(1 / rate);
+      // MetalPriceAPI USDXAG returns the direct USD price per troy oz.
+      // If the value is < 1, it's the inverse rate (oz-per-USD) — invert it.
+      const price = rate >= 1 ? round2(rate) : round2(1 / rate);
+      // Sanity bounds: reject obviously wrong prices
+      if (price < 5 || price > 50000) {
+        throw new Error(`Price out of range for ${name}: $${price} (rate=${rate})`);
+      }
+      prices[name.toLowerCase()] = price;
     }
   } catch (err) {
     console.error('API fetch failed:', err.message);
