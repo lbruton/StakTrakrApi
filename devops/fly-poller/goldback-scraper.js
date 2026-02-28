@@ -32,7 +32,7 @@ const DRY_RUN = process.env.DRY_RUN === "1";
 const FIRECRAWL_BASE_URL = process.env.FIRECRAWL_BASE_URL || "http://firecrawl:3002";
 const FIRECRAWL_API_KEY = process.env.FIRECRAWL_API_KEY || "not-set";
 
-const GOLDBACK_URL = "https://www.goldback.com/exchange-rate/";
+const GOLDBACK_URL = "https://www.goldback.com/exchange-rates/";
 
 // G1 price must fall in this range (sanity check)
 const G1_MIN = 0.50;
