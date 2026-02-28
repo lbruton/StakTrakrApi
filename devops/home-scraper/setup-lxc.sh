@@ -12,14 +12,20 @@ apt install -y nodejs
 
 echo "Node: $(node -v), npm: $(npm -v)"
 
-echo "=== Cloning StakScraper repo ==="
+echo "=== Creating poller directory ==="
 mkdir -p /opt/poller/data/retail
 mkdir -p /opt/poller/data/api
 mkdir -p /var/log
-git clone https://github.com/lbruton/stakscrapr /opt/poller
-cd /opt/poller
+
+echo "=== Copying poller files ==="
+# Run from the StakTrakrApi/devops/retail-poller directory on your workstation:
+#   rsync -av . root@<LXC_IP>:/opt/poller/
+# Or copy files manually. Required files:
+#   price-extract.js  db.js  turso-client.js  api-export.js  package.json
+#   run-home.sh  .env  data/retail/providers.json
 
 echo "=== Installing npm dependencies ==="
+cd /opt/poller
 npm install
 
 echo "=== Installing Chromium for Playwright ==="
@@ -42,7 +48,6 @@ echo "=== Setup complete ==="
 echo ""
 echo "Next steps:"
 echo "  1. Copy .env.example to /opt/poller/.env and fill in Turso credentials"
-echo "  2. Test run: bash /opt/poller/run-home.sh  (auto-fetches providers.json)"
-echo "  3. Check logs: tail -f /var/log/retail-poller.log"
-echo ""
-echo "Source: https://github.com/lbruton/stakscrapr"
+echo "  2. Copy providers.json to /opt/poller/data/retail/providers.json"
+echo "  3. Test run: cd /opt/poller && bash run-home.sh"
+echo "  4. Check logs: tail -f /var/log/retail-poller.log"
