@@ -283,7 +283,68 @@ async function dismissPopups(page, providerId) {
 }
 
 // ---------------------------------------------------------------------------
-// Capture one coin's targets using a dedicated browser session
+// Capture one coin's targets using a shared page (local sequential mode)
+// ---------------------------------------------------------------------------
+
+async function captureCoinWithPage(coinSlug, targets, outDir, page) {
+  const results = [];
+  for (const target of targets) {
+    const filename = `${target.coin}_${target.provider}.png`;
+    const filepath = join(outDir, filename);
+
+    log(`[${coinSlug}/${target.provider}] → ${target.url}`);
+
+    try {
+      const response = await page.goto(target.url, {
+        waitUntil: "domcontentloaded",
+        timeout: 45000,
+      });
+      const status = response ? response.status() : 0;
+
+      const providerWait = PROVIDER_PAGE_LOAD_WAIT[target.provider] ?? PAGE_LOAD_WAIT;
+      await page.waitForTimeout(providerWait);
+
+      await dismissPopups(page, target.provider);
+
+      await page.screenshot({ path: filepath, fullPage: false });
+      const title = await page.title();
+
+      results.push({
+        coin: target.coin,
+        provider: target.provider,
+        metal: target.metal,
+        url: target.url,
+        status,
+        title,
+        screenshot: filename,
+        ok: status === 200 && !title.toLowerCase().includes("not found"),
+      });
+
+      log(`[${coinSlug}/${target.provider}]   ✓ ${status} "${title.slice(0, 50)}" → ${filename}`);
+    } catch (err) {
+      results.push({
+        coin: target.coin,
+        provider: target.provider,
+        metal: target.metal,
+        url: target.url,
+        status: 0,
+        title: "",
+        screenshot: null,
+        ok: false,
+        error: err.message.slice(0, 200),
+      });
+      log(`[${coinSlug}/${target.provider}]   ✗ ${err.message.slice(0, 80)}`);
+    }
+
+    if (targets.indexOf(target) < targets.length - 1) {
+      await page.waitForTimeout(INTER_PAGE_DELAY);
+    }
+  }
+  return results;
+}
+
+// ---------------------------------------------------------------------------
+// Capture one coin's targets using a dedicated browser session (cloud mode)
 // ---------------------------------------------------------------------------
 
 async function captureCoin(coinSlug, targets, outDir) {
@@ -388,17 +449,35 @@ async function captureAll() {
   }
 
   const totalTargets = [...byCoin.values()].reduce((n, arr) => n + arr.length, 0);
-  log(`Capturing ${totalTargets} pages — ${byCoin.size} parallel sessions (one per coin)`);
-
   mkdirSync(ARTIFACT_DIR, { recursive: true });
 
-  // Launch one session per coin, all in parallel — each session only ~35s,
-  // well within Browserbase's 5-min session limit. 11 sessions < 25 account limit.
-  const coinJobs = [...byCoin.entries()].map(([coinSlug, targets]) =>
-    captureCoin(coinSlug, targets, ARTIFACT_DIR)
-  );
+  let allResults;
+  if (BROWSER_MODE === "local") {
+    // Local mode: single browser, sequential coins to avoid memory bomb.
+    // One Chromium ≈ 200MB; 15 parallel = 3GB OOM on constrained containers.
+    log(`Capturing ${totalTargets} pages — sequential (local Chromium, 1 browser)`);
+    const { chromium: localChromium } = await import("playwright");
+    const browser = await localChromium.launch({ headless: true });
+    const ctx = await browser.newContext({
+      viewport: { width: 1280, height: 900 },
+      userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    });
+    const page = await ctx.newPage();
 
-  const allResults = (await Promise.all(coinJobs)).flat();
+    allResults = [];
+    for (const [coinSlug, targets] of byCoin.entries()) {
+      const results = await captureCoinWithPage(coinSlug, targets, ARTIFACT_DIR, page);
+      allResults.push(...results);
+    }
+    await browser.close();
+  } else {
+    // Cloud/browserless: parallel sessions (Browserbase handles concurrency).
+    log(`Capturing ${totalTargets} pages — ${byCoin.size} parallel sessions (one per coin)`);
+    const coinJobs = [...byCoin.entries()].map(([coinSlug, targets]) =>
+      captureCoin(coinSlug, targets, ARTIFACT_DIR)
+    );
+    allResults = (await Promise.all(coinJobs)).flat();
+  }
 
   // Write manifest
   const manifest = {
