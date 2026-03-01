@@ -62,7 +62,7 @@ echo "[entrypoint] Writing cron schedule: ${CRON_SCHEDULE}"
  echo "0,30 * * * * root . /etc/environment; /app/run-spot.sh >> /var/log/spot-poller.log 2>&1"; \
  echo "8,23,38,53 * * * * root . /etc/environment; /app/run-publish.sh >> /var/log/publish.log 2>&1"; \
  echo "15 * * * * root . /etc/environment; /app/run-retry.sh >> /var/log/retail-retry.log 2>&1"; \
- echo "1 17 * * * root . /etc/environment; /app/run-goldback.sh >> /var/log/goldback-poller.log 2>&1"; \
+ echo "1 * * * * root . /etc/environment; /app/run-goldback.sh >> /var/log/goldback-poller.log 2>&1"; \
 ) \
   > /etc/cron.d/retail-poller
 chmod 0644 /etc/cron.d/retail-poller
