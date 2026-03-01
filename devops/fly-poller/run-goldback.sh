@@ -1,6 +1,7 @@
 #!/bin/bash
 # StakTrakr Goldback Daily Rate Poller
-# Runs once per day via cron -- scrapes G1 rate, commits to data branch.
+# Runs hourly via cron -- scrapes G1 rate once per day, commits to data branch.
+# Skips if today's price is already captured (idempotent hourly retry).
 
 set -e
 
@@ -28,6 +29,16 @@ git merge --abort 2>/dev/null || true
 git fetch origin api
 git checkout api
 git reset --hard origin/api
+
+# Skip if today's price already captured
+SPOT_FILE="$DATA_REPO_PATH/data/api/goldback-spot.json"
+if [ -f "$SPOT_FILE" ]; then
+  EXISTING_DATE=$(node -e "try{console.log(JSON.parse(require('fs').readFileSync('$SPOT_FILE','utf8')).date)}catch{}" 2>/dev/null)
+  if [ "$EXISTING_DATE" = "$DATE" ]; then
+    echo "[$(date -u +%H:%M:%S)] Today's Goldback rate already captured, skipping."
+    exit 0
+  fi
+fi
 
 DATA_DIR="$DATA_REPO_PATH/data" \
 FIRECRAWL_BASE_URL="${FIRECRAWL_BASE_URL:-http://firecrawl:3002}" \
