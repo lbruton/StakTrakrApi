@@ -684,12 +684,24 @@ async function main() {
   // --------------------------------------------------------------------------
   // manifest.json
   // --------------------------------------------------------------------------
+  const coinsMeta = {};
+  if (providersJson) {
+    for (const [slug, coinData] of Object.entries(providersJson.coins || {})) {
+      coinsMeta[slug] = {
+        name: coinData.name,
+        metal: coinData.metal,
+        weight: coinData.weight_oz,
+      };
+    }
+  }
+
   writeApiFile("manifest.json", {
     generated_at:   generatedAt,
     latest_window:  latestWindow,
     window_count:   windowCount,
     coin_count:     coinSlugs.length,
     coins:          coinSlugs,
+    ...(Object.keys(coinsMeta).length > 0 ? { coins_meta: coinsMeta } : {}),
     endpoints: {
       latest:      "api/latest.json",
       slug_latest: "api/{slug}/latest.json",
