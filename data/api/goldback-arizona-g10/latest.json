@@ -1,25 +1,27 @@
 {
   "slug": "goldback-arizona-g10",
-  "window_start": "2026-03-01T18:15:00Z",
+  "window_start": "2026-03-01T19:00:00Z",
   "median_price": 101.53,
-  "lowest_price": 97.1,
+  "lowest_price": 101.53,
   "vendors": {
-    "apmex": {
-      "price": 97.1,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 101.53,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 97.1,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-01T17:00:05.029Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "herobullion": true
+    "herobullion": true,
+    "apmex": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -415,6 +417,14 @@
       "low": 97.1,
       "vendors": {
         "apmex": 97.1,
+        "herobullion": 101.53
+      }
+    },
+    {
+      "window": "2026-03-01T19:00:00Z",
+      "median": 101.53,
+      "low": 101.53,
+      "vendors": {
         "herobullion": 101.53
       }
     }
