@@ -49,6 +49,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const DATA_DIR = resolve(process.env.DATA_DIR || join(__dirname, "../../data"));
 const DRY_RUN = process.env.DRY_RUN === "1";
+const T4_MAX_STALE_HOURS = 4;
 
 // ---------------------------------------------------------------------------
 // Logging
@@ -244,6 +245,15 @@ function getLastKnownPrice(db, coinSlug, vendorId) {
   `).get(coinSlug, vendorId);
 
   return row ? { price: row.price, scraped_at: row.scraped_at } : null;
+}
+
+/**
+ * Returns true if the given scraped_at timestamp is within T4_MAX_STALE_HOURS.
+ * Used to gate T4 fallback so ancient last-known prices are not surfaced.
+ */
+function isWithinT4Threshold(scrapedAt) {
+  const ageHours = (Date.now() - new Date(scrapedAt).getTime()) / 3_600_000;
+  return ageHours <= T4_MAX_STALE_HOURS;
 }
 
 /**
@@ -570,14 +580,15 @@ async function main() {
     // Augment vendors map: add null-price stubs for providers configured in providers.json
     // but absent from SQLite (i.e., Firecrawl returned null for them).
     // resolveVendorPrice() will try Vision for these.
-    if (providersJson?.coins?.[slug]) {
-      const configuredProviders = providersJson.coins[slug].providers
+    // configuredVendorIds is kept in outer scope so T4 Pass 2 can use it.
+    const configuredVendorIds = new Set(
+      providersJson?.coins?.[slug]?.providers
         ?.filter(p => p.enabled !== false)
-        ?.map(p => p.id) ?? [];
-      for (const vendorId of configuredProviders) {
-        if (!vendors[vendorId]) {
-          vendors[vendorId] = { price: null, confidence: null, source: null };
-        }
+        ?.map(p => p.id) ?? []
+    );
+    for (const vendorId of configuredVendorIds) {
+      if (!vendors[vendorId]) {
+        vendors[vendorId] = { price: null, confidence: null, source: null };
       }
     }
 
@@ -629,7 +640,7 @@ async function main() {
         if (!isOos) {
           // T4: use most recent in-stock price from Turso history
           const lastKnown = getLastKnownPrice(db, slug, vendorId);
-          if (lastKnown) {
+          if (lastKnown && isWithinT4Threshold(lastKnown.scraped_at)) {
             vendors[vendorId] = {
               price:      Math.round(lastKnown.price * 100) / 100,
               confidence: null,
@@ -638,6 +649,9 @@ async function main() {
               stale:      true,
               stale_since: lastKnown.scraped_at,
             };
+          } else if (lastKnown) {
+            console.log('[T4-expired] ' + slug + '/' + vendorId + ' last known at ' + lastKnown.scraped_at + ' exceeds ' + T4_MAX_STALE_HOURS + 'h threshold');
+            delete vendors[vendorId];
           } else {
             delete vendors[vendorId];
           }
