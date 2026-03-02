@@ -40,17 +40,12 @@ cd "$API_EXPORT_DIR"
 # File sync removed — pollers query provider_coins + provider_vendors tables directly
 echo "[$(date -u +%H:%M:%S)] Providers loaded from Turso (file sync removed)"
 
-# Tailscale exit node — dynamically route through home residential IP if reachable,
-# fall back to Fly datacenter IP so scraping continues when home is offline.
-TS_SOCKET=/var/run/tailscale/tailscale.sock
-TS_EXIT_NODE="${TS_EXIT_NODE:-100.112.198.50}"
-if [ -S "$TS_SOCKET" ] && tailscale --socket="$TS_SOCKET" ping -c 1 --timeout=3s "$TS_EXIT_NODE" &>/dev/null; then
-  echo "[$(date -u +%H:%M:%S)] Exit node reachable — routing via home IP ($TS_EXIT_NODE)"
-  tailscale --socket="$TS_SOCKET" set --exit-node="$TS_EXIT_NODE" 2>/dev/null || true
-else
-  echo "[$(date -u +%H:%M:%S)] Exit node unreachable or Tailscale not running — using Fly datacenter IP"
-  tailscale --socket="$TS_SOCKET" set --exit-node= 2>/dev/null || true
-fi
+# Tailscale exit node REMOVED (2026-03-02). The exit node routed ALL container
+# traffic (including Fly's internal WireGuard SSH) through the home VM, causing
+# SSH lockout and deploy issues. Chromium never respected it anyway — tinyproxy
+# (HOME_PROXY_URL) handles residential IP routing for Playwright and vision.
+# Firecrawl uses the Fly.io datacenter IP directly; ~1/3 of targets may 403,
+# but Phase 2 Playwright (via proxy) and vision capture pick them up.
 
 # Run Firecrawl extraction (with Playwright fallback) — writes results to SQLite
 echo "[$(date -u +%H:%M:%S)] Running price extraction..."
@@ -75,7 +70,7 @@ if [ -f "$RETRY_FILE" ]; then
   if [ "$FAIL_COUNT" -gt 0 ] && [ "$TOTAL_TARGETS" -gt 0 ]; then
     PCT=$(( FAIL_COUNT * 100 / TOTAL_TARGETS ))
     if [ "$PCT" -ge 80 ]; then
-      echo "[$(date -u +%H:%M:%S)] [WARN] SYSTEMIC failure: ${PCT}% of targets failed — check Tailscale + egress"
+      echo "[$(date -u +%H:%M:%S)] [WARN] SYSTEMIC failure: ${PCT}% of targets failed — check tinyproxy on home VM"
     fi
   fi
 fi
