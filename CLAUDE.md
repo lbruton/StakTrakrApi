@@ -27,7 +27,7 @@ There is no build step for the data files. The poller code in `devops/` is what 
 
 ```
 Fly.io container (staktrakr)          Home VM (192.168.1.48)
-  shared-cpu-4x / 8GB RAM               4-core / 8GB RAM (Proxmox LXC)
+  shared-cpu-8x / 4GB RAM               4-core / 8GB RAM (Proxmox LXC)
   retail cron  CRON_SCHEDULE (default :15/:45)   retail cron :30 (offset)
   spot cron    :00/:30                   NO spot — reads only
   publish cron :08/:23/:38/:53           NO publish (no git push)
@@ -55,7 +55,7 @@ Fly.io container (staktrakr)          Home VM (192.168.1.48)
 
 ### Fly.io Container (retail + goldback)
 
-Single `staktrakr` app (shared-cpu-4x, 8GB RAM) managed by supervisord. Runs: Tailscale, Redis, RabbitMQ, PostgreSQL 17, Playwright service (port 3003), self-hosted Firecrawl (port 3002), five cron scripts, and `serve.js` (port 8080).
+Single `staktrakr` app (shared-cpu-8x, 4GB RAM) managed by supervisord. Runs: Tailscale, Redis, RabbitMQ, PostgreSQL 17, Playwright service (port 3003), self-hosted Firecrawl (port 3002), five cron scripts, and `serve.js` (port 8080). See `docs/plans/2026-03-02-retail-pipeline-architecture.md` for the full pipeline reference.
 
 **Cron schedule** (configured in `docker-entrypoint.sh`):
 
@@ -155,7 +155,7 @@ fly ssh console --app staktrakr -C "/app/run-goldback.sh"
 | Spot hourly > 75 min stale | Fly.io run-spot.sh cron missed | `fly logs --app staktrakr \| grep spot`; check `METAL_PRICE_API_KEY` |
 | `goldback-spot.json` > 25h stale | Fly.io goldback hourly cron failed all day | `fly logs --app staktrakr \| grep goldback`; check tinyproxy on home VM |
 | Container unreachable / OOM | capture.js parallel browsers | `fly ssh console -C "ps aux \| grep chrom \| wc -l"` — should be 1-2, not 15+ |
-| High memory / CPU 100% | Resource leak or config revert | `fly scale show --app staktrakr` — expect shared-cpu-4x 8192MB |
+| High memory / CPU 100% | Resource leak or config revert | `fly scale show --app staktrakr` — expect shared-cpu-8x 4096MB |
 | Merge workflow failing | Branch missing or jq parse error | GHA run logs in this repo |
 
 ---
@@ -169,6 +169,7 @@ fly ssh console --app staktrakr -C "/app/run-goldback.sh"
 | `devops/fly-poller/docker-entrypoint.sh` | Container init + dynamic cron schedule (CRON_SCHEDULE env var) |
 | `devops/fly-poller/supervisord.conf` | 11 supervised processes (Tailscale, Redis, RabbitMQ, PG17, Firecrawl, Playwright, cron, serve.js) |
 | `devops/fly-poller/capture.js` | Vision screenshots — local mode uses sequential single-browser; cloud mode uses parallel sessions |
+| `docs/plans/2026-03-02-retail-pipeline-architecture.md` | Full pipeline architecture reference (egress, proxy, cron, data flow) |
 | `devops/fly-poller/run-publish.sh` | Exports data + git force-push to `api` branch (4x/hr at :08/:23/:38/:53) |
 | `devops/fly-poller/run-retry.sh` | **Dead code** — depends on `/tmp/retail-failures.json` which is never written |
 | `data/api/manifest.json` | Market prices root; `generated_at` is the freshness timestamp |
@@ -194,7 +195,8 @@ To deploy the Fly.io container: `cd devops/fly-poller && fly deploy`.
 
 - `capture.js` MUST use sequential local Chromium (BROWSER_MODE=local). Parallel `chromium.launch()` spawns ~200MB per coin and causes OOM. Fixed in v92 (2026-02-28).
 - `run-retry.sh` is dead code — the failure JSON file it reads is never written by `price-extract.js` (failures go to Turso instead). Safe to remove.
-- `fly.toml` VM sizing: must be `cpus=4, memory=8192`. A previous deploy accidentally swapped these (8 CPU / 4GB), causing OOM under load. Always verify with `fly scale show`.
+- `fly.toml` VM sizing: intentionally `cpus=8, memory=4096` (8 shared CPUs, 4GB RAM). CPU is the bottleneck, not RAM — max observed footprint is ~3GB. Always verify with `fly scale show`.
+- Chromium does NOT respect Tailscale exit node routing — explicit HTTP proxy (`HOME_PROXY_URL` → tinyproxy) is mandatory for all Chromium instances (Firecrawl playwright-service, price-extract.js Phase 2, capture.js). Never remove `PROXY_SERVER` from supervisord.conf.
 
 ## devops/ Folder Structure
 
