@@ -1,12 +1,8 @@
 #!/bin/bash
 # StakTrakr T3 Retry — cron at :15 each hour
-# Re-scrapes failed SKUs from the :00 run with Webshare proxy enabled.
+# Re-scrapes failed SKUs from the :00 run via HOME_PROXY_URL (tinyproxy).
 # No-op if /tmp/retail-failures.json is absent.
-#
-# Proxy note: PROXY_DISABLED="" re-enables Webshare for the Playwright fallback
-# path in price-extract.js. Webshare credentials must be present as Fly secrets:
-#   WEBSHARE_PROXY_USER, WEBSHARE_PROXY_PASS
-# When over quota, proxy calls fail gracefully — T4 covers remaining gaps at :23.
+# NOTE: dead code — retail-failures.json is never written (failures go to Turso).
 
 set -e
 
@@ -24,10 +20,6 @@ trap 'rm -f "$RETRY_FILE"' EXIT
 FAIL_COUNT=$(node -e "try { console.log(require('$RETRY_FILE').length); } catch { console.log(0); }")
 echo "[$(date -u +%H:%M:%S)] T3 retry: $FAIL_COUNT failed SKU(s)"
 
-if [ -z "${WEBSHARE_PROXY_USER:-}" ]; then
-  echo "[$(date -u +%H:%M:%S)] WARN: WEBSHARE_PROXY_USER not set — T3 retry will run without proxy (T4 will fill any gaps)"
-fi
-
 # Extract unique coin slugs from the retry queue
 COINS=$(node -e "
   try {
@@ -38,9 +30,6 @@ COINS=$(node -e "
 
 echo "[$(date -u +%H:%M:%S)] T3 retry: coins = $COINS"
 
-# Re-scrape with proxy enabled. PROXY_DISABLED="" unsets the flag so Playwright
-# fallback routes through Webshare (p.webshare.io:80) when Firecrawl fails.
-# Webshare credentials are read from env: WEBSHARE_PROXY_USER, WEBSHARE_PROXY_PASS
 PROXY_DISABLED="" \
 COINS="$COINS" \
 DATA_DIR="$API_EXPORT_DIR/data" \

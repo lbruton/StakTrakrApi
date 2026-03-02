@@ -13,9 +13,7 @@
  *   FIRECRAWL_API_KEY   Required for cloud Firecrawl. Omit for self-hosted.
  *   FIRECRAWL_BASE_URL  Self-hosted Firecrawl endpoint (default: api.firecrawl.dev)
  *   BROWSERLESS_URL       ws:// endpoint for Playwright fallback (optional)
- *   WEBSHARE_PROXY_USER   Webshare rotating proxy username (e.g. iazuuezc-rotate)
- *   WEBSHARE_PROXY_PASS   Webshare rotating proxy password
- *   HOME_PROXY_URL_2      Cox WiFi tinyproxy URL (e.g. http://100.112.198.50:8889)
+ *   HOME_PROXY_URL        Cox WiFi tinyproxy URL (e.g. http://100.112.198.50:8888)
  *   DATA_DIR              Path to repo data/ folder (default: ../../data)
  *   COINS               Comma-separated coin slugs to run (default: all)
  *   DRY_RUN             Set to "1" to skip writing files
@@ -47,17 +45,9 @@ const PLAYWRIGHT_LAUNCH = process.env.PLAYWRIGHT_LAUNCH === "1";
 const DATA_DIR = resolve(process.env.DATA_DIR || join(__dirname, "../../data"));
 const DRY_RUN = process.env.DRY_RUN === "1";
 const COIN_FILTER = process.env.COINS ? process.env.COINS.split(",").map(s => s.trim()) : null;
-// Webshare rotating residential proxy — set WEBSHARE_PROXY_USER and WEBSHARE_PROXY_PASS
-// to route Playwright requests through a rotating residential IP pool.
-// Self-hosted Firecrawl reads PROXY_SERVER env var directly (set as fly secret).
-// Playwright uses HTTP proxy (port 80) — Chromium doesn't support SOCKS5 auth.
-const PROXY_USER = process.env.WEBSHARE_PROXY_USER || null;
-const PROXY_PASS = process.env.WEBSHARE_PROXY_PASS || null;
-const PROXY_HOST = "p.webshare.io";
-const PROXY_HTTP  = PROXY_USER ? `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:80` : null;
-// Cox WiFi tinyproxy-2 (port 8889) — second residential proxy layer before Webshare.
-// Set as Fly.io secret: fly secrets set HOME_PROXY_URL_2=http://100.112.198.50:8889
-const HOME_PROXY_URL_2 = process.env.HOME_PROXY_URL_2 || null;
+// Cox WiFi tinyproxy (port 8888) — residential proxy via Tailscale.
+// Set as Fly.io secret: fly secrets set HOME_PROXY_URL=http://100.112.198.50:8888
+const HOME_PROXY_URL = process.env.HOME_PROXY_URL || null;
 
 // Sequential with per-request jitter (2-8s) — avoids rate-limit fingerprinting.
 // Targets are shuffled so the same vendor is never hit consecutively;
@@ -498,10 +488,9 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
  * Returns the HTML content as a string (to be passed through extractPrice).
  *
  * Proxy strategy (PLAYWRIGHT_LAUNCH mode):
- *   1. If HOME_PROXY_URL_2 is set, use tinyproxy (residential IP) by default.
+ *   1. If HOME_PROXY_URL is set, use tinyproxy (residential IP) by default.
  *      This avoids datacenter IP detection on dealer sites.
- *   2. If tinyproxy fails or is unavailable, try Webshare commercial proxy.
- *   3. Direct (no proxy) is the last resort — datacenter IPs trigger bot detection.
+ *   2. Direct (no proxy) is the last resort — datacenter IPs trigger bot detection.
  *
  * The `useProxy` parameter can override this: pass `false` to force direct first,
  * or `true` to confirm the default proxy-first behavior.
@@ -531,10 +520,8 @@ async function scrapeWithPlaywright(url, providerId = "", useProxy = undefined) 
 
   // Residential → commercial proxy fallback chain (tried in order when direct is blocked).
   // Cox tinyproxy requires no auth (local network access via Tailscale).
-  // Webshare requires username/password credentials.
   const PLAYWRIGHT_PROXY_CHAIN = [
-    HOME_PROXY_URL_2 ? { server: HOME_PROXY_URL_2 } : null,
-    PROXY_HTTP ? { server: PROXY_HTTP, username: PROXY_USER, password: PROXY_PASS } : null,
+    HOME_PROXY_URL ? { server: HOME_PROXY_URL } : null,
   ].filter(Boolean);
 
   // proxyConfig: { server, username?, password? } | null (null = direct, no proxy)
@@ -670,7 +657,7 @@ async function main() {
   }
   shuffleArray(targets);
 
-  log(`Proxy config: HOME_PROXY_URL_2=${HOME_PROXY_URL_2 ? "SET" : "NOT SET"}, WEBSHARE=${PROXY_HTTP ? "SET" : "NOT SET"}, PLAYWRIGHT_LAUNCH=${PLAYWRIGHT_LAUNCH}`);
+  log(`Proxy config: HOME_PROXY_URL=${HOME_PROXY_URL ? "SET" : "NOT SET"}, PLAYWRIGHT_LAUNCH=${PLAYWRIGHT_LAUNCH}`);
   log(`Retail price extraction: ${targets.length} targets (sequential + jitter)`);
   if (DRY_RUN) log("DRY RUN — no SQLite writes");
 
