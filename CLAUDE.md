@@ -31,7 +31,7 @@ Fly.io container (staktrakr)          Home VM (192.168.1.48)
   retail cron  CRON_SCHEDULE (default :15/:45)   retail cron :30 (offset)
   spot cron    :00/:30                   NO spot — reads only
   publish cron :08/:23/:38/:53           NO publish (no git push)
-  goldback cron daily 17:01 UTC          NO goldback
+  goldback cron hourly :01 (skips if today's price already captured) NO goldback
         │                                      │
         ▼                                      ▼
   run-publish.sh → git push → api branch   Turso only (no git push)
@@ -49,7 +49,7 @@ Fly.io container (staktrakr)          Home VM (192.168.1.48)
 |------|------|--------|-----------------|
 | Market prices | `data/api/manifest.json` | Fly.io `run-local.sh` (CRON_SCHEDULE, default :15/:45) | 90 min |
 | Spot prices | `data/hourly/YYYY/MM/DD/HH.json` | Fly.io `run-spot.sh` cron (0,30 * * * *) | 75 min |
-| Goldback | `data/api/goldback-spot.json` | Fly.io `run-goldback.sh` (daily 17:01 UTC) | 25h |
+| Goldback | `data/api/goldback-spot.json` | Fly.io `run-goldback.sh` (hourly :01, skips if today's price already captured) | 25h |
 
 `spot-history-YYYY.json` is a **seed file** (one noon-UTC entry per day). It is NOT live spot data — do not use it for freshness checks.
 
@@ -65,7 +65,7 @@ Single `staktrakr` app (shared-cpu-4x, 8GB RAM) managed by supervisord. Runs: Ta
 | :00/:30 | `run-spot.sh` | Spot metal prices via MetalPriceAPI |
 | :08/:23/:38/:53 | `run-publish.sh` | Export data + git push to `api` branch |
 | :15 | `run-retry.sh` | **Dead code** — reads `/tmp/retail-failures.json` which is never written |
-| 17:01 UTC daily | `run-goldback.sh` | Goldback G1 spot rate |
+| :01 (hourly) | `run-goldback.sh` | Goldback G1 spot rate (skips if today's price already captured) |
 
 **Retail pipeline** (`run-local.sh`):
 
@@ -153,7 +153,7 @@ fly ssh console --app staktrakr -C "/app/run-goldback.sh"
 | `manifest.json` > 90 min stale | Fly.io retail cron missed | `fly logs --app staktrakr \| grep retail` |
 | `manifest.json` > 4h stale | Fly.io container down | `fly status --app staktrakr` |
 | Spot hourly > 75 min stale | Fly.io run-spot.sh cron missed | `fly logs --app staktrakr \| grep spot`; check `METAL_PRICE_API_KEY` |
-| `goldback-spot.json` > 25h stale | Fly.io goldback cron | `fly logs --app staktrakr \| grep goldback` |
+| `goldback-spot.json` > 25h stale | Fly.io goldback hourly cron failed all day | `fly logs --app staktrakr \| grep goldback`; check tinyproxy on home VM |
 | Container unreachable / OOM | capture.js parallel browsers | `fly ssh console -C "ps aux \| grep chrom \| wc -l"` — should be 1-2, not 15+ |
 | High memory / CPU 100% | Resource leak or config revert | `fly scale show --app staktrakr` — expect shared-cpu-4x 8192MB |
 | Merge workflow failing | Branch missing or jq parse error | GHA run logs in this repo |
