@@ -660,6 +660,31 @@ async function main() {
         }
       }
     }
+
+    // T4 Pass 2: absent vendors — configured in providers.json but missing from this window.
+    // Fires when a vendor's scrape completely failed (403, timeout, proxy error) and left
+    // no record in the 2-hour SQLite window. getLastKnownPrice filters in_stock=1, so
+    // OOS vendors naturally return null and are skipped here.
+    for (const vendorId of configuredVendorIds) {
+      if (vendors[vendorId] === undefined) {
+        const lastKnown = getLastKnownPrice(db, slug, vendorId);
+        if (lastKnown && isWithinT4Threshold(lastKnown.scraped_at)) {
+          vendors[vendorId] = {
+            price:       Math.round(lastKnown.price * 100) / 100,
+            confidence:  null,
+            source:      'turso_last_known',
+            inStock:     true,
+            stale:       true,
+            stale_since: lastKnown.scraped_at,
+          };
+          log('[T4-absent] ' + slug + '/' + vendorId + ' recovered from Turso (' + lastKnown.scraped_at + ')');
+        } else if (lastKnown) {
+          log('[T4-absent-expired] ' + slug + '/' + vendorId + ' last known at ' + lastKnown.scraped_at + ' — exceeds ' + T4_MAX_STALE_HOURS + 'h threshold, omitting');
+        }
+        // else: no history → vendor stays absent (correct)
+      }
+    }
+
     if (confidenceUpdates.length > 0) {
       try {
         writeConfidenceScores(db, confidenceUpdates);
