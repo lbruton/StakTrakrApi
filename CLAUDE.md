@@ -55,7 +55,7 @@ Fly.io container (staktrakr)          Home VM (192.168.1.48)
 
 ### Fly.io Container (retail + goldback)
 
-Single `staktrakr` app (shared-cpu-8x, 4GB RAM) managed by supervisord. Runs: Tailscale, Redis, RabbitMQ, PostgreSQL 17, Playwright service (port 3003), self-hosted Firecrawl (port 3002), five cron scripts, and `serve.js` (port 8080). See `docs/plans/2026-03-02-retail-pipeline-architecture.md` for the full pipeline reference.
+Single `staktrakr` app (shared-cpu-8x, 4GB RAM) managed by supervisord. Runs: Tailscale, Redis, RabbitMQ, PostgreSQL 17, Playwright service (port 3003), self-hosted Firecrawl (port 3002), five cron scripts, and `serve.js` (port 8080). See `devops/infra/retail-pipeline-architecture.md` for the full pipeline reference.
 
 **Cron schedule** (configured in `docker-entrypoint.sh`):
 
@@ -169,7 +169,7 @@ fly ssh console --app staktrakr -C "/app/run-goldback.sh"
 | `devops/fly-poller/docker-entrypoint.sh` | Container init + dynamic cron schedule (CRON_SCHEDULE env var) |
 | `devops/fly-poller/supervisord.conf` | 11 supervised processes (Tailscale, Redis, RabbitMQ, PG17, Firecrawl, Playwright, cron, serve.js) |
 | `devops/fly-poller/capture.js` | Vision screenshots — local mode uses sequential single-browser; cloud mode uses parallel sessions |
-| `docs/plans/2026-03-02-retail-pipeline-architecture.md` | Full pipeline architecture reference (egress, proxy, cron, data flow) |
+| `devops/infra/retail-pipeline-architecture.md` | Full pipeline architecture reference (egress, proxy, cron, data flow) |
 | `devops/fly-poller/run-publish.sh` | Exports data + git force-push to `api` branch (4x/hr at :08/:23/:38/:53) |
 | `devops/fly-poller/run-retry.sh` | **Dead code** — depends on `/tmp/retail-failures.json` which is never written |
 | `data/api/manifest.json` | Market prices root; `generated_at` is the freshness timestamp |
