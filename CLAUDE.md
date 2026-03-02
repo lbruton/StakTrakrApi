@@ -49,7 +49,7 @@ Fly.io container (staktrakr)          Home VM (192.168.1.48)
 |------|------|--------|-----------------|
 | Market prices | `data/api/manifest.json` | Fly.io `run-local.sh` (CRON_SCHEDULE, default :15/:45) | 90 min |
 | Spot prices | `data/hourly/YYYY/MM/DD/HH.json` | Fly.io `run-spot.sh` cron (0,30 * * * *) | 75 min |
-| Goldback | `data/api/goldback-spot.json` | Fly.io `run-goldback.sh` (hourly :01, skips if today's price exists) | 25h |
+| Goldback | `data/api/goldback-spot.json` | Fly.io `run-goldback.sh` (hourly :01, skips if today's price already captured) | 25h |
 
 `spot-history-YYYY.json` is a **seed file** (one noon-UTC entry per day). It is NOT live spot data — do not use it for freshness checks.
 
