@@ -663,16 +663,19 @@ async function main() {
 
     // T4 Pass 2: absent vendors — configured in providers.json but missing from this window.
     // Fires when a vendor's scrape completely failed (403, timeout, proxy error) and left
-    // no record in the 2-hour SQLite window. getLastKnownPrice filters in_stock=1, so
-    // OOS vendors naturally return null and are skipped here.
+    // no record in the 2-hour SQLite window. availabilityBySite guards against OOS vendors
+    // that Pass 1 already deleted — getLastKnownPrice alone cannot distinguish "absent due
+    // to scrape failure" from "absent because Pass 1 deleted an OOS vendor". The
+    // availabilityBySite check ensures we only attempt T4 for vendors with no OOS signal
+    // from the current window.
     for (const vendorId of configuredVendorIds) {
-      if (vendors[vendorId] === undefined) {
+      if (vendors[vendorId] === undefined && availabilityBySite[vendorId] !== false) {
         const lastKnown = getLastKnownPrice(db, slug, vendorId);
         if (lastKnown && isWithinT4Threshold(lastKnown.scraped_at)) {
           vendors[vendorId] = {
             price:       Math.round(lastKnown.price * 100) / 100,
             confidence:  null,
-            source:      'turso_last_known',
+            source:      "turso_last_known",
             inStock:     true,
             stale:       true,
             stale_since: lastKnown.scraped_at,
