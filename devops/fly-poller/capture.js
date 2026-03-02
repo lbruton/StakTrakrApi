@@ -38,22 +38,29 @@ const DATA_DIR = resolve(process.env.DATA_DIR || "../../data");
 const ARTIFACT_DIR = process.env.ARTIFACT_DIR ||
   join(tmpdir(), "retail-poller-screenshots", new Date().toISOString().slice(0, 10));
 
+// Home tinyproxy (residential IP via Tailscale) — REQUIRED for Chromium.
+// Chromium does NOT respect the Tailscale exit node routing; without an explicit
+// proxy it exits via the Fly.io datacenter IP, which is blocked by ~90% of
+// dealer sites. This mirrors the PROXY_SERVER config in supervisord.conf
+// (Firecrawl playwright-service) and HOME_PROXY_URL in price-extract.js.
+const HOME_PROXY_URL = process.env.HOME_PROXY_URL || null;
+
 const COINS = (process.env.COINS || "ase,age,ape,buffalo,maple-silver,maple-gold,britannia-silver,krugerrand-silver,krugerrand-gold,generic-silver-round,generic-silver-bar-10oz").split(",").map(s => s.trim());
 const PROVIDERS = (process.env.PROVIDERS || "apmex,sdbullion,jmbullion,monumentmetals,herobullion,bullionexchanges,summitmetals").split(",").map(s => s.trim());
 
-// Per-page delays (ms) — polite pacing within each session
-const PAGE_LOAD_WAIT = 4000;    // wait after domcontentloaded for JS rendering
-const INTER_PAGE_DELAY = 1000;  // pause between pages within a session
+// Per-page delays (ms) — polite pacing within each session.
+// Reduced from 4s/1s (2026-03 perf tuning): screenshots don't need full price
+// table rendering — just enough for the visible viewport to stabilize.
+const PAGE_LOAD_WAIT = 3000;    // wait after domcontentloaded for JS rendering
+const INTER_PAGE_DELAY = 500;   // pause between pages within a session
 
 // Per-provider wait overrides (ms) — for JS-heavy SPAs that need more render time.
-// JMBullion: Next.js app, pricing table takes ~8s to populate after domcontentloaded.
-// monumentmetals: React Native Web SPA, router doesn't mount until ~6s.
-// bullionexchanges: React/Magento SPA, pricing grid renders at ~6-8s.
+// Reduced proportionally from original values (2026-03 perf tuning).
 const PROVIDER_PAGE_LOAD_WAIT = {
-  jmbullion:       10000,
-  monumentmetals:   7000,
-  bullionexchanges: 8000,
-  herobullion:      6000,
+  jmbullion:        7000,  // Next.js, pricing table populates ~5-7s
+  monumentmetals:   5000,  // React Native Web SPA, router mounts ~4-5s
+  bullionexchanges: 6000,  // React/Magento SPA, pricing grid ~5-6s
+  herobullion:      4000,  // React, renders ~3-4s
 };
 
 // Per-dealer popup dismissal config.
@@ -353,7 +360,9 @@ async function captureCoin(coinSlug, targets, outDir) {
   let browser, page;
   if (BROWSER_MODE === "local") {
     const { chromium: localChromium } = await import("playwright");
-    browser = await localChromium.launch({ headless: true });
+    const launchOpts = { headless: true };
+    if (HOME_PROXY_URL) launchOpts.proxy = { server: HOME_PROXY_URL };
+    browser = await localChromium.launch(launchOpts);
     const ctx = await browser.newContext({
       viewport: { width: 1280, height: 900 },
       userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
@@ -455,9 +464,11 @@ async function captureAll() {
   if (BROWSER_MODE === "local") {
     // Local mode: single browser, sequential coins to avoid memory bomb.
     // One Chromium ≈ 200MB; 15 parallel = 3GB OOM on constrained containers.
-    log(`Capturing ${totalTargets} pages — sequential (local Chromium, 1 browser)`);
+    log(`Capturing ${totalTargets} pages — sequential (local Chromium, 1 browser${HOME_PROXY_URL ? ", proxy" : ", direct"})`);
     const { chromium: localChromium } = await import("playwright");
-    const browser = await localChromium.launch({ headless: true });
+    const launchOpts = { headless: true };
+    if (HOME_PROXY_URL) launchOpts.proxy = { server: HOME_PROXY_URL };
+    const browser = await localChromium.launch(launchOpts);
     const ctx = await browser.newContext({
       viewport: { width: 1280, height: 900 },
       userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
