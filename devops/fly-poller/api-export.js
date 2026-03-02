@@ -253,7 +253,7 @@ function getLastKnownPrice(db, coinSlug, vendorId) {
  */
 function isWithinT4Threshold(scrapedAt) {
   const ageHours = (Date.now() - new Date(scrapedAt).getTime()) / 3_600_000;
-  return ageHours <= T4_MAX_STALE_HOURS;
+  return ageHours >= 0 && ageHours <= T4_MAX_STALE_HOURS;
 }
 
 /**
@@ -650,7 +650,7 @@ async function main() {
               stale_since: lastKnown.scraped_at,
             };
           } else if (lastKnown) {
-            console.log('[T4-expired] ' + slug + '/' + vendorId + ' last known at ' + lastKnown.scraped_at + ' exceeds ' + T4_MAX_STALE_HOURS + 'h threshold');
+            log('[T4-expired] ' + slug + '/' + vendorId + ' last known at ' + lastKnown.scraped_at + ' exceeds ' + T4_MAX_STALE_HOURS + 'h threshold');
             delete vendors[vendorId];
           } else {
             delete vendors[vendorId];
