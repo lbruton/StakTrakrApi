@@ -31,7 +31,7 @@ Fly.io container (staktrakr)          Home VM (192.168.1.48)
   retail cron  CRON_SCHEDULE (default :15/:45)   retail cron :30 (offset)
   spot cron    :00/:30                   NO spot — reads only
   publish cron :08/:23/:38/:53           NO publish (no git push)
-  goldback cron hourly :01 (skip if done) NO goldback
+  goldback cron hourly :01 (skips if today's price already captured) NO goldback
         │                                      │
         ▼                                      ▼
   run-publish.sh → git push → api branch   Turso only (no git push)
