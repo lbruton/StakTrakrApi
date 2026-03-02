@@ -19,6 +19,9 @@ primary_region = 'iad'
   PLAYWRIGHT_LAUNCH = "1"
   PLAYWRIGHT_BROWSERS_PATH = "/usr/local/share/playwright"
   # Home tinyproxy (Cox residential IP via Tailscale). Set as Fly secret.
+  # Required by: supervisord PROXY_SERVER (Firecrawl playwright-service),
+  # price-extract.js Phase 2 (scrapeWithPlaywright), capture.js (vision screenshots).
+  # Chromium does NOT respect the Tailscale exit node — explicit proxy is mandatory.
   # Must be present (even as empty) so supervisord can expand %(ENV_HOME_PROXY_URL)s.
   HOME_PROXY_URL = ""
 
@@ -41,6 +44,9 @@ primary_region = 'iad'
   destination = "/data"
 
 [[vm]]
-  memory = '8192'
+  # 8 shared CPUs / 4GB RAM — intentional CPU-over-RAM tradeoff.
+  # Chromium + Firecrawl + Redis + RabbitMQ saturate 4 CPUs under sustained
+  # 30+ min scrape load. Max observed RAM footprint is ~3GB; 8GB was excess.
+  memory = '4096'
   cpu_kind = 'shared'
-  cpus = 4
+  cpus = 8

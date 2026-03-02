@@ -460,6 +460,14 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
 
     if (!response.ok) {
       const text = await response.text().catch(() => "");
+      // 403 = bot detection / IP block. Retrying Firecrawl (same IP) won't help;
+      // skip retries and fall through to Phase 2 Playwright (proxy-first).
+      if (response.status === 403) {
+        throw Object.assign(
+          new Error(`HTTP 403 (blocked): ${text.slice(0, 200)}`),
+          { skipRetry: true }
+        );
+      }
       throw new Error(`HTTP ${response.status}: ${text.slice(0, 200)}`);
     }
 
@@ -467,7 +475,7 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
     return json?.data?.markdown ?? null;
 
   } catch (err) {
-    if (attempt < RETRY_ATTEMPTS) {
+    if (!err.skipRetry && attempt < RETRY_ATTEMPTS) {
       warn(`Retry ${attempt}/${RETRY_ATTEMPTS} for ${url}: ${err.message}`);
       await sleep(RETRY_DELAY_MS * attempt);
       return scrapeUrl(url, providerId, attempt + 1);
