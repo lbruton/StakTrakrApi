@@ -75,24 +75,30 @@ if [ -f "$RETRY_FILE" ]; then
   fi
 fi
 
-# Vision pipeline — non-fatal, requires GEMINI_API_KEY (uses local Chromium)
-if [ -n "${GEMINI_API_KEY:-}" ]; then
-  _ARTIFACT_DIR="${ARTIFACT_DIR:-/tmp/retail-screenshots/$(date -u +%Y-%m-%d)}"
-  echo "[$(date -u +%H:%M:%S)] Running vision capture..."
-  BROWSER_MODE=local \
-    ARTIFACT_DIR="$_ARTIFACT_DIR" \
-    DATA_DIR="$API_EXPORT_DIR/data" \
-    node /app/capture.js \
-    || echo "[$(date -u +%H:%M:%S)] WARN: vision capture failed (non-fatal)"
+# Vision pipeline — soft-disabled by default (VISION_ENABLED=1 to enable)
+# Requires GEMINI_API_KEY when enabled. Uses local Chromium for screenshots.
+# Toggle via: fly secrets set VISION_ENABLED=1 / fly secrets unset VISION_ENABLED
+if [ "${VISION_ENABLED:-}" = "1" ]; then
+  if [ -n "${GEMINI_API_KEY:-}" ]; then
+    _ARTIFACT_DIR="${ARTIFACT_DIR:-/tmp/retail-screenshots/$(date -u +%Y-%m-%d)}"
+    echo "[$(date -u +%H:%M:%S)] Running vision capture..."
+    BROWSER_MODE=local \
+      ARTIFACT_DIR="$_ARTIFACT_DIR" \
+      DATA_DIR="$API_EXPORT_DIR/data" \
+      node /app/capture.js \
+      || echo "[$(date -u +%H:%M:%S)] WARN: vision capture failed (non-fatal)"
 
-  echo "[$(date -u +%H:%M:%S)] Running vision extraction..."
-  MANIFEST_PATH="$_ARTIFACT_DIR/manifest.json" \
-    ARTIFACT_DIR="$_ARTIFACT_DIR" \
-    DATA_DIR="$API_EXPORT_DIR/data" \
-    node /app/extract-vision.js \
-    || echo "[$(date -u +%H:%M:%S)] WARN: vision extraction failed (non-fatal)"
+    echo "[$(date -u +%H:%M:%S)] Running vision extraction..."
+    MANIFEST_PATH="$_ARTIFACT_DIR/manifest.json" \
+      ARTIFACT_DIR="$_ARTIFACT_DIR" \
+      DATA_DIR="$API_EXPORT_DIR/data" \
+      node /app/extract-vision.js \
+      || echo "[$(date -u +%H:%M:%S)] WARN: vision extraction failed (non-fatal)"
+  else
+    echo "[$(date -u +%H:%M:%S)] Skipping vision pipeline (GEMINI_API_KEY not set)"
+  fi
 else
-  echo "[$(date -u +%H:%M:%S)] Skipping vision pipeline (GEMINI_API_KEY not set)"
+  echo "[$(date -u +%H:%M:%S)] Vision pipeline disabled (VISION_ENABLED not set)"
 fi
 
 # Scrape complete — run-publish.sh handles export + push on its own cadence

@@ -2,9 +2,10 @@
 /**
  * StakTrakr Retail Price Extractor
  * ==================================
- * Reads providers.json, scrapes each dealer URL via Firecrawl (with a
- * Playwright/browserless fallback for JS-heavy pages), extracts the lowest
- * in-stock price, and records each result to SQLite.
+ * Reads providers.json, scrapes each dealer URL via Playwright direct first
+ * (no proxy, 15s timeout), falling back to Firecrawl (with proxy via
+ * playwright-service) for targets that fail. Extracts the lowest in-stock
+ * price and records each result to Turso.
  *
  * Usage:
  *   FIRECRAWL_API_KEY=fc-... node price-extract.js
@@ -475,6 +476,11 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
     return json?.data?.markdown ?? null;
 
   } catch (err) {
+    // Abort/timeout = the request was killed by our AbortController.
+    // Retrying the same Firecrawl call won't help; fall through to Phase 2.
+    if (err.name === "AbortError" || (err.message && err.message.includes("aborted"))) {
+      err.skipRetry = true;
+    }
     if (!err.skipRetry && attempt < RETRY_ATTEMPTS) {
       warn(`Retry ${attempt}/${RETRY_ATTEMPTS} for ${url}: ${err.message}`);
       await sleep(RETRY_DELAY_MS * attempt);
@@ -634,6 +640,90 @@ async function scrapeWithPlaywright(url, providerId = "", useProxy = undefined) 
 }
 
 // ---------------------------------------------------------------------------
+// Playwright direct — fast first-pass, no proxy, 15s timeout
+// ---------------------------------------------------------------------------
+
+/**
+ * Lightweight Playwright scrape: direct connection (no proxy), 15s timeout,
+ * no retries. Designed as a fast first-pass that succeeds for ~65/88 targets
+ * in under 5s. Returns null immediately on any failure so Firecrawl can
+ * take over as fallback.
+ *
+ * @param {string} url
+ * @param {string} providerId
+ * @param {Object} coin  Coin metadata (metal, weight_oz)
+ * @returns {Promise<{price: number, inStock: boolean, source: string}|null>}
+ */
+async function scrapeWithPlaywrightDirect(url, providerId, coin) {
+  if (!PLAYWRIGHT_LAUNCH) return null;
+
+  const DIRECT_TIMEOUT_MS = 15_000;
+  const { chromium } = await import("playwright-core");
+  let browser;
+
+  try {
+    browser = await chromium.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+    });
+
+    const context = await browser.newContext({
+      userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+      viewport: { width: 1920, height: 1080 },
+    });
+    const page = await context.newPage();
+
+    // Block non-essential resource types to reduce bandwidth ~60-80%
+    await page.route("**/*", (route) => {
+      const type = route.request().resourceType();
+      if (["image", "font", "stylesheet", "media"].includes(type)) {
+        route.abort();
+      } else {
+        route.continue();
+      }
+    });
+
+    await page.setExtraHTTPHeaders({ "Accept-Language": "en-US,en;q=0.9" });
+    const response = await page.goto(url, { waitUntil: "networkidle", timeout: DIRECT_TIMEOUT_MS });
+
+    // 403 = bot detection — bail immediately, let Firecrawl handle it
+    if (response && response.status() === 403) {
+      log(`  (playwright-direct) 403 on ${providerId} — skipping to Firecrawl`);
+      return null;
+    }
+
+    // Extra wait for JS-heavy SPAs
+    if (SLOW_PROVIDERS.has(providerId)) {
+      await page.waitForTimeout(8_000);
+    }
+
+    const text = await page.evaluate(() => document.body.innerText);
+    const cleaned = preprocessMarkdown(text, providerId);
+    const stock = detectStockStatus(cleaned, coin.weight_oz || 1, providerId);
+    const price = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, providerId);
+
+    if (price !== null) {
+      return { price, inStock: stock.inStock, source: "playwright-direct" };
+    }
+
+    // OOS with no price — still useful stock status info, but let Firecrawl try for a price
+    if (!stock.inStock) {
+      log(`  (playwright-direct) ${providerId}: OOS detected but no price — trying Firecrawl`);
+      return null;
+    }
+
+    // Page loaded but no price extracted — Firecrawl may parse differently
+    return null;
+
+  } catch (err) {
+    log(`  (playwright-direct) ${providerId} failed: ${err.message.slice(0, 100)} — falling back`);
+    return null;
+  } finally {
+    if (browser) { try { await browser.close(); } catch { /* ignore */ } }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -666,6 +756,21 @@ async function main() {
   shuffleArray(targets);
 
   log(`Proxy config: HOME_PROXY_URL=${HOME_PROXY_URL ? "SET" : "NOT SET"}, PLAYWRIGHT_LAUNCH=${PLAYWRIGHT_LAUNCH}`);
+
+  // Probe proxy health (non-blocking, non-fatal)
+  let proxyHealthy = false;
+  if (HOME_PROXY_URL) {
+    try {
+      await fetch(HOME_PROXY_URL, { signal: AbortSignal.timeout(5000) });
+      proxyHealthy = true;
+      log(`Proxy probe: OK (${HOME_PROXY_URL})`);
+    } catch {
+      warn(`HOME_PROXY_URL unreachable — proxy fallback disabled this run`);
+    }
+  } else {
+    log(`Proxy probe: skipped (HOME_PROXY_URL not set)`);
+  }
+
   log(`Retail price extraction: ${targets.length} targets (sequential + jitter)`);
   if (DRY_RUN) log("DRY RUN — no SQLite writes");
 
@@ -704,10 +809,39 @@ async function main() {
     let inStock = true;
     let finalUrl = urls[0];
 
+    // ── Phase 0: Try Playwright direct (no proxy, 15s timeout) ──────────────
+    // Fast first-pass — succeeds for ~65/88 targets in <5s. If it gets a price,
+    // skip Firecrawl entirely. Skip for PLAYWRIGHT_ONLY_PROVIDERS (they need
+    // Firecrawl's stealth patches).
+    if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id) && PLAYWRIGHT_LAUNCH) {
+      const directResult = await scrapeWithPlaywrightDirect(urls[0], provider.id, coin);
+      if (directResult !== null) {
+        price = directResult.price;
+        source = directResult.source;
+        inStock = directResult.inStock;
+        finalUrl = urls[0];
+        log(`  ✓ ${coinSlug}/${provider.id}: $${price.toFixed(2)} (playwright-direct${!inStock ? ", OOS" : ""})`);
+        // Skip Firecrawl — go straight to store result
+        scrapeResults.push({
+          coinSlug, coin, providerId: provider.id, url: finalUrl,
+          price, source, inStock, ok: true, error: null,
+        });
+        if (db) {
+          await writeSnapshot(db, {
+            scrapedAt, windowStart: winStart, coinSlug,
+            vendor: provider.id, price, source,
+            isFailed: false, inStock,
+          });
+        }
+        if (targetIdx < targets.length - 1) { await jitter(); }
+        continue;
+      }
+    }
+
     // ── Phase 1: Try all URLs via Firecrawl ──────────────────────────────────
     // Skip Phase 1 for providers where Firecrawl is structurally unreliable
     // (bot detection or waitFor-not-supported JS rendering). price/inStock stay
-    // at their defaults (null / true) so Phase 2 fires immediately below.
+    // at their defaults (null / true) so the failure path fires below.
     if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id)) {
       for (let i = 0; i < urls.length; i++) {
         const url = urls[i];
@@ -746,40 +880,15 @@ async function main() {
           warn(`  ? ${coinSlug}/${provider.id} [url${i}]: page loaded, no price — trying next URL`);
           if (i < urls.length - 1) { await jitter(); continue; }
 
-          // Last URL, Firecrawl parse failure — fall through to Playwright phase
+          // Last URL, Firecrawl parse failure — no more fallbacks
           finalUrl = url;
 
         } catch (err) {
           warn(`  ✗ ${provider.id} [url${i}] firecrawl error: ${err.message.slice(0, 100)}`);
           if (i < urls.length - 1) { await jitter(); continue; }
-          // Last URL threw — fall through to Playwright phase
+          // Last URL threw — no more fallbacks
           finalUrl = url;
         }
-      }
-    }
-
-    // ── Phase 2: Playwright if Firecrawl chain didn't get a price ────────────
-    if (price === null && (BROWSERLESS_URL || PLAYWRIGHT_LAUNCH)) {
-      log(`  ↩ ${coinSlug}/${provider.id}: Firecrawl chain exhausted — trying Playwright on ${finalUrl}`);
-      try {
-        const html = await scrapeWithPlaywright(finalUrl, provider.id);
-        if (html) {
-          const cleaned = preprocessMarkdown(html, provider.id);
-          const stock = detectStockStatus(cleaned, coin.weight_oz || 1, provider.id);
-          inStock = stock.inStock;
-          const p = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
-          if (p !== null) {
-            price = p;
-            source = "playwright";
-            log(`  ✓ ${coinSlug}/${provider.id}: $${p.toFixed(2)} (playwright${!inStock ? ", OOS" : ""})`);
-          } else if (inStock) {
-            warn(`  ? ${coinSlug}/${provider.id}: Playwright page loaded but no price found`);
-          } else {
-            log(`  ⚠ ${provider.id}: ${stock.reason} — ${stock.detectedText || "detected"} (playwright)`);
-          }
-        }
-      } catch (pwErr) {
-        warn(`  ✗ Playwright failed for ${coinSlug}/${provider.id}: ${pwErr.message.slice(0, 100)}`);
       }
     }
 
