@@ -290,31 +290,102 @@ async function dismissPopups(page, providerId) {
 }
 
 // ---------------------------------------------------------------------------
-// Capture one coin's targets using a shared page (local sequential mode)
+// Capture one coin's targets — direct first, proxy fallback (local mode)
 // ---------------------------------------------------------------------------
 
-async function captureCoinWithPage(coinSlug, targets, outDir, page) {
+/**
+ * Try direct Chromium first; fall back to proxy page on 403 or timeout.
+ * This avoids routing all traffic through the home proxy when most dealer
+ * sites respond fine to a direct datacenter request.
+ *
+ * @param {string} coinSlug
+ * @param {Array<{coin:string, metal:string, provider:string, url:string}>} targets
+ * @param {string} outDir
+ * @param {import('playwright').Page} directPage  - page with no proxy
+ * @param {import('playwright').Page|null} proxyPage - page routed through HOME_PROXY_URL (may be null)
+ * @returns {Promise<Array<object>>}
+ */
+async function captureCoinDirectFirst(coinSlug, targets, outDir, directPage, proxyPage) {
   const results = [];
+
   for (const target of targets) {
     const filename = `${target.coin}_${target.provider}.png`;
     const filepath = join(outDir, filename);
 
-    log(`[${coinSlug}/${target.provider}] → ${target.url}`);
+    log(`[${coinSlug}/${target.provider}] -> ${target.url}`);
 
+    let activePage = null;
+    let status = 0;
+    let via = "direct";
+    let lastError = null;
+
+    // --- Attempt 1: direct (no proxy) ---
     try {
-      const response = await page.goto(target.url, {
+      const response = await directPage.goto(target.url, {
         waitUntil: "domcontentloaded",
-        timeout: 45000,
+        timeout: 20000,
       });
-      const status = response ? response.status() : 0;
+      status = response ? response.status() : 0;
 
+      if (status === 403 && proxyPage) {
+        // 403 — dealer is blocking datacenter IP, try proxy
+        log(`[${coinSlug}/${target.provider}] direct got 403, falling back to proxy`);
+        throw new Error("403-fallback");
+      }
+
+      activePage = directPage;
+    } catch (directErr) {
+      lastError = directErr;
+
+      // --- Attempt 2: proxy fallback (if available) ---
+      if (proxyPage) {
+        log(`[${coinSlug}/${target.provider}] proxy-fallback: ${target.url}`);
+        try {
+          const proxyResponse = await proxyPage.goto(target.url, {
+            waitUntil: "domcontentloaded",
+            timeout: 30000,
+          });
+          status = proxyResponse ? proxyResponse.status() : 0;
+          activePage = proxyPage;
+          via = "proxy";
+          lastError = null;
+        } catch (proxyErr) {
+          lastError = proxyErr;
+        }
+      }
+    }
+
+    // --- If neither attempt yielded a page, record failure ---
+    if (!activePage || lastError) {
+      const errMsg = lastError ? lastError.message.slice(0, 200) : "no page available";
+      results.push({
+        coin: target.coin,
+        provider: target.provider,
+        metal: target.metal,
+        url: target.url,
+        status,
+        title: "",
+        screenshot: null,
+        ok: false,
+        error: errMsg,
+      });
+      log(`[${coinSlug}/${target.provider}]   x ${errMsg.slice(0, 80)}`);
+
+      if (target !== targets[targets.length - 1]) {
+        await directPage.waitForTimeout(INTER_PAGE_DELAY);
+      }
+      continue;
+    }
+
+    // --- Successful navigation — screenshot the active page ---
+    try {
       const providerWait = PROVIDER_PAGE_LOAD_WAIT[target.provider] ?? PAGE_LOAD_WAIT;
-      await page.waitForTimeout(providerWait);
+      await activePage.waitForTimeout(providerWait);
 
-      await dismissPopups(page, target.provider);
+      await dismissPopups(activePage, target.provider);
 
-      await page.screenshot({ path: filepath, fullPage: false });
-      const title = await page.title();
+      await activePage.screenshot({ path: filepath, fullPage: false });
+      const title = await activePage.title();
 
       results.push({
         coin: target.coin,
@@ -327,26 +398,27 @@ async function captureCoinWithPage(coinSlug, targets, outDir, page) {
         ok: status === 200 && !title.toLowerCase().includes("not found"),
       });
 
-      log(`[${coinSlug}/${target.provider}]   ✓ ${status} "${title.slice(0, 50)}" → ${filename}`);
+      log(`[${coinSlug}/${target.provider}]   ok ${status} (${via}) "${title.slice(0, 50)}" -> ${filename}`);
     } catch (err) {
       results.push({
         coin: target.coin,
         provider: target.provider,
         metal: target.metal,
         url: target.url,
-        status: 0,
+        status,
         title: "",
         screenshot: null,
         ok: false,
         error: err.message.slice(0, 200),
       });
-      log(`[${coinSlug}/${target.provider}]   ✗ ${err.message.slice(0, 80)}`);
+      log(`[${coinSlug}/${target.provider}]   x (${via}) ${err.message.slice(0, 80)}`);
     }
 
-    if (targets.indexOf(target) < targets.length - 1) {
-      await page.waitForTimeout(INTER_PAGE_DELAY);
+    if (target !== targets[targets.length - 1]) {
+      await activePage.waitForTimeout(INTER_PAGE_DELAY);
     }
   }
+
   return results;
 }
 
@@ -460,27 +532,61 @@ async function captureAll() {
   const totalTargets = [...byCoin.values()].reduce((n, arr) => n + arr.length, 0);
   mkdirSync(ARTIFACT_DIR, { recursive: true });
 
+  // Probe proxy health (non-blocking, non-fatal)
+  let proxyHealthy = false;
+  if (HOME_PROXY_URL) {
+    try {
+      await fetch(HOME_PROXY_URL, { signal: AbortSignal.timeout(5000) });
+      proxyHealthy = true;
+      log(`Proxy probe: OK (${HOME_PROXY_URL})`);
+    } catch {
+      log(`WARN: HOME_PROXY_URL unreachable — proxy fallback disabled this run`);
+    }
+  } else {
+    log(`Proxy probe: skipped (HOME_PROXY_URL not set)`);
+  }
+
   let allResults;
   if (BROWSER_MODE === "local") {
-    // Local mode: single browser, sequential coins to avoid memory bomb.
-    // One Chromium ≈ 200MB; 15 parallel = 3GB OOM on constrained containers.
-    log(`Capturing ${totalTargets} pages — sequential (local Chromium, 1 browser${HOME_PROXY_URL ? ", proxy" : ", direct"})`);
+    // Local mode: direct-first with proxy fallback.
+    // Launch two browsers: one direct (datacenter IP), one proxied (residential IP).
+    // Most dealer sites respond fine to direct; only 403/timeout pages fall back to proxy.
+    // Two Chromium instances ~ 400MB — acceptable on 1GB+ containers.
+    log(`Capturing ${totalTargets} pages — sequential (local Chromium, direct-first${HOME_PROXY_URL ? " + proxy fallback" : ""})`);
     const { chromium: localChromium } = await import("playwright");
-    const launchOpts = { headless: true };
-    if (HOME_PROXY_URL) launchOpts.proxy = { server: HOME_PROXY_URL };
-    const browser = await localChromium.launch(launchOpts);
-    const ctx = await browser.newContext({
+    const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+
+    // Direct browser (no proxy)
+    const directBrowser = await localChromium.launch({ headless: true });
+    const directCtx = await directBrowser.newContext({
       viewport: { width: 1280, height: 900 },
-      userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+      userAgent: UA,
     });
-    const page = await ctx.newPage();
+    const directPage = await directCtx.newPage();
+
+    // Proxy browser (only if HOME_PROXY_URL is configured)
+    let proxyBrowser = null;
+    let proxyPage = null;
+    if (HOME_PROXY_URL && proxyHealthy) {
+      proxyBrowser = await localChromium.launch({
+        headless: true,
+        proxy: { server: HOME_PROXY_URL },
+      });
+      const proxyCtx = await proxyBrowser.newContext({
+        viewport: { width: 1280, height: 900 },
+        userAgent: UA,
+      });
+      proxyPage = await proxyCtx.newPage();
+    }
 
     allResults = [];
     for (const [coinSlug, targets] of byCoin.entries()) {
-      const results = await captureCoinWithPage(coinSlug, targets, ARTIFACT_DIR, page);
+      const results = await captureCoinDirectFirst(coinSlug, targets, ARTIFACT_DIR, directPage, proxyPage);
       allResults.push(...results);
     }
-    await browser.close();
+
+    await directBrowser.close();
+    if (proxyBrowser) await proxyBrowser.close();
   } else {
     // Cloud/browserless: parallel sessions (Browserbase handles concurrency).
     log(`Capturing ${totalTargets} pages — ${byCoin.size} parallel sessions (one per coin)`);

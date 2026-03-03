@@ -2,9 +2,10 @@
 /**
  * StakTrakr Retail Price Extractor
  * ==================================
- * Reads providers.json, scrapes each dealer URL via Firecrawl (with a
- * Playwright/browserless fallback for JS-heavy pages), extracts the lowest
- * in-stock price, and records each result to SQLite.
+ * Reads providers.json, scrapes each dealer URL via Playwright direct first
+ * (no proxy, 15s timeout), falling back to Firecrawl (with proxy via
+ * playwright-service) for targets that fail. Extracts the lowest in-stock
+ * price and records each result to Turso.
  *
  * Usage:
  *   FIRECRAWL_API_KEY=fc-... node price-extract.js
@@ -12,7 +13,6 @@
  * Environment:
  *   FIRECRAWL_API_KEY   Required for cloud Firecrawl. Omit for self-hosted.
  *   FIRECRAWL_BASE_URL  Self-hosted Firecrawl endpoint (default: api.firecrawl.dev)
- *   BROWSERLESS_URL       ws:// endpoint for Playwright fallback (optional)
  *   HOME_PROXY_URL        Cox WiFi tinyproxy URL (e.g. http://100.112.198.50:8888)
  *   DATA_DIR              Path to repo data/ folder (default: ../../data)
  *   COINS               Comma-separated coin slugs to run (default: all)
@@ -35,9 +35,6 @@ const FIRECRAWL_API_KEY = process.env.FIRECRAWL_API_KEY;
 // Self-hosted Firecrawl: set FIRECRAWL_BASE_URL=http://localhost:3002
 // Cloud Firecrawl (default): leave unset or set to https://api.firecrawl.dev
 const FIRECRAWL_BASE_URL = (process.env.FIRECRAWL_BASE_URL || "https://api.firecrawl.dev").replace(/\/$/, "");
-// Playwright/browserless fallback: ws:// endpoint for remote browser
-// e.g. ws://host.docker.internal:3000/chromium/playwright?token=local_dev_token
-const BROWSERLESS_URL = process.env.BROWSERLESS_URL || null;
 // PLAYWRIGHT_LAUNCH: set to "1" to launch Chromium locally instead of connecting
 // to a remote browserless. Useful on Fly.io where browsers are installed but no
 // external browserless service is running.
@@ -461,7 +458,7 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
     if (!response.ok) {
       const text = await response.text().catch(() => "");
       // 403 = bot detection / IP block. Retrying Firecrawl (same IP) won't help;
-      // skip retries and fall through to Phase 2 Playwright (proxy-first).
+      // skip retries — terminal failure for this target.
       if (response.status === 403) {
         throw Object.assign(
           new Error(`HTTP 403 (blocked): ${text.slice(0, 200)}`),
@@ -475,6 +472,11 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
     return json?.data?.markdown ?? null;
 
   } catch (err) {
+    // Abort/timeout = the request was killed by our AbortController.
+    // Retrying the same Firecrawl call won't help; skip retries.
+    if (err.name === "AbortError" || (err.message && err.message.includes("aborted"))) {
+      err.skipRetry = true;
+    }
     if (!err.skipRetry && attempt < RETRY_ATTEMPTS) {
       warn(`Retry ${attempt}/${RETRY_ATTEMPTS} for ${url}: ${err.message}`);
       await sleep(RETRY_DELAY_MS * attempt);
@@ -487,149 +489,86 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
 }
 
 // ---------------------------------------------------------------------------
-// Playwright fallback (browserless remote browser)
+// Playwright direct — fast first-pass, no proxy, 15s timeout
 // ---------------------------------------------------------------------------
 
 /**
- * Scrape a URL using a remote Playwright/browserless instance.
- * Called when Firecrawl returns null or throws for a target.
- * Returns the HTML content as a string (to be passed through extractPrice).
- *
- * Proxy strategy (PLAYWRIGHT_LAUNCH mode):
- *   1. If HOME_PROXY_URL is set, use tinyproxy (residential IP) by default.
- *      This avoids datacenter IP detection on dealer sites.
- *   2. Direct (no proxy) is the last resort — datacenter IPs trigger bot detection.
- *
- * The `useProxy` parameter can override this: pass `false` to force direct first,
- * or `true` to confirm the default proxy-first behavior.
- *
- * This mirrors the home poller, which inherently exits from a residential IP.
- *
- * Bandwidth optimisation: images, fonts, stylesheets and media are blocked via
- * Playwright route interception — reduces per-page transfer by ~60-80%.
+ * Lightweight Playwright scrape: direct connection (no proxy), 15s timeout,
+ * no retries. Designed as a fast first-pass that succeeds for ~65/88 targets
+ * in under 5s. Returns null immediately on any failure so Firecrawl can
+ * take over as fallback.
  *
  * @param {string} url
- * @param {string} [providerId]
- * @param {boolean} [useProxy]  undefined=proxy-first (default), true=force proxy, false=force direct
- * @returns {Promise<string|null>}  raw HTML/text content, or null on failure
+ * @param {string} providerId
+ * @param {Object} coin  Coin metadata (metal, weight_oz)
+ * @returns {Promise<{price: number, inStock: boolean, source: string}|null>}
  */
-async function scrapeWithPlaywright(url, providerId = "", useProxy = undefined) {
-  if (!BROWSERLESS_URL && !PLAYWRIGHT_LAUNCH) return null;
+async function scrapeWithPlaywrightDirect(url, providerId, coin) {
+  if (!PLAYWRIGHT_LAUNCH) return null;
 
-  // Geo-block signals in page text (HTTP-level 403s surface as page content)
-  const GEO_BLOCK_PATTERNS = [
-    /unavailable in your (country|location|region)/i,
-    /not available in your (country|location|region)/i,
-    /access denied/i,
-    /403 forbidden/i,
-  ];
-
+  const DIRECT_TIMEOUT_MS = 15_000;
   const { chromium } = await import("playwright-core");
-
-  // Residential → commercial proxy fallback chain (tried in order when direct is blocked).
-  // Cox tinyproxy requires no auth (local network access via Tailscale).
-  const PLAYWRIGHT_PROXY_CHAIN = [
-    HOME_PROXY_URL ? { server: HOME_PROXY_URL } : null,
-  ].filter(Boolean);
-
-  // proxyConfig: { server, username?, password? } | null (null = direct, no proxy)
-  async function attempt(proxyConfig = null) {
-    log(`  → Playwright attempt via ${proxyConfig ? proxyConfig.server : "direct (no proxy)"}`);
-    let browser;
-    try {
-      if (PLAYWRIGHT_LAUNCH) {
-        const launchProxy = proxyConfig ? { proxy: proxyConfig } : {};
-        browser = await chromium.launch({
-          headless: true,
-          args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
-          ...launchProxy,
-        });
-      } else {
-        browser = await chromium.connect(BROWSERLESS_URL);
-      }
-
-      const context = await browser.newContext({
-        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-        viewport: { width: 1920, height: 1080 },
-      });
-      const page = await context.newPage();
-
-      // Block non-essential resource types to reduce bandwidth ~60-80%
-      await page.route("**/*", (route) => {
-        const type = route.request().resourceType();
-        if (["image", "font", "stylesheet", "media"].includes(type)) {
-          route.abort();
-        } else {
-          route.continue();
-        }
-      });
-
-      await page.setExtraHTTPHeaders({ "Accept-Language": "en-US,en;q=0.9" });
-      const response = await page.goto(url, { waitUntil: "networkidle", timeout: SCRAPE_TIMEOUT_MS });
-
-      // Detect HTTP-level geo-block
-      if (response && response.status() === 403) {
-        await browser.close();
-        return { content: null, geoBlocked: true };
-      }
-
-      // Extra wait for JS-heavy SPAs
-      if (SLOW_PROVIDERS.has(providerId)) {
-        await page.waitForTimeout(8_000);
-      }
-
-      const content = await page.evaluate(() => document.body.innerText);
-      await browser.close();
-
-      // Detect geo-block in page text
-      const geoBlocked = GEO_BLOCK_PATTERNS.some(p => p.test(content.slice(0, 2000)));
-      return { content: geoBlocked ? null : content, geoBlocked };
-
-    } catch (err) {
-      if (browser) { try { await browser.close(); } catch { /* ignore */ } }
-      throw err;
-    }
-  }
+  let browser;
 
   try {
-    // Default: proxy-first when available (residential IP avoids datacenter detection).
-    // useProxy=false explicitly forces direct; useProxy=true/undefined uses proxy chain.
-    const proxyFirst = useProxy !== false && PLAYWRIGHT_PROXY_CHAIN.length > 0;
-    const initProxy = proxyFirst ? PLAYWRIGHT_PROXY_CHAIN[0] : null;
-    const first = await attempt(initProxy);
-    if (first.content) return first.content;
+    browser = await chromium.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+    });
 
-    // First attempt failed — walk remaining proxies, then try direct as last resort
-    const remaining = proxyFirst ? PLAYWRIGHT_PROXY_CHAIN.slice(1) : PLAYWRIGHT_PROXY_CHAIN;
-    for (const proxy of remaining) {
-      log(`  ↩ ${providerId}: retrying via ${proxy.server}`);
-      const result = await attempt(proxy);
-      if (result.content) return result.content;
-    }
+    const context = await browser.newContext({
+      userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+      viewport: { width: 1920, height: 1080 },
+    });
+    const page = await context.newPage();
 
-    // All proxies exhausted — try direct as final fallback (if we started with proxy)
-    if (proxyFirst) {
-      log(`  ↩ ${providerId}: all proxies failed, trying direct`);
-      const directResult = await attempt(null);
-      if (directResult.content) return directResult.content;
-    }
-
-    return null;
-  } catch (err) {
-    warn(`Playwright attempt failed for ${url}: ${err.message.slice(0, 120)}`);
-    // If first attempt threw, try remaining chain + direct fallback
-    const proxyFirst = useProxy !== false && PLAYWRIGHT_PROXY_CHAIN.length > 0;
-    const fallbacks = proxyFirst ? [...PLAYWRIGHT_PROXY_CHAIN.slice(1), null] : [...PLAYWRIGHT_PROXY_CHAIN, null];
-    for (const proxy of fallbacks) {
-      try {
-        log(`  ↩ ${providerId}: retrying via ${proxy ? proxy.server : "direct (no proxy)"}`);
-        const result = await attempt(proxy);
-        if (result.content) return result.content;
-      } catch (fallbackErr) {
-        warn(`Playwright fallback also failed (${proxy ? proxy.server : "direct"}): ${fallbackErr.message.slice(0, 80)}`);
+    // Block non-essential resource types to reduce bandwidth ~60-80%
+    await page.route("**/*", (route) => {
+      const type = route.request().resourceType();
+      if (["image", "font", "stylesheet", "media"].includes(type)) {
+        route.abort();
+      } else {
+        route.continue();
       }
+    });
+
+    await page.setExtraHTTPHeaders({ "Accept-Language": "en-US,en;q=0.9" });
+    const response = await page.goto(url, { waitUntil: "networkidle", timeout: DIRECT_TIMEOUT_MS });
+
+    // 403 = bot detection — bail immediately, let Firecrawl handle it
+    if (response && response.status() === 403) {
+      log(`  (playwright-direct) 403 on ${providerId} — skipping to Firecrawl`);
+      return null;
     }
+
+    // Extra wait for JS-heavy SPAs
+    if (SLOW_PROVIDERS.has(providerId)) {
+      await page.waitForTimeout(8_000);
+    }
+
+    const text = await page.evaluate(() => document.body.innerText);
+    const cleaned = preprocessMarkdown(text, providerId);
+    const stock = detectStockStatus(cleaned, coin.weight_oz || 1, providerId);
+    const price = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, providerId);
+
+    if (price !== null) {
+      return { price, inStock: stock.inStock, source: "playwright-direct" };
+    }
+
+    // OOS with no price — still useful stock status info, but let Firecrawl try for a price
+    if (!stock.inStock) {
+      log(`  (playwright-direct) ${providerId}: OOS detected but no price — trying Firecrawl`);
+      return null;
+    }
+
+    // Page loaded but no price extracted — Firecrawl may parse differently
     return null;
+
+  } catch (err) {
+    log(`  (playwright-direct) ${providerId} failed: ${err.message.slice(0, 100)} — falling back`);
+    return null;
+  } finally {
+    if (browser) { try { await browser.close(); } catch { /* ignore */ } }
   }
 }
 
@@ -666,6 +605,19 @@ async function main() {
   shuffleArray(targets);
 
   log(`Proxy config: HOME_PROXY_URL=${HOME_PROXY_URL ? "SET" : "NOT SET"}, PLAYWRIGHT_LAUNCH=${PLAYWRIGHT_LAUNCH}`);
+
+  // Probe proxy health (non-blocking, non-fatal; informational only)
+  if (HOME_PROXY_URL) {
+    try {
+      await fetch(HOME_PROXY_URL, { signal: AbortSignal.timeout(5000) });
+      log(`Proxy probe: OK (${HOME_PROXY_URL})`);
+    } catch {
+      warn(`HOME_PROXY_URL unreachable (${HOME_PROXY_URL})`);
+    }
+  } else {
+    log(`Proxy probe: skipped (HOME_PROXY_URL not set)`);
+  }
+
   log(`Retail price extraction: ${targets.length} targets (sequential + jitter)`);
   if (DRY_RUN) log("DRY RUN — no SQLite writes");
 
@@ -704,10 +656,39 @@ async function main() {
     let inStock = true;
     let finalUrl = urls[0];
 
+    // ── Phase 0: Try Playwright direct (no proxy, 15s timeout) ──────────────
+    // Fast first-pass — succeeds for ~65/88 targets in <5s. If it gets a price,
+    // skip Firecrawl entirely. Skip for PLAYWRIGHT_ONLY_PROVIDERS (they need
+    // Firecrawl's stealth patches).
+    if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id) && PLAYWRIGHT_LAUNCH) {
+      const directResult = await scrapeWithPlaywrightDirect(urls[0], provider.id, coin);
+      if (directResult !== null) {
+        price = directResult.price;
+        source = directResult.source;
+        inStock = directResult.inStock;
+        finalUrl = urls[0];
+        log(`  ✓ ${coinSlug}/${provider.id}: $${price.toFixed(2)} (playwright-direct${!inStock ? ", OOS" : ""})`);
+        // Skip Firecrawl — go straight to store result
+        scrapeResults.push({
+          coinSlug, coin, providerId: provider.id, url: finalUrl,
+          price, source, inStock, ok: true, error: null,
+        });
+        if (db) {
+          await writeSnapshot(db, {
+            scrapedAt, windowStart: winStart, coinSlug,
+            vendor: provider.id, price, source,
+            isFailed: false, inStock,
+          });
+        }
+        if (targetIdx < targets.length - 1) { await jitter(); }
+        continue;
+      }
+    }
+
     // ── Phase 1: Try all URLs via Firecrawl ──────────────────────────────────
     // Skip Phase 1 for providers where Firecrawl is structurally unreliable
     // (bot detection or waitFor-not-supported JS rendering). price/inStock stay
-    // at their defaults (null / true) so Phase 2 fires immediately below.
+    // at their defaults (null / true) so the failure path fires below.
     if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id)) {
       for (let i = 0; i < urls.length; i++) {
         const url = urls[i];
@@ -746,40 +727,15 @@ async function main() {
           warn(`  ? ${coinSlug}/${provider.id} [url${i}]: page loaded, no price — trying next URL`);
           if (i < urls.length - 1) { await jitter(); continue; }
 
-          // Last URL, Firecrawl parse failure — fall through to Playwright phase
+          // Last URL, Firecrawl parse failure — no more fallbacks
           finalUrl = url;
 
         } catch (err) {
           warn(`  ✗ ${provider.id} [url${i}] firecrawl error: ${err.message.slice(0, 100)}`);
           if (i < urls.length - 1) { await jitter(); continue; }
-          // Last URL threw — fall through to Playwright phase
+          // Last URL threw — no more fallbacks
           finalUrl = url;
         }
-      }
-    }
-
-    // ── Phase 2: Playwright if Firecrawl chain didn't get a price ────────────
-    if (price === null && (BROWSERLESS_URL || PLAYWRIGHT_LAUNCH)) {
-      log(`  ↩ ${coinSlug}/${provider.id}: Firecrawl chain exhausted — trying Playwright on ${finalUrl}`);
-      try {
-        const html = await scrapeWithPlaywright(finalUrl, provider.id);
-        if (html) {
-          const cleaned = preprocessMarkdown(html, provider.id);
-          const stock = detectStockStatus(cleaned, coin.weight_oz || 1, provider.id);
-          inStock = stock.inStock;
-          const p = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
-          if (p !== null) {
-            price = p;
-            source = "playwright";
-            log(`  ✓ ${coinSlug}/${provider.id}: $${p.toFixed(2)} (playwright${!inStock ? ", OOS" : ""})`);
-          } else if (inStock) {
-            warn(`  ? ${coinSlug}/${provider.id}: Playwright page loaded but no price found`);
-          } else {
-            log(`  ⚠ ${provider.id}: ${stock.reason} — ${stock.detectedText || "detected"} (playwright)`);
-          }
-        }
-      } catch (pwErr) {
-        warn(`  ✗ Playwright failed for ${coinSlug}/${provider.id}: ${pwErr.message.slice(0, 100)}`);
       }
     }
 
