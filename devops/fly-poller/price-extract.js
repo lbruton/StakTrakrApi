@@ -347,9 +347,9 @@ function extractPrice(markdown, metal, weightOz = 1, providerId = "") {
 
   if (providerId === "summitmetals") {
     const reg = regularPricePrices();
-    if (reg.length > 0) return Math.min(...reg);
+    if (reg.length > 0) return { price: Math.min(...reg), matchedBy: "regularPrice" };
     const tbl = tablePrices();
-    if (tbl.length > 0) return Math.min(...tbl);
+    if (tbl.length > 0) return { price: Math.min(...tbl), matchedBy: "tablePrices" };
     return null;
   }
 
@@ -362,18 +362,18 @@ function extractPrice(markdown, metal, weightOz = 1, providerId = "") {
     // mega-menu (after nav stripping) can contain goldback category prices in the
     // $5-$25 range that appear before the product price and produce false matches.
     const tblFirst = firstTableRowFirstPrice();
-    if (tblFirst !== null) return tblFirst;
+    if (tblFirst !== null) return { price: tblFirst, matchedBy: "tableFirstRow" };
     const proseTbl = jmPriceFromProseTable();
-    if (proseTbl !== null) return proseTbl;
+    if (proseTbl !== null) return { price: proseTbl, matchedBy: "jmProseTable" };
     const ala = asLowAsPrices();
-    if (ala.length > 0) return Math.min(...ala);
+    if (ala.length > 0) return { price: Math.min(...ala), matchedBy: "asLowAs" };
   } else if (USES_AS_LOW_AS.has(providerId)) {
     // Reserved for vendors that have no pricing table, only "As Low As" display.
     // Currently empty — all vendors now use table-first extraction.
     const ala = asLowAsPrices();
-    if (ala.length > 0) return Math.min(...ala);
+    if (ala.length > 0) return { price: Math.min(...ala), matchedBy: "asLowAs" };
     const tbl = tablePrices();
-    if (tbl.length > 0) return Math.min(...tbl);
+    if (tbl.length > 0) return { price: Math.min(...tbl), matchedBy: "tablePrices" };
   } else {
     // ALL VENDORS: APMEX, SDB, Monument, Hero Bullion, Bullion Exchanges, Summit, etc.
     // Tables have columns: Check/Wire | Crypto | Card; rows: 1-unit → bulk.
@@ -382,11 +382,11 @@ function extractPrice(markdown, metal, weightOz = 1, providerId = "") {
     // render the price grid as prose rather than markdown pipe tables.
     // "As Low As" is last resort (bulk discount fallback if table parsing fails).
     const tblFirst = firstTableRowFirstPrice();
-    if (tblFirst !== null) return tblFirst;
+    if (tblFirst !== null) return { price: tblFirst, matchedBy: "tableFirstRow" };
     const prose = firstInRangePriceProse();
-    if (prose !== null) return prose;
+    if (prose !== null) return { price: prose, matchedBy: "firstInRangeProse" };
     const ala = asLowAsPrices();
-    if (ala.length > 0) return Math.min(...ala);
+    if (ala.length > 0) return { price: Math.min(...ala), matchedBy: "asLowAs" };
   }
 
   return null;
@@ -413,8 +413,21 @@ const SLOW_PROVIDERS = new Set(["jmbullion", "herobullion", "monumentmetals", "s
 // for both via the Playwright Service (port 3003) with waitFor from SLOW_PROVIDERS.
 // Raw chromium.launch() in Phase 2 gets 403'd by bot detection on both sites,
 // but Firecrawl's Playwright Service has stealth patches that bypass it.
-// Keeping the set empty — all vendors now go through Phase 1 (Firecrawl) first.
+// Keeping the set empty — default routing is Phase 0 (Playwright-direct) first;
+// vendors needing Firecrawl are in FIRECRAWL_PREFERRED_PROVIDERS instead.
 const PLAYWRIGHT_ONLY_PROVIDERS = new Set([]);
+
+// Vendors whose pages use HTML pricing tables that Playwright-direct cannot
+// parse correctly. innerText strips pipe delimiters, so firstTableRowFirstPrice()
+// silently fails and firstInRangePriceProse() grabs wrong prices from nav/header
+// elements. These vendors skip Phase 0 and go straight to Phase 1 (Firecrawl),
+// which converts HTML tables to markdown pipes for correct extraction.
+const FIRECRAWL_PREFERRED_PROVIDERS = new Set([
+  "apmex",            // HTML table → innerText loses pipes → wrong price
+  "monumentmetals",   // Same table extraction issue
+  "jmbullion",        // Bot detection + prose table needs Firecrawl stealth
+  "bullionexchanges", // Bot detection requires Firecrawl stealth patches
+]);
 
 // Providers whose pages structurally include fractional coin thumbnails/links in
 // their global nav or mega-menu, causing false fractional_weight detection even
@@ -549,7 +562,9 @@ async function scrapeWithPlaywrightDirect(url, providerId, coin) {
     const text = await page.evaluate(() => document.body.innerText);
     const cleaned = preprocessMarkdown(text, providerId);
     const stock = detectStockStatus(cleaned, coin.weight_oz || 1, providerId);
-    const price = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, providerId);
+    const extracted = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, providerId);
+    const price = extracted ? extracted.price : null;
+    if (extracted) log(`  extractPrice ${providerId}: matched=${extracted.matchedBy} price=$${extracted.price.toFixed(2)}`);
 
     if (price !== null) {
       return { price, inStock: stock.inStock, source: "playwright-direct" };
@@ -659,8 +674,9 @@ async function main() {
     // ── Phase 0: Try Playwright direct (no proxy, 15s timeout) ──────────────
     // Fast first-pass — succeeds for ~65/88 targets in <5s. If it gets a price,
     // skip Firecrawl entirely. Skip for PLAYWRIGHT_ONLY_PROVIDERS (they need
-    // Firecrawl's stealth patches).
-    if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id) && PLAYWRIGHT_LAUNCH) {
+    // Firecrawl's stealth patches) and FIRECRAWL_PREFERRED_PROVIDERS (they need
+    // Firecrawl's markdown pipe-table conversion for correct extraction).
+    if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id) && !FIRECRAWL_PREFERRED_PROVIDERS.has(provider.id) && PLAYWRIGHT_LAUNCH) {
       const directResult = await scrapeWithPlaywrightDirect(urls[0], provider.id, coin);
       if (directResult !== null) {
         price = directResult.price;
@@ -702,7 +718,9 @@ async function main() {
           if (!stock.inStock) {
             log(`  ⚠ ${provider.id} [url${i}]: ${stock.reason} — ${stock.detectedText || "detected"}`);
             // Still attempt price extraction — OOS pages often show advertised price
-            const oosPrice = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
+            const oosExtracted = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
+            const oosPrice = oosExtracted ? oosExtracted.price : null;
+            if (oosExtracted) log(`  extractPrice ${provider.id}: matched=${oosExtracted.matchedBy} price=$${oosExtracted.price.toFixed(2)} (OOS)`);
             if (oosPrice !== null) {
               price = oosPrice;
               finalUrl = url;
@@ -715,7 +733,9 @@ async function main() {
             break;
           }
 
-          const p = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
+          const extracted = extractPrice(cleaned, coin.metal, coin.weight_oz || 1, provider.id);
+          const p = extracted ? extracted.price : null;
+          if (extracted) log(`  extractPrice ${provider.id}: matched=${extracted.matchedBy} price=$${extracted.price.toFixed(2)}`);
           if (p !== null) {
             price = p;
             finalUrl = url;
