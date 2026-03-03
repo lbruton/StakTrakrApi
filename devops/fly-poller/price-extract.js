@@ -413,7 +413,8 @@ const SLOW_PROVIDERS = new Set(["jmbullion", "herobullion", "monumentmetals", "s
 // for both via the Playwright Service (port 3003) with waitFor from SLOW_PROVIDERS.
 // Raw chromium.launch() in Phase 2 gets 403'd by bot detection on both sites,
 // but Firecrawl's Playwright Service has stealth patches that bypass it.
-// Keeping the set empty — all vendors now go through Phase 1 (Firecrawl) first.
+// Keeping the set empty — default routing is Phase 0 (Playwright-direct) first;
+// vendors needing Firecrawl are in FIRECRAWL_PREFERRED_PROVIDERS instead.
 const PLAYWRIGHT_ONLY_PROVIDERS = new Set([]);
 
 // Vendors whose pages use HTML pricing tables that Playwright-direct cannot
@@ -673,7 +674,8 @@ async function main() {
     // ── Phase 0: Try Playwright direct (no proxy, 15s timeout) ──────────────
     // Fast first-pass — succeeds for ~65/88 targets in <5s. If it gets a price,
     // skip Firecrawl entirely. Skip for PLAYWRIGHT_ONLY_PROVIDERS (they need
-    // Firecrawl's stealth patches).
+    // Firecrawl's stealth patches) and FIRECRAWL_PREFERRED_PROVIDERS (they need
+    // Firecrawl's markdown pipe-table conversion for correct extraction).
     if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id) && !FIRECRAWL_PREFERRED_PROVIDERS.has(provider.id) && PLAYWRIGHT_LAUNCH) {
       const directResult = await scrapeWithPlaywrightDirect(urls[0], provider.id, coin);
       if (directResult !== null) {
