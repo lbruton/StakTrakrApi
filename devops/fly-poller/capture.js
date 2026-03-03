@@ -290,67 +290,6 @@ async function dismissPopups(page, providerId) {
 }
 
 // ---------------------------------------------------------------------------
-// Capture one coin's targets using a shared page (local sequential mode)
-// ---------------------------------------------------------------------------
-
-async function captureCoinWithPage(coinSlug, targets, outDir, page) {
-  const results = [];
-  for (const target of targets) {
-    const filename = `${target.coin}_${target.provider}.png`;
-    const filepath = join(outDir, filename);
-
-    log(`[${coinSlug}/${target.provider}] → ${target.url}`);
-
-    try {
-      const response = await page.goto(target.url, {
-        waitUntil: "domcontentloaded",
-        timeout: 45000,
-      });
-      const status = response ? response.status() : 0;
-
-      const providerWait = PROVIDER_PAGE_LOAD_WAIT[target.provider] ?? PAGE_LOAD_WAIT;
-      await page.waitForTimeout(providerWait);
-
-      await dismissPopups(page, target.provider);
-
-      await page.screenshot({ path: filepath, fullPage: false });
-      const title = await page.title();
-
-      results.push({
-        coin: target.coin,
-        provider: target.provider,
-        metal: target.metal,
-        url: target.url,
-        status,
-        title,
-        screenshot: filename,
-        ok: status === 200 && !title.toLowerCase().includes("not found"),
-      });
-
-      log(`[${coinSlug}/${target.provider}]   ✓ ${status} "${title.slice(0, 50)}" → ${filename}`);
-    } catch (err) {
-      results.push({
-        coin: target.coin,
-        provider: target.provider,
-        metal: target.metal,
-        url: target.url,
-        status: 0,
-        title: "",
-        screenshot: null,
-        ok: false,
-        error: err.message.slice(0, 200),
-      });
-      log(`[${coinSlug}/${target.provider}]   ✗ ${err.message.slice(0, 80)}`);
-    }
-
-    if (targets.indexOf(target) < targets.length - 1) {
-      await page.waitForTimeout(INTER_PAGE_DELAY);
-    }
-  }
-  return results;
-}
-
-// ---------------------------------------------------------------------------
 // Capture one coin's targets — direct first, proxy fallback (local mode)
 // ---------------------------------------------------------------------------
 
@@ -424,7 +363,7 @@ async function captureCoinDirectFirst(coinSlug, targets, outDir, directPage, pro
         provider: target.provider,
         metal: target.metal,
         url: target.url,
-        status: 0,
+        status,
         title: "",
         screenshot: null,
         ok: false,
@@ -432,7 +371,7 @@ async function captureCoinDirectFirst(coinSlug, targets, outDir, directPage, pro
       });
       log(`[${coinSlug}/${target.provider}]   x ${errMsg.slice(0, 80)}`);
 
-      if (targets.indexOf(target) < targets.length - 1) {
+      if (target !== targets[targets.length - 1]) {
         await directPage.waitForTimeout(INTER_PAGE_DELAY);
       }
       continue;
@@ -475,7 +414,7 @@ async function captureCoinDirectFirst(coinSlug, targets, outDir, directPage, pro
       log(`[${coinSlug}/${target.provider}]   x (${via}) ${err.message.slice(0, 80)}`);
     }
 
-    if (targets.indexOf(target) < targets.length - 1) {
+    if (target !== targets[targets.length - 1]) {
       await activePage.waitForTimeout(INTER_PAGE_DELAY);
     }
   }

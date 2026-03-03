@@ -98,7 +98,7 @@ if [ "${VISION_ENABLED:-}" = "1" ]; then
     echo "[$(date -u +%H:%M:%S)] Skipping vision pipeline (GEMINI_API_KEY not set)"
   fi
 else
-  echo "[$(date -u +%H:%M:%S)] Vision pipeline disabled (VISION_ENABLED not set)"
+  echo "[$(date -u +%H:%M:%S)] Vision pipeline disabled (VISION_ENABLED=${VISION_ENABLED:-unset})"
 fi
 
 # Scrape complete — run-publish.sh handles export + push on its own cadence

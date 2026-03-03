@@ -13,7 +13,6 @@
  * Environment:
  *   FIRECRAWL_API_KEY   Required for cloud Firecrawl. Omit for self-hosted.
  *   FIRECRAWL_BASE_URL  Self-hosted Firecrawl endpoint (default: api.firecrawl.dev)
- *   BROWSERLESS_URL       ws:// endpoint for Playwright fallback (optional)
  *   HOME_PROXY_URL        Cox WiFi tinyproxy URL (e.g. http://100.112.198.50:8888)
  *   DATA_DIR              Path to repo data/ folder (default: ../../data)
  *   COINS               Comma-separated coin slugs to run (default: all)
@@ -36,9 +35,6 @@ const FIRECRAWL_API_KEY = process.env.FIRECRAWL_API_KEY;
 // Self-hosted Firecrawl: set FIRECRAWL_BASE_URL=http://localhost:3002
 // Cloud Firecrawl (default): leave unset or set to https://api.firecrawl.dev
 const FIRECRAWL_BASE_URL = (process.env.FIRECRAWL_BASE_URL || "https://api.firecrawl.dev").replace(/\/$/, "");
-// Playwright/browserless fallback: ws:// endpoint for remote browser
-// e.g. ws://host.docker.internal:3000/chromium/playwright?token=local_dev_token
-const BROWSERLESS_URL = process.env.BROWSERLESS_URL || null;
 // PLAYWRIGHT_LAUNCH: set to "1" to launch Chromium locally instead of connecting
 // to a remote browserless. Useful on Fly.io where browsers are installed but no
 // external browserless service is running.
@@ -462,7 +458,7 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
     if (!response.ok) {
       const text = await response.text().catch(() => "");
       // 403 = bot detection / IP block. Retrying Firecrawl (same IP) won't help;
-      // skip retries and fall through to Phase 2 Playwright (proxy-first).
+      // skip retries — terminal failure for this target.
       if (response.status === 403) {
         throw Object.assign(
           new Error(`HTTP 403 (blocked): ${text.slice(0, 200)}`),
@@ -477,7 +473,7 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
 
   } catch (err) {
     // Abort/timeout = the request was killed by our AbortController.
-    // Retrying the same Firecrawl call won't help; fall through to Phase 2.
+    // Retrying the same Firecrawl call won't help; skip retries.
     if (err.name === "AbortError" || (err.message && err.message.includes("aborted"))) {
       err.skipRetry = true;
     }
@@ -489,153 +485,6 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
     throw err;
   } finally {
     clearTimeout(timer);
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Playwright fallback (browserless remote browser)
-// ---------------------------------------------------------------------------
-
-/**
- * Scrape a URL using a remote Playwright/browserless instance.
- * Called when Firecrawl returns null or throws for a target.
- * Returns the HTML content as a string (to be passed through extractPrice).
- *
- * Proxy strategy (PLAYWRIGHT_LAUNCH mode):
- *   1. If HOME_PROXY_URL is set, use tinyproxy (residential IP) by default.
- *      This avoids datacenter IP detection on dealer sites.
- *   2. Direct (no proxy) is the last resort — datacenter IPs trigger bot detection.
- *
- * The `useProxy` parameter can override this: pass `false` to force direct first,
- * or `true` to confirm the default proxy-first behavior.
- *
- * This mirrors the home poller, which inherently exits from a residential IP.
- *
- * Bandwidth optimisation: images, fonts, stylesheets and media are blocked via
- * Playwright route interception — reduces per-page transfer by ~60-80%.
- *
- * @param {string} url
- * @param {string} [providerId]
- * @param {boolean} [useProxy]  undefined=proxy-first (default), true=force proxy, false=force direct
- * @returns {Promise<string|null>}  raw HTML/text content, or null on failure
- */
-async function scrapeWithPlaywright(url, providerId = "", useProxy = undefined) {
-  if (!BROWSERLESS_URL && !PLAYWRIGHT_LAUNCH) return null;
-
-  // Geo-block signals in page text (HTTP-level 403s surface as page content)
-  const GEO_BLOCK_PATTERNS = [
-    /unavailable in your (country|location|region)/i,
-    /not available in your (country|location|region)/i,
-    /access denied/i,
-    /403 forbidden/i,
-  ];
-
-  const { chromium } = await import("playwright-core");
-
-  // Residential → commercial proxy fallback chain (tried in order when direct is blocked).
-  // Cox tinyproxy requires no auth (local network access via Tailscale).
-  const PLAYWRIGHT_PROXY_CHAIN = [
-    HOME_PROXY_URL ? { server: HOME_PROXY_URL } : null,
-  ].filter(Boolean);
-
-  // proxyConfig: { server, username?, password? } | null (null = direct, no proxy)
-  async function attempt(proxyConfig = null) {
-    log(`  → Playwright attempt via ${proxyConfig ? proxyConfig.server : "direct (no proxy)"}`);
-    let browser;
-    try {
-      if (PLAYWRIGHT_LAUNCH) {
-        const launchProxy = proxyConfig ? { proxy: proxyConfig } : {};
-        browser = await chromium.launch({
-          headless: true,
-          args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
-          ...launchProxy,
-        });
-      } else {
-        browser = await chromium.connect(BROWSERLESS_URL);
-      }
-
-      const context = await browser.newContext({
-        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-        viewport: { width: 1920, height: 1080 },
-      });
-      const page = await context.newPage();
-
-      // Block non-essential resource types to reduce bandwidth ~60-80%
-      await page.route("**/*", (route) => {
-        const type = route.request().resourceType();
-        if (["image", "font", "stylesheet", "media"].includes(type)) {
-          route.abort();
-        } else {
-          route.continue();
-        }
-      });
-
-      await page.setExtraHTTPHeaders({ "Accept-Language": "en-US,en;q=0.9" });
-      const response = await page.goto(url, { waitUntil: "networkidle", timeout: SCRAPE_TIMEOUT_MS });
-
-      // Detect HTTP-level geo-block
-      if (response && response.status() === 403) {
-        await browser.close();
-        return { content: null, geoBlocked: true };
-      }
-
-      // Extra wait for JS-heavy SPAs
-      if (SLOW_PROVIDERS.has(providerId)) {
-        await page.waitForTimeout(8_000);
-      }
-
-      const content = await page.evaluate(() => document.body.innerText);
-      await browser.close();
-
-      // Detect geo-block in page text
-      const geoBlocked = GEO_BLOCK_PATTERNS.some(p => p.test(content.slice(0, 2000)));
-      return { content: geoBlocked ? null : content, geoBlocked };
-
-    } catch (err) {
-      if (browser) { try { await browser.close(); } catch { /* ignore */ } }
-      throw err;
-    }
-  }
-
-  try {
-    // Default: proxy-first when available (residential IP avoids datacenter detection).
-    // useProxy=false explicitly forces direct; useProxy=true/undefined uses proxy chain.
-    const proxyFirst = useProxy !== false && PLAYWRIGHT_PROXY_CHAIN.length > 0;
-    const initProxy = proxyFirst ? PLAYWRIGHT_PROXY_CHAIN[0] : null;
-    const first = await attempt(initProxy);
-    if (first.content) return first.content;
-
-    // First attempt failed — walk remaining proxies, then try direct as last resort
-    const remaining = proxyFirst ? PLAYWRIGHT_PROXY_CHAIN.slice(1) : PLAYWRIGHT_PROXY_CHAIN;
-    for (const proxy of remaining) {
-      log(`  ↩ ${providerId}: retrying via ${proxy.server}`);
-      const result = await attempt(proxy);
-      if (result.content) return result.content;
-    }
-
-    // All proxies exhausted — try direct as final fallback (if we started with proxy)
-    if (proxyFirst) {
-      log(`  ↩ ${providerId}: all proxies failed, trying direct`);
-      const directResult = await attempt(null);
-      if (directResult.content) return directResult.content;
-    }
-
-    return null;
-  } catch (err) {
-    warn(`Playwright attempt failed for ${url}: ${err.message.slice(0, 120)}`);
-    // If first attempt threw, try remaining chain + direct fallback
-    const proxyFirst = useProxy !== false && PLAYWRIGHT_PROXY_CHAIN.length > 0;
-    const fallbacks = proxyFirst ? [...PLAYWRIGHT_PROXY_CHAIN.slice(1), null] : [...PLAYWRIGHT_PROXY_CHAIN, null];
-    for (const proxy of fallbacks) {
-      try {
-        log(`  ↩ ${providerId}: retrying via ${proxy ? proxy.server : "direct (no proxy)"}`);
-        const result = await attempt(proxy);
-        if (result.content) return result.content;
-      } catch (fallbackErr) {
-        warn(`Playwright fallback also failed (${proxy ? proxy.server : "direct"}): ${fallbackErr.message.slice(0, 80)}`);
-      }
-    }
-    return null;
   }
 }
 
@@ -757,15 +606,13 @@ async function main() {
 
   log(`Proxy config: HOME_PROXY_URL=${HOME_PROXY_URL ? "SET" : "NOT SET"}, PLAYWRIGHT_LAUNCH=${PLAYWRIGHT_LAUNCH}`);
 
-  // Probe proxy health (non-blocking, non-fatal)
-  let proxyHealthy = false;
+  // Probe proxy health (non-blocking, non-fatal; informational only)
   if (HOME_PROXY_URL) {
     try {
       await fetch(HOME_PROXY_URL, { signal: AbortSignal.timeout(5000) });
-      proxyHealthy = true;
       log(`Proxy probe: OK (${HOME_PROXY_URL})`);
     } catch {
-      warn(`HOME_PROXY_URL unreachable — proxy fallback disabled this run`);
+      warn(`HOME_PROXY_URL unreachable (${HOME_PROXY_URL})`);
     }
   } else {
     log(`Proxy probe: skipped (HOME_PROXY_URL not set)`);
