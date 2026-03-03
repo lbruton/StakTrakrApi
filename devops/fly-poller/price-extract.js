@@ -115,7 +115,7 @@ const OUT_OF_STOCK_PATTERNS = [
 
 // Providers whose "Pre-Order" / "Presale" items still show live purchasable prices.
 // For these, skip the pre-?order OOS pattern — treat presale as in-stock.
-const PREORDER_TOLERANT_PROVIDERS = new Set(["jmbullion"]);
+const PREORDER_TOLERANT_PROVIDERS = new Set(["jmbullion", "monumentmetals"]);
 
 const MARKDOWN_CUTOFF_PATTERNS = {
   sdbullion: [
