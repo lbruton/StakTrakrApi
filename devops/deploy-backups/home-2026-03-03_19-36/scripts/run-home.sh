@@ -69,30 +69,26 @@ if [ -f "$RETRY_FILE" ]; then
   fi
 fi
 
-# Vision pipeline — soft-disabled by default (VISION_ENABLED=1 to enable)
-if [ "${VISION_ENABLED:-}" = "1" ]; then
-  if [ -n "${GEMINI_API_KEY:-}" ]; then
-    _ARTIFACT_DIR="${ARTIFACT_DIR:-/tmp/retail-screenshots/$(date -u +%Y-%m-%d)}"
-    echo "[$(date -u +%H:%M:%S)] Running vision capture..."
-    BROWSER_MODE=local \
-      PLAYWRIGHT_LAUNCH=1 \
-      PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-/usr/local/share/playwright}" \
-      ARTIFACT_DIR="$_ARTIFACT_DIR" \
-      DATA_DIR="${DATA_DIR:-$SCRIPT_DIR/data}" \
-      node "$SCRIPT_DIR/capture.js" \
-      || echo "[$(date -u +%H:%M:%S)] WARN: vision capture failed (non-fatal)"
+# Vision pipeline — non-fatal, requires GEMINI_API_KEY
+if [ -n "${GEMINI_API_KEY:-}" ]; then
+  _ARTIFACT_DIR="${ARTIFACT_DIR:-/tmp/retail-screenshots/$(date -u +%Y-%m-%d)}"
+  echo "[$(date -u +%H:%M:%S)] Running vision capture..."
+  BROWSER_MODE=local \
+    PLAYWRIGHT_LAUNCH=1 \
+    PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-/usr/local/share/playwright}" \
+    ARTIFACT_DIR="$_ARTIFACT_DIR" \
+    DATA_DIR="${DATA_DIR:-$SCRIPT_DIR/data}" \
+    node "$SCRIPT_DIR/capture.js" \
+    || echo "[$(date -u +%H:%M:%S)] WARN: vision capture failed (non-fatal)"
 
-    echo "[$(date -u +%H:%M:%S)] Running vision extraction..."
-    MANIFEST_PATH="$_ARTIFACT_DIR/manifest.json" \
-      ARTIFACT_DIR="$_ARTIFACT_DIR" \
-      DATA_DIR="${DATA_DIR:-$SCRIPT_DIR/data}" \
-      node "$SCRIPT_DIR/extract-vision.js" \
-      || echo "[$(date -u +%H:%M:%S)] WARN: vision extraction failed (non-fatal)"
-  else
-    echo "[$(date -u +%H:%M:%S)] Vision enabled but GEMINI_API_KEY not set — skipping"
-  fi
+  echo "[$(date -u +%H:%M:%S)] Running vision extraction..."
+  MANIFEST_PATH="$_ARTIFACT_DIR/manifest.json" \
+    ARTIFACT_DIR="$_ARTIFACT_DIR" \
+    DATA_DIR="${DATA_DIR:-$SCRIPT_DIR/data}" \
+    node "$SCRIPT_DIR/extract-vision.js" \
+    || echo "[$(date -u +%H:%M:%S)] WARN: vision extraction failed (non-fatal)"
 else
-  echo "[$(date -u +%H:%M:%S)] Vision pipeline disabled (VISION_ENABLED=${VISION_ENABLED:-unset})"
+  echo "[$(date -u +%H:%M:%S)] Skipping vision pipeline (GEMINI_API_KEY not set)"
 fi
 
 echo "[$(date -u +%H:%M:%S)] Done."

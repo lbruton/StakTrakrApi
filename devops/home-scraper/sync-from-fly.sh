@@ -25,6 +25,7 @@ SHARED_FILES=(
   vision-patch.js
   db.js
   turso-client.js
+  provider-db.js
   goldback-scraper.js
   merge-prices.js
   import-from-log.js
