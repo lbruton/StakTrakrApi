@@ -7,24 +7,22 @@ Served via GitHub Pages at **[api.staktrakr.com](https://api.staktrakr.com)**.
 
 ## Architecture
 
-All data is produced by the **Fly.io container** (`staktrakr` app, `dfw` region) and force-pushed to the `api` branch. GitHub Pages serves from `main`.
+All data is produced by the **Fly.io container** (`staktrakr` app, `dfw` region, 8 shared CPUs / 4GB RAM) and force-pushed to the `api` branch. GitHub Pages serves directly from the `api` branch.
+
+A **home poller** (LXC container on a home VM) scrapes independently and writes to the same Turso database. Both pollers' data is merged by `api-export.js` at publish time, providing redundancy and broader vendor coverage.
 
 ```
-Fly.io container (staktrakr)
-  ├── run-local.sh    (retail scrape)       cron: 15,45 * * * *
-  ├── run-spot.sh     (spot prices)         cron: 5,20,35,50 * * * *
+Fly.io container (staktrakr, dfw, 8 shared CPUs / 4GB RAM)
+  ├── run-local.sh    (retail scrape)       cron: 0 * * * *
+  ├── run-spot.sh     (spot prices)         cron: 0,30 * * * *
   ├── run-publish.sh  (Turso → JSON → git)  cron: 8,23,38,53 * * * *
   ├── run-retry.sh    (T3 proxy retry)      cron: 15 * * * *
-  └── run-fbp.sh      (FBP gap-fill)        cron: 0 20 * * *
+  └── run-goldback.sh (goldback exchange)    cron: 1 * * * *
         │
         ▼
   StakTrakrApi api branch
         │
-        │  Merge Poller Branches (GHA)
-        ▼
-  StakTrakrApi main branch
-        │
-        │  GitHub Pages deploy
+        │  GitHub Pages
         ▼
   api.staktrakr.com  ◄── StakTrakr UI
 ```
@@ -33,9 +31,9 @@ Fly.io container (staktrakr)
 
 | Feed | Source | Frequency | Freshness field |
 |------|--------|-----------|-----------------|
-| **Market prices** | Firecrawl + Gemini Vision → Turso → api-export.js | Every 15 min | `manifest.json` → `generated_at` |
-| **Spot prices** | MetalPriceAPI → poller.py | Every 15 min (4×/hr) | Hourly file timestamp |
-| **Goldback spot** | Turso `goldback-g1` vendor data → api-export.js | Every 15 min | `goldback-spot.json` → `scraped_at` |
+| **Market prices** | Firecrawl + Gemini Vision → Turso → api-export.js | Hourly (`:00`) | `manifest.json` → `generated_at` |
+| **Spot prices** | MetalPriceAPI → poller.py | Every 30 min (`:00`, `:30`) | Hourly file timestamp |
+| **Goldback spot** | goldback-scraper.js → Turso → api-export.js | Hourly (`:01`) | `goldback-spot.json` → `scraped_at` |
 
 ### Source of Truth
 
@@ -47,8 +45,8 @@ Fly.io container (staktrakr)
 
 | Branch | Purpose |
 |--------|---------|
-| `api` | Live write target — Fly.io force-pushes here |
-| `main` | Merged + served — GitHub Pages reads from here |
+| `main` | Source code — Fly.io deploys from here |
+| `api` | Data branch — Fly.io force-pushes JSON here, GitHub Pages serves from here |
 
 ---
 
@@ -102,7 +100,7 @@ All served from `https://api.staktrakr.com/data/`.
 
 **Bullion slugs:** `ase`, `maple-silver`, `britannia-silver`, `krugerrand-silver`, `generic-silver-round`, `generic-silver-bar-10oz`, `age`, `ape`, `buffalo`, `maple-gold`, `krugerrand-gold`
 
-**Goldback slugs (per-state):** `goldback-{state}-g{denom}` — 8 states × 7 denominations = 56 slugs. States: `utah`, `nevada`, `wyoming`, `new-hampshire`, `south-dakota`, `arizona`, `oklahoma`, `dc`. Denominations: `ghalf`, `g1`, `g2`, `g5`, `g10`, `g25`, `g50`.
+**Goldback slugs (per-state):** `goldback-{state}-g{denom}` — 8 states, 4 active + 4 placeholders = 56 slugs. Active states with vendors: `arizona`, `oklahoma`, `utah`, `wyoming`. Placeholder states (no active vendors): `dc`, `nevada`, `new-hampshire`, `south-dakota`. Denominations: `ghalf`, `g1`, `g2`, `g5`, `g10`, `g25`, `g50`.
 
 **Goldback slugs (deprecated):** `goldback-g1` through `goldback-g50` — kept for backward compat; marked `deprecated: true` in providers.json.
 
@@ -116,15 +114,14 @@ All served from `https://api.staktrakr.com/data/`.
 
 ---
 
-## Scrape Resilience (T1–T5)
+## Scrape Resilience (T1–T4)
 
 | Tier | Method | Trigger |
 |------|--------|---------|
-| T1 | Firecrawl (self-hosted, port 3002) | Default — Tailscale residential IP |
-| T2 | Playwright fallback (local Chromium) | Firecrawl fails |
-| T3 | Webshare proxy retry (`run-retry.sh` at :15) | T1+T2 both failed |
+| T1 | Firecrawl (self-hosted, port 3002) — uses Fly.io datacenter IP directly | Default scrape method. ~1/3 of targets may 403 due to datacenter IP blocking |
+| T2 | Playwright fallback (Chromium via HOME_PROXY_URL) | Firecrawl fails — routes through tinyproxy on home VM (Tailscale mesh) for residential IP. Chromium does not respect Tailscale exit nodes, so an explicit HTTP proxy is required |
+| T3 | Webshare proxy retry (`run-retry.sh` at `:15`) | T1+T2 both failed |
 | T4 | Turso last-known-good price | T3 also fails — `api-export.js` fills at publish time |
-| T5 | FindBullionPrices gap-fill (`run-fbp.sh` daily 20:00 UTC) | Remaining gaps after T4 |
 
 ---
 
@@ -147,14 +144,19 @@ All live in the Fly.io container at `/app/`:
 
 | Script | Purpose |
 |--------|---------|
+| `run-local.sh` | Retail scrape orchestrator — runs hourly at `:00` |
+| `run-spot.sh` | Spot price poll — runs every 30 min at `:00`, `:30` |
+| `run-publish.sh` | Turso → JSON → git push — runs every 15 min at `:08`, `:23`, `:38`, `:53` |
+| `run-retry.sh` | T3 Webshare proxy retry — runs hourly at `:15` |
+| `run-goldback.sh` | Goldback exchange scrape — runs hourly at `:01`, calls `goldback-scraper.js` |
 | `price-extract.js` | Scrape vendor prices (Firecrawl + Playwright fallback) |
 | `capture.js` | Screenshot vendor pages (Playwright) |
 | `extract-vision.js` | Gemini Vision price extraction from screenshots |
 | `merge-prices.js` | Merge scraped prices into Turso |
 | `api-export.js` | Turso → in-memory SQLite → static JSON files |
+| `goldback-scraper.js` | Goldback exchange rate scraper (called by `run-goldback.sh`) |
 | `serve.js` | Redundancy HTTP server on port 8080 |
 | `turso-client.js` | Turso libSQL client (createTursoClient, initTursoSchema) |
-| `goldback-scraper.js` | Legacy goldback scraper (not in cron — superseded by retail pipeline) |
 | `spot-poller/poller.py` | MetalPriceAPI spot price poller |
 
 ---
@@ -201,16 +203,4 @@ HEALTHCHECK
 
 ## Documentation
 
-Full infrastructure documentation lives in **[StakTrakrWiki](https://github.com/lbruton/StakTrakrWiki)**:
-
-| Page | Contents |
-|------|----------|
-| [Architecture Overview](https://github.com/lbruton/StakTrakrWiki/blob/main/architecture-overview.md) | System diagram, repo boundaries |
-| [REST API Reference](https://github.com/lbruton/StakTrakrWiki/blob/main/rest-api-reference.md) | Complete endpoint map, schemas, confidence tiers |
-| [Retail Pipeline](https://github.com/lbruton/StakTrakrWiki/blob/main/retail-pipeline.md) | Dual-poller architecture, Turso, Vision pipeline |
-| [Spot Pipeline](https://github.com/lbruton/StakTrakrWiki/blob/main/spot-pipeline.md) | MetalPriceAPI, hourly/15min files |
-| [Goldback Pipeline](https://github.com/lbruton/StakTrakrWiki/blob/main/goldback-pipeline.md) | Per-state slugs, denomination generation |
-| [Turso Schema](https://github.com/lbruton/StakTrakrWiki/blob/main/turso-schema.md) | Database tables, indexes, key queries |
-| [Cron Schedule](https://github.com/lbruton/StakTrakrWiki/blob/main/cron-schedule.md) | Full timeline view |
-| [Fly.io Container](https://github.com/lbruton/StakTrakrWiki/blob/main/fly-container.md) | Deploy, SSH, secrets |
-| [Health & Diagnostics](https://github.com/lbruton/StakTrakrWiki/blob/main/health.md) | Stale thresholds, diagnosis commands |
+Full infrastructure documentation lives in the [StakTrakr wiki](https://github.com/lbruton/StakTrakr/tree/dev/wiki).
