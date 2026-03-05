@@ -26,6 +26,7 @@ SHARED_FILES=(
   db.js
   turso-client.js
   provider-db.js
+  export-providers-json.js
   goldback-scraper.js
   merge-prices.js
   import-from-log.js
