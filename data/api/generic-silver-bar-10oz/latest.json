@@ -1,18 +1,12 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-03-05T20:30:00Z",
-  "median_price": 913.3,
+  "window_start": "2026-03-05T21:00:00Z",
+  "median_price": 925.1,
   "lowest_price": 854.77,
   "vendors": {
     "apmex": {
-      "price": 952,
+      "price": 953.7,
       "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 860.7,
-      "confidence": 30,
       "source": "firecrawl",
       "inStock": true
     },
@@ -23,38 +17,44 @@
       "inStock": true
     },
     "jmbullion": {
-      "price": 913.3,
+      "price": 925.1,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
+    "bullionexchanges": {
+      "price": 860.7,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-05T19:00:02.911Z"
+    },
     "sdbullion": {
       "price": 917.19,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-05T19:00:02.911Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "monumentmetals": false,
+    "bullionexchanges": true,
+    "monumentmetals": true,
     "sdbullion": true
   },
-  "last_known_price_by_site": {
-    "monumentmetals": 890.5
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-28T00:45:00Z",
-      "median": 1018.06,
+      "median": 971.9,
       "low": 971.9,
       "vendors": {
-        "apmex": 1060.1,
-        "herobullion": 1018.06,
         "bullionexchanges": 971.9
       }
     },
@@ -4316,6 +4316,15 @@
       "low": 952,
       "vendors": {
         "apmex": 952
+      }
+    },
+    {
+      "window": "2026-03-05T21:00:00Z",
+      "median": 953.7,
+      "low": 925.1,
+      "vendors": {
+        "jmbullion": 925.1,
+        "apmex": 953.7
       }
     }
   ]

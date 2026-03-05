@@ -1,18 +1,12 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-03-05T20:30:00Z",
-  "median_price": 89.65,
-  "lowest_price": 87.01,
+  "window_start": "2026-03-05T21:00:00Z",
+  "median_price": 89.98,
+  "lowest_price": 88.87,
   "vendors": {
     "apmex": {
-      "price": 93.3,
+      "price": 93.97,
       "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 87.01,
-      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -23,25 +17,33 @@
       "inStock": true
     },
     "jmbullion": {
-      "price": 89.65,
+      "price": 89.86,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 89.65,
+      "price": 89.98,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 87.01,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-05T19:00:02.911Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": false,
-    "sdbullion": true
+    "sdbullion": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {
     "monumentmetals": 90.39
@@ -49,20 +51,10 @@
   "last_available_date_by_site": {},
   "windows_24h": [
     {
-      "window": "2026-02-28T02:45:00Z",
-      "median": 105.51,
-      "low": 99.14,
-      "vendors": {
-        "bullionexchanges": 99.14,
-        "apmex": 105.51
-      }
-    },
-    {
       "window": "2026-02-28T03:00:00Z",
       "median": 105.51,
       "low": 99.14,
       "vendors": {
-        "herobullion": 105.28,
         "apmex": 105.51,
         "sdbullion": 105.99,
         "bullionexchanges": 99.14,
@@ -4384,6 +4376,16 @@
       "low": 89.65,
       "vendors": {
         "sdbullion": 89.65
+      }
+    },
+    {
+      "window": "2026-03-05T21:00:00Z",
+      "median": 89.98,
+      "low": 89.86,
+      "vendors": {
+        "jmbullion": 89.86,
+        "apmex": 93.97,
+        "sdbullion": 89.98
       }
     }
   ]
