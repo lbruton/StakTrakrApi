@@ -2,7 +2,7 @@
 # StakTrakr Home Poller — LXC run script
 # Mirrors run-local.sh (Fly.io) with full Firecrawl + Playwright + Vision pipeline.
 # Only differences from Fly.io: POLLER_ID=home, cron times, .env loading.
-# Cron: 0,20,40 * * * * (offset from Fly.io :10 run)
+# Cron: 30 * * * * (hourly at :30, offset from Fly.io :00 run)
 
 set -e
 
