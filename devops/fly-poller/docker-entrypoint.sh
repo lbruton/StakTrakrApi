@@ -63,6 +63,7 @@ echo "[entrypoint] Writing cron schedule: ${CRON_SCHEDULE}"
  echo "8,23,38,53 * * * * root . /etc/environment; /app/run-publish.sh >> /var/log/publish.log 2>&1"; \
  echo "15 * * * * root . /etc/environment; /app/run-retry.sh >> /var/log/retail-retry.log 2>&1"; \
  echo "1 * * * * root . /etc/environment; /app/run-goldback.sh >> /var/log/goldback-poller.log 2>&1"; \
+ echo "*/5 * * * * root . /etc/environment; cd /app && node export-providers-json.js >> /var/log/provider-export.log 2>&1"; \
 ) \
   > /etc/cron.d/retail-poller
 chmod 0644 /etc/cron.d/retail-poller
@@ -73,7 +74,7 @@ mkdir -p /data/tailscale /var/run/tailscale
 # ── 6. Create log files ───────────────────────────────────────────────
 touch /var/log/retail-poller.log /var/log/http-server.log \
       /var/log/spot-poller.log /var/log/publish.log /var/log/retail-retry.log \
-      /var/log/goldback-poller.log
+      /var/log/goldback-poller.log /var/log/provider-export.log
 
 echo "[entrypoint] Handing off to supervisord..."
 exec "$@"
