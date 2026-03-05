@@ -454,7 +454,7 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
   // (Bumped from 6s after jmbullion/bullionexchanges were removed from PLAYWRIGHT_ONLY;
   // their React SPAs need the extra 2s to fully render pricing tables.)
   if (SLOW_PROVIDERS.has(providerId)) {
-    body.waitFor = 8000;
+    body.waitFor = providerId === "jmbullion" ? 12000 : 8000;
   }
 
   try {
@@ -670,6 +670,7 @@ async function main() {
     let source = "firecrawl";
     let inStock = true;
     let finalUrl = urls[0];
+    const _retriedUrls = new Set();
 
     // ── Phase 0: Try Playwright direct (no proxy, 15s timeout) ──────────────
     // Fast first-pass — succeeds for ~65/88 targets in <5s. If it gets a price,
@@ -743,7 +744,32 @@ async function main() {
             break;
           }
 
-          // Parse failure on this URL — try next if available
+          // Parse failure on this URL — retry once with longer wait for FIRECRAWL_PREFERRED
+          // providers (jmbullion, bullionexchanges) where proxy latency can cause under-render.
+          if (FIRECRAWL_PREFERRED_PROVIDERS.has(provider.id) && !_retriedUrls.has(url)) {
+            _retriedUrls.add(url);
+            log(`  ↻ ${coinSlug}/${provider.id} [url${i}]: retrying with extended waitFor...`);
+            await jitter();
+            try {
+              const retryMd = await scrapeUrl(url, provider.id, 1);
+              const retryCleaned = preprocessMarkdown(retryMd, provider.id);
+              const retryStock = detectStockStatus(retryCleaned, coin.weight_oz || 1, provider.id);
+              const retryExtracted = extractPrice(retryCleaned, coin.metal, coin.weight_oz || 1, provider.id);
+              const retryPrice = retryExtracted ? retryExtracted.price : null;
+              if (retryExtracted) log(`  extractPrice ${provider.id}: matched=${retryExtracted.matchedBy} price=$${retryExtracted.price.toFixed(2)} (retry)`);
+              if (retryPrice !== null) {
+                price = retryPrice;
+                source = "firecrawl-retry";
+                inStock = retryStock.inStock;
+                finalUrl = url;
+                log(`  ✓ ${coinSlug}/${provider.id}: $${retryPrice.toFixed(2)} (firecrawl-retry)${!inStock ? " OOS" : ""}`);
+                break;
+              }
+            } catch (retryErr) {
+              warn(`  ✗ ${provider.id} [url${i}] retry error: ${retryErr.message.slice(0, 100)}`);
+            }
+          }
+
           warn(`  ? ${coinSlug}/${provider.id} [url${i}]: page loaded, no price — trying next URL`);
           if (i < urls.length - 1) { await jitter(); continue; }
 
