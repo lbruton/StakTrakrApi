@@ -23,7 +23,7 @@
  *   DRY_RUN    Set to "1" to skip writing files
  */
 
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
+import { writeFileSync, mkdirSync, existsSync, readFileSync, unlinkSync } from "node:fs";
 import { join, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import Database from "better-sqlite3";
@@ -422,86 +422,143 @@ function resolveVendorPrice(coinSlug, vendorId, firecrawlData, visionData, db, w
 }
 
 // ---------------------------------------------------------------------------
+// Cache management
+// ---------------------------------------------------------------------------
+
+function openOrCreateCache(cachePath) {
+  const isNew = !existsSync(cachePath);
+  const db = new Database(cachePath);
+
+  // Integrity check on existing DBs
+  if (!isNew) {
+    try {
+      const check = db.pragma('integrity_check');
+      if (check[0].integrity_check !== 'ok') {
+        warn('Cache DB integrity check failed — rebuilding');
+        db.close();
+        unlinkSync(cachePath);
+        return openOrCreateCache(cachePath);
+      }
+    } catch (err) {
+      warn(`Cache DB corrupt: ${err.message} — rebuilding`);
+      db.close();
+      unlinkSync(cachePath);
+      return openOrCreateCache(cachePath);
+    }
+  }
+
+  // Create schema if new
+  if (isNew) {
+    db.exec(`
+      CREATE TABLE price_snapshots (
+        id           INTEGER PRIMARY KEY AUTOINCREMENT,
+        scraped_at   TEXT NOT NULL,
+        window_start TEXT NOT NULL,
+        coin_slug    TEXT NOT NULL,
+        vendor       TEXT NOT NULL,
+        price        REAL,
+        source       TEXT NOT NULL,
+        confidence   INTEGER,
+        is_failed    INTEGER NOT NULL DEFAULT 0,
+        in_stock     INTEGER NOT NULL DEFAULT 1,
+        UNIQUE(coin_slug, vendor, window_start)
+      );
+      CREATE INDEX idx_coin_window ON price_snapshots(coin_slug, window_start);
+      CREATE INDEX idx_window ON price_snapshots(window_start);
+      CREATE INDEX idx_coin_date ON price_snapshots(coin_slug, substr(window_start, 1, 10));
+      CREATE INDEX idx_coin_vendor_stock ON price_snapshots(coin_slug, vendor, in_stock, scraped_at DESC);
+    `);
+    log('Created new cache DB at ' + cachePath);
+  }
+
+  return { db, isNew };
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
 async function main() {
-  log("Reading from Turso (source of truth)...");
-  const tursoClient = await openTursoDb();
-  const generatedAt = new Date().toISOString();
+  // Determine cache path — sits alongside the data/ directory
+  const cachePath = join(dirname(DATA_DIR), 'prices-cache.db');
 
-  // Query all recent price data from Turso (last 30 days to cover all aggregates)
-  const cutoff = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-  const result = await tursoClient.execute({
-    sql: `
-      SELECT coin_slug, vendor, price, window_start, scraped_at, source, confidence, in_stock
-      FROM price_snapshots
-      WHERE window_start >= ?
-      ORDER BY window_start DESC
-    `,
-    args: [cutoff],
-  });
-  const tursoRows = result.rows;
-  tursoClient.close();
-
-  if (!tursoRows.length) {
-    warn("No price data in Turso — skipping API export");
-    return;
+  // FULL_EXPORT=1 escape hatch: drop cache and rebuild from scratch
+  if (process.env.FULL_EXPORT === '1') {
+    log('[api-export] FULL_EXPORT=1 — rebuilding cache from scratch');
+    try { unlinkSync(cachePath); } catch {}
   }
 
-  log(`Loaded ${tursoRows.length} price snapshots from Turso`);
-
-  // Create in-memory SQLite database for processing
-  const db = new Database(":memory:");
-
-  // Create schema
-  db.exec(`
-    CREATE TABLE price_snapshots (
-      id           INTEGER PRIMARY KEY AUTOINCREMENT,
-      scraped_at   TEXT NOT NULL,
-      window_start TEXT NOT NULL,
-      coin_slug    TEXT NOT NULL,
-      vendor       TEXT NOT NULL,
-      price        REAL,
-      source       TEXT NOT NULL,
-      confidence   INTEGER,
-      is_failed    INTEGER NOT NULL DEFAULT 0,
-      in_stock     INTEGER NOT NULL DEFAULT 1
-    );
-    CREATE INDEX idx_coin_window ON price_snapshots(coin_slug, window_start);
-    CREATE INDEX idx_window ON price_snapshots(window_start);
-    CREATE INDEX idx_coin_date ON price_snapshots(coin_slug, substr(window_start, 1, 10));
-    CREATE INDEX idx_coin_vendor_stock ON price_snapshots(coin_slug, vendor, in_stock, scraped_at DESC);
-  `);
-
-  // Populate in-memory database
-  const insertStmt = db.prepare(`
-    INSERT INTO price_snapshots (
-      scraped_at, window_start, coin_slug, vendor, price,
-      source, confidence, is_failed, in_stock
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `);
-
-  const insertMany = db.transaction((rows) => {
-    for (const row of rows) {
-      insertStmt.run(
-        row.scraped_at,
-        row.window_start,
-        row.coin_slug,
-        row.vendor,
-        row.price,
-        row.source,
-        row.confidence || null,
-        0, // is_failed not in Turso yet
-        row.in_stock !== undefined ? row.in_stock : 1
-      );
-    }
-  });
-
-  insertMany(tursoRows);
-  log("In-memory database populated");
+  log('Opening price cache at ' + cachePath);
+  const { db, isNew } = openOrCreateCache(cachePath);
 
   try {
+    const generatedAt = new Date().toISOString();
+    const tursoClient = await openTursoDb();
+
+    // Determine watermark — what's the most recent data we have?
+    let watermark = null;
+    if (!isNew) {
+      const row = db.prepare('SELECT MAX(scraped_at) AS wm FROM price_snapshots').get();
+      watermark = row?.wm || null;
+    }
+
+    // Query Turso: full backfill if new, incremental if existing
+    let tursoRows;
+    if (watermark) {
+      log(`Incremental sync from watermark: ${watermark}`);
+      const result = await tursoClient.execute({
+        sql: `SELECT coin_slug, vendor, price, window_start, scraped_at, source, confidence, in_stock
+              FROM price_snapshots WHERE scraped_at > ? ORDER BY scraped_at`,
+        args: [watermark],
+      });
+      tursoRows = result.rows;
+      log(`Fetched ${tursoRows.length} new rows from Turso`);
+    } else {
+      log('Full backfill from Turso (new cache)...');
+      const cutoff = new Date(Date.now() - 31 * 24 * 60 * 60 * 1000).toISOString();
+      const result = await tursoClient.execute({
+        sql: `SELECT coin_slug, vendor, price, window_start, scraped_at, source, confidence, in_stock
+              FROM price_snapshots WHERE window_start >= ? ORDER BY window_start DESC`,
+        args: [cutoff],
+      });
+      tursoRows = result.rows;
+      log(`Backfill: loaded ${tursoRows.length} rows from Turso`);
+    }
+    tursoClient.close();
+
+    if (!tursoRows.length && isNew) {
+      warn('No price data in Turso — skipping API export');
+      return;
+    }
+
+    // Insert new rows with INSERT OR IGNORE (deduplicates dual pollers)
+    if (tursoRows.length > 0) {
+      const insertStmt = db.prepare(`
+        INSERT OR IGNORE INTO price_snapshots (
+          scraped_at, window_start, coin_slug, vendor, price,
+          source, confidence, is_failed, in_stock
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `);
+      const insertMany = db.transaction((rows) => {
+        for (const row of rows) {
+          insertStmt.run(
+            row.scraped_at, row.window_start, row.coin_slug, row.vendor,
+            row.price, row.source, row.confidence || null,
+            0, row.in_stock !== undefined ? row.in_stock : 1
+          );
+        }
+      });
+      insertMany(tursoRows);
+      log(`Inserted/deduplicated ${tursoRows.length} rows into cache`);
+    }
+
+    // Prune old data (keep 31 days)
+    const pruneResult = db.prepare(
+      "DELETE FROM price_snapshots WHERE window_start < datetime('now', '-31 days')"
+    ).run();
+    if (pruneResult.changes > 0) {
+      log(`Pruned ${pruneResult.changes} rows older than 31 days`);
+    }
 
   // Determine the latest window and all coin slugs
   const latestWindow = readLatestWindow(db);

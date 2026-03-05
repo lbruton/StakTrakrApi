@@ -40,6 +40,7 @@ cat > /etc/cron.d/retail-poller << 'EOF'
 # StakTrakr home poller — runs at :30 past every hour
 # Offset from Fly.io :00 run to stagger Turso writes
 30 * * * * root /opt/poller/run-home.sh >> /var/log/retail-poller.log 2>&1
+*/5 * * * * root . /opt/poller/.env; cd /opt/poller && node export-providers-json.js >> /var/log/provider-export.log 2>&1
 EOF
 chmod 644 /etc/cron.d/retail-poller
 

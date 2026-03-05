@@ -699,26 +699,50 @@ export function loadProvidersFromFile(dataDir) {
 }
 
 /**
- * Load providers with Turso-first, file-fallback strategy.
- * Logs which path was taken.
+ * Load providers with file-first, Turso-fallback strategy.
+ * Set FORCE_TURSO_PROVIDERS=1 to bypass file and go straight to Turso.
  *
  * @param {import("@libsql/client").Client|null} client  Turso client (null to skip)
- * @param {string} dataDir  Path to the data/ folder (for fallback)
+ * @param {string} dataDir  Path to the data/ folder (for file read)
  * @returns {Promise<object>}  Provider data in providers.json shape
  */
 export async function loadProviders(client, dataDir) {
+  if (process.env.FORCE_TURSO_PROVIDERS === "1") {
+    if (client) {
+      try {
+        const data = await getProviders(client);
+        const coinCount = Object.keys(data.coins).length;
+        console.log(`[provider-db] Loaded ${coinCount} coins from Turso (forced)`);
+        return data;
+      } catch (err) {
+        console.warn(`[provider-db] Turso failed (forced mode): ${err.message}`);
+      }
+    }
+    throw new Error("[provider-db] FORCE_TURSO_PROVIDERS=1 but Turso unavailable");
+  }
+
+  try {
+    const data = loadProvidersFromFile(dataDir);
+    const coinCount = Object.keys(data.coins || {}).length;
+    if (coinCount > 0) {
+      console.log(`[provider-db] Loaded ${coinCount} coins from local file`);
+      return data;
+    }
+    console.warn("[provider-db] WARN: local providers.json is empty, falling back to Turso");
+  } catch (err) {
+    console.warn(`[provider-db] WARN: local providers.json unavailable, falling back to Turso: ${err.message}`);
+  }
+
   if (client) {
     try {
       const data = await getProviders(client);
       const coinCount = Object.keys(data.coins).length;
-      console.log(`[provider-db] Loaded ${coinCount} coins from Turso`);
+      console.log(`[provider-db] Loaded ${coinCount} coins from Turso (fallback)`);
       return data;
     } catch (err) {
-      console.warn(`[provider-db] Turso failed, falling back to file: ${err.message}`);
+      console.warn(`[provider-db] Turso fallback also failed: ${err.message}`);
     }
   }
-  const data = loadProvidersFromFile(dataDir);
-  const coinCount = Object.keys(data.coins).length;
-  console.log(`[provider-db] Loaded ${coinCount} coins from local file (fallback)`);
-  return data;
+
+  throw new Error("[provider-db] Both local file and Turso unavailable");
 }
