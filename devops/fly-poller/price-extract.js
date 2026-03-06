@@ -51,6 +51,7 @@ const HOME_PROXY_URL = process.env.HOME_PROXY_URL || null;
 // per-vendor effective gap ≈ (47/7 vendors) × avg_jitter ≈ ~30s — well within limits.
 // Kept short so each full run completes in <10 min and fits inside the 15-min cron window.
 const SCRAPE_TIMEOUT_MS = 30_000;
+const FIRECRAWL_TIMEOUT_MS = 55_000; // extended timeout for Firecrawl-preferred SPAs (jmbullion needs 12s waitFor + round-trip)
 const RETRY_ATTEMPTS = 2;
 const RETRY_DELAY_MS = 3_000;
 
@@ -441,7 +442,8 @@ const FRACTIONAL_EXEMPT_PROVIDERS = new Set(["jmbullion", "bullionexchanges"]);
 
 async function scrapeUrl(url, providerId = "", attempt = 1) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), SCRAPE_TIMEOUT_MS);
+  const scrapeTimeout = FIRECRAWL_PREFERRED_PROVIDERS.has(providerId) ? FIRECRAWL_TIMEOUT_MS : SCRAPE_TIMEOUT_MS;
+  const timer = setTimeout(() => controller.abort(), scrapeTimeout);
 
   const body = {
     url,
