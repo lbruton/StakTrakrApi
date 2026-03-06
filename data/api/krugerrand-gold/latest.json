@@ -1,17 +1,11 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-03-06T20:00:00Z",
+  "window_start": "2026-03-06T20:30:00Z",
   "median_price": 5300.99,
-  "lowest_price": 5179.09,
+  "lowest_price": 5225,
   "vendors": {
     "apmex": {
       "price": 5323.29,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 5179.09,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -28,6 +22,20 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "sdbullion": {
+      "price": 5245.85,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 5179.09,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-06T18:30:02.597Z"
+    },
     "monumentmetals": {
       "price": 5218.99,
       "confidence": null,
@@ -35,23 +43,15 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-06T16:30:03.147Z"
-    },
-    "sdbullion": {
-      "price": 5222.28,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-06T17:00:02.335Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "monumentmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "bullionexchanges": true,
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -61,7 +61,6 @@
       "median": 5350.15,
       "low": 5291.4,
       "vendors": {
-        "monumentmetals": 5301.39,
         "sdbullion": 5350.15,
         "jmbullion": 5292.66,
         "herobullion": 5367.48,
@@ -4560,6 +4559,14 @@
       "low": 5300.99,
       "vendors": {
         "jmbullion": 5300.99
+      }
+    },
+    {
+      "window": "2026-03-06T20:30:00Z",
+      "median": 5245.85,
+      "low": 5245.85,
+      "vendors": {
+        "sdbullion": 5245.85
       }
     }
   ]
