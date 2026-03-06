@@ -679,7 +679,11 @@ async function main() {
     // skip Firecrawl entirely. Skip for PLAYWRIGHT_ONLY_PROVIDERS (they need
     // Firecrawl's stealth patches) and FIRECRAWL_PREFERRED_PROVIDERS (they need
     // Firecrawl's markdown pipe-table conversion for correct extraction).
-    if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id) && !FIRECRAWL_PREFERRED_PROVIDERS.has(provider.id) && PLAYWRIGHT_LAUNCH) {
+    // Exception: goldback slugs are individual product detail pages with a single
+    // prominently-displayed price — not HTML pricing tables — so Phase 0 Playwright
+    // extracts prices correctly even for FIRECRAWL_PREFERRED vendors (API-14).
+    const isGoldback = coinSlug.startsWith("goldback");
+    if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id) && (!FIRECRAWL_PREFERRED_PROVIDERS.has(provider.id) || isGoldback) && PLAYWRIGHT_LAUNCH) {
       const directResult = await scrapeWithPlaywrightDirect(urls[0], provider.id, coin);
       if (directResult !== null) {
         price = directResult.price;
