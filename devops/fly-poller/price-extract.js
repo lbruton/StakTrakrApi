@@ -46,19 +46,18 @@ const COIN_FILTER = process.env.COINS ? process.env.COINS.split(",").map(s => s.
 // Set as Fly.io secret: fly secrets set HOME_PROXY_URL=http://100.112.198.50:8888
 const HOME_PROXY_URL = process.env.HOME_PROXY_URL || null;
 
-// Sequential with per-request jitter (1-3s) — avoids rate-limit fingerprinting.
+// Sequential with per-request jitter (2-8s) — avoids rate-limit fingerprinting.
 // Targets are shuffled so the same vendor is never hit consecutively;
-// per-vendor effective gap ≈ (130/7 vendors) × avg_jitter ≈ ~37s — well within limits.
-// Target: <25 min per full run (130 targets × ~11.5s avg = ~25 min).
+// per-vendor effective gap ≈ (47/7 vendors) × avg_jitter ≈ ~30s — well within limits.
+// Kept short so each full run completes in <10 min and fits inside the 15-min cron window.
 const SCRAPE_TIMEOUT_MS = 30_000;
 const FIRECRAWL_TIMEOUT_MS = 55_000; // extended timeout for Firecrawl-preferred SPAs (jmbullion needs 12s waitFor + round-trip)
-const FIRECRAWL_REQUEST_TIMEOUT_MS = 50_000; // Firecrawl-internal timeout for FIRECRAWL_PREFERRED; must be < FIRECRAWL_TIMEOUT_MS
 const RETRY_ATTEMPTS = 2;
 const RETRY_DELAY_MS = 3_000;
 
-// Jitter between requests: 1–3 seconds (randomised anti-pattern fingerprinting)
+// Jitter between requests: 2–8 seconds (randomised anti-pattern fingerprinting)
 function jitter() {
-  return new Promise(r => setTimeout(r, 1_000 + Math.random() * 2_000));
+  return new Promise(r => setTimeout(r, 2_000 + Math.random() * 6_000));
 }
 
 // Fisher-Yates shuffle (in-place)
@@ -458,13 +457,6 @@ async function scrapeUrl(url, providerId = "", attempt = 1) {
   // their React SPAs need the extra 2s to fully render pricing tables.)
   if (SLOW_PROVIDERS.has(providerId)) {
     body.waitFor = providerId === "jmbullion" ? 12000 : 8000;
-  }
-  // Fly.io routes Firecrawl through tinyproxy (Tailscale), adding ~14-50ms per TCP
-  // round-trip. Heavy SPAs (monumentmetals, jmbullion) can exceed Firecrawl's default
-  // ~30s internal timeout. Override to 50s so Firecrawl doesn't 408 before our
-  // AbortController fires at 55s.
-  if (FIRECRAWL_PREFERRED_PROVIDERS.has(providerId)) {
-    body.timeout = FIRECRAWL_REQUEST_TIMEOUT_MS;
   }
 
   try {
