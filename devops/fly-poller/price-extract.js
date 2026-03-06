@@ -430,6 +430,14 @@ const FIRECRAWL_PREFERRED_PROVIDERS = new Set([
   "bullionexchanges", // Bot detection requires Firecrawl stealth patches
 ]);
 
+// Subset of FIRECRAWL_PREFERRED_PROVIDERS that are in the set due to HTML table
+// parsing only — not bot detection. Phase 0 Playwright-direct is safe for these
+// on individual product detail pages (e.g. goldback slugs) where the page shows
+// a single price element rather than a multi-row pricing table.
+// jmbullion and bullionexchanges are intentionally excluded: they require
+// Firecrawl's stealth patches to avoid 403s from bot detection on datacenter IPs.
+const FIRECRAWL_TABLE_PARSE_PROVIDERS = new Set(["apmex", "monumentmetals"]);
+
 // Providers whose pages structurally include fractional coin thumbnails/links in
 // their global nav or mega-menu, causing false fractional_weight detection even
 // on the correct 1-oz product page. For these, skip the fractional_weight check
@@ -681,9 +689,13 @@ async function main() {
     // Firecrawl's markdown pipe-table conversion for correct extraction).
     // Exception: goldback slugs are individual product detail pages with a single
     // prominently-displayed price — not HTML pricing tables — so Phase 0 Playwright
-    // extracts prices correctly even for FIRECRAWL_PREFERRED vendors (API-14).
+    // extracts prices correctly for table-parse vendors (apmex, monumentmetals).
+    // Bot-detection vendors (jmbullion, bullionexchanges) are NOT bypassed: they
+    // still need Firecrawl stealth even on goldback detail pages (API-14).
     const isGoldback = coinSlug.startsWith("goldback");
-    if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id) && (!FIRECRAWL_PREFERRED_PROVIDERS.has(provider.id) || isGoldback) && PLAYWRIGHT_LAUNCH) {
+    const fcPreferredForTarget = FIRECRAWL_PREFERRED_PROVIDERS.has(provider.id) &&
+      !(isGoldback && FIRECRAWL_TABLE_PARSE_PROVIDERS.has(provider.id));
+    if (!PLAYWRIGHT_ONLY_PROVIDERS.has(provider.id) && !fcPreferredForTarget && PLAYWRIGHT_LAUNCH) {
       const directResult = await scrapeWithPlaywrightDirect(urls[0], provider.id, coin);
       if (directResult !== null) {
         price = directResult.price;
