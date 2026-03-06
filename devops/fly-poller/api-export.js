@@ -49,7 +49,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 const DATA_DIR = resolve(process.env.DATA_DIR || join(__dirname, "../../data"));
 const DRY_RUN = process.env.DRY_RUN === "1";
-const T4_MAX_STALE_HOURS = 4;
+const T4_MAX_STALE_HOURS = 24;
 
 // ---------------------------------------------------------------------------
 // Logging
@@ -588,13 +588,20 @@ async function main() {
   // --------------------------------------------------------------------------
   const globalLatestCoins = {};
   for (const slug of coinSlugs) {
-    const rows = readLatestPerVendor(db, slug, 2);
-    if (!rows.length) continue;
+    let rows = readLatestPerVendor(db, slug, 2);
+    let isStale = false;
+    if (!rows.length) {
+      // T4 fallback: try last 24h so cards never vanish due to a failed poll cycle
+      rows = readLatestPerVendor(db, slug, 24);
+      if (!rows.length) continue;
+      isStale = true;
+    }
     globalLatestCoins[slug] = {
       window_start:  latestWindow,
       median_price:  medianPrice(rows),
       lowest_price:  lowestPrice(rows),
       vendor_count:  Object.keys(vendorMap(rows)).length,
+      ...(isStale ? { is_stale: true } : {}),
     };
   }
 
