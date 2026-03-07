@@ -1,15 +1,9 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-03-07T00:00:00Z",
+  "window_start": "2026-03-07T00:30:00Z",
   "median_price": 92.75,
   "lowest_price": 91.23,
   "vendors": {
-    "apmex": {
-      "price": 96.24,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 92.75,
       "confidence": 80,
@@ -28,6 +22,20 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "sdbullion": {
+      "price": 95.78,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 96.24,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-06T22:30:02.173Z"
+    },
     "bullionexchanges": {
       "price": 90.26,
       "confidence": null,
@@ -35,33 +43,24 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-06T16:30:03.147Z"
-    },
-    "sdbullion": {
-      "price": 95.73,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-06T19:00:05.887Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "bullionexchanges": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "apmex": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-28T05:45:00Z",
-      "median": 105.51,
+      "median": 105.28,
       "low": 99.14,
       "vendors": {
-        "jmbullion": 109.49,
         "herobullion": 105.28,
         "bullionexchanges": 99.14,
         "apmex": 105.51
@@ -4546,6 +4545,14 @@
       "low": 92.75,
       "vendors": {
         "herobullion": 92.75
+      }
+    },
+    {
+      "window": "2026-03-07T00:30:00Z",
+      "median": 95.78,
+      "low": 95.78,
+      "vendors": {
+        "sdbullion": 95.78
       }
     }
   ]
