@@ -1,26 +1,22 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-03-07T21:00:00Z",
-  "median_price": 92.28,
+  "window_start": "2026-03-07T21:30:00Z",
+  "median_price": 90.19,
   "lowest_price": 90.19,
   "vendors": {
-    "apmex": {
-      "price": 96.24,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 90.19,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 92.28,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 96.24,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-07T19:30:02.613Z"
     },
     "herobullion": {
       "price": 92.75,
@@ -29,6 +25,14 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-07T18:00:02.385Z"
+    },
+    "jmbullion": {
+      "price": 92.28,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-07T19:30:02.613Z"
     },
     "sdbullion": {
       "price": 95.78,
@@ -40,11 +44,11 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
-    "jmbullion": true,
     "monumentmetals": false,
+    "apmex": true,
     "herobullion": true,
+    "jmbullion": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {
