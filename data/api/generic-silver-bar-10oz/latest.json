@@ -1,15 +1,9 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-03-07T02:00:00Z",
+  "window_start": "2026-03-07T02:30:00Z",
   "median_price": 947.76,
   "lowest_price": 874.4,
   "vendors": {
-    "apmex": {
-      "price": 977.4,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 874.4,
       "confidence": 50,
@@ -22,17 +16,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 893.3,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 947.76,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 977.4,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-07T00:30:02.867Z"
     },
     "herobullion": {
       "price": 893.74,
@@ -41,26 +37,32 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-06T22:00:02.040Z"
+    },
+    "monumentmetals": {
+      "price": 893.3,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-07T00:30:02.867Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "monumentmetals": true,
     "sdbullion": true,
-    "herobullion": true
+    "apmex": true,
+    "herobullion": true,
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-28T03:30:00Z",
-      "median": 1018.06,
+      "median": 971.9,
       "low": 971.9,
       "vendors": {
-        "herobullion": 1018.06,
-        "apmex": 1060.1,
         "bullionexchanges": 971.9
       }
     },
@@ -4478,6 +4480,15 @@
     },
     {
       "window": "2026-03-07T01:30:00Z",
+      "median": 950.8,
+      "low": 947.76,
+      "vendors": {
+        "sdbullion": 947.76,
+        "jmbullion": 950.8
+      }
+    },
+    {
+      "window": "2026-03-07T02:30:00Z",
       "median": 950.8,
       "low": 947.76,
       "vendors": {
