@@ -1,7 +1,7 @@
 {
   "slug": "maple-gold",
-  "window_start": "2026-03-07T08:30:00Z",
-  "median_price": 5324.39,
+  "window_start": "2026-03-07T09:00:00Z",
+  "median_price": 5283.29,
   "lowest_price": 5260.19,
   "vendors": {
     "apmex": {
@@ -15,6 +15,20 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "sdbullion": {
+      "price": 5283.29,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 5197.99,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-06T18:00:05.780Z"
     },
     "herobullion": {
       "price": 5243.21,
@@ -31,35 +45,24 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-07T04:00:02.308Z"
-    },
-    "sdbullion": {
-      "price": 5283.29,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-07T06:30:02.078Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": false,
     "monumentmetals": true,
+    "sdbullion": true,
+    "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
-    "sdbullion": true
+    "jmbullion": true
   },
-  "last_known_price_by_site": {
-    "bullionexchanges": 5197.99
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-28T03:30:00Z",
-      "median": 5336.39,
+      "median": 5369.19,
       "low": 5331.39,
       "vendors": {
-        "monumentmetals": 5336.39,
         "bullionexchanges": 5331.39,
         "apmex": 5369.19
       }
@@ -4693,6 +4696,14 @@
       "vendors": {
         "monumentmetals": 5260.19,
         "apmex": 5324.39
+      }
+    },
+    {
+      "window": "2026-03-07T09:00:00Z",
+      "median": 5283.29,
+      "low": 5283.29,
+      "vendors": {
+        "sdbullion": 5283.29
       }
     }
   ]
