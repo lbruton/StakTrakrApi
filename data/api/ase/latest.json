@@ -1,8 +1,8 @@
 {
   "slug": "ase",
-  "window_start": "2026-03-07T13:00:00Z",
+  "window_start": "2026-03-07T13:30:00Z",
   "median_price": 96.23,
-  "lowest_price": 90.73,
+  "lowest_price": 92.49,
   "vendors": {
     "apmex": {
       "price": 102.24,
@@ -22,18 +22,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 101.28,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "monumentmetals": {
-      "price": 90.73,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 96.28,
       "confidence": 80,
@@ -45,26 +33,41 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 101.28,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-07T11:30:04.550Z"
+    },
+    "monumentmetals": {
+      "price": 90.73,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-07T11:30:04.550Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
-    "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": true,
+    "jmbullion": true,
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-28T20:30:00Z",
-      "median": 107.69,
+      "median": 108.03,
       "low": 104.19,
       "vendors": {
-        "herobullion": 107.69,
         "apmex": 111.51,
         "bullionexchanges": 104.19,
         "monumentmetals": 105.43,
@@ -4307,6 +4310,14 @@
       "vendors": {
         "bullionexchanges": 92.94,
         "apmex": 102.24
+      }
+    },
+    {
+      "window": "2026-03-07T13:30:00Z",
+      "median": 92.49,
+      "low": 92.49,
+      "vendors": {
+        "herobullion": 92.49
       }
     }
   ]
