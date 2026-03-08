@@ -1,11 +1,23 @@
 {
   "slug": "age",
-  "window_start": "2026-03-08T05:00:00Z",
+  "window_start": "2026-03-08T05:30:00Z",
   "median_price": 5415.79,
   "lowest_price": 5286.3,
   "vendors": {
+    "apmex": {
+      "price": 5429.39,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
       "price": 5286.3,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 5290.68,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -15,22 +27,6 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 5429.39,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-08T03:00:02.568Z"
-    },
-    "herobullion": {
-      "price": 5290.68,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-08T03:00:02.568Z"
     },
     "monumentmetals": {
       "price": 5438.7,
@@ -50,10 +46,10 @@
     }
   },
   "availability_by_site": {
-    "bullionexchanges": true,
-    "jmbullion": true,
     "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
+    "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true
   },
@@ -62,12 +58,9 @@
   "windows_24h": [
     {
       "window": "2026-02-28T07:00:00Z",
-      "median": 5461.41,
-      "low": 5321.39,
+      "median": 5524.19,
+      "low": 5524.19,
       "vendors": {
-        "bullionexchanges": 5321.39,
-        "herobullion": 5461.41,
-        "sdbullion": 5420.15,
         "apmex": 5524.19
       }
     },
@@ -4741,6 +4734,16 @@
       "low": 5286.3,
       "vendors": {
         "bullionexchanges": 5286.3,
+        "jmbullion": 5415.79
+      }
+    },
+    {
+      "window": "2026-03-08T05:30:00Z",
+      "median": 5415.79,
+      "low": 5290.68,
+      "vendors": {
+        "apmex": 5429.39,
+        "herobullion": 5290.68,
         "jmbullion": 5415.79
       }
     }
