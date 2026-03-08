@@ -1,28 +1,20 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-03-08T16:00:00Z",
-  "median_price": 95.78,
+  "window_start": "2026-03-08T16:30:00Z",
+  "median_price": 98.24,
   "lowest_price": 93.01,
   "vendors": {
-    "herobullion": {
-      "price": 93.01,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 95.78,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "apmex": {
       "price": 98.24,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-08T12:30:02.267Z"
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 93.01,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
     },
     "jmbullion": {
       "price": 98.28,
@@ -39,15 +31,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-08T11:30:03.327Z"
+    },
+    "sdbullion": {
+      "price": 95.78,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-08T14:30:02.675Z"
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "bullionexchanges": false,
     "herobullion": true,
-    "sdbullion": true,
-    "apmex": true,
     "jmbullion": true,
-    "monumentmetals": true
+    "monumentmetals": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "bullionexchanges": 89.93
@@ -56,11 +56,9 @@
   "windows_24h": [
     {
       "window": "2026-02-28T01:30:00Z",
-      "median": 106.51,
+      "median": 105.55,
       "low": 104.99,
       "vendors": {
-        "jmbullion": 107.49,
-        "bullionexchanges": 135.38,
         "sdbullion": 104.99,
         "apmex": 106.51,
         "herobullion": 105.55
@@ -5049,6 +5047,15 @@
       "median": 93.01,
       "low": 93.01,
       "vendors": {
+        "herobullion": 93.01
+      }
+    },
+    {
+      "window": "2026-03-08T16:30:00Z",
+      "median": 98.24,
+      "low": 93.01,
+      "vendors": {
+        "apmex": 98.24,
         "herobullion": 93.01
       }
     }
