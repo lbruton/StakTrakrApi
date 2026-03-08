@@ -1,17 +1,11 @@
 {
   "slug": "age",
-  "window_start": "2026-03-08T18:30:00Z",
-  "median_price": 5383.29,
-  "lowest_price": 5286.3,
+  "window_start": "2026-03-08T19:00:00Z",
+  "median_price": 5429.39,
+  "lowest_price": 5290.68,
   "vendors": {
     "apmex": {
       "price": 5429.39,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 5286.3,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -28,11 +22,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 5383.29,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "bullionexchanges": {
+      "price": 5286.3,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-08T17:00:02.203Z"
     },
     "jmbullion": {
       "price": 5415.79,
@@ -41,25 +37,32 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-08T16:00:02.983Z"
+    },
+    "sdbullion": {
+      "price": 5383.29,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-08T17:00:02.203Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "jmbullion": true
+    "bullionexchanges": true,
+    "jmbullion": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-28T09:00:00Z",
-      "median": 5461.41,
+      "median": 5524.19,
       "low": 5420.15,
       "vendors": {
-        "herobullion": 5461.41,
         "apmex": 5524.19,
         "sdbullion": 5420.15
       }
@@ -4834,6 +4837,14 @@
       "vendors": {
         "herobullion": 5290.68,
         "monumentmetals": 5438.7
+      }
+    },
+    {
+      "window": "2026-03-08T19:00:00Z",
+      "median": 5290.68,
+      "low": 5290.68,
+      "vendors": {
+        "herobullion": 5290.68
       }
     }
   ]
