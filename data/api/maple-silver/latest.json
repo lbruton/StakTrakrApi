@@ -1,32 +1,34 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-03-08T16:30:00Z",
-  "median_price": 95.78,
+  "window_start": "2026-03-08T17:00:00Z",
+  "median_price": 92.75,
   "lowest_price": 90.19,
   "vendors": {
-    "apmex": {
-      "price": 96.24,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 90.19,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 92.75,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 95.78,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 96.24,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-08T15:00:02.691Z"
     },
     "jmbullion": {
       "price": 92.28,
@@ -38,25 +40,23 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
+    "monumentmetals": false,
     "sdbullion": true,
-    "jmbullion": true,
-    "monumentmetals": true
+    "apmex": true,
+    "jmbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "monumentmetals": 91.23
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-28T11:00:00Z",
-      "median": 105.28,
-      "low": 99.14,
+      "median": 105.51,
+      "low": 105.51,
       "vendors": {
-        "bullionexchanges": 99.14,
-        "jmbullion": 109.49,
-        "monumentmetals": 101.93,
-        "herobullion": 105.28,
         "apmex": 105.51
       }
     },
@@ -4779,6 +4779,16 @@
       "vendors": {
         "sdbullion": 95.78,
         "herobullion": 92.75
+      }
+    },
+    {
+      "window": "2026-03-08T17:00:00Z",
+      "median": 92.75,
+      "low": 90.19,
+      "vendors": {
+        "herobullion": 92.75,
+        "bullionexchanges": 90.19,
+        "sdbullion": 95.78
       }
     }
   ]
