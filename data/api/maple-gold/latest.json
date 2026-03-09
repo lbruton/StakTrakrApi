@@ -1,8 +1,8 @@
 {
   "slug": "maple-gold",
-  "window_start": "2026-03-09T16:30:00Z",
-  "median_price": 5219.34,
-  "lowest_price": 5162.61,
+  "window_start": "2026-03-09T17:00:00Z",
+  "median_price": 5214.81,
+  "lowest_price": 5183.99,
   "vendors": {
     "apmex": {
       "price": 5251.49,
@@ -10,8 +10,8 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 5162.61,
+    "bullionexchanges": {
+      "price": 5183.99,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -23,10 +23,18 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 5219.34,
+      "price": 5214.81,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "herobullion": {
+      "price": 5162.61,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-09T15:00:02.746Z"
     },
     "jmbullion": {
       "price": 5259.55,
@@ -39,29 +47,20 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": true,
+    "bullionexchanges": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "bullionexchanges": true,
+    "herobullion": true,
     "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
-      "window": "2026-02-28T11:45:00Z",
-      "median": 5369.19,
-      "low": 5369.19,
-      "vendors": {
-        "apmex": 5369.19
-      }
-    },
-    {
       "window": "2026-02-28T12:00:00Z",
-      "median": 5369.19,
+      "median": 5360.15,
       "low": 5331.39,
       "vendors": {
-        "herobullion": 5408.08,
         "sdbullion": 5360.15,
         "jmbullion": 5444.65,
         "apmex": 5369.19,
@@ -5088,6 +5087,15 @@
       "low": 5219.34,
       "vendors": {
         "sdbullion": 5219.34
+      }
+    },
+    {
+      "window": "2026-03-09T17:00:00Z",
+      "median": 5214.81,
+      "low": 5183.99,
+      "vendors": {
+        "bullionexchanges": 5183.99,
+        "sdbullion": 5214.81
       }
     }
   ]
