@@ -1,22 +1,26 @@
 {
   "slug": "goldback-florida-g1",
-  "window_start": "2026-03-09T06:00:00Z",
+  "window_start": "2026-03-09T07:00:00Z",
   "median_price": 9.95,
-  "lowest_price": 9.95,
+  "lowest_price": 9.8,
   "vendors": {
+    "apmex": {
+      "price": 16.8,
+      "confidence": 15,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 9.8,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "jmbullion": {
       "price": 9.95,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 10.4,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-09T02:30:02.661Z"
     },
     "bullionexchanges": {
       "price": 9.9,
@@ -25,21 +29,13 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-09T00:00:03.049Z"
-    },
-    "herobullion": {
-      "price": 9.79,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-09T04:00:07.523Z"
     }
   },
   "availability_by_site": {
-    "jmbullion": true,
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
+    "jmbullion": true,
+    "bullionexchanges": true,
     "monumentmetals": true,
     "sdbullion": true
   },
@@ -688,6 +684,15 @@
       "low": 9.95,
       "vendors": {
         "jmbullion": 9.95
+      }
+    },
+    {
+      "window": "2026-03-09T07:00:00Z",
+      "median": 16.8,
+      "low": 9.8,
+      "vendors": {
+        "herobullion": 9.8,
+        "apmex": 16.8
       }
     }
   ]

@@ -1,20 +1,22 @@
 {
   "slug": "goldback-wyoming-g1",
-  "window_start": "2026-03-09T06:00:00Z",
-  "median_price": 17.7,
+  "window_start": "2026-03-09T07:00:00Z",
+  "median_price": 9.99,
   "lowest_price": 9.99,
   "vendors": {
-    "apmex": {
-      "price": 17.7,
-      "confidence": 60,
+    "sdbullion": {
+      "price": 9.99,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 9.99,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 17.7,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-09T05:00:02.977Z"
     },
     "herobullion": {
       "price": 9.79,
@@ -34,8 +36,8 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true
