@@ -1,11 +1,23 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-03-09T22:00:00Z",
-  "median_price": 95.22,
-  "lowest_price": 95.22,
+  "window_start": "2026-03-09T22:30:00Z",
+  "median_price": 92.43,
+  "lowest_price": 91.88,
   "vendors": {
     "jmbullion": {
       "price": 95.22,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 92.43,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 91.88,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -33,49 +45,24 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-09T20:00:03.030Z"
-    },
-    "monumentmetals": {
-      "price": 89.62,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-09T17:30:02.624Z"
-    },
-    "sdbullion": {
-      "price": 89.44,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-09T18:30:02.622Z"
     }
   },
   "availability_by_site": {
     "jmbullion": true,
+    "monumentmetals": true,
+    "sdbullion": true,
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "monumentmetals": true,
-    "sdbullion": true
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
-      "window": "2026-02-28T13:15:00Z",
-      "median": 104.51,
-      "low": 104.51,
-      "vendors": {
-        "apmex": 104.51
-      }
-    },
-    {
       "window": "2026-02-28T13:30:00Z",
       "median": 101.99,
       "low": 96.64,
       "vendors": {
-        "sdbullion": 98.79,
         "bullionexchanges": 96.64,
         "jmbullion": 101.99,
         "herobullion": 102.34,
@@ -5017,6 +5004,15 @@
       "low": 95.22,
       "vendors": {
         "jmbullion": 95.22
+      }
+    },
+    {
+      "window": "2026-03-09T22:30:00Z",
+      "median": 92.43,
+      "low": 91.88,
+      "vendors": {
+        "sdbullion": 91.88,
+        "monumentmetals": 92.43
       }
     }
   ]
