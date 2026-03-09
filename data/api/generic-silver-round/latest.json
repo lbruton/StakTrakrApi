@@ -1,24 +1,12 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-03-09T00:30:00Z",
+  "window_start": "2026-03-09T01:00:00Z",
   "median_price": 87.66,
-  "lowest_price": 86.55,
+  "lowest_price": 87.09,
   "vendors": {
     "apmex": {
       "price": 88.27,
       "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 86.55,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 91.21,
-      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -29,10 +17,18 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 87.53,
+      "price": 87.09,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 86.55,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-08T23:00:03.585Z"
     },
     "herobullion": {
       "price": 89.2,
@@ -41,27 +37,27 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-08T22:00:02.615Z"
+    },
+    "jmbullion": {
+      "price": 91.21,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-08T23:00:03.585Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
-    "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "herobullion": true
+    "bullionexchanges": true,
+    "herobullion": true,
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-02-28T11:15:00Z",
-      "median": 104.51,
-      "low": 104.51,
-      "vendors": {
-        "apmex": 104.51
-      }
-    },
     {
       "window": "2026-02-28T11:30:00Z",
       "median": 101.99,
@@ -4876,6 +4872,14 @@
       "low": 88.27,
       "vendors": {
         "apmex": 88.27
+      }
+    },
+    {
+      "window": "2026-03-09T01:00:00Z",
+      "median": 87.09,
+      "low": 87.09,
+      "vendors": {
+        "sdbullion": 87.09
       }
     }
   ]
