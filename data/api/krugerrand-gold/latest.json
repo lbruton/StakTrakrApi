@@ -1,15 +1,9 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-03-10T14:30:00Z",
+  "window_start": "2026-03-10T15:00:00Z",
   "median_price": 5298.13,
   "lowest_price": 5260.61,
   "vendors": {
-    "apmex": {
-      "price": 5354.29,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 5298.13,
       "confidence": 80,
@@ -22,12 +16,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "providentmetals": {
-      "price": 5310.05,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 5260.61,
       "confidence": 80,
@@ -35,10 +23,18 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 5296.68,
+      "price": 5302.88,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 5354.29,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-10T13:00:02.394Z"
     },
     "bullionexchanges": {
       "price": 5212.09,
@@ -63,29 +59,35 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-10T09:00:02.099Z"
+    },
+    "providentmetals": {
+      "price": 5310.05,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-10T13:00:02.394Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "monumentmetals": true,
-    "providentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
-    "jmbullion": true
+    "jmbullion": true,
+    "providentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-28T12:00:00Z",
-      "median": 5292.66,
-      "low": 5291.4,
+      "median": 5350.15,
+      "low": 5350.15,
       "vendors": {
-        "bullionexchanges": 5291.4,
-        "jmbullion": 5292.66,
         "sdbullion": 5350.15
       }
     },
@@ -5262,6 +5264,15 @@
       "vendors": {
         "herobullion": 5298.13,
         "summitmetals": 5296.68
+      }
+    },
+    {
+      "window": "2026-03-10T15:00:00Z",
+      "median": 5302.88,
+      "low": 5260.61,
+      "vendors": {
+        "sdbullion": 5260.61,
+        "summitmetals": 5302.88
       }
     }
   ]
