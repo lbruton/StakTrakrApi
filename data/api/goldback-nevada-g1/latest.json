@@ -4,12 +4,6 @@
   "median_price": 10.03,
   "lowest_price": 9.95,
   "vendors": {
-    "apmex": {
-      "price": 11.15,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 9.95,
       "confidence": 80,
@@ -21,6 +15,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 11.15,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-10T06:30:02.493Z"
     },
     "bullionexchanges": {
       "price": 9.97,
@@ -40,9 +42,9 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true
   },
