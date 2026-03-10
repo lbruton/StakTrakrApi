@@ -1,26 +1,34 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-03-10T20:00:00Z",
-  "median_price": 948.5,
-  "lowest_price": 910.7,
+  "window_start": "2026-03-10T21:00:00Z",
+  "median_price": 986.89,
+  "lowest_price": 911.9,
   "vendors": {
-    "apmex": {
-      "price": 948.5,
+    "bullionexchanges": {
+      "price": 911.9,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 988.4,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 910.7,
-      "confidence": 50,
+    "sdbullion": {
+      "price": 986.89,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 984.89,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 948.5,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-10T19:00:03.139Z"
     },
     "gainesvillecoins": {
       "price": 934.2,
@@ -37,14 +45,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-10T16:30:03.342Z"
-    },
-    "jmbullion": {
-      "price": 993.3,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-10T14:30:02.202Z"
     },
     "monumentmetals": {
       "price": 939.7,
@@ -64,12 +64,12 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
+    "jmbullion": true,
     "sdbullion": true,
+    "apmex": true,
     "gainesvillecoins": true,
     "herobullion": true,
-    "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
     "summitmetals": true
@@ -80,11 +80,8 @@
     {
       "window": "2026-02-28T15:30:00Z",
       "median": 1049.86,
-      "low": 971.9,
+      "low": 1049.86,
       "vendors": {
-        "monumentmetals": 990.9,
-        "apmex": 1060.1,
-        "bullionexchanges": 971.9,
         "sdbullion": 1049.86
       }
     },
@@ -5144,6 +5141,16 @@
       "low": 910.7,
       "vendors": {
         "bullionexchanges": 910.7
+      }
+    },
+    {
+      "window": "2026-03-10T21:00:00Z",
+      "median": 986.89,
+      "low": 911.9,
+      "vendors": {
+        "bullionexchanges": 911.9,
+        "sdbullion": 986.89,
+        "jmbullion": 988.4
       }
     }
   ]
