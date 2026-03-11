@@ -1,18 +1,12 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-03-11T07:00:00Z",
-  "median_price": 93.98,
+  "window_start": "2026-03-11T07:30:00Z",
+  "median_price": 93.3,
   "lowest_price": 90.88,
   "vendors": {
-    "apmex": {
-      "price": 93.98,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 90.88,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -22,11 +16,25 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "sdbullion": {
+      "price": 92.28,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "summitmetals": {
       "price": 94.83,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 93.98,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-11T05:30:02.431Z"
     },
     "gainesvillecoins": {
       "price": 89.83,
@@ -51,36 +59,27 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-11T00:30:02.380Z"
-    },
-    "sdbullion": {
-      "price": 92.79,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-11T01:00:04.701Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "monumentmetals": true,
     "providentmetals": false,
+    "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "gainesvillecoins": true,
     "herobullion": true,
-    "jmbullion": true,
-    "sdbullion": true
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-02-28T17:30:00Z",
-      "median": 104.51,
+      "median": 96.64,
       "low": 96.64,
       "vendors": {
-        "apmex": 104.51,
         "bullionexchanges": 96.64
       }
     },
@@ -5225,6 +5224,14 @@
       "low": 94.83,
       "vendors": {
         "summitmetals": 94.83
+      }
+    },
+    {
+      "window": "2026-03-11T07:30:00Z",
+      "median": 92.28,
+      "low": 92.28,
+      "vendors": {
+        "sdbullion": 92.28
       }
     }
   ]
