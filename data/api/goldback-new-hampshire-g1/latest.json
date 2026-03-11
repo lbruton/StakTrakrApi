@@ -1,11 +1,11 @@
 {
   "slug": "goldback-new-hampshire-g1",
-  "window_start": "2026-03-11T01:00:00Z",
+  "window_start": "2026-03-11T01:30:00Z",
   "median_price": 10.06,
   "lowest_price": 10,
   "vendors": {
     "apmex": {
-      "price": 11.19,
+      "price": 11.23,
       "confidence": 15,
       "source": "firecrawl",
       "inStock": true
@@ -16,31 +16,35 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 10.99,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 10.05,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 10.06,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "herobullion": {
+      "price": 10.99,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-10T23:30:02.996Z"
+    },
+    "jmbullion": {
+      "price": 10.05,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-10T23:30:02.996Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
+    "sdbullion": true,
     "herobullion": true,
-    "jmbullion": true,
-    "sdbullion": true
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -1256,6 +1260,14 @@
       "low": 10.06,
       "vendors": {
         "sdbullion": 10.06
+      }
+    },
+    {
+      "window": "2026-03-11T01:30:00Z",
+      "median": 11.23,
+      "low": 11.23,
+      "vendors": {
+        "apmex": 11.23
       }
     }
   ]
