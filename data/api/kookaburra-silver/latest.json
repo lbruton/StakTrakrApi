@@ -1,11 +1,11 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-03-11T22:00:00Z",
-  "median_price": 97.44,
+  "window_start": "2026-03-11T22:30:00Z",
+  "median_price": 97.1,
   "lowest_price": 91.09,
   "vendors": {
     "apmex": {
-      "price": 104.49,
+      "price": 103.82,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -16,23 +16,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 98.44,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 97.44,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "summitmetals": {
       "price": 97.1,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 98.44,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-11T20:30:02.442Z"
     },
     "providentmetals": {
       "price": 96.58,
@@ -41,17 +37,25 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-11T20:00:02.215Z"
+    },
+    "sdbullion": {
+      "price": 97.44,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-11T20:30:02.442Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": false,
     "herobullion": true,
-    "jmbullion": true,
-    "sdbullion": true,
+    "monumentmetals": false,
     "summitmetals": true,
-    "monumentmetals": true,
-    "providentmetals": true
+    "jmbullion": true,
+    "providentmetals": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -1496,6 +1500,14 @@
       "vendors": {
         "herobullion": 91.09,
         "summitmetals": 97.1
+      }
+    },
+    {
+      "window": "2026-03-11T22:30:00Z",
+      "median": 103.82,
+      "low": 103.82,
+      "vendors": {
+        "apmex": 103.82
       }
     }
   ]
