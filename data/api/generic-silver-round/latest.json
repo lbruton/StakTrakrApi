@@ -1,15 +1,9 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-03-12T11:00:00Z",
-  "median_price": 92.21,
+  "window_start": "2026-03-12T11:30:00Z",
+  "median_price": 91.66,
   "lowest_price": 88.22,
   "vendors": {
-    "apmex": {
-      "price": 93.71,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 89.67,
       "confidence": 80,
@@ -23,8 +17,8 @@
       "inStock": true
     },
     "herobullion": {
-      "price": 94.71,
-      "confidence": 80,
+      "price": 94.57,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -35,10 +29,18 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 91.75,
+      "price": 91.66,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 93.71,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-12T09:30:02.427Z"
     },
     "jmbullion": {
       "price": 93.5,
@@ -58,13 +60,13 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "monumentmetals": true,
     "providentmetals": false,
     "sdbullion": true,
+    "apmex": true,
     "jmbullion": true,
     "summitmetals": true
   },
@@ -74,10 +76,8 @@
     {
       "window": "2026-03-01T00:30:00Z",
       "median": 101.99,
-      "low": 96.64,
+      "low": 99.43,
       "vendors": {
-        "apmex": 105.51,
-        "bullionexchanges": 96.64,
         "jmbullion": 101.99,
         "monumentmetals": 99.43
       }
@@ -5391,6 +5391,15 @@
       "low": 88.22,
       "vendors": {
         "gainesvillecoins": 88.22
+      }
+    },
+    {
+      "window": "2026-03-12T11:30:00Z",
+      "median": 94.57,
+      "low": 91.66,
+      "vendors": {
+        "herobullion": 94.57,
+        "sdbullion": 91.66
       }
     }
   ]
