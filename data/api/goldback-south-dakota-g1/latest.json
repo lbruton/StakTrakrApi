@@ -1,20 +1,22 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-03-12T17:30:00Z",
+  "window_start": "2026-03-12T18:00:00Z",
   "median_price": 10.85,
-  "lowest_price": 10.62,
+  "lowest_price": 10.85,
   "vendors": {
-    "apmex": {
-      "price": 10.62,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 10.85,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 10.62,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-12T16:00:02.337Z"
     },
     "jmbullion": {
       "price": 10.03,
@@ -34,8 +36,8 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "sdbullion": true

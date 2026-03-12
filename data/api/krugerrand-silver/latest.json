@@ -1,30 +1,30 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-03-12T17:30:00Z",
-  "median_price": 96.67,
+  "window_start": "2026-03-12T18:00:00Z",
+  "median_price": 95.1,
   "lowest_price": 92.83,
   "vendors": {
     "apmex": {
       "price": 98.03,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
-      "price": 95.34,
+      "price": 95.1,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
-      "price": 97.37,
+      "price": 97.07,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
       "price": 92.83,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -36,9 +36,11 @@
     },
     "sdbullion": {
       "price": 96.67,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-12T16:00:02.337Z"
     }
   },
   "availability_by_site": {
@@ -47,22 +49,13 @@
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
-    "sdbullion": true,
     "summitmetals": false,
-    "bullionexchanges": true
+    "bullionexchanges": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-02-28T23:45:00Z",
-      "median": 106.51,
-      "low": 101.14,
-      "vendors": {
-        "bullionexchanges": 101.14,
-        "apmex": 106.51
-      }
-    },
     {
       "window": "2026-03-01T00:00:00Z",
       "median": 104.99,
@@ -5329,6 +5322,15 @@
       "vendors": {
         "monumentmetals": 92.83,
         "providentmetals": 94.7
+      }
+    },
+    {
+      "window": "2026-03-12T18:00:00Z",
+      "median": 97.07,
+      "low": 95.1,
+      "vendors": {
+        "jmbullion": 97.07,
+        "herobullion": 95.1
       }
     }
   ]

@@ -1,12 +1,18 @@
 {
   "slug": "ase",
-  "window_start": "2026-03-12T17:30:00Z",
+  "window_start": "2026-03-12T18:00:00Z",
   "median_price": 101.58,
-  "lowest_price": 95.07,
+  "lowest_price": 92.17,
   "vendors": {
     "apmex": {
       "price": 101.58,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 92.17,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -16,13 +22,11 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 93.04,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-12T15:00:03.180Z"
+    "jmbullion": {
+      "price": 101.68,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "gainesvillecoins": {
       "price": 96.12,
@@ -31,14 +35,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-12T13:30:02.414Z"
-    },
-    "jmbullion": {
-      "price": 102.56,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-12T14:30:03.050Z"
     },
     "monumentmetals": {
       "price": 92.91,
@@ -67,10 +63,10 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": true,
     "bullionexchanges": true,
-    "gainesvillecoins": true,
+    "herobullion": true,
     "jmbullion": true,
+    "gainesvillecoins": true,
     "monumentmetals": true,
     "providentmetals": true,
     "sdbullion": true,
@@ -81,11 +77,9 @@
   "windows_24h": [
     {
       "window": "2026-03-01T22:00:00Z",
-      "median": 108.03,
-      "low": 104.67,
+      "median": 111.51,
+      "low": 108.03,
       "vendors": {
-        "herobullion": 104.67,
-        "sdbullion": 105.49,
         "apmex": 111.51,
         "summitmetals": 108.03
       }
@@ -5253,6 +5247,15 @@
       "low": 101.58,
       "vendors": {
         "apmex": 101.58
+      }
+    },
+    {
+      "window": "2026-03-12T18:00:00Z",
+      "median": 101.68,
+      "low": 92.17,
+      "vendors": {
+        "bullionexchanges": 92.17,
+        "jmbullion": 101.68
       }
     }
   ]
