@@ -1,15 +1,9 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-03-12T01:00:00Z",
-  "median_price": 933.75,
+  "window_start": "2026-03-12T01:30:00Z",
+  "median_price": 940.42,
   "lowest_price": 890.4,
   "vendors": {
-    "apmex": {
-      "price": 918.3,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "gainesvillecoins": {
       "price": 890.4,
       "confidence": 50,
@@ -22,6 +16,12 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "jmbullion": {
+      "price": 944.8,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "sdbullion": {
       "price": 943.41,
       "confidence": 80,
@@ -29,10 +29,18 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 946.65,
+      "price": 940.42,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 918.3,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-11T23:30:02.704Z"
     },
     "bullionexchanges": {
       "price": 885.9,
@@ -41,14 +49,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-11T20:30:02.442Z"
-    },
-    "jmbullion": {
-      "price": 962.2,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-11T19:30:02.404Z"
     },
     "monumentmetals": {
       "price": 898.5,
@@ -60,28 +60,19 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "gainesvillecoins": true,
     "herobullion": true,
+    "jmbullion": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
-    "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-02-28T19:30:00Z",
-      "median": 1060.1,
-      "low": 1018.06,
-      "vendors": {
-        "herobullion": 1018.06,
-        "apmex": 1060.1
-      }
-    },
     {
       "window": "2026-02-28T19:45:00Z",
       "median": 1042.9,
@@ -5328,6 +5319,15 @@
       "vendors": {
         "herobullion": 933.75,
         "summitmetals": 946.65
+      }
+    },
+    {
+      "window": "2026-03-12T01:30:00Z",
+      "median": 944.8,
+      "low": 940.42,
+      "vendors": {
+        "jmbullion": 944.8,
+        "summitmetals": 940.42
       }
     }
   ]
