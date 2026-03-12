@@ -1,15 +1,9 @@
 {
   "slug": "ase",
-  "window_start": "2026-03-12T23:00:00Z",
+  "window_start": "2026-03-12T23:30:00Z",
   "median_price": 97.33,
   "lowest_price": 91.2,
   "vendors": {
-    "apmex": {
-      "price": 100.59,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 91.39,
       "confidence": 50,
@@ -17,7 +11,7 @@
       "inStock": true
     },
     "herobullion": {
-      "price": 94.16,
+      "price": 94.04,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -46,6 +40,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 100.59,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-12T21:30:02.488Z"
+    },
     "gainesvillecoins": {
       "price": 93.66,
       "confidence": null,
@@ -56,27 +58,24 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
+    "providentmetals": false,
     "sdbullion": true,
     "summitmetals": true,
-    "gainesvillecoins": true,
-    "providentmetals": true
+    "apmex": true,
+    "gainesvillecoins": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
     {
       "window": "2026-03-01T23:45:00Z",
-      "median": 109.04,
+      "median": 112.72,
       "low": 106.24,
       "vendors": {
-        "monumentmetals": 107.45,
-        "summitmetals": 109.04,
-        "sdbullion": 107.74,
         "apmex": 113.55,
         "herobullion": 109.98,
         "jmbullion": 112.72,
@@ -5285,6 +5284,15 @@
       "vendors": {
         "bullionexchanges": 91.39,
         "herobullion": 94.16
+      }
+    },
+    {
+      "window": "2026-03-12T23:30:00Z",
+      "median": 97.33,
+      "low": 94.04,
+      "vendors": {
+        "sdbullion": 97.33,
+        "herobullion": 94.04
       }
     }
   ]
