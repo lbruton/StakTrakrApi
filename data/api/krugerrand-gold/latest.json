@@ -1,15 +1,9 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-03-13T08:00:00Z",
+  "window_start": "2026-03-13T08:30:00Z",
   "median_price": 5123.39,
   "lowest_price": 5115,
   "vendors": {
-    "apmex": {
-      "price": 5253.99,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 5123.39,
       "confidence": 80,
@@ -21,6 +15,20 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "sdbullion": {
+      "price": 5165.78,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 5253.99,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-13T06:30:03.238Z"
     },
     "herobullion": {
       "price": 5192.72,
@@ -46,14 +54,6 @@
       "stale": true,
       "stale_since": "2026-03-13T06:00:03.077Z"
     },
-    "sdbullion": {
-      "price": 5195.15,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-13T02:00:03.162Z"
-    },
     "summitmetals": {
       "price": 5191.16,
       "confidence": null,
@@ -64,14 +64,14 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "providentmetals": false,
+    "sdbullion": true,
+    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {
@@ -79,14 +79,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-02-28T22:30:00Z",
-      "median": 5301.39,
-      "low": 5301.39,
-      "vendors": {
-        "monumentmetals": 5301.39
-      }
-    },
     {
       "window": "2026-02-28T23:00:00Z",
       "median": 5367.48,
@@ -5695,6 +5687,14 @@
       "low": 5115,
       "vendors": {
         "gainesvillecoins": 5115
+      }
+    },
+    {
+      "window": "2026-03-13T08:30:00Z",
+      "median": 5165.78,
+      "low": 5165.78,
+      "vendors": {
+        "sdbullion": 5165.78
       }
     }
   ]
