@@ -1,14 +1,22 @@
 {
   "slug": "goldback-arizona-g1",
-  "window_start": "2026-03-13T19:30:00Z",
-  "median_price": 10.45,
-  "lowest_price": 10.45,
+  "window_start": "2026-03-13T20:00:00Z",
+  "median_price": 9.87,
+  "lowest_price": 9.87,
   "vendors": {
-    "apmex": {
-      "price": 10.45,
+    "jmbullion": {
+      "price": 9.87,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 10.45,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-13T18:00:02.617Z"
     },
     "bullionexchanges": {
       "price": 9.92,
@@ -25,22 +33,14 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-13T13:30:02.047Z"
-    },
-    "jmbullion": {
-      "price": 9.9,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-13T16:30:03.001Z"
     }
   },
   "availability_by_site": {
+    "jmbullion": true,
     "apmex": true,
-    "monumentmetals": false,
     "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
+    "monumentmetals": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
@@ -4103,6 +4103,14 @@
       "low": 10.45,
       "vendors": {
         "apmex": 10.45
+      }
+    },
+    {
+      "window": "2026-03-13T20:00:00Z",
+      "median": 9.87,
+      "low": 9.87,
+      "vendors": {
+        "jmbullion": 9.87
       }
     }
   ]
