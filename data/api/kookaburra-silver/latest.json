@@ -1,6 +1,6 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-03-14T12:00:00Z",
+  "window_start": "2026-03-14T12:30:00Z",
   "median_price": 93.3,
   "lowest_price": 91.2,
   "vendors": {
@@ -22,6 +22,12 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "sdbullion": {
+      "price": 92.3,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "herobullion": {
       "price": 85.81,
       "confidence": null,
@@ -29,14 +35,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-14T05:30:02.883Z"
-    },
-    "sdbullion": {
-      "price": 92.3,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-14T10:00:02.847Z"
     }
   },
   "availability_by_site": {
@@ -45,11 +43,13 @@
     "jmbullion": true,
     "monumentmetals": false,
     "providentmetals": true,
-    "herobullion": true,
     "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": false,
+    "herobullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 94.85
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
     {
@@ -2290,6 +2290,16 @@
       "vendors": {
         "jmbullion": 93.3,
         "providentmetals": 91.2
+      }
+    },
+    {
+      "window": "2026-03-14T12:30:00Z",
+      "median": 92.3,
+      "low": 91.2,
+      "vendors": {
+        "providentmetals": 91.2,
+        "sdbullion": 92.3,
+        "apmex": 99.34
       }
     }
   ]
