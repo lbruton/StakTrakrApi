@@ -1,15 +1,9 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-03-14T18:00:00Z",
-  "median_price": 90.37,
+  "window_start": "2026-03-14T18:30:00Z",
+  "median_price": 90.3,
   "lowest_price": 85.39,
   "vendors": {
-    "apmex": {
-      "price": 93.33,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 85.39,
       "confidence": 30,
@@ -28,11 +22,25 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "providentmetals": {
+      "price": 90.3,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "sdbullion": {
       "price": 91.8,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 93.33,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-14T16:30:02.644Z"
     },
     "jmbullion": {
       "price": 92.8,
@@ -41,39 +49,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-14T14:00:03.059Z"
-    },
-    "providentmetals": {
-      "price": 90.3,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-14T14:00:03.059Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "jmbullion": true,
     "providentmetals": true,
-    "summitmetals": true
+    "sdbullion": true,
+    "summitmetals": false,
+    "apmex": true,
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-03-01T08:00:00.000Z",
-      "median": 104.99,
-      "low": 104.48,
-      "vendors": {
-        "sdbullion": 104.99,
-        "herobullion": 104.48,
-        "apmex": 106.51
-      }
-    },
     {
       "window": "2026-03-01T08:30:00.000Z",
       "median": 104.99,
@@ -5091,6 +5081,15 @@
       "low": 91.8,
       "vendors": {
         "sdbullion": 91.8
+      }
+    },
+    {
+      "window": "2026-03-14T18:30:00.000Z",
+      "median": 90.3,
+      "low": 88.64,
+      "vendors": {
+        "monumentmetals": 88.64,
+        "providentmetals": 90.3
       }
     }
   ]
