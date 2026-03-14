@@ -1,15 +1,9 @@
 {
   "slug": "ase",
-  "window_start": "2026-03-14T09:30:00Z",
+  "window_start": "2026-03-14T10:00:00Z",
   "median_price": 92.3,
   "lowest_price": 87.94,
   "vendors": {
-    "apmex": {
-      "price": 93.33,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 87.94,
       "confidence": 50,
@@ -33,6 +27,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 93.33,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-14T08:00:02.753Z"
     },
     "gainesvillecoins": {
       "price": 90.39,
@@ -60,12 +62,12 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": false,
     "sdbullion": true,
+    "apmex": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "summitmetals": true
