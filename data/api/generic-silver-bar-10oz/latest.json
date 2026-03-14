@@ -1,8 +1,8 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-03-14T16:00:00Z",
-  "median_price": 873.3,
-  "lowest_price": 834.9,
+  "window_start": "2026-03-14T16:30:00Z",
+  "median_price": 888.09,
+  "lowest_price": 873.3,
   "vendors": {
     "apmex": {
       "price": 873.3,
@@ -10,9 +10,9 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 834.9,
-      "confidence": 30,
+    "sdbullion": {
+      "price": 898.02,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -21,6 +21,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 834.9,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-14T14:30:02.599Z"
     },
     "gainesvillecoins": {
       "price": 851.4,
@@ -53,26 +61,18 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-03-14T12:30:02.924Z"
-    },
-    "sdbullion": {
-      "price": 898.02,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-03-14T11:30:02.437Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "providentmetals": false,
+    "sdbullion": true,
     "summitmetals": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "jmbullion": true,
-    "monumentmetals": true,
-    "sdbullion": true
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -80,10 +80,8 @@
     {
       "window": "2026-03-01T09:30:00Z",
       "median": 1049.86,
-      "low": 971.9,
+      "low": 1042.9,
       "vendors": {
-        "bullionexchanges": 971.9,
-        "apmex": 1070.1,
         "jmbullion": 1042.9,
         "sdbullion": 1049.86
       }
@@ -5747,6 +5745,14 @@
       "low": 873.3,
       "vendors": {
         "apmex": 873.3
+      }
+    },
+    {
+      "window": "2026-03-14T16:30:00Z",
+      "median": 898.02,
+      "low": 898.02,
+      "vendors": {
+        "sdbullion": 898.02
       }
     }
   ]
