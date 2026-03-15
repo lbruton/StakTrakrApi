@@ -1,15 +1,9 @@
 {
   "slug": "ape",
-  "window_start": "2026-03-15T04:30:00Z",
+  "window_start": "2026-03-15T05:00:00Z",
   "median_price": 2352.64,
   "lowest_price": 2317.49,
   "vendors": {
-    "apmex": {
-      "price": 2391.99,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
       "price": 2489.05,
       "confidence": 50,
@@ -33,6 +27,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 2391.99,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-03-15T03:00:02.126Z"
     },
     "bullionexchanges": {
       "price": 2329.5,
@@ -60,11 +62,11 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "sdbullion": true
