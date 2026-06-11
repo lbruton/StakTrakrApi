@@ -1,20 +1,28 @@
 {
   "slug": "goldback-oklahoma-g1",
-  "window_start": "2026-06-11T18:00:00Z",
-  "median_price": 8.32,
-  "lowest_price": 8.12,
+  "window_start": "2026-06-11T18:30:00Z",
+  "median_price": 9.02,
+  "lowest_price": 8.32,
   "vendors": {
-    "apmex": {
-      "price": 8.12,
+    "herobullion": {
+      "price": 9.02,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 8.32,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.12,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-11T16:30:01.989Z"
     },
     "bullionexchanges": {
       "price": 8.09,
@@ -23,14 +31,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-11T13:30:01.932Z"
-    },
-    "herobullion": {
-      "price": 8.85,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-11T14:30:02.034Z"
     },
     "sdbullion": {
       "price": 8.54,
@@ -42,25 +42,16 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
+    "herobullion": true,
     "jmbullion": true,
     "monumentmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-10T17:00:00.000Z",
-      "median": 8.92,
-      "low": 8.17,
-      "vendors": {
-        "herobullion": 8.92,
-        "apmex": 8.17
-      }
-    },
     {
       "window": "2026-06-10T18:00:00.000Z",
       "median": 8.41,
@@ -284,6 +275,14 @@
       "low": 8.32,
       "vendors": {
         "jmbullion": 8.32
+      }
+    },
+    {
+      "window": "2026-06-11T18:00:00.000Z",
+      "median": 9.02,
+      "low": 9.02,
+      "vendors": {
+        "herobullion": 9.02
       }
     }
   ]
