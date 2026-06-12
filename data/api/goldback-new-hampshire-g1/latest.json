@@ -1,15 +1,9 @@
 {
   "slug": "goldback-new-hampshire-g1",
-  "window_start": "2026-06-12T06:00:00Z",
+  "window_start": "2026-06-12T06:30:00Z",
   "median_price": 8.66,
   "lowest_price": 8.12,
   "vendors": {
-    "apmex": {
-      "price": 8.68,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 8.12,
       "confidence": 50,
@@ -22,38 +16,39 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 8.4,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 8.66,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.68,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-12T04:30:01.322Z"
+    },
+    "jmbullion": {
+      "price": 8.4,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-12T04:30:01.322Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "apmex": true,
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-11T05:00:00.000Z",
-      "median": 8.54,
-      "low": 8.43,
-      "vendors": {
-        "jmbullion": 8.43,
-        "sdbullion": 8.54
-      }
-    },
     {
       "window": "2026-06-11T06:00:00.000Z",
       "median": 8.46,
@@ -298,6 +293,14 @@
       "vendors": {
         "bullionexchanges": 8.12,
         "sdbullion": 8.66,
+        "herobullion": 9.06
+      }
+    },
+    {
+      "window": "2026-06-12T06:00:00.000Z",
+      "median": 9.06,
+      "low": 9.06,
+      "vendors": {
         "herobullion": 9.06
       }
     }
