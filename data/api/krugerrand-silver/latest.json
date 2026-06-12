@@ -1,12 +1,18 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-06-12T11:00:00Z",
+  "window_start": "2026-06-12T11:30:00Z",
   "median_price": 74.62,
   "lowest_price": 72.41,
   "vendors": {
     "herobullion": {
       "price": 72.41,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 77.61,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -17,7 +23,7 @@
       "inStock": true
     },
     "providentmetals": {
-      "price": 75.38,
+      "price": 75.19,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -35,42 +41,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-12T08:30:01.292Z"
-    },
-    "jmbullion": {
-      "price": 74.55,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-12T08:30:01.292Z"
     }
   },
   "availability_by_site": {
     "herobullion": true,
+    "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
     "sdbullion": true,
     "summitmetals": false,
     "apmex": true,
-    "bullionexchanges": true,
-    "jmbullion": true
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-11T10:00:00.000Z",
-      "median": 72.8,
-      "low": 69.3,
-      "vendors": {
-        "apmex": 74.68,
-        "herobullion": 69.3,
-        "jmbullion": 76.28,
-        "providentmetals": 72.29,
-        "sdbullion": 72.8,
-        "monumentmetals": 69.87
-      }
-    },
     {
       "window": "2026-06-11T11:00:00.000Z",
       "median": 72.8,
@@ -287,6 +272,15 @@
         "monumentmetals": 73,
         "sdbullion": 74.62,
         "providentmetals": 75.38
+      }
+    },
+    {
+      "window": "2026-06-12T11:00:00.000Z",
+      "median": 77.61,
+      "low": 75.19,
+      "vendors": {
+        "providentmetals": 75.19,
+        "jmbullion": 77.61
       }
     }
   ]
