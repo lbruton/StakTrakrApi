@@ -1,11 +1,17 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-06-12T09:00:00Z",
+  "window_start": "2026-06-12T09:30:00Z",
   "median_price": 4266.91,
   "lowest_price": 4207.06,
   "vendors": {
     "apmex": {
-      "price": 4375.19,
+      "price": 4378.19,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 4267.39,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -40,14 +46,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 4239.69,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-12T04:30:01.322Z"
-    },
     "providentmetals": {
       "price": 4290.77,
       "confidence": null,
@@ -59,13 +57,13 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
-    "bullionexchanges": true,
     "providentmetals": true
   },
   "last_known_price_by_site": {
@@ -73,21 +71,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-11T08:00:00.000Z",
-      "median": 4144.4,
-      "low": 4093.28,
-      "vendors": {
-        "gainesvillecoins": 4127.68,
-        "jmbullion": 4175.1,
-        "bullionexchanges": 4115.39,
-        "monumentmetals": 4144.4,
-        "apmex": 4249.59,
-        "providentmetals": 4204.26,
-        "sdbullion": 4093.28,
-        "summitmetals": 4110.85
-      }
-    },
     {
       "window": "2026-06-11T09:00:00.000Z",
       "median": 4139.6,
@@ -346,6 +329,16 @@
         "gainesvillecoins": 4247.44,
         "jmbullion": 4266.91,
         "apmex": 4375.19
+      }
+    },
+    {
+      "window": "2026-06-12T09:00:00.000Z",
+      "median": 4267.39,
+      "low": 4207.06,
+      "vendors": {
+        "apmex": 4378.19,
+        "sdbullion": 4207.06,
+        "bullionexchanges": 4267.39
       }
     }
   ]
