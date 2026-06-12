@@ -1,32 +1,36 @@
 {
   "slug": "goldback-new-hampshire-g1",
-  "window_start": "2026-06-12T21:00:00Z",
-  "median_price": 8.66,
-  "lowest_price": 8.14,
+  "window_start": "2026-06-12T21:30:00Z",
+  "median_price": 8.67,
+  "lowest_price": 8.45,
   "vendors": {
-    "apmex": {
-      "price": 8.69,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 8.14,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
-      "price": 8.42,
+      "price": 8.45,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 8.66,
+      "price": 8.67,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.69,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-12T19:30:01.789Z"
+    },
+    "bullionexchanges": {
+      "price": 8.14,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-12T19:30:01.789Z"
     },
     "herobullion": {
       "price": 9.16,
@@ -38,34 +42,15 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "bullionexchanges": true,
     "jmbullion": true,
     "sdbullion": true,
+    "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-11T19:00:00.000Z",
-      "median": 8.32,
-      "low": 8.14,
-      "vendors": {
-        "apmex": 8.68,
-        "jmbullion": 8.32,
-        "bullionexchanges": 8.14
-      }
-    },
-    {
-      "window": "2026-06-11T20:00:00.000Z",
-      "median": 9.13,
-      "low": 8.67,
-      "vendors": {
-        "herobullion": 9.13,
-        "sdbullion": 8.67
-      }
-    },
     {
       "window": "2026-06-11T21:00:00.000Z",
       "median": 9.12,
@@ -262,6 +247,15 @@
         "apmex": 8.69,
         "jmbullion": 8.42,
         "sdbullion": 8.66
+      }
+    },
+    {
+      "window": "2026-06-12T21:00:00.000Z",
+      "median": 8.67,
+      "low": 8.45,
+      "vendors": {
+        "jmbullion": 8.45,
+        "sdbullion": 8.67
       }
     }
   ]
