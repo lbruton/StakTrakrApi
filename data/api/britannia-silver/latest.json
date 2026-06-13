@@ -1,6 +1,6 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-06-13T06:00:00Z",
+  "window_start": "2026-06-13T06:30:00Z",
   "median_price": 73.62,
   "lowest_price": 72.17,
   "vendors": {
@@ -36,11 +36,15 @@
     },
     "providentmetals": {
       "price": 76,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-13T02:30:01.370Z"
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 73.53,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "sdbullion": {
       "price": 73.5,
@@ -49,14 +53,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-13T01:30:01.829Z"
-    },
-    "summitmetals": {
-      "price": 73.53,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-13T03:30:01.635Z"
     }
   },
   "availability_by_site": {
@@ -66,24 +62,12 @@
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-12T05:00:00.000Z",
-      "median": 75.11,
-      "low": 72.04,
-      "vendors": {
-        "providentmetals": 75.11,
-        "jmbullion": 77.58,
-        "herobullion": 72.6,
-        "summitmetals": 72.04,
-        "apmex": 77.4
-      }
-    },
     {
       "window": "2026-06-12T06:00:00.000Z",
       "median": 71.96,
@@ -332,6 +316,18 @@
         "apmex": 78.52,
         "herobullion": 73.62,
         "bullionexchanges": 72.17
+      }
+    },
+    {
+      "window": "2026-06-13T06:00:00.000Z",
+      "median": 76,
+      "low": 72.48,
+      "vendors": {
+        "providentmetals": 76,
+        "summitmetals": 73.53,
+        "monumentmetals": 72.48,
+        "jmbullion": 77.97,
+        "apmex": 78.52
       }
     }
   ]
