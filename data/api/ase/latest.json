@@ -1,7 +1,7 @@
 {
   "slug": "ase",
-  "window_start": "2026-06-14T11:00:00Z",
-  "median_price": 74.94,
+  "window_start": "2026-06-14T11:30:00Z",
+  "median_price": 75.5,
   "lowest_price": 72.3,
   "vendors": {
     "apmex": {
@@ -12,13 +12,7 @@
     },
     "bullionexchanges": {
       "price": 72.77,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "gainesvillecoins": {
-      "price": 73.08,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -46,36 +40,37 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "gainesvillecoins": {
+      "price": 73.08,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-14T09:30:01.983Z"
+    },
     "summitmetals": {
       "price": 72.67,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-14T09:30:01.983Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
-    "gainesvillecoins": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
+    "providentmetals": false,
     "sdbullion": true,
-    "summitmetals": true,
-    "providentmetals": true
+    "gainesvillecoins": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-13T10:00:00.000Z",
-      "median": 84.52,
-      "low": 72.77,
-      "vendors": {
-        "bullionexchanges": 72.77,
-        "apmex": 84.52
-      }
-    },
     {
       "window": "2026-06-13T11:00:00.000Z",
       "median": 74.94,
@@ -311,6 +306,17 @@
         "monumentmetals": 74.94,
         "bullionexchanges": 72.77,
         "herobullion": 75.5
+      }
+    },
+    {
+      "window": "2026-06-14T11:00:00.000Z",
+      "median": 84.5,
+      "low": 72.3,
+      "vendors": {
+        "apmex": 84.52,
+        "bullionexchanges": 72.77,
+        "sdbullion": 72.3,
+        "jmbullion": 84.5
       }
     }
   ]
