@@ -1,11 +1,17 @@
 {
   "slug": "maple-gold",
-  "window_start": "2026-06-14T07:00:00Z",
+  "window_start": "2026-06-14T07:30:00Z",
   "median_price": 4281.89,
   "lowest_price": 4242.85,
   "vendors": {
     "apmex": {
       "price": 4372.39,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 4269.89,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -33,49 +39,25 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 4269.89,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-14T03:30:01.693Z"
-    },
-    "jmbullion": {
-      "price": 4369.64,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-14T02:30:01.876Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
+    "jmbullion": false,
     "monumentmetals": true,
     "providentmetals": false,
     "sdbullion": true,
     "summitmetals": true,
-    "bullionexchanges": true,
-    "herobullion": true,
-    "jmbullion": true
+    "herobullion": true
   },
   "last_known_price_by_site": {
+    "jmbullion": 4369.64,
     "providentmetals": 4336.12
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-13T06:00:00.000Z",
-      "median": 4280.25,
-      "low": 4242.85,
-      "vendors": {
-        "gainesvillecoins": 4242.85,
-        "monumentmetals": 4280.25
-      }
-    },
     {
       "window": "2026-06-13T07:00:00.000Z",
       "median": 4242.85,
@@ -303,6 +285,18 @@
         "sdbullion": 4281.89,
         "gainesvillecoins": 4242.85,
         "summitmetals": 4329.29
+      }
+    },
+    {
+      "window": "2026-06-14T07:00:00.000Z",
+      "median": 4281.89,
+      "low": 4242.85,
+      "vendors": {
+        "bullionexchanges": 4269.89,
+        "summitmetals": 4329.29,
+        "gainesvillecoins": 4242.85,
+        "apmex": 4372.39,
+        "sdbullion": 4281.89
       }
     }
   ]
