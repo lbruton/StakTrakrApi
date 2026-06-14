@@ -1,15 +1,9 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-06-14T04:00:00Z",
-  "median_price": 78.48,
+  "window_start": "2026-06-14T04:30:00Z",
+  "median_price": 78.4,
   "lowest_price": 74.74,
   "vendors": {
-    "apmex": {
-      "price": 81.53,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 77.28,
       "confidence": 80,
@@ -34,11 +28,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "summitmetals": {
-      "price": 78.48,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 81.53,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-14T02:30:01.876Z"
     },
     "sdbullion": {
       "price": 79.5,
@@ -47,31 +43,29 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-13T22:30:02.406Z"
+    },
+    "summitmetals": {
+      "price": 78.48,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-14T02:30:01.876Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
-    "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-13T03:00:00.000Z",
-      "median": 78.48,
-      "low": 74.74,
-      "vendors": {
-        "apmex": 81.53,
-        "monumentmetals": 74.74,
-        "summitmetals": 78.48
-      }
-    },
     {
       "window": "2026-06-13T04:00:00.000Z",
       "median": 81.53,
@@ -305,6 +299,14 @@
         "herobullion": 77.28,
         "providentmetals": 78.4,
         "monumentmetals": 74.74
+      }
+    },
+    {
+      "window": "2026-06-14T04:00:00.000Z",
+      "median": 80.5,
+      "low": 80.5,
+      "vendors": {
+        "jmbullion": 80.5
       }
     }
   ]
