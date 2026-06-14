@@ -1,21 +1,9 @@
 {
   "slug": "ape",
-  "window_start": "2026-06-14T21:00:00Z",
+  "window_start": "2026-06-14T21:30:00Z",
   "median_price": 2008.59,
   "lowest_price": 1889.3,
   "vendors": {
-    "apmex": {
-      "price": 2083.29,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 1911.63,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
       "price": 2080.59,
       "confidence": 50,
@@ -34,6 +22,22 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 2083.29,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-14T19:30:02.124Z"
+    },
+    "herobullion": {
+      "price": 1911.63,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-14T19:30:02.124Z"
+    },
     "summitmetals": {
       "price": 1944.11,
       "confidence": null,
@@ -44,27 +48,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
+    "herobullion": true,
     "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-13T20:00:00.000Z",
-      "median": 2080.59,
-      "low": 1889.3,
-      "vendors": {
-        "jmbullion": 2080.59,
-        "monumentmetals": 1889.3
-      }
-    },
     {
       "window": "2026-06-13T21:00:00.000Z",
       "median": 2008.59,
@@ -293,6 +288,15 @@
       "vendors": {
         "monumentmetals": 1889.3,
         "jmbullion": 2080.59
+      }
+    },
+    {
+      "window": "2026-06-14T21:00:00.000Z",
+      "median": 2080.59,
+      "low": 2008.59,
+      "vendors": {
+        "jmbullion": 2080.59,
+        "providentmetals": 2008.59
       }
     }
   ]
