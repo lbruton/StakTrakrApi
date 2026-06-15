@@ -1,8 +1,8 @@
 {
   "slug": "ase",
-  "window_start": "2026-06-15T22:00:00Z",
-  "median_price": 75.24,
-  "lowest_price": 74.51,
+  "window_start": "2026-06-15T22:30:00Z",
+  "median_price": 77.76,
+  "lowest_price": 74.53,
   "vendors": {
     "apmex": {
       "price": 86.67,
@@ -12,27 +12,23 @@
     },
     "bullionexchanges": {
       "price": 74.53,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 77.76,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "gainesvillecoins": {
       "price": 75.24,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 77.85,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 74.51,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-15T20:30:02.028Z"
     },
     "jmbullion": {
       "price": 86.87,
@@ -57,31 +53,30 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-15T17:30:02.337Z"
+    },
+    "summitmetals": {
+      "price": 74.51,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-15T20:30:02.028Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
-    "gainesvillecoins": true,
     "herobullion": true,
     "providentmetals": false,
-    "summitmetals": true,
+    "gainesvillecoins": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-14T21:00:00.000Z",
-      "median": 75.5,
-      "low": 73.08,
-      "vendors": {
-        "herobullion": 75.5,
-        "gainesvillecoins": 73.08
-      }
-    },
     {
       "window": "2026-06-14T22:00:00.000Z",
       "median": 74.27,
@@ -320,6 +315,15 @@
       "vendors": {
         "herobullion": 77.85,
         "apmex": 86.67,
+        "bullionexchanges": 74.53
+      }
+    },
+    {
+      "window": "2026-06-15T22:00:00.000Z",
+      "median": 77.76,
+      "low": 74.53,
+      "vendors": {
+        "herobullion": 77.76,
         "bullionexchanges": 74.53
       }
     }
