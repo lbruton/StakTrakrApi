@@ -1,8 +1,8 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-06-15T05:00:00Z",
-  "median_price": 755.37,
-  "lowest_price": 737.1,
+  "window_start": "2026-06-15T05:30:00Z",
+  "median_price": 750.2,
+  "lowest_price": 736,
   "vendors": {
     "apmex": {
       "price": 801.7,
@@ -22,23 +22,27 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 783,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "monumentmetals": {
-      "price": 737.1,
+      "price": 736,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 783,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-15T03:30:02.297Z"
     },
     "sdbullion": {
       "price": 755.37,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-15T03:30:02.297Z"
     },
     "summitmetals": {
       "price": 700.92,
@@ -53,28 +57,16 @@
     "apmex": true,
     "gainesvillecoins": true,
     "herobullion": true,
-    "jmbullion": true,
     "monumentmetals": true,
-    "providentmetals": false,
-    "sdbullion": true,
     "bullionexchanges": true,
+    "jmbullion": true,
+    "providentmetals": true,
+    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-14T04:00:00.000Z",
-      "median": 723.4,
-      "low": 681.65,
-      "vendors": {
-        "jmbullion": 783,
-        "apmex": 775.2,
-        "gainesvillecoins": 723.4,
-        "monumentmetals": 713.2,
-        "summitmetals": 681.65
-      }
-    },
     {
       "window": "2026-06-14T05:00:00.000Z",
       "median": 775.2,
@@ -312,6 +304,14 @@
         "gainesvillecoins": 750.2,
         "monumentmetals": 737.1,
         "herobullion": 740.34
+      }
+    },
+    {
+      "window": "2026-06-15T05:00:00.000Z",
+      "median": 736,
+      "low": 736,
+      "vendors": {
+        "monumentmetals": 736
       }
     }
   ]
