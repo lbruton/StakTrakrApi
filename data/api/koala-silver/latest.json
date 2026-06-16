@@ -1,45 +1,53 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-06-16T00:00:00Z",
-  "median_price": 78.68,
-  "lowest_price": 77.23,
+  "window_start": "2026-06-16T00:30:00Z",
+  "median_price": 78.67,
+  "lowest_price": 78.67,
   "vendors": {
-    "apmex": {
-      "price": 81.63,
-      "confidence": 50,
+    "sdbullion": {
+      "price": 78.67,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 81.63,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-15T22:30:01.848Z"
     },
     "jmbullion": {
       "price": 78.2,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 78.68,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-15T22:30:01.848Z"
     },
     "summitmetals": {
       "price": 77.23,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-15T22:30:01.848Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "jmbullion": true,
     "monumentmetals": false,
+    "providentmetals": false,
     "sdbullion": true,
-    "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "providentmetals": true
+    "jmbullion": true,
+    "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "providentmetals": 71.11
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
     {
@@ -225,6 +233,14 @@
         "summitmetals": 77.23,
         "apmex": 81.63,
         "sdbullion": 78.68
+      }
+    },
+    {
+      "window": "2026-06-16T00:00:00.000Z",
+      "median": 78.67,
+      "low": 78.67,
+      "vendors": {
+        "sdbullion": 78.67
       }
     }
   ]
