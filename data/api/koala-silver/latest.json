@@ -1,26 +1,30 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-06-17T03:00:00Z",
-  "median_price": 78.24,
-  "lowest_price": 77.79,
+  "window_start": "2026-06-17T03:30:00Z",
+  "median_price": 77.53,
+  "lowest_price": 77.53,
   "vendors": {
-    "apmex": {
-      "price": 81.86,
-      "confidence": 50,
+    "summitmetals": {
+      "price": 77.53,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 81.86,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-17T01:30:02.539Z"
     },
     "jmbullion": {
       "price": 78.24,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 77.79,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-17T01:30:02.539Z"
     },
     "sdbullion": {
       "price": 78.79,
@@ -32,13 +36,13 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "jmbullion": true,
     "monumentmetals": false,
     "providentmetals": false,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
+    "jmbullion": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {
@@ -46,16 +50,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-16T02:00:00.000Z",
-      "median": 77.65,
-      "low": 76.6,
-      "vendors": {
-        "summitmetals": 76.6,
-        "jmbullion": 77.65,
-        "sdbullion": 78.67
-      }
-    },
     {
       "window": "2026-06-16T03:00:00.000Z",
       "median": 78.67,
@@ -237,6 +231,14 @@
       "low": 77.79,
       "vendors": {
         "summitmetals": 77.79
+      }
+    },
+    {
+      "window": "2026-06-17T03:00:00.000Z",
+      "median": 77.53,
+      "low": 77.53,
+      "vendors": {
+        "summitmetals": 77.53
       }
     }
   ]
