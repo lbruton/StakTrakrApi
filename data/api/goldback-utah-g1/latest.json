@@ -1,12 +1,24 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-06-18T22:00:00Z",
+  "window_start": "2026-06-18T22:30:00Z",
   "median_price": 8.62,
-  "lowest_price": 8.62,
+  "lowest_price": 8.28,
   "vendors": {
     "herobullion": {
       "price": 8.62,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.68,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 8.28,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -33,43 +45,19 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-18T15:30:01.394Z"
-    },
-    "sdbullion": {
-      "price": 8.71,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-18T12:30:02.304Z"
-    },
-    "summitmetals": {
-      "price": 8.28,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-18T19:30:01.422Z"
     }
   },
   "availability_by_site": {
     "herobullion": true,
+    "sdbullion": true,
+    "summitmetals": true,
     "apmex": true,
     "bullionexchanges": true,
-    "jmbullion": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-17T21:00:00.000Z",
-      "median": 8.71,
-      "low": 8.71,
-      "vendors": {
-        "herobullion": 8.71
-      }
-    },
     {
       "window": "2026-06-17T23:00:00.000Z",
       "median": 8.72,
@@ -262,6 +250,15 @@
       "low": 8.62,
       "vendors": {
         "herobullion": 8.62
+      }
+    },
+    {
+      "window": "2026-06-18T22:00:00.000Z",
+      "median": 8.68,
+      "low": 8.28,
+      "vendors": {
+        "sdbullion": 8.68,
+        "summitmetals": 8.28
       }
     }
   ]
