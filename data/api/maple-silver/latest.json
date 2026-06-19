@@ -1,20 +1,22 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-06-19T23:00:00Z",
-  "median_price": 76.57,
-  "lowest_price": 72.05,
+  "window_start": "2026-06-19T23:30:00Z",
+  "median_price": 70.85,
+  "lowest_price": 70.85,
   "vendors": {
-    "apmex": {
-      "price": 76.57,
+    "summitmetals": {
+      "price": 70.85,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 72.05,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 76.57,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-19T21:30:01.799Z"
     },
     "bullionexchanges": {
       "price": 66.9,
@@ -40,37 +42,31 @@
       "stale": true,
       "stale_since": "2026-06-19T20:30:01.846Z"
     },
-    "summitmetals": {
-      "price": 70.85,
+    "sdbullion": {
+      "price": 72.05,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-06-19T19:30:01.885Z"
+      "stale_since": "2026-06-19T21:30:01.799Z"
     }
   },
   "availability_by_site": {
+    "herobullion": false,
+    "summitmetals": true,
     "apmex": true,
-    "sdbullion": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
-    "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
-    "summitmetals": true
+    "sdbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 72.93
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-18T22:00:00.000Z",
-      "median": 71.67,
-      "low": 71.67,
-      "vendors": {
-        "summitmetals": 71.67
-      }
-    },
     {
       "window": "2026-06-18T23:00:00.000Z",
       "median": 71.51,
@@ -200,6 +196,14 @@
       "vendors": {
         "apmex": 76.57,
         "sdbullion": 72.05
+      }
+    },
+    {
+      "window": "2026-06-19T23:00:00.000Z",
+      "median": 70.85,
+      "low": 70.85,
+      "vendors": {
+        "summitmetals": 70.85
       }
     }
   ]
