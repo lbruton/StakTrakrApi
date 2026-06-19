@@ -1,26 +1,22 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-06-19T00:00:00Z",
+  "window_start": "2026-06-19T00:30:00Z",
   "median_price": 71.28,
-  "lowest_price": 71.03,
+  "lowest_price": 71.28,
   "vendors": {
-    "apmex": {
-      "price": 76.31,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 71.03,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 71.28,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 76.31,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-18T22:30:02.352Z"
     },
     "bullionexchanges": {
       "price": 72.35,
@@ -29,6 +25,14 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-18T11:30:01.298Z"
+    },
+    "herobullion": {
+      "price": 71.03,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-18T22:30:02.352Z"
     },
     "jmbullion": {
       "price": 76.76,
@@ -64,10 +68,10 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "herobullion": true,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
+    "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
