@@ -1,20 +1,28 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-06-19T09:00:00Z",
-  "median_price": 75.45,
-  "lowest_price": 70.76,
+  "window_start": "2026-06-19T09:30:00Z",
+  "median_price": 70.76,
+  "lowest_price": 69.91,
   "vendors": {
-    "apmex": {
-      "price": 75.45,
+    "herobullion": {
+      "price": 70.76,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 70.76,
-      "confidence": 50,
+    "summitmetals": {
+      "price": 69.91,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 75.45,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-19T07:30:02.017Z"
     },
     "bullionexchanges": {
       "price": 69.2,
@@ -55,38 +63,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-19T05:30:01.662Z"
-    },
-    "summitmetals": {
-      "price": 70.1,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-18T19:30:01.422Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-18T08:00:00.000Z",
-      "median": 74.26,
-      "low": 74,
-      "vendors": {
-        "herobullion": 74,
-        "sdbullion": 74.26
-      }
-    },
     {
       "window": "2026-06-18T09:00:00.000Z",
       "median": 73.81,
@@ -255,6 +246,14 @@
       "low": 70.76,
       "vendors": {
         "herobullion": 70.76
+      }
+    },
+    {
+      "window": "2026-06-19T09:00:00.000Z",
+      "median": 69.91,
+      "low": 69.91,
+      "vendors": {
+        "summitmetals": 69.91
       }
     }
   ]
