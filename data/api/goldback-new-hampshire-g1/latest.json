@@ -1,8 +1,8 @@
 {
   "slug": "goldback-new-hampshire-g1",
-  "window_start": "2026-06-20T21:00:00Z",
+  "window_start": "2026-06-20T21:30:00Z",
   "median_price": 8.59,
-  "lowest_price": 8.59,
+  "lowest_price": 8.17,
   "vendors": {
     "apmex": {
       "price": 8.59,
@@ -12,11 +12,21 @@
     },
     "bullionexchanges": {
       "price": 8.17,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-20T17:30:02.139Z"
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 8.28,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.62,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "herobullion": {
       "price": 9.02,
@@ -25,30 +35,14 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-20T18:30:02.162Z"
-    },
-    "jmbullion": {
-      "price": 8.21,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-20T17:30:02.139Z"
-    },
-    "sdbullion": {
-      "price": 8.62,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-20T16:30:02.079Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "jmbullion": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -186,6 +180,16 @@
       "low": 8.59,
       "vendors": {
         "apmex": 8.59
+      }
+    },
+    {
+      "window": "2026-06-20T21:00:00.000Z",
+      "median": 8.28,
+      "low": 8.17,
+      "vendors": {
+        "bullionexchanges": 8.17,
+        "sdbullion": 8.62,
+        "jmbullion": 8.28
       }
     }
   ]
