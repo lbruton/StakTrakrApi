@@ -1,21 +1,9 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-06-21T09:00:00Z",
+  "window_start": "2026-06-21T09:30:00Z",
   "median_price": 73.55,
   "lowest_price": 71.89,
   "vendors": {
-    "apmex": {
-      "price": 76.57,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 72.95,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 73.55,
       "confidence": 80,
@@ -27,16 +15,32 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 76.57,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-21T07:30:01.343Z"
+    },
+    "jmbullion": {
+      "price": 72.95,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-21T07:30:01.343Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "jmbullion": true,
+    "herobullion": false,
     "providentmetals": false,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
+    "jmbullion": true,
     "monumentmetals": true
   },
   "last_known_price_by_site": {
@@ -44,14 +48,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-20T08:00:00.000Z",
-      "median": 73.55,
-      "low": 73.55,
-      "vendors": {
-        "sdbullion": 73.55
-      }
-    },
     {
       "window": "2026-06-20T10:00:00.000Z",
       "median": 76.57,
@@ -217,6 +213,15 @@
     },
     {
       "window": "2026-06-21T08:00:00.000Z",
+      "median": 73.55,
+      "low": 71.89,
+      "vendors": {
+        "summitmetals": 71.89,
+        "sdbullion": 73.55
+      }
+    },
+    {
+      "window": "2026-06-21T09:00:00.000Z",
       "median": 73.55,
       "low": 71.89,
       "vendors": {
