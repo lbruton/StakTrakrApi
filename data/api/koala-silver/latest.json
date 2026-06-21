@@ -1,28 +1,26 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-06-21T02:00:00Z",
-  "median_price": 76.57,
-  "lowest_price": 73.55,
+  "window_start": "2026-06-21T02:30:00Z",
+  "median_price": 73.55,
+  "lowest_price": 72.95,
   "vendors": {
     "apmex": {
       "price": 76.57,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 73.55,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 72.95,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-20T23:30:01.895Z"
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 73.55,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "summitmetals": {
       "price": 71.89,
@@ -35,25 +33,19 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "herobullion": false,
+    "jmbullion": true,
+    "monumentmetals": false,
+    "providentmetals": false,
     "sdbullion": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "jmbullion": true,
-    "monumentmetals": true,
-    "providentmetals": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "providentmetals": 71.11
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-20T01:00:00.000Z",
-      "median": 71.89,
-      "low": 71.89,
-      "vendors": {
-        "summitmetals": 71.89
-      }
-    },
     {
       "window": "2026-06-20T02:00:00.000Z",
       "median": 76.57,
@@ -192,6 +184,15 @@
       "vendors": {
         "apmex": 76.57,
         "sdbullion": 73.55
+      }
+    },
+    {
+      "window": "2026-06-21T02:00:00.000Z",
+      "median": 76.57,
+      "low": 72.95,
+      "vendors": {
+        "jmbullion": 72.95,
+        "apmex": 76.57
       }
     }
   ]
