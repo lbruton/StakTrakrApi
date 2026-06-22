@@ -1,8 +1,8 @@
 {
   "slug": "goldback-florida-g1",
-  "window_start": "2026-06-22T18:00:00Z",
+  "window_start": "2026-06-22T18:30:00Z",
   "median_price": 8.31,
-  "lowest_price": 8.2,
+  "lowest_price": 8.25,
   "vendors": {
     "apmex": {
       "price": 8.31,
@@ -10,55 +10,46 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 8.2,
+    "herobullion": {
+      "price": 9.08,
+      "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 8.25,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
+    "bullionexchanges": {
+      "price": 8.2,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-22T16:30:02.193Z"
+    },
     "sdbullion": {
       "price": 8.64,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 9.08,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-06-22T15:30:01.995Z"
-    },
-    "jmbullion": {
-      "price": 8.25,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-22T14:30:01.336Z"
+      "stale_since": "2026-06-22T16:30:02.193Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
-    "sdbullion": true,
     "herobullion": true,
     "jmbullion": true,
-    "monumentmetals": true
+    "bullionexchanges": true,
+    "monumentmetals": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-21T17:00:00.000Z",
-      "median": 8.26,
-      "low": 8.21,
-      "vendors": {
-        "jmbullion": 8.21,
-        "apmex": 8.26
-      }
-    },
     {
       "window": "2026-06-21T18:00:00.000Z",
       "median": 8.21,
@@ -245,6 +236,15 @@
       "low": 8.31,
       "vendors": {
         "apmex": 8.31
+      }
+    },
+    {
+      "window": "2026-06-22T18:00:00.000Z",
+      "median": 9.08,
+      "low": 8.25,
+      "vendors": {
+        "herobullion": 9.08,
+        "jmbullion": 8.25
       }
     }
   ]
