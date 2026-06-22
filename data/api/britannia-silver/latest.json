@@ -1,12 +1,18 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-06-22T10:00:00Z",
+  "window_start": "2026-06-22T10:30:00Z",
   "median_price": 72.21,
-  "lowest_price": 70.55,
+  "lowest_price": 70.5,
   "vendors": {
     "apmex": {
-      "price": 77.09,
+      "price": 77.17,
       "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 70.5,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -29,7 +35,7 @@
       "inStock": true
     },
     "providentmetals": {
-      "price": 74.62,
+      "price": 74.64,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -45,40 +51,21 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 70.14,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-22T05:30:01.912Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
     "sdbullion": true,
-    "summitmetals": true,
-    "bullionexchanges": true
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-21T09:00:00.000Z",
-      "median": 73.05,
-      "low": 68.91,
-      "vendors": {
-        "jmbullion": 75.45,
-        "providentmetals": 73.05,
-        "bullionexchanges": 68.91,
-        "summitmetals": 69.79
-      }
-    },
     {
       "window": "2026-06-21T10:00:00.000Z",
       "median": 69.79,
@@ -322,6 +309,17 @@
         "herobullion": 71.97,
         "sdbullion": 72.21,
         "monumentmetals": 70.55
+      }
+    },
+    {
+      "window": "2026-06-22T10:00:00.000Z",
+      "median": 74.64,
+      "low": 70.5,
+      "vendors": {
+        "sdbullion": 72.21,
+        "apmex": 77.17,
+        "providentmetals": 74.64,
+        "bullionexchanges": 70.5
       }
     }
   ]
