@@ -1,8 +1,8 @@
 {
   "slug": "ape",
-  "window_start": "2026-06-23T11:00:00Z",
+  "window_start": "2026-06-23T11:30:00Z",
   "median_price": 2009.59,
-  "lowest_price": 1920.19,
+  "lowest_price": 1850.35,
   "vendors": {
     "apmex": {
       "price": 2009.59,
@@ -10,11 +10,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "providentmetals": {
-      "price": 1920.19,
+    "summitmetals": {
+      "price": 1850.35,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "herobullion": {
+      "price": 1866.27,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-22T14:30:01.336Z"
     },
     "jmbullion": {
       "price": 1998.99,
@@ -32,6 +40,14 @@
       "stale": true,
       "stale_since": "2026-06-23T08:30:01.943Z"
     },
+    "providentmetals": {
+      "price": 1920.19,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-23T09:30:01.678Z"
+    },
     "sdbullion": {
       "price": 1991.29,
       "confidence": null,
@@ -39,39 +55,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-23T01:30:01.865Z"
-    },
-    "summitmetals": {
-      "price": 1844.58,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-23T08:30:01.943Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": false,
-    "providentmetals": true,
+    "summitmetals": true,
     "bullionexchanges": true,
+    "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "providentmetals": true,
+    "sdbullion": true
   },
-  "last_known_price_by_site": {
-    "herobullion": 1866.27
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-22T10:00:00.000Z",
-      "median": 2026.19,
-      "low": 2026.19,
-      "vendors": {
-        "jmbullion": 2026.19
-      }
-    },
     {
       "window": "2026-06-22T12:00:00.000Z",
       "median": 1866.06,
@@ -281,6 +279,14 @@
       "low": 2009.59,
       "vendors": {
         "apmex": 2009.59
+      }
+    },
+    {
+      "window": "2026-06-23T11:00:00.000Z",
+      "median": 1850.35,
+      "low": 1850.35,
+      "vendors": {
+        "summitmetals": 1850.35
       }
     }
   ]
