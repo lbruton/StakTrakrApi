@@ -1,15 +1,9 @@
 {
   "slug": "age",
-  "window_start": "2026-06-23T17:00:00Z",
+  "window_start": "2026-06-23T17:30:00Z",
   "median_price": 4248.65,
   "lowest_price": 4194.1,
   "vendors": {
-    "apmex": {
-      "price": 4370.29,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 4194.1,
       "confidence": 80,
@@ -29,7 +23,7 @@
       "inStock": true
     },
     "providentmetals": {
-      "price": 4327.09,
+      "price": 4323.51,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -41,10 +35,18 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 4325.95,
+      "price": 4330.2,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 4370.29,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-23T15:30:01.724Z"
     },
     "herobullion": {
       "price": 4240.55,
@@ -64,30 +66,19 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "jmbullion": true,
     "providentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "herobullion": true,
     "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-22T16:00:00.000Z",
-      "median": 4307.22,
-      "low": 4238.8,
-      "vendors": {
-        "monumentmetals": 4307.55,
-        "bullionexchanges": 4238.8,
-        "sdbullion": 4285.01,
-        "herobullion": 4307.22
-      }
-    },
     {
       "window": "2026-06-22T17:00:00.000Z",
       "median": 4375.3,
@@ -329,6 +320,15 @@
         "jmbullion": 4248.65,
         "summitmetals": 4325.95,
         "sdbullion": 4236.37
+      }
+    },
+    {
+      "window": "2026-06-23T17:00:00.000Z",
+      "median": 4330.2,
+      "low": 4323.51,
+      "vendors": {
+        "providentmetals": 4323.51,
+        "summitmetals": 4330.2
       }
     }
   ]
