@@ -1,7 +1,7 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-06-25T12:00:00Z",
-  "median_price": 8.19,
+  "window_start": "2026-06-25T12:30:00Z",
+  "median_price": 8.23,
   "lowest_price": 7.84,
   "vendors": {
     "apmex": {
@@ -16,23 +16,27 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 8.19,
+    "sdbullion": {
+      "price": 8.46,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "herobullion": {
+      "price": 8.19,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-25T10:30:01.757Z"
     },
     "jmbullion": {
       "price": 8.03,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 8.45,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-25T10:30:01.757Z"
     },
     "summitmetals": {
       "price": 7.86,
@@ -46,25 +50,14 @@
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
+    "sdbullion": true,
     "herobullion": true,
     "jmbullion": true,
-    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-24T11:00:00.000Z",
-      "median": 8.11,
-      "low": 7.93,
-      "vendors": {
-        "sdbullion": 8.53,
-        "jmbullion": 8.11,
-        "summitmetals": 7.97,
-        "bullionexchanges": 7.93
-      }
-    },
     {
       "window": "2026-06-24T12:00:00.000Z",
       "median": 8.25,
@@ -278,6 +271,14 @@
       "vendors": {
         "apmex": 8.23,
         "bullionexchanges": 7.84
+      }
+    },
+    {
+      "window": "2026-06-25T12:00:00.000Z",
+      "median": 8.46,
+      "low": 8.46,
+      "vendors": {
+        "sdbullion": 8.46
       }
     }
   ]
