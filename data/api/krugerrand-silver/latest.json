@@ -1,24 +1,18 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-06-25T05:00:00Z",
-  "median_price": 67.46,
-  "lowest_price": 62.7,
+  "window_start": "2026-06-25T05:30:00Z",
+  "median_price": 65.73,
+  "lowest_price": 63.1,
   "vendors": {
-    "apmex": {
-      "price": 67.46,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
       "price": 72.23,
-      "confidence": 50,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 62.7,
-      "confidence": 30,
+      "price": 63.1,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -27,6 +21,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 67.46,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-25T03:30:02.198Z"
     },
     "herobullion": {
       "price": 62.84,
@@ -46,27 +48,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
+    "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-24T04:00:00.000Z",
-      "median": 66.92,
-      "low": 66.66,
-      "vendors": {
-        "herobullion": 66.66,
-        "monumentmetals": 66.92
-      }
-    },
     {
       "window": "2026-06-24T05:00:00.000Z",
       "median": 69.73,
@@ -291,6 +284,14 @@
       "vendors": {
         "providentmetals": 65.73,
         "jmbullion": 72.23
+      }
+    },
+    {
+      "window": "2026-06-25T05:00:00.000Z",
+      "median": 63.1,
+      "low": 63.1,
+      "vendors": {
+        "monumentmetals": 63.1
       }
     }
   ]
