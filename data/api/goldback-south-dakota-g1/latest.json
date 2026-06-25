@@ -1,18 +1,18 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-06-25T06:00:00Z",
+  "window_start": "2026-06-25T06:30:00Z",
   "median_price": 8.46,
-  "lowest_price": 7.93,
+  "lowest_price": 8.13,
   "vendors": {
-    "apmex": {
-      "price": 7.93,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 8.71,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 8.13,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -22,6 +22,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 7.93,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-25T04:30:02.000Z"
+    },
     "bullionexchanges": {
       "price": 7.85,
       "confidence": null,
@@ -29,36 +37,18 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-25T02:30:01.562Z"
-    },
-    "jmbullion": {
-      "price": 8.03,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-25T03:30:02.198Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "jmbullion": true,
     "sdbullion": true,
-    "bullionexchanges": true,
-    "jmbullion": true
+    "apmex": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-24T05:00:00.000Z",
-      "median": 8.53,
-      "low": 8.11,
-      "vendors": {
-        "herobullion": 8.86,
-        "sdbullion": 8.53,
-        "apmex": 8.11
-      }
-    },
     {
       "window": "2026-06-24T06:00:00.000Z",
       "median": 8.17,
@@ -281,6 +271,14 @@
       "vendors": {
         "sdbullion": 8.46,
         "herobullion": 8.71
+      }
+    },
+    {
+      "window": "2026-06-25T06:00:00.000Z",
+      "median": 8.13,
+      "low": 8.13,
+      "vendors": {
+        "jmbullion": 8.13
       }
     }
   ]
