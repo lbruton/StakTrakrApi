@@ -1,21 +1,9 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-06-25T10:00:00Z",
+  "window_start": "2026-06-25T10:30:00Z",
   "median_price": 66.32,
-  "lowest_price": 64.01,
+  "lowest_price": 63.95,
   "vendors": {
-    "apmex": {
-      "price": 69.29,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 65.32,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 66.32,
       "confidence": 80,
@@ -23,20 +11,36 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 64.01,
+      "price": 63.95,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 69.29,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-25T08:30:01.790Z"
+    },
+    "jmbullion": {
+      "price": 65.32,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-25T08:30:01.790Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "jmbullion": true,
     "providentmetals": false,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
+    "jmbullion": true,
     "monumentmetals": true
   },
   "last_known_price_by_site": {
@@ -44,15 +48,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-24T09:00:00.000Z",
-      "median": 72.89,
-      "low": 69.9,
-      "vendors": {
-        "apmex": 72.89,
-        "jmbullion": 69.9
-      }
-    },
     {
       "window": "2026-06-24T10:00:00.000Z",
       "median": 69.69,
@@ -235,6 +230,15 @@
       "low": 66.32,
       "vendors": {
         "sdbullion": 66.32
+      }
+    },
+    {
+      "window": "2026-06-25T10:00:00.000Z",
+      "median": 66.32,
+      "low": 63.95,
+      "vendors": {
+        "sdbullion": 66.32,
+        "summitmetals": 63.95
       }
     }
   ]
