@@ -1,18 +1,12 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-06-26T12:00:00Z",
-  "median_price": 64.75,
-  "lowest_price": 61.52,
+  "window_start": "2026-06-26T12:30:00Z",
+  "median_price": 65.96,
+  "lowest_price": 61.64,
   "vendors": {
     "apmex": {
       "price": 69.12,
       "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 63.32,
-      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -23,16 +17,24 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 61.52,
+      "price": 61.64,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 64.75,
+      "price": 64.7,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 63.32,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-26T10:30:01.287Z"
     },
     "herobullion": {
       "price": 62.52,
@@ -53,11 +55,11 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": false,
+    "bullionexchanges": true,
     "herobullion": true,
     "providentmetals": true
   },
@@ -66,17 +68,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-25T11:00:00.000Z",
-      "median": 64.15,
-      "low": 60.43,
-      "vendors": {
-        "monumentmetals": 60.43,
-        "herobullion": 61.92,
-        "jmbullion": 64.78,
-        "sdbullion": 64.15
-      }
-    },
     {
       "window": "2026-06-25T12:00:00.000Z",
       "median": 63.33,
@@ -318,6 +309,15 @@
         "apmex": 69.12,
         "sdbullion": 64.75,
         "jmbullion": 65.96
+      }
+    },
+    {
+      "window": "2026-06-26T12:00:00.000Z",
+      "median": 64.7,
+      "low": 61.64,
+      "vendors": {
+        "sdbullion": 64.7,
+        "monumentmetals": 61.64
       }
     }
   ]
