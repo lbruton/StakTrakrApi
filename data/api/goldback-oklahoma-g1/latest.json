@@ -1,17 +1,11 @@
 {
   "slug": "goldback-oklahoma-g1",
-  "window_start": "2026-06-26T11:00:00Z",
-  "median_price": 8.09,
-  "lowest_price": 8.06,
+  "window_start": "2026-06-26T11:30:00Z",
+  "median_price": 8.82,
+  "lowest_price": 8.51,
   "vendors": {
-    "apmex": {
-      "price": 8.06,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 8.09,
+    "herobullion": {
+      "price": 8.82,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -22,6 +16,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 8.06,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-26T09:30:01.886Z"
+    },
     "bullionexchanges": {
       "price": 7.87,
       "confidence": null,
@@ -30,37 +32,26 @@
       "stale": true,
       "stale_since": "2026-06-26T06:30:02.212Z"
     },
-    "herobullion": {
-      "price": 8.78,
+    "jmbullion": {
+      "price": 8.09,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-06-26T08:30:01.811Z"
+      "stale_since": "2026-06-26T09:30:01.886Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "jmbullion": true,
+    "herobullion": true,
     "monumentmetals": false,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-25T10:00:00.000Z",
-      "median": 8.04,
-      "low": 7.86,
-      "vendors": {
-        "apmex": 7.93,
-        "bullionexchanges": 7.86,
-        "sdbullion": 8.46,
-        "jmbullion": 8.04
-      }
-    },
     {
       "window": "2026-06-25T11:00:00.000Z",
       "median": 8.68,
@@ -249,6 +240,15 @@
       "median": 8.51,
       "low": 8.51,
       "vendors": {
+        "sdbullion": 8.51
+      }
+    },
+    {
+      "window": "2026-06-26T11:00:00.000Z",
+      "median": 8.82,
+      "low": 8.51,
+      "vendors": {
+        "herobullion": 8.82,
         "sdbullion": 8.51
       }
     }
