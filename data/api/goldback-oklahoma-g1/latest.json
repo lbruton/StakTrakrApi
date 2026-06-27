@@ -1,8 +1,8 @@
 {
   "slug": "goldback-oklahoma-g1",
-  "window_start": "2026-06-27T19:00:00Z",
-  "median_price": 8.09,
-  "lowest_price": 7.95,
+  "window_start": "2026-06-27T19:30:00Z",
+  "median_price": 8.13,
+  "lowest_price": 8.09,
   "vendors": {
     "apmex": {
       "price": 8.09,
@@ -10,11 +10,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 7.95,
+    "jmbullion": {
+      "price": 8.13,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 7.95,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-27T17:30:02.365Z"
     },
     "herobullion": {
       "price": 8.86,
@@ -23,14 +31,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-27T16:30:01.367Z"
-    },
-    "jmbullion": {
-      "price": 8.13,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-27T11:30:01.676Z"
     },
     "sdbullion": {
       "price": 8.53,
@@ -43,24 +43,15 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
-    "monumentmetals": false,
-    "herobullion": true,
     "jmbullion": true,
+    "monumentmetals": false,
+    "bullionexchanges": true,
+    "herobullion": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-26T18:00:00.000Z",
-      "median": 8.13,
-      "low": 8.1,
-      "vendors": {
-        "jmbullion": 8.13,
-        "apmex": 8.1
-      }
-    },
     {
       "window": "2026-06-26T19:00:00.000Z",
       "median": 8.84,
@@ -267,6 +258,14 @@
       "low": 8.09,
       "vendors": {
         "apmex": 8.09
+      }
+    },
+    {
+      "window": "2026-06-27T19:00:00.000Z",
+      "median": 8.13,
+      "low": 8.13,
+      "vendors": {
+        "jmbullion": 8.13
       }
     }
   ]
