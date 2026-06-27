@@ -1,30 +1,26 @@
 {
   "slug": "goldback-nevada-g1",
-  "window_start": "2026-06-27T05:00:00Z",
-  "median_price": 8.13,
+  "window_start": "2026-06-27T05:30:00Z",
+  "median_price": 8.42,
   "lowest_price": 8.13,
   "vendors": {
-    "jmbullion": {
-      "price": 8.13,
+    "apmex": {
+      "price": 8.42,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 8.42,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-27T02:30:02.119Z"
-    },
     "herobullion": {
       "price": 8.86,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-27T00:30:01.757Z"
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 8.13,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
     },
     "sdbullion": {
       "price": 8.53,
@@ -36,25 +32,15 @@
     }
   },
   "availability_by_site": {
-    "jmbullion": true,
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
+    "jmbullion": true,
+    "bullionexchanges": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-26T04:00:00.000Z",
-      "median": 8.29,
-      "low": 8.03,
-      "vendors": {
-        "jmbullion": 8.03,
-        "apmex": 8.29,
-        "sdbullion": 8.47
-      }
-    },
     {
       "window": "2026-06-26T05:00:00.000Z",
       "median": 8.47,
@@ -258,6 +244,15 @@
       "low": 8.13,
       "vendors": {
         "jmbullion": 8.13
+      }
+    },
+    {
+      "window": "2026-06-27T05:00:00.000Z",
+      "median": 8.86,
+      "low": 8.42,
+      "vendors": {
+        "herobullion": 8.86,
+        "apmex": 8.42
       }
     }
   ]
