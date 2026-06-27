@@ -1,9 +1,15 @@
 {
   "slug": "goldback-oklahoma-g1",
-  "window_start": "2026-06-27T08:00:00Z",
+  "window_start": "2026-06-27T08:30:00Z",
   "median_price": 8.13,
   "lowest_price": 7.95,
   "vendors": {
+    "apmex": {
+      "price": 8.09,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
       "price": 7.95,
       "confidence": 80,
@@ -22,14 +28,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 8.09,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-27T05:30:01.919Z"
-    },
     "herobullion": {
       "price": 8.86,
       "confidence": null,
@@ -40,24 +38,16 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "monumentmetals": false,
     "sdbullion": true,
-    "apmex": true,
-    "herobullion": true
+    "herobullion": true,
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-26T07:00:00.000Z",
-      "median": 8.47,
-      "low": 8.47,
-      "vendors": {
-        "sdbullion": 8.47
-      }
-    },
     {
       "window": "2026-06-26T08:00:00.000Z",
       "median": 8.78,
@@ -266,6 +256,16 @@
       "vendors": {
         "sdbullion": 8.53,
         "jmbullion": 8.13
+      }
+    },
+    {
+      "window": "2026-06-27T08:00:00.000Z",
+      "median": 8.09,
+      "low": 7.95,
+      "vendors": {
+        "bullionexchanges": 7.95,
+        "sdbullion": 8.53,
+        "apmex": 8.09
       }
     }
   ]
