@@ -1,20 +1,28 @@
 {
   "slug": "goldback-nevada-g1",
-  "window_start": "2026-06-28T02:00:00Z",
+  "window_start": "2026-06-28T02:30:00Z",
   "median_price": 8.86,
-  "lowest_price": 8.42,
+  "lowest_price": 8.53,
   "vendors": {
-    "apmex": {
-      "price": 8.42,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 8.86,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.53,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 8.42,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-28T00:30:02.038Z"
     },
     "jmbullion": {
       "price": 8.13,
@@ -23,35 +31,18 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-27T23:30:01.233Z"
-    },
-    "sdbullion": {
-      "price": 8.53,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-27T23:30:01.233Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
-    "jmbullion": true,
-    "sdbullion": true
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-27T01:00:00.000Z",
-      "median": 8.53,
-      "low": 8.13,
-      "vendors": {
-        "sdbullion": 8.53,
-        "jmbullion": 8.13
-      }
-    },
     {
       "window": "2026-06-27T02:00:00.000Z",
       "median": 8.42,
@@ -258,6 +249,15 @@
       "low": 8.86,
       "vendors": {
         "herobullion": 8.86
+      }
+    },
+    {
+      "window": "2026-06-28T02:00:00.000Z",
+      "median": 8.86,
+      "low": 8.53,
+      "vendors": {
+        "herobullion": 8.86,
+        "sdbullion": 8.53
       }
     }
   ]
