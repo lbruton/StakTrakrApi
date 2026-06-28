@@ -1,11 +1,17 @@
 {
   "slug": "buffalo",
-  "window_start": "2026-06-28T06:00:00Z",
-  "median_price": 4302.94,
+  "window_start": "2026-06-28T06:30:00Z",
+  "median_price": 4276.48,
   "lowest_price": 4206.47,
   "vendors": {
     "apmex": {
       "price": 4402.69,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 4275.81,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -27,14 +33,6 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 4275.81,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-28T02:30:01.601Z"
     },
     "jmbullion": {
       "price": 4417.44,
@@ -63,30 +61,20 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
+    "herobullion": false,
     "sdbullion": true,
     "summitmetals": true,
-    "bullionexchanges": true,
-    "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 4582.53
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-27T05:00:00.000Z",
-      "median": 4277.86,
-      "low": 4275.81,
-      "vendors": {
-        "providentmetals": 4335.44,
-        "bullionexchanges": 4275.81,
-        "summitmetals": 4277.32,
-        "monumentmetals": 4277.86,
-        "jmbullion": 4417.44
-      }
-    },
     {
       "window": "2026-06-27T06:00:00.000Z",
       "median": 4302.94,
@@ -318,6 +306,16 @@
         "gainesvillecoins": 4206.47,
         "sdbullion": 4302.94,
         "summitmetals": 4276.48
+      }
+    },
+    {
+      "window": "2026-06-28T06:00:00.000Z",
+      "median": 4302.94,
+      "low": 4275.81,
+      "vendors": {
+        "bullionexchanges": 4275.81,
+        "sdbullion": 4302.94,
+        "apmex": 4402.69
       }
     }
   ]
