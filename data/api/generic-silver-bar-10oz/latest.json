@@ -1,26 +1,28 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-06-29T04:00:00Z",
-  "median_price": 638.81,
-  "lowest_price": 618.4,
+  "window_start": "2026-06-29T04:30:00Z",
+  "median_price": 638.02,
+  "lowest_price": 615.6,
   "vendors": {
-    "apmex": {
-      "price": 684.7,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "monumentmetals": {
-      "price": 618.4,
+      "price": 615.6,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 638.81,
+      "price": 638.02,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 684.7,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-29T02:30:02.151Z"
     },
     "bullionexchanges": {
       "price": 611.5,
@@ -48,33 +50,22 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
+    "herobullion": false,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
-    "herobullion": true,
     "jmbullion": true,
     "providentmetals": true
   },
   "last_known_price_by_site": {
+    "herobullion": 624.66,
     "summitmetals": 606.52
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-28T03:00:00.000Z",
-      "median": 641.39,
-      "low": 622.9,
-      "vendors": {
-        "monumentmetals": 622.9,
-        "jmbullion": 684.4,
-        "gainesvillecoins": 634.8,
-        "apmex": 686.6,
-        "sdbullion": 641.39
-      }
-    },
     {
       "window": "2026-06-28T04:00:00.000Z",
       "median": 684.4,
@@ -297,6 +288,15 @@
       "vendors": {
         "sdbullion": 638.81,
         "monumentmetals": 618.4
+      }
+    },
+    {
+      "window": "2026-06-29T04:00:00.000Z",
+      "median": 638.02,
+      "low": 615.6,
+      "vendors": {
+        "sdbullion": 638.02,
+        "monumentmetals": 615.6
       }
     }
   ]
