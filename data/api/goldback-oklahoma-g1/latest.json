@@ -1,22 +1,26 @@
 {
   "slug": "goldback-oklahoma-g1",
-  "window_start": "2026-06-29T09:00:00Z",
-  "median_price": 7.92,
-  "lowest_price": 7.92,
+  "window_start": "2026-06-29T09:30:00Z",
+  "median_price": 8.04,
+  "lowest_price": 7.91,
   "vendors": {
-    "bullionexchanges": {
-      "price": 7.92,
+    "apmex": {
+      "price": 8.04,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 8.04,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-29T05:30:02.046Z"
+    "bullionexchanges": {
+      "price": 7.91,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.51,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
     },
     "herobullion": {
       "price": 8.83,
@@ -33,38 +37,19 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-29T06:30:02.069Z"
-    },
-    "sdbullion": {
-      "price": 8.52,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-29T06:30:02.069Z"
     }
   },
   "availability_by_site": {
-    "bullionexchanges": true,
-    "monumentmetals": false,
     "apmex": true,
+    "bullionexchanges": true,
+    "sdbullion": true,
     "herobullion": true,
     "jmbullion": true,
-    "sdbullion": true
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-28T08:00:00.000Z",
-      "median": 8.53,
-      "low": 7.95,
-      "vendors": {
-        "bullionexchanges": 7.95,
-        "jmbullion": 8.13,
-        "herobullion": 8.86,
-        "sdbullion": 8.53
-      }
-    },
     {
       "window": "2026-06-28T09:00:00.000Z",
       "median": 8.13,
@@ -279,6 +264,16 @@
       "low": 7.92,
       "vendors": {
         "bullionexchanges": 7.92
+      }
+    },
+    {
+      "window": "2026-06-29T09:00:00.000Z",
+      "median": 8.04,
+      "low": 7.91,
+      "vendors": {
+        "apmex": 8.04,
+        "bullionexchanges": 7.91,
+        "sdbullion": 8.51
       }
     }
   ]

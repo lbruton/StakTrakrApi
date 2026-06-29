@@ -1,11 +1,17 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-06-29T09:00:00Z",
-  "median_price": 67.2,
+  "window_start": "2026-06-29T09:30:00Z",
+  "median_price": 71.51,
   "lowest_price": 67.2,
   "vendors": {
     "herobullion": {
       "price": 67.2,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 71.51,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -17,22 +23,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-29T01:30:01.987Z"
-    },
-    "jmbullion": {
-      "price": 71.64,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-29T06:30:02.069Z"
-    },
-    "monumentmetals": {
-      "price": 65.32,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-28T22:30:01.870Z"
     },
     "providentmetals": {
       "price": 69.07,
@@ -61,26 +51,19 @@
   },
   "availability_by_site": {
     "herobullion": true,
+    "jmbullion": true,
+    "monumentmetals": false,
     "apmex": true,
     "bullionexchanges": true,
-    "jmbullion": true,
-    "monumentmetals": true,
     "providentmetals": true,
     "sdbullion": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "monumentmetals": 65.32
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-28T08:00:00.000Z",
-      "median": 77.67,
-      "low": 67.71,
-      "vendors": {
-        "apmex": 77.67,
-        "herobullion": 67.71
-      }
-    },
     {
       "window": "2026-06-28T09:00:00.000Z",
       "median": 71.64,
@@ -292,6 +275,14 @@
       "low": 67.2,
       "vendors": {
         "herobullion": 67.2
+      }
+    },
+    {
+      "window": "2026-06-29T09:00:00.000Z",
+      "median": 71.51,
+      "low": 71.51,
+      "vendors": {
+        "jmbullion": 71.51
       }
     }
   ]
