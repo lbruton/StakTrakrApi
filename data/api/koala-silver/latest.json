@@ -1,54 +1,47 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-06-30T21:00:00Z",
-  "median_price": 68.18,
-  "lowest_price": 67.54,
+  "window_start": "2026-06-30T21:30:00Z",
+  "median_price": 70.27,
+  "lowest_price": 70.27,
   "vendors": {
     "apmex": {
-      "price": 71.22,
-      "confidence": 50,
+      "price": 70.27,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 67.54,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-30T19:30:02.212Z"
     },
     "sdbullion": {
       "price": 68.18,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-30T19:30:02.212Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "jmbullion": true,
     "monumentmetals": false,
     "providentmetals": false,
-    "sdbullion": true,
-    "summitmetals": false,
     "bullionexchanges": true,
-    "herobullion": true
+    "herobullion": true,
+    "jmbullion": true,
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {
-    "providentmetals": 65.14,
-    "summitmetals": 65.9
+    "providentmetals": 65.14
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-29T20:00:00.000Z",
-      "median": 66.94,
-      "low": 66.17,
-      "vendors": {
-        "sdbullion": 66.94,
-        "apmex": 70,
-        "jmbullion": 66.17
-      }
-    },
     {
       "window": "2026-06-29T21:00:00.000Z",
       "median": 66.94,
@@ -218,6 +211,14 @@
         "sdbullion": 68.18,
         "apmex": 71.22,
         "jmbullion": 67.54
+      }
+    },
+    {
+      "window": "2026-06-30T21:00:00.000Z",
+      "median": 70.27,
+      "low": 70.27,
+      "vendors": {
+        "apmex": 70.27
       }
     }
   ]
