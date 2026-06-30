@@ -1,20 +1,28 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-06-30T12:00:00Z",
-  "median_price": 70.58,
-  "lowest_price": 61.29,
+  "window_start": "2026-06-30T12:30:00Z",
+  "median_price": 64.25,
+  "lowest_price": 60.68,
   "vendors": {
-    "apmex": {
-      "price": 70.58,
+    "gainesvillecoins": {
+      "price": 60.68,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 64.25,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "gainesvillecoins": {
-      "price": 61.29,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 70.58,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-06-30T10:30:02.203Z"
     },
     "bullionexchanges": {
       "price": 62.2,
@@ -26,14 +34,6 @@
     },
     "jmbullion": {
       "price": 71.47,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-30T08:30:01.688Z"
-    },
-    "monumentmetals": {
-      "price": 64.48,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
@@ -58,13 +58,13 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "gainesvillecoins": true,
     "herobullion": false,
+    "monumentmetals": true,
     "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "monumentmetals": true,
     "providentmetals": true,
     "sdbullion": true
   },
@@ -279,6 +279,15 @@
       "low": 61.29,
       "vendors": {
         "gainesvillecoins": 61.29
+      }
+    },
+    {
+      "window": "2026-06-30T12:00:00.000Z",
+      "median": 64.25,
+      "low": 60.68,
+      "vendors": {
+        "gainesvillecoins": 60.68,
+        "monumentmetals": 64.25
       }
     }
   ]
