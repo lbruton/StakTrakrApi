@@ -1,24 +1,18 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-07-01T07:00:00Z",
+  "window_start": "2026-07-01T07:30:00Z",
   "median_price": 64.16,
-  "lowest_price": 61.68,
+  "lowest_price": 61.5,
   "vendors": {
     "jmbullion": {
-      "price": 66.12,
-      "confidence": 50,
+      "price": 65.02,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 61.68,
+      "price": 61.5,
       "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "providentmetals": {
-      "price": 63.27,
-      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -43,17 +37,25 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-06-30T19:30:02.212Z"
+    },
+    "providentmetals": {
+      "price": 63.27,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-01T05:30:01.495Z"
     }
   },
   "availability_by_site": {
     "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
-    "providentmetals": true,
     "sdbullion": true,
     "summitmetals": false,
     "apmex": true,
-    "bullionexchanges": true
+    "bullionexchanges": true,
+    "providentmetals": true
   },
   "last_known_price_by_site": {
     "herobullion": 62.52,
@@ -61,16 +63,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-30T06:00:00.000Z",
-      "median": 66.03,
-      "low": 65.19,
-      "vendors": {
-        "sdbullion": 66.03,
-        "providentmetals": 65.19,
-        "jmbullion": 66.64
-      }
-    },
     {
       "window": "2026-06-30T07:00:00.000Z",
       "median": 65.61,
@@ -295,6 +287,15 @@
       "low": 64.16,
       "vendors": {
         "sdbullion": 64.16
+      }
+    },
+    {
+      "window": "2026-07-01T07:00:00.000Z",
+      "median": 65.02,
+      "low": 61.5,
+      "vendors": {
+        "jmbullion": 65.02,
+        "monumentmetals": 61.5
       }
     }
   ]
