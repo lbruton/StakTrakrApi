@@ -1,20 +1,40 @@
 {
   "slug": "buffalo",
-  "window_start": "2026-07-01T13:00:00Z",
-  "median_price": 4370.35,
-  "lowest_price": 4359.39,
+  "window_start": "2026-07-01T13:30:00Z",
+  "median_price": 4308.13,
+  "lowest_price": 4238.7,
   "vendors": {
-    "apmex": {
-      "price": 4359.39,
+    "herobullion": {
+      "price": 4238.7,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
-      "price": 4370.35,
+      "price": 4388.08,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "providentmetals": {
+      "price": 4308.13,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 4274.95,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 4359.39,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-01T11:30:02.286Z"
     },
     "bullionexchanges": {
       "price": 4147.83,
@@ -39,57 +59,24 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-01T10:30:02.262Z"
-    },
-    "providentmetals": {
-      "price": 4292.35,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-30T15:30:01.745Z"
-    },
-    "sdbullion": {
-      "price": 4202.91,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-01T08:30:01.393Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "jmbullion": true,
-    "bullionexchanges": true,
-    "gainesvillecoins": true,
     "herobullion": true,
-    "monumentmetals": true,
+    "jmbullion": true,
     "providentmetals": true,
     "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": false,
+    "apmex": true,
+    "bullionexchanges": true,
+    "gainesvillecoins": true,
+    "monumentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 4276.9
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-30T11:00:00.000Z",
-      "median": 4256.53,
-      "low": 4204.93,
-      "vendors": {
-        "bullionexchanges": 4204.93,
-        "sdbullion": 4256.53
-      }
-    },
-    {
-      "window": "2026-06-30T12:00:00.000Z",
-      "median": 4202.75,
-      "low": 4191.72,
-      "vendors": {
-        "bullionexchanges": 4191.72,
-        "apmex": 4348.69,
-        "monumentmetals": 4202.75
-      }
-    },
     {
       "window": "2026-06-30T13:00:00.000Z",
       "median": 4354.19,
@@ -309,6 +296,17 @@
       "vendors": {
         "apmex": 4359.39,
         "jmbullion": 4370.35
+      }
+    },
+    {
+      "window": "2026-07-01T13:00:00.000Z",
+      "median": 4308.13,
+      "low": 4238.7,
+      "vendors": {
+        "providentmetals": 4308.13,
+        "herobullion": 4238.7,
+        "sdbullion": 4274.95,
+        "jmbullion": 4388.08
       }
     }
   ]
