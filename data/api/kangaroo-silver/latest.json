@@ -1,9 +1,15 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-07-01T23:00:00Z",
-  "median_price": 65.62,
+  "window_start": "2026-07-01T23:30:00Z",
+  "median_price": 67,
   "lowest_price": 63.5,
   "vendors": {
+    "apmex": {
+      "price": 69.96,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "jmbullion": {
       "price": 67,
       "confidence": 80,
@@ -16,20 +22,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 65.62,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "apmex": {
-      "price": 69.9,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-01T20:30:01.393Z"
-    },
     "providentmetals": {
       "price": 65.39,
       "confidence": null,
@@ -37,16 +29,24 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-01T19:30:01.912Z"
+    },
+    "sdbullion": {
+      "price": 65.62,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-01T21:30:02.036Z"
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "apmex": true,
     "bullionexchanges": true,
     "providentmetals": true,
+    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {
@@ -54,16 +54,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-30T22:00:00.000Z",
-      "median": 64.53,
-      "low": 62.95,
-      "vendors": {
-        "apmex": 69.52,
-        "monumentmetals": 62.95,
-        "providentmetals": 64.53
-      }
-    },
     {
       "window": "2026-06-30T23:00:00.000Z",
       "median": 64.33,
@@ -274,6 +264,14 @@
       "vendors": {
         "jmbullion": 67,
         "monumentmetals": 63.5
+      }
+    },
+    {
+      "window": "2026-07-01T23:00:00.000Z",
+      "median": 69.96,
+      "low": 69.96,
+      "vendors": {
+        "apmex": 69.96
       }
     }
   ]
