@@ -1,23 +1,17 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-07-01T22:00:00Z",
-  "median_price": 66.82,
-  "lowest_price": 63.29,
+  "window_start": "2026-07-01T22:30:00Z",
+  "median_price": 65.62,
+  "lowest_price": 63.5,
   "vendors": {
-    "apmex": {
-      "price": 69.9,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
-      "price": 66.82,
+      "price": 67,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 63.29,
+      "price": 63.5,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -27,6 +21,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 69.9,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-01T20:30:01.393Z"
     },
     "providentmetals": {
       "price": 65.39,
@@ -38,11 +40,11 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "providentmetals": true,
     "summitmetals": true
@@ -52,15 +54,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-30T21:00:00.000Z",
-      "median": 65.77,
-      "low": 64.3,
-      "vendors": {
-        "providentmetals": 64.3,
-        "sdbullion": 65.77
-      }
-    },
     {
       "window": "2026-06-30T22:00:00.000Z",
       "median": 64.53,
@@ -272,6 +265,15 @@
         "sdbullion": 65.62,
         "jmbullion": 66.82,
         "monumentmetals": 63.29
+      }
+    },
+    {
+      "window": "2026-07-01T22:00:00.000Z",
+      "median": 67,
+      "low": 63.5,
+      "vendors": {
+        "jmbullion": 67,
+        "monumentmetals": 63.5
       }
     }
   ]
