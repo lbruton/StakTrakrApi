@@ -1,26 +1,30 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-07-01T04:00:00Z",
-  "median_price": 68.5,
+  "window_start": "2026-07-01T04:30:00Z",
+  "median_price": 63.19,
   "lowest_price": 63.19,
   "vendors": {
-    "apmex": {
-      "price": 68.57,
+    "herobullion": {
+      "price": 63.19,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 63.19,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 68.57,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-01T02:30:02.104Z"
     },
     "jmbullion": {
       "price": 68.5,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-01T02:30:02.104Z"
     },
     "monumentmetals": {
       "price": 63.6,
@@ -48,28 +52,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
-    "jmbullion": true,
-    "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
+    "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-30T03:00:00.000Z",
-      "median": 67.97,
-      "low": 65.52,
-      "vendors": {
-        "jmbullion": 68.08,
-        "apmex": 67.97,
-        "sdbullion": 65.52
-      }
-    },
     {
       "window": "2026-06-30T04:00:00.000Z",
       "median": 64.64,
@@ -283,6 +277,14 @@
     },
     {
       "window": "2026-07-01T03:00:00.000Z",
+      "median": 63.19,
+      "low": 63.19,
+      "vendors": {
+        "herobullion": 63.19
+      }
+    },
+    {
+      "window": "2026-07-01T04:00:00.000Z",
       "median": 63.19,
       "low": 63.19,
       "vendors": {
