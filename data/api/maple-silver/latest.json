@@ -1,9 +1,15 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-07-01T10:00:00Z",
-  "median_price": 63.79,
+  "window_start": "2026-07-01T10:30:00Z",
+  "median_price": 63.87,
   "lowest_price": 60.52,
   "vendors": {
+    "apmex": {
+      "price": 69.76,
+      "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
       "price": 60.52,
       "confidence": 50,
@@ -11,18 +17,10 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 63.79,
+      "price": 63.87,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 70.3,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-06-30T23:30:02.045Z"
     },
     "gainesvillecoins": {
       "price": 59.69,
@@ -58,31 +56,19 @@
     }
   },
   "availability_by_site": {
-    "bullionexchanges": true,
-    "herobullion": false,
-    "monumentmetals": true,
-    "summitmetals": false,
     "apmex": true,
+    "bullionexchanges": true,
+    "monumentmetals": true,
     "gainesvillecoins": true,
+    "herobullion": true,
     "jmbullion": true,
     "providentmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "herobullion": 72.93,
-    "summitmetals": 65
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-06-30T09:00:00.000Z",
-      "median": 62.2,
-      "low": 60.86,
-      "vendors": {
-        "gainesvillecoins": 60.86,
-        "bullionexchanges": 62.2
-      }
-    },
     {
       "window": "2026-06-30T10:00:00.000Z",
       "median": 70.58,
@@ -304,6 +290,15 @@
       "vendors": {
         "bullionexchanges": 60.52,
         "monumentmetals": 63.79
+      }
+    },
+    {
+      "window": "2026-07-01T10:00:00.000Z",
+      "median": 69.76,
+      "low": 63.87,
+      "vendors": {
+        "monumentmetals": 63.87,
+        "apmex": 69.76
       }
     }
   ]
