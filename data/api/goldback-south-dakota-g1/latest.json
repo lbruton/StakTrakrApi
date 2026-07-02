@@ -1,12 +1,24 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-07-02T06:00:00Z",
-  "median_price": 8.08,
+  "window_start": "2026-07-02T06:30:00Z",
+  "median_price": 8.1,
   "lowest_price": 7.9,
   "vendors": {
     "apmex": {
-      "price": 8.08,
+      "price": 8.1,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 7.91,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 8.86,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -21,42 +33,18 @@
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 7.89,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-01T21:30:02.036Z"
-    },
-    "herobullion": {
-      "price": 8.84,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-02T03:30:02.015Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "jmbullion": true,
-    "sdbullion": true,
     "bullionexchanges": true,
-    "herobullion": true
+    "herobullion": true,
+    "jmbullion": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-01T05:00:00.000Z",
-      "median": 7.91,
-      "low": 7.91,
-      "vendors": {
-        "apmex": 7.91
-      }
-    },
     {
       "window": "2026-07-01T06:00:00.000Z",
       "median": 8.44,
@@ -246,6 +234,16 @@
       "vendors": {
         "jmbullion": 7.9,
         "sdbullion": 8.52
+      }
+    },
+    {
+      "window": "2026-07-02T06:00:00.000Z",
+      "median": 8.1,
+      "low": 7.91,
+      "vendors": {
+        "apmex": 8.1,
+        "herobullion": 8.86,
+        "bullionexchanges": 7.91
       }
     }
   ]
