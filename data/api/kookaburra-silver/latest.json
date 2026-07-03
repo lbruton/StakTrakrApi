@@ -1,12 +1,12 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-07-03T22:00:00Z",
+  "window_start": "2026-07-03T22:30:00Z",
   "median_price": 73.01,
   "lowest_price": 69.25,
   "vendors": {
-    "apmex": {
-      "price": 81.12,
-      "confidence": 15,
+    "jmbullion": {
+      "price": 74.9,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -34,6 +34,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 81.12,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-03T20:30:01.388Z"
+    },
     "herobullion": {
       "price": 71.46,
       "confidence": null,
@@ -41,38 +49,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-03T18:30:01.872Z"
-    },
-    "jmbullion": {
-      "price": 75.04,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-03T16:30:01.256Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
+    "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "jmbullion": true
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-02T21:00:00.000Z",
-      "median": 72.65,
-      "low": 71.57,
-      "vendors": {
-        "providentmetals": 71.57,
-        "sdbullion": 72.65
-      }
-    },
     {
       "window": "2026-07-02T22:00:00.000Z",
       "median": 73.15,
@@ -301,6 +292,17 @@
       "low": 72.22,
       "vendors": {
         "summitmetals": 72.22
+      }
+    },
+    {
+      "window": "2026-07-03T22:00:00.000Z",
+      "median": 74.11,
+      "low": 69.25,
+      "vendors": {
+        "jmbullion": 74.9,
+        "monumentmetals": 69.25,
+        "providentmetals": 73.01,
+        "sdbullion": 74.11
       }
     }
   ]
