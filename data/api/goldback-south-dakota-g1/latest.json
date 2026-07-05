@@ -1,22 +1,32 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-07-05T03:00:00Z",
-  "median_price": 9.05,
-  "lowest_price": 9.05,
+  "window_start": "2026-07-05T03:30:00Z",
+  "median_price": 8.64,
+  "lowest_price": 8.02,
   "vendors": {
-    "herobullion": {
-      "price": 9.05,
-      "confidence": 80,
+    "apmex": {
+      "price": 8.3,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 8.3,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-04T16:30:01.298Z"
+    "herobullion": {
+      "price": 9.05,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 8.02,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.64,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "bullionexchanges": {
       "price": 7.99,
@@ -25,43 +35,18 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-04T23:30:02.135Z"
-    },
-    "jmbullion": {
-      "price": 8.02,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-04T23:30:02.135Z"
-    },
-    "sdbullion": {
-      "price": 8.64,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-04T23:30:02.135Z"
     }
   },
   "availability_by_site": {
-    "herobullion": true,
     "apmex": true,
-    "bullionexchanges": true,
+    "herobullion": true,
     "jmbullion": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-04T02:00:00.000Z",
-      "median": 9.05,
-      "low": 8.02,
-      "vendors": {
-        "jmbullion": 8.02,
-        "herobullion": 9.05
-      }
-    },
     {
       "window": "2026-07-04T04:00:00.000Z",
       "median": 9.05,
@@ -216,6 +201,17 @@
       "low": 9.05,
       "vendors": {
         "herobullion": 9.05
+      }
+    },
+    {
+      "window": "2026-07-05T03:00:00.000Z",
+      "median": 8.64,
+      "low": 8.02,
+      "vendors": {
+        "sdbullion": 8.64,
+        "herobullion": 9.05,
+        "apmex": 8.3,
+        "jmbullion": 8.02
       }
     }
   ]
