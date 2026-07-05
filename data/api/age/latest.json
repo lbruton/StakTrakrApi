@@ -1,11 +1,23 @@
 {
   "slug": "age",
-  "window_start": "2026-07-05T21:00:00Z",
+  "window_start": "2026-07-05T21:30:00Z",
   "median_price": 4368.56,
-  "lowest_price": 4276.06,
+  "lowest_price": 4254,
   "vendors": {
     "apmex": {
       "price": 4392.99,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 4400.56,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 4254,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -46,22 +58,6 @@
       "stale": true,
       "stale_since": "2026-07-05T16:30:01.680Z"
     },
-    "jmbullion": {
-      "price": 4400.56,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-05T18:30:02.364Z"
-    },
-    "monumentmetals": {
-      "price": 4254,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-05T14:30:01.742Z"
-    },
     "summitmetals": {
       "price": 4336.23,
       "confidence": null,
@@ -73,30 +69,18 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "jmbullion": true,
+    "monumentmetals": true,
     "providentmetals": true,
     "sdbullion": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
-    "jmbullion": true,
-    "monumentmetals": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-04T20:00:00.000Z",
-      "median": 4276.06,
-      "low": 4246.3,
-      "vendors": {
-        "bullionexchanges": 4246.3,
-        "apmex": 4392.99,
-        "monumentmetals": 4254,
-        "summitmetals": 4335.8,
-        "sdbullion": 4276.06
-      }
-    },
     {
       "window": "2026-07-04T21:00:00.000Z",
       "median": 4335.8,
@@ -348,6 +332,16 @@
         "sdbullion": 4276.06,
         "apmex": 4392.99,
         "providentmetals": 4368.56
+      }
+    },
+    {
+      "window": "2026-07-05T21:00:00.000Z",
+      "median": 4392.99,
+      "low": 4254,
+      "vendors": {
+        "jmbullion": 4400.56,
+        "monumentmetals": 4254,
+        "apmex": 4392.99
       }
     }
   ]
