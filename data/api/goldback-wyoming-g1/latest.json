@@ -1,8 +1,8 @@
 {
   "slug": "goldback-wyoming-g1",
-  "window_start": "2026-07-06T00:00:00Z",
+  "window_start": "2026-07-06T00:30:00Z",
   "median_price": 8.64,
-  "lowest_price": 8.35,
+  "lowest_price": 8.02,
   "vendors": {
     "apmex": {
       "price": 8.35,
@@ -11,7 +11,13 @@
       "inStock": true
     },
     "herobullion": {
-      "price": 9.09,
+      "price": 9.07,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 8.02,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -29,37 +35,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-05T20:30:02.374Z"
-    },
-    "jmbullion": {
-      "price": 8.02,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-05T17:30:02.074Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "herobullion": true,
+    "jmbullion": true,
     "sdbullion": true,
     "summitmetals": false,
-    "bullionexchanges": true,
-    "jmbullion": true
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {
     "summitmetals": 7.94
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-04T23:00:00.000Z",
-      "median": 8.64,
-      "low": 8.64,
-      "vendors": {
-        "sdbullion": 8.64
-      }
-    },
     {
       "window": "2026-07-05T00:00:00.000Z",
       "median": 8.3,
@@ -274,6 +264,16 @@
       "vendors": {
         "apmex": 8.35,
         "herobullion": 9.09
+      }
+    },
+    {
+      "window": "2026-07-06T00:00:00.000Z",
+      "median": 8.64,
+      "low": 8.02,
+      "vendors": {
+        "sdbullion": 8.64,
+        "jmbullion": 8.02,
+        "herobullion": 9.07
       }
     }
   ]
