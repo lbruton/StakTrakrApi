@@ -1,14 +1,22 @@
 {
   "slug": "goldback-arizona-g1",
-  "window_start": "2026-07-07T00:00:00Z",
-  "median_price": 8.28,
-  "lowest_price": 8.28,
+  "window_start": "2026-07-07T00:30:00Z",
+  "median_price": 8.62,
+  "lowest_price": 8.62,
   "vendors": {
-    "apmex": {
-      "price": 8.28,
+    "sdbullion": {
+      "price": 8.62,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.28,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-06T22:30:02.020Z"
     },
     "jmbullion": {
       "price": 8.01,
@@ -17,44 +25,18 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-06T19:30:01.901Z"
-    },
-    "sdbullion": {
-      "price": 8.62,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-06T21:30:01.280Z"
     }
   },
   "availability_by_site": {
+    "monumentmetals": false,
+    "sdbullion": true,
     "apmex": true,
-    "herobullion": false,
-    "jmbullion": true,
-    "monumentmetals": true,
-    "sdbullion": true
+    "herobullion": true,
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-05T22:00:00.000Z",
-      "median": 8.33,
-      "low": 8.03,
-      "vendors": {
-        "jmbullion": 8.03,
-        "apmex": 8.33
-      }
-    },
-    {
-      "window": "2026-07-05T23:00:00.000Z",
-      "median": 8.64,
-      "low": 8.02,
-      "vendors": {
-        "jmbullion": 8.02,
-        "sdbullion": 8.64
-      }
-    },
     {
       "window": "2026-07-06T00:00:00.000Z",
       "median": 8.3,
@@ -242,6 +224,14 @@
       "low": 8.28,
       "vendors": {
         "apmex": 8.28
+      }
+    },
+    {
+      "window": "2026-07-07T00:00:00.000Z",
+      "median": 8.62,
+      "low": 8.62,
+      "vendors": {
+        "sdbullion": 8.62
       }
     }
   ]
