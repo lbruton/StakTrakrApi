@@ -1,18 +1,24 @@
 {
   "slug": "goldback-oklahoma-g1",
-  "window_start": "2026-07-07T15:00:00Z",
-  "median_price": 8.63,
-  "lowest_price": 7.99,
+  "window_start": "2026-07-07T15:30:00Z",
+  "median_price": 8.24,
+  "lowest_price": 7.97,
   "vendors": {
     "apmex": {
-      "price": 8.26,
+      "price": 8.24,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 7.97,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
-      "price": 9.04,
-      "confidence": 50,
+      "price": 9,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -24,40 +30,22 @@
     },
     "sdbullion": {
       "price": 8.63,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 7.96,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-07T01:30:01.324Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": false,
-    "sdbullion": true,
-    "bullionexchanges": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-06T14:00:00.000Z",
-      "median": 8.61,
-      "low": 8.23,
-      "vendors": {
-        "apmex": 8.23,
-        "herobullion": 8.98,
-        "sdbullion": 8.61
-      }
-    },
     {
       "window": "2026-07-06T15:00:00.000Z",
       "median": 8.61,
@@ -264,6 +252,17 @@
       "vendors": {
         "apmex": 8.26,
         "jmbullion": 7.99
+      }
+    },
+    {
+      "window": "2026-07-07T15:00:00.000Z",
+      "median": 8.63,
+      "low": 7.97,
+      "vendors": {
+        "herobullion": 9,
+        "apmex": 8.24,
+        "sdbullion": 8.63,
+        "bullionexchanges": 7.97
       }
     }
   ]
