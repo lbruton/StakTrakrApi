@@ -1,15 +1,9 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-07-08T05:00:00Z",
-  "median_price": 8.54,
+  "window_start": "2026-07-08T05:30:00Z",
+  "median_price": 8.59,
   "lowest_price": 7.95,
   "vendors": {
-    "apmex": {
-      "price": 8.54,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 7.95,
       "confidence": 50,
@@ -17,10 +11,18 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 8.56,
+      "price": 8.59,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.54,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-08T03:30:01.624Z"
     },
     "jmbullion": {
       "price": 7.96,
@@ -40,9 +42,9 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "sdbullion": true,
+    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
     "summitmetals": true
@@ -50,27 +52,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-07T03:00:00.000Z",
-      "median": 8.55,
-      "low": 7.96,
-      "vendors": {
-        "sdbullion": 8.62,
-        "bullionexchanges": 7.96,
-        "jmbullion": 8.01,
-        "apmex": 8.55
-      }
-    },
-    {
-      "window": "2026-07-07T04:00:00.000Z",
-      "median": 8.54,
-      "low": 8.13,
-      "vendors": {
-        "sdbullion": 8.59,
-        "apmex": 8.54,
-        "summitmetals": 8.13
-      }
-    },
     {
       "window": "2026-07-07T05:00:00.000Z",
       "median": 8.53,
@@ -271,6 +252,15 @@
         "bullionexchanges": 7.95,
         "sdbullion": 8.56,
         "apmex": 8.54
+      }
+    },
+    {
+      "window": "2026-07-08T05:00:00.000Z",
+      "median": 8.59,
+      "low": 7.95,
+      "vendors": {
+        "bullionexchanges": 7.95,
+        "sdbullion": 8.59
       }
     }
   ]
