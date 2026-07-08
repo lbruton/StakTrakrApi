@@ -1,17 +1,17 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-07-08T06:00:00Z",
+  "window_start": "2026-07-08T06:30:00Z",
   "median_price": 8.58,
-  "lowest_price": 8.2,
+  "lowest_price": 7.97,
   "vendors": {
-    "apmex": {
-      "price": 8.2,
+    "herobullion": {
+      "price": 8.96,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 8.96,
+    "jmbullion": {
+      "price": 7.97,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -22,6 +22,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 8.2,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-08T04:30:02.076Z"
+    },
     "bullionexchanges": {
       "price": 7.93,
       "confidence": null,
@@ -29,34 +37,18 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-08T02:30:02.191Z"
-    },
-    "jmbullion": {
-      "price": 7.95,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-08T03:30:01.624Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "jmbullion": true,
     "sdbullion": true,
-    "bullionexchanges": true,
-    "jmbullion": true
+    "apmex": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-07T05:00:00.000Z",
-      "median": 7.95,
-      "low": 7.95,
-      "vendors": {
-        "bullionexchanges": 7.95
-      }
-    },
     {
       "window": "2026-07-07T06:00:00.000Z",
       "median": 7.99,
@@ -264,6 +256,16 @@
       "low": 8.58,
       "vendors": {
         "sdbullion": 8.58
+      }
+    },
+    {
+      "window": "2026-07-08T06:00:00.000Z",
+      "median": 8.58,
+      "low": 7.97,
+      "vendors": {
+        "sdbullion": 8.58,
+        "jmbullion": 7.97,
+        "herobullion": 8.96
       }
     }
   ]

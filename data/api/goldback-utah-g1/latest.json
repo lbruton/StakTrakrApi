@@ -1,11 +1,23 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-07-08T06:00:00Z",
-  "median_price": 8.59,
+  "window_start": "2026-07-08T06:30:00Z",
+  "median_price": 8.53,
   "lowest_price": 7.95,
   "vendors": {
+    "apmex": {
+      "price": 8.53,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
       "price": 7.95,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 7.97,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -15,22 +27,6 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 8.54,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-08T03:30:01.624Z"
-    },
-    "jmbullion": {
-      "price": 7.96,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-08T02:30:02.191Z"
     },
     "summitmetals": {
       "price": 8.08,
@@ -42,27 +38,18 @@
     }
   },
   "availability_by_site": {
-    "bullionexchanges": true,
-    "sdbullion": true,
     "apmex": true,
-    "herobullion": true,
+    "bullionexchanges": true,
+    "herobullion": false,
     "jmbullion": true,
+    "sdbullion": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 8.51
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-07T05:00:00.000Z",
-      "median": 8.53,
-      "low": 7.95,
-      "vendors": {
-        "bullionexchanges": 7.95,
-        "apmex": 8.53,
-        "summitmetals": 8.12,
-        "sdbullion": 8.59
-      }
-    },
     {
       "window": "2026-07-07T06:00:00.000Z",
       "median": 8.59,
@@ -261,6 +248,15 @@
       "vendors": {
         "bullionexchanges": 7.95,
         "sdbullion": 8.59
+      }
+    },
+    {
+      "window": "2026-07-08T06:00:00.000Z",
+      "median": 8.53,
+      "low": 7.97,
+      "vendors": {
+        "jmbullion": 7.97,
+        "apmex": 8.53
       }
     }
   ]
