@@ -1,18 +1,12 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-07-08T00:00:00Z",
-  "median_price": 71.64,
+  "window_start": "2026-07-08T00:30:00Z",
+  "median_price": 71.67,
   "lowest_price": 62.25,
   "vendors": {
     "apmex": {
-      "price": 71.64,
+      "price": 71.67,
       "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 62.55,
-      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -22,11 +16,21 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "bullionexchanges": {
+      "price": 62.55,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-07T22:30:01.966Z"
+    },
     "jmbullion": {
       "price": 72.47,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-07T22:30:01.966Z"
     },
     "monumentmetals": {
       "price": 65.85,
@@ -63,30 +67,20 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
+    "herobullion": false,
+    "bullionexchanges": true,
     "jmbullion": true,
-    "herobullion": true,
     "monumentmetals": true,
     "providentmetals": true,
     "sdbullion": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 72.93
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-06T23:00:00.000Z",
-      "median": 71.05,
-      "low": 64.33,
-      "vendors": {
-        "gainesvillecoins": 64.33,
-        "bullionexchanges": 64.58,
-        "jmbullion": 74.73,
-        "providentmetals": 71.05,
-        "sdbullion": 71.23
-      }
-    },
     {
       "window": "2026-07-07T00:00:00.000Z",
       "median": 70.84,
@@ -331,6 +325,14 @@
       "vendors": {
         "gainesvillecoins": 62.25,
         "apmex": 71.64
+      }
+    },
+    {
+      "window": "2026-07-08T00:00:00.000Z",
+      "median": 71.67,
+      "low": 71.67,
+      "vendors": {
+        "apmex": 71.67
       }
     }
   ]
