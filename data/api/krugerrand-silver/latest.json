@@ -1,32 +1,34 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-07-09T22:00:00Z",
-  "median_price": 70.6,
-  "lowest_price": 65.53,
+  "window_start": "2026-07-09T22:30:00Z",
+  "median_price": 65.9,
+  "lowest_price": 65.5,
   "vendors": {
     "apmex": {
       "price": 70.72,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 65.53,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 70.6,
+    "herobullion": {
+      "price": 65.5,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 65.84,
-      "confidence": 50,
+      "price": 65.9,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 70.6,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-09T20:30:01.502Z"
     },
     "providentmetals": {
       "price": 68.26,
@@ -48,9 +50,9 @@
   "availability_by_site": {
     "apmex": true,
     "herobullion": true,
-    "jmbullion": true,
     "monumentmetals": true,
     "bullionexchanges": true,
+    "jmbullion": true,
     "providentmetals": true,
     "sdbullion": true,
     "summitmetals": true
@@ -58,14 +60,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-08T21:00:00.000Z",
-      "median": 65.5,
-      "low": 65.5,
-      "vendors": {
-        "sdbullion": 65.5
-      }
-    },
     {
       "window": "2026-07-08T22:00:00.000Z",
       "median": 69.09,
@@ -291,6 +285,15 @@
       "vendors": {
         "apmex": 70.72,
         "herobullion": 65.53
+      }
+    },
+    {
+      "window": "2026-07-09T22:00:00.000Z",
+      "median": 65.9,
+      "low": 65.5,
+      "vendors": {
+        "monumentmetals": 65.9,
+        "herobullion": 65.5
       }
     }
   ]
