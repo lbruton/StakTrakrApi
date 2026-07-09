@@ -1,12 +1,18 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-07-09T21:00:00Z",
-  "median_price": 64.79,
+  "window_start": "2026-07-09T21:30:00Z",
+  "median_price": 64.83,
   "lowest_price": 63.6,
   "vendors": {
     "apmex": {
-      "price": 70.64,
+      "price": 70.72,
       "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 64.07,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -29,18 +35,10 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 64.79,
+      "price": 64.83,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 64.22,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-09T15:30:01.629Z"
     },
     "sdbullion": {
       "price": 66.85,
@@ -53,29 +51,19 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
+    "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
     "summitmetals": true,
-    "bullionexchanges": true,
-    "herobullion": true,
     "sdbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 62.52
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-08T20:00:00.000Z",
-      "median": 64.92,
-      "low": 61.99,
-      "vendors": {
-        "providentmetals": 61.99,
-        "monumentmetals": 62.79,
-        "sdbullion": 64.92,
-        "apmex": 68.94,
-        "jmbullion": 66.21
-      }
-    },
     {
       "window": "2026-07-08T21:00:00.000Z",
       "median": 68.98,
@@ -317,6 +305,16 @@
         "summitmetals": 64.79,
         "jmbullion": 66.81,
         "monumentmetals": 64.56
+      }
+    },
+    {
+      "window": "2026-07-09T21:00:00.000Z",
+      "median": 64.83,
+      "low": 64.07,
+      "vendors": {
+        "apmex": 70.72,
+        "summitmetals": 64.83,
+        "bullionexchanges": 64.07
       }
     }
   ]
