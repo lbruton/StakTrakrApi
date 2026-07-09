@@ -1,34 +1,26 @@
 {
   "slug": "goldback-florida-g1",
-  "window_start": "2026-07-09T00:00:00Z",
-  "median_price": 8.54,
-  "lowest_price": 8.11,
+  "window_start": "2026-07-09T00:30:00Z",
+  "median_price": 8.11,
+  "lowest_price": 7.78,
   "vendors": {
     "apmex": {
       "price": 8.11,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 7.78,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 8.87,
-      "confidence": 50,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
-    },
-    "sdbullion": {
-      "price": 8.54,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 7.79,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-08T20:30:02.063Z"
     },
     "jmbullion": {
       "price": 7.92,
@@ -37,27 +29,27 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-08T21:30:02.076Z"
+    },
+    "sdbullion": {
+      "price": 8.54,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-08T22:30:01.831Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "monumentmetals": false,
-    "sdbullion": true,
-    "bullionexchanges": true,
-    "jmbullion": true
+    "jmbullion": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-07T23:00:00.000Z",
-      "median": 8.92,
-      "low": 8.92,
-      "vendors": {
-        "herobullion": 8.92
-      }
-    },
     {
       "window": "2026-07-08T00:00:00.000Z",
       "median": 8.17,
@@ -282,6 +274,16 @@
       "low": 8.11,
       "vendors": {
         "apmex": 8.11
+      }
+    },
+    {
+      "window": "2026-07-09T00:00:00.000Z",
+      "median": 8.11,
+      "low": 7.78,
+      "vendors": {
+        "bullionexchanges": 7.78,
+        "apmex": 8.11,
+        "herobullion": 8.87
       }
     }
   ]
