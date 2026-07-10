@@ -1,17 +1,23 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-07-10T06:00:00Z",
+  "window_start": "2026-07-10T06:30:00Z",
   "median_price": 65.07,
   "lowest_price": 64.63,
   "vendors": {
     "apmex": {
-      "price": 70.84,
+      "price": 70.95,
       "confidence": 15,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
       "price": 64.63,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 64.96,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -34,14 +40,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 67.96,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-10T02:30:02.012Z"
-    },
     "providentmetals": {
       "price": 63.6,
       "confidence": null,
@@ -54,29 +52,16 @@
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": false,
+    "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
-    "jmbullion": true,
+    "herobullion": true,
     "providentmetals": true
   },
-  "last_known_price_by_site": {
-    "herobullion": 62.52
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-09T05:00:00.000Z",
-      "median": 64.28,
-      "low": 62.02,
-      "vendors": {
-        "monumentmetals": 62.55,
-        "bullionexchanges": 62.02,
-        "jmbullion": 65.84,
-        "sdbullion": 64.28
-      }
-    },
     {
       "window": "2026-07-09T06:00:00.000Z",
       "median": 69.65,
@@ -315,6 +300,15 @@
         "apmex": 70.84,
         "monumentmetals": 64.76,
         "bullionexchanges": 64.63
+      }
+    },
+    {
+      "window": "2026-07-10T06:00:00.000Z",
+      "median": 70.95,
+      "low": 64.96,
+      "vendors": {
+        "jmbullion": 64.96,
+        "apmex": 70.95
       }
     }
   ]
