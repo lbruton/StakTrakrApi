@@ -1,8 +1,8 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-07-10T10:00:00Z",
-  "median_price": 66.06,
-  "lowest_price": 63.78,
+  "window_start": "2026-07-10T10:30:00Z",
+  "median_price": 68.12,
+  "lowest_price": 64.44,
   "vendors": {
     "apmex": {
       "price": 70.29,
@@ -10,35 +10,39 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 63.78,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
       "price": 68.12,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "monumentmetals": {
-      "price": 64.3,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 66.06,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
       "price": 64.44,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 63.78,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-10T08:30:02.137Z"
+    },
+    "monumentmetals": {
+      "price": 64.3,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-10T08:30:02.137Z"
     },
     "providentmetals": {
       "price": 63.8,
@@ -51,12 +55,12 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": false,
     "jmbullion": true,
-    "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
+    "bullionexchanges": true,
+    "monumentmetals": true,
     "providentmetals": true
   },
   "last_known_price_by_site": {
@@ -64,16 +68,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-09T09:00:00.000Z",
-      "median": 63.35,
-      "low": 62.93,
-      "vendors": {
-        "providentmetals": 62.93,
-        "bullionexchanges": 63.35,
-        "jmbullion": 65.92
-      }
-    },
     {
       "window": "2026-07-09T10:00:00.000Z",
       "median": 63.77,
@@ -312,6 +306,14 @@
         "jmbullion": 68.12,
         "summitmetals": 64.44,
         "apmex": 70.29,
+        "sdbullion": 66.06
+      }
+    },
+    {
+      "window": "2026-07-10T10:00:00.000Z",
+      "median": 66.06,
+      "low": 66.06,
+      "vendors": {
         "sdbullion": 66.06
       }
     }
