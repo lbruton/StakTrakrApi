@@ -1,18 +1,24 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-07-11T23:00:00Z",
-  "median_price": 71.44,
-  "lowest_price": 67.9,
+  "window_start": "2026-07-11T23:30:00Z",
+  "median_price": 68.42,
+  "lowest_price": 67.82,
   "vendors": {
     "apmex": {
       "price": 71.44,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
-      "price": 67.9,
-      "confidence": 50,
+      "price": 67.82,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 68.42,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -23,14 +29,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-11T20:30:01.498Z"
-    },
-    "sdbullion": {
-      "price": 68.42,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-11T18:30:01.303Z"
     },
     "summitmetals": {
       "price": 66.65,
@@ -46,24 +44,16 @@
     "herobullion": false,
     "jmbullion": true,
     "monumentmetals": false,
-    "bullionexchanges": true,
-    "providentmetals": true,
+    "providentmetals": false,
     "sdbullion": true,
+    "bullionexchanges": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "providentmetals": 65.14
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-10T22:00:00.000Z",
-      "median": 67.78,
-      "low": 64.8,
-      "vendors": {
-        "jmbullion": 67.78,
-        "sdbullion": 68.49,
-        "bullionexchanges": 64.8
-      }
-    },
     {
       "window": "2026-07-10T23:00:00.000Z",
       "median": 68.49,
@@ -274,6 +264,16 @@
       "vendors": {
         "apmex": 71.44,
         "jmbullion": 67.9
+      }
+    },
+    {
+      "window": "2026-07-11T23:00:00.000Z",
+      "median": 68.42,
+      "low": 67.82,
+      "vendors": {
+        "jmbullion": 67.82,
+        "apmex": 71.44,
+        "sdbullion": 68.42
       }
     }
   ]
