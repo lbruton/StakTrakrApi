@@ -1,15 +1,9 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-07-11T20:00:00Z",
-  "median_price": 65.42,
+  "window_start": "2026-07-11T20:30:00Z",
+  "median_price": 64.98,
   "lowest_price": 64.13,
   "vendors": {
-    "apmex": {
-      "price": 70.44,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 64.98,
       "confidence": 80,
@@ -17,8 +11,8 @@
       "inStock": true
     },
     "jmbullion": {
-      "price": 70.55,
-      "confidence": 50,
+      "price": 70.32,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -40,6 +34,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 70.44,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-11T18:30:01.303Z"
+    },
     "bullionexchanges": {
       "price": 63.5,
       "confidence": null,
@@ -58,29 +60,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "providentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-10T19:00:00.000Z",
-      "median": 64.93,
-      "low": 63.81,
-      "vendors": {
-        "summitmetals": 64.47,
-        "sdbullion": 65.57,
-        "monumentmetals": 63.81,
-        "herobullion": 64.93
-      }
-    },
     {
       "window": "2026-07-10T20:00:00.000Z",
       "median": 70.36,
@@ -325,6 +316,18 @@
         "summitmetals": 64.82,
         "sdbullion": 65.42,
         "monumentmetals": 64.13
+      }
+    },
+    {
+      "window": "2026-07-11T20:00:00.000Z",
+      "median": 64.98,
+      "low": 64.13,
+      "vendors": {
+        "summitmetals": 64.82,
+        "jmbullion": 70.32,
+        "sdbullion": 65.42,
+        "monumentmetals": 64.13,
+        "herobullion": 64.98
       }
     }
   ]
