@@ -1,15 +1,9 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-07-12T18:00:00Z",
+  "window_start": "2026-07-12T18:30:00Z",
   "median_price": 642.6,
   "lowest_price": 619.2,
   "vendors": {
-    "apmex": {
-      "price": 694.4,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "gainesvillecoins": {
       "price": 642.6,
       "confidence": 80,
@@ -34,6 +28,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 694.4,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-12T16:30:01.251Z"
+    },
     "bullionexchanges": {
       "price": 607,
       "confidence": null,
@@ -52,30 +54,21 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "gainesvillecoins": true,
+    "herobullion": false,
     "jmbullion": true,
     "providentmetals": false,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "monumentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 624.66
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-11T17:00:00.000Z",
-      "median": 654.17,
-      "low": 619.2,
-      "vendors": {
-        "jmbullion": 619.2,
-        "apmex": 694.4,
-        "summitmetals": 625.06,
-        "sdbullion": 654.17
-      }
-    },
     {
       "window": "2026-07-11T18:00:00.000Z",
       "median": 619.2,
@@ -314,6 +307,17 @@
       "median": 619.2,
       "low": 619.2,
       "vendors": {
+        "jmbullion": 619.2
+      }
+    },
+    {
+      "window": "2026-07-12T18:00:00.000Z",
+      "median": 642.6,
+      "low": 619.2,
+      "vendors": {
+        "summitmetals": 625.06,
+        "gainesvillecoins": 642.6,
+        "sdbullion": 654.17,
         "jmbullion": 619.2
       }
     }
