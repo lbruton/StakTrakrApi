@@ -1,11 +1,17 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-07-12T00:00:00Z",
-  "median_price": 68.42,
-  "lowest_price": 67.82,
+  "window_start": "2026-07-12T00:30:00Z",
+  "median_price": 67.82,
+  "lowest_price": 64.8,
   "vendors": {
     "apmex": {
       "price": 71.44,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 64.8,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -22,46 +28,28 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 64.8,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-11T20:30:01.498Z"
-    },
     "summitmetals": {
       "price": 66.65,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-11T20:30:01.498Z"
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": false,
+    "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": false,
     "providentmetals": false,
     "sdbullion": true,
-    "bullionexchanges": true,
-    "summitmetals": true
+    "summitmetals": true,
+    "herobullion": true
   },
   "last_known_price_by_site": {
     "providentmetals": 65.14
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-10T23:00:00.000Z",
-      "median": 68.49,
-      "low": 68.49,
-      "vendors": {
-        "sdbullion": 68.49
-      }
-    },
     {
       "window": "2026-07-11T00:00:00.000Z",
       "median": 71.63,
@@ -274,6 +262,16 @@
         "jmbullion": 67.82,
         "apmex": 71.44,
         "sdbullion": 68.42
+      }
+    },
+    {
+      "window": "2026-07-12T00:00:00.000Z",
+      "median": 66.65,
+      "low": 64.8,
+      "vendors": {
+        "jmbullion": 67.82,
+        "summitmetals": 66.65,
+        "bullionexchanges": 64.8
       }
     }
   ]
