@@ -1,7 +1,7 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-07-12T19:00:00Z",
-  "median_price": 64.61,
+  "window_start": "2026-07-12T19:30:00Z",
+  "median_price": 64.88,
   "lowest_price": 63.42,
   "vendors": {
     "apmex": {
@@ -28,24 +28,20 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 67.23,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-12T16:30:01.251Z"
-    },
     "sdbullion": {
       "price": 66.22,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-12T16:30:01.251Z"
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "summitmetals": {
       "price": 64.88,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 67.23,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
@@ -59,25 +55,15 @@
     "herobullion": false,
     "monumentmetals": true,
     "providentmetals": true,
-    "jmbullion": true,
     "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": true,
+    "jmbullion": true
   },
   "last_known_price_by_site": {
     "herobullion": 62.52
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-11T18:00:00.000Z",
-      "median": 67.42,
-      "low": 66.22,
-      "vendors": {
-        "apmex": 70.44,
-        "sdbullion": 66.22,
-        "jmbullion": 67.42
-      }
-    },
     {
       "window": "2026-07-11T19:00:00.000Z",
       "median": 64.61,
@@ -310,6 +296,17 @@
         "providentmetals": 63.42,
         "apmex": 70.44,
         "monumentmetals": 64.61
+      }
+    },
+    {
+      "window": "2026-07-12T19:00:00.000Z",
+      "median": 64.88,
+      "low": 63.42,
+      "vendors": {
+        "sdbullion": 66.22,
+        "summitmetals": 64.88,
+        "providentmetals": 63.42,
+        "bullionexchanges": 63.9
       }
     }
   ]
