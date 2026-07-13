@@ -1,8 +1,8 @@
 {
   "slug": "maple-gold",
-  "window_start": "2026-07-13T10:00:00Z",
-  "median_price": 4181.66,
-  "lowest_price": 4117.49,
+  "window_start": "2026-07-13T10:30:00Z",
+  "median_price": 4193.8,
+  "lowest_price": 4110.09,
   "vendors": {
     "apmex": {
       "price": 4244.69,
@@ -11,13 +11,13 @@
       "inStock": true
     },
     "bullionexchanges": {
-      "price": 4117.49,
+      "price": 4110.09,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "gainesvillecoins": {
-      "price": 4139.29,
+      "price": 4132.6,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -42,9 +42,11 @@
     },
     "summitmetals": {
       "price": 4181.66,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-13T08:30:01.312Z"
     }
   },
   "availability_by_site": {
@@ -54,26 +56,15 @@
     "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
-    "providentmetals": false,
     "sdbullion": true,
+    "providentmetals": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {
-    "herobullion": 4357.07,
-    "providentmetals": 4259.42
+    "herobullion": 4357.07
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-12T09:00:00.000Z",
-      "median": 4230.8,
-      "low": 4175.44,
-      "vendors": {
-        "summitmetals": 4230.8,
-        "gainesvillecoins": 4175.44,
-        "apmex": 4278.85
-      }
-    },
     {
       "window": "2026-07-12T10:00:00.000Z",
       "median": 4229.43,
@@ -313,6 +304,15 @@
         "apmex": 4244.69,
         "sdbullion": 4193.8,
         "jmbullion": 4240.7
+      }
+    },
+    {
+      "window": "2026-07-13T10:00:00.000Z",
+      "median": 4132.6,
+      "low": 4110.09,
+      "vendors": {
+        "gainesvillecoins": 4132.6,
+        "bullionexchanges": 4110.09
       }
     }
   ]
