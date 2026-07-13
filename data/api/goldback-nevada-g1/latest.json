@@ -1,22 +1,26 @@
 {
   "slug": "goldback-nevada-g1",
-  "window_start": "2026-07-13T21:00:00Z",
-  "median_price": 8.46,
-  "lowest_price": 8.46,
+  "window_start": "2026-07-13T21:30:00Z",
+  "median_price": 8.28,
+  "lowest_price": 7.95,
   "vendors": {
+    "apmex": {
+      "price": 8.28,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 7.95,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "sdbullion": {
       "price": 8.46,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 8.27,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-13T18:30:01.575Z"
     },
     "herobullion": {
       "price": 8.71,
@@ -25,46 +29,18 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-13T18:30:01.575Z"
-    },
-    "jmbullion": {
-      "price": 7.9,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-13T17:30:01.330Z"
     }
   },
   "availability_by_site": {
-    "sdbullion": true,
     "apmex": true,
+    "jmbullion": true,
+    "sdbullion": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "jmbullion": true
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-12T19:00:00.000Z",
-      "median": 8.57,
-      "low": 7.95,
-      "vendors": {
-        "herobullion": 8.93,
-        "sdbullion": 8.57,
-        "jmbullion": 7.95
-      }
-    },
-    {
-      "window": "2026-07-12T20:00:00.000Z",
-      "median": 8.5,
-      "low": 7.95,
-      "vendors": {
-        "jmbullion": 7.95,
-        "apmex": 8.5,
-        "sdbullion": 8.57
-      }
-    },
     {
       "window": "2026-07-12T21:00:00.000Z",
       "median": 8.5,
@@ -249,6 +225,16 @@
       "low": 8.46,
       "vendors": {
         "sdbullion": 8.46
+      }
+    },
+    {
+      "window": "2026-07-13T21:00:00.000Z",
+      "median": 8.28,
+      "low": 7.95,
+      "vendors": {
+        "sdbullion": 8.46,
+        "apmex": 8.28,
+        "jmbullion": 7.95
       }
     }
   ]
