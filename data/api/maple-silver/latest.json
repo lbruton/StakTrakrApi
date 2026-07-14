@@ -1,32 +1,34 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-07-14T10:00:00Z",
-  "median_price": 66.2,
+  "window_start": "2026-07-14T10:30:00Z",
+  "median_price": 63.63,
   "lowest_price": 60.3,
   "vendors": {
-    "apmex": {
-      "price": 66.78,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "gainesvillecoins": {
       "price": 60.3,
-      "confidence": 35,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 63.75,
-      "confidence": 50,
+      "price": 63.63,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 66.2,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 66.78,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-14T08:30:01.772Z"
     },
     "bullionexchanges": {
       "price": 60.9,
@@ -62,10 +64,10 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "gainesvillecoins": true,
     "monumentmetals": true,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
@@ -75,16 +77,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-13T09:00:00.000Z",
-      "median": 64.62,
-      "low": 64.44,
-      "vendors": {
-        "jmbullion": 71.5,
-        "monumentmetals": 64.44,
-        "summitmetals": 64.62
-      }
-    },
     {
       "window": "2026-07-13T10:00:00.000Z",
       "median": 64.37,
@@ -323,6 +315,14 @@
         "monumentmetals": 63.75,
         "sdbullion": 66.2,
         "gainesvillecoins": 60.3
+      }
+    },
+    {
+      "window": "2026-07-14T10:00:00.000Z",
+      "median": 63.63,
+      "low": 63.63,
+      "vendors": {
+        "monumentmetals": 63.63
       }
     }
   ]
