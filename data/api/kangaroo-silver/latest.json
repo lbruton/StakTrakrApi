@@ -1,12 +1,18 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-07-15T23:00:00Z",
-  "median_price": 64.3,
-  "lowest_price": 63.54,
+  "window_start": "2026-07-15T23:30:00Z",
+  "median_price": 63.54,
+  "lowest_price": 62.4,
   "vendors": {
-    "apmex": {
-      "price": 68.54,
+    "jmbullion": {
+      "price": 65.57,
       "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 62.4,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -16,11 +22,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 64.3,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 68.54,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-15T21:30:01.433Z"
     },
     "bullionexchanges": {
       "price": 61.74,
@@ -30,21 +38,13 @@
       "stale": true,
       "stale_since": "2026-07-15T20:30:01.449Z"
     },
-    "jmbullion": {
-      "price": 66.01,
+    "sdbullion": {
+      "price": 64.3,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-07-15T19:30:02.318Z"
-    },
-    "monumentmetals": {
-      "price": 62.29,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-15T19:30:02.318Z"
+      "stale_since": "2026-07-15T21:30:01.433Z"
     },
     "summitmetals": {
       "price": 61.71,
@@ -56,13 +56,13 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": false,
-    "providentmetals": true,
-    "sdbullion": true,
-    "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
+    "providentmetals": true,
+    "apmex": true,
+    "bullionexchanges": true,
+    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {
@@ -70,16 +70,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-14T22:00:00.000Z",
-      "median": 64.44,
-      "low": 63.31,
-      "vendors": {
-        "monumentmetals": 63.31,
-        "providentmetals": 64.44,
-        "jmbullion": 65.88
-      }
-    },
     {
       "window": "2026-07-14T23:00:00.000Z",
       "median": 63.41,
@@ -289,6 +279,16 @@
       "low": 63.54,
       "vendors": {
         "providentmetals": 63.54
+      }
+    },
+    {
+      "window": "2026-07-15T23:00:00.000Z",
+      "median": 63.54,
+      "low": 62.4,
+      "vendors": {
+        "providentmetals": 63.54,
+        "monumentmetals": 62.4,
+        "jmbullion": 65.57
       }
     }
   ]
