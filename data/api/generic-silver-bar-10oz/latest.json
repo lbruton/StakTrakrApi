@@ -1,6 +1,6 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-07-18T17:00:00Z",
+  "window_start": "2026-07-18T17:30:00Z",
   "median_price": 616.19,
   "lowest_price": 591.12,
   "vendors": {
@@ -16,12 +16,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 654.2,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 616.19,
       "confidence": 80,
@@ -33,6 +27,14 @@
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 654.2,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-18T15:30:01.506Z"
     },
     "monumentmetals": {
       "price": 589.3,
@@ -46,27 +48,19 @@
   "availability_by_site": {
     "apmex": true,
     "gainesvillecoins": true,
-    "jmbullion": true,
+    "herobullion": false,
+    "providentmetals": false,
     "sdbullion": true,
     "summitmetals": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "monumentmetals": true,
-    "providentmetals": true
+    "jmbullion": true,
+    "monumentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 592.4
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-17T16:00:00.000Z",
-      "median": 589.5,
-      "low": 583.98,
-      "vendors": {
-        "summitmetals": 583.98,
-        "monumentmetals": 589.5,
-        "jmbullion": 655
-      }
-    },
     {
       "window": "2026-07-17T17:00:00.000Z",
       "median": 655.9,
@@ -294,6 +288,16 @@
       "vendors": {
         "apmex": 656.4,
         "summitmetals": 591.12,
+        "gainesvillecoins": 604.6
+      }
+    },
+    {
+      "window": "2026-07-18T17:00:00.000Z",
+      "median": 616.19,
+      "low": 604.6,
+      "vendors": {
+        "apmex": 656.4,
+        "sdbullion": 616.19,
         "gainesvillecoins": 604.6
       }
     }
