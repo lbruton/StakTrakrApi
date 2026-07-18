@@ -1,21 +1,9 @@
 {
   "slug": "goldback-wyoming-g1",
-  "window_start": "2026-07-18T23:00:00Z",
+  "window_start": "2026-07-18T23:30:00Z",
   "median_price": 7.93,
   "lowest_price": 7.86,
   "vendors": {
-    "apmex": {
-      "price": 7.87,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 8.75,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
       "price": 7.86,
       "confidence": 80,
@@ -28,6 +16,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 7.87,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-18T21:30:01.851Z"
+    },
     "bullionexchanges": {
       "price": 7.74,
       "confidence": null,
@@ -35,32 +31,29 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-18T17:30:01.573Z"
+    },
+    "herobullion": {
+      "price": 8.75,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-18T21:30:01.851Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "herobullion": true,
     "jmbullion": true,
     "sdbullion": true,
     "summitmetals": false,
-    "bullionexchanges": true
+    "apmex": true,
+    "bullionexchanges": true,
+    "herobullion": true
   },
   "last_known_price_by_site": {
     "summitmetals": 7.94
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-17T22:00:00.000Z",
-      "median": 7.92,
-      "low": 7.74,
-      "vendors": {
-        "jmbullion": 7.85,
-        "bullionexchanges": 7.74,
-        "sdbullion": 7.92,
-        "apmex": 7.99
-      }
-    },
     {
       "window": "2026-07-17T23:00:00.000Z",
       "median": 8.75,
@@ -271,6 +264,15 @@
     },
     {
       "window": "2026-07-18T22:00:00.000Z",
+      "median": 7.93,
+      "low": 7.86,
+      "vendors": {
+        "jmbullion": 7.86,
+        "sdbullion": 7.93
+      }
+    },
+    {
+      "window": "2026-07-18T23:00:00.000Z",
       "median": 7.93,
       "low": 7.86,
       "vendors": {

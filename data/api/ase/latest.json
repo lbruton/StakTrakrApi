@@ -1,15 +1,9 @@
 {
   "slug": "ase",
-  "window_start": "2026-07-18T23:00:00Z",
-  "median_price": 62.84,
+  "window_start": "2026-07-18T23:30:00Z",
+  "median_price": 61.2,
   "lowest_price": 61.02,
   "vendors": {
-    "apmex": {
-      "price": 72.64,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 61.02,
       "confidence": 80,
@@ -28,11 +22,21 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 72.64,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-18T21:30:01.851Z"
+    },
     "jmbullion": {
       "price": 72.62,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-18T21:30:01.851Z"
     },
     "monumentmetals": {
       "price": 62.93,
@@ -60,29 +64,19 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
+    "apmex": true,
     "jmbullion": true,
-    "providentmetals": false,
     "monumentmetals": true,
+    "providentmetals": true,
     "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-17T22:00:00.000Z",
-      "median": 68.62,
-      "low": 61.2,
-      "vendors": {
-        "sdbullion": 68.62,
-        "apmex": 72.64,
-        "gainesvillecoins": 61.2
-      }
-    },
     {
       "window": "2026-07-17T23:00:00.000Z",
       "median": 68.62,
@@ -331,6 +325,15 @@
       "vendors": {
         "herobullion": 62.84,
         "bullionexchanges": 61.02
+      }
+    },
+    {
+      "window": "2026-07-18T23:00:00.000Z",
+      "median": 62.84,
+      "low": 61.2,
+      "vendors": {
+        "herobullion": 62.84,
+        "gainesvillecoins": 61.2
       }
     }
   ]
