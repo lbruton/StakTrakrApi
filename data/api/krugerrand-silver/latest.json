@@ -1,18 +1,12 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-07-18T06:00:00Z",
+  "window_start": "2026-07-18T06:30:00Z",
   "median_price": 64.22,
-  "lowest_price": 61.45,
+  "lowest_price": 61.68,
   "vendors": {
     "apmex": {
       "price": 65.64,
       "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 61.45,
-      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -28,6 +22,20 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "sdbullion": {
+      "price": 63.12,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 61.45,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-18T04:30:01.974Z"
+    },
     "jmbullion": {
       "price": 66.62,
       "confidence": null,
@@ -35,39 +43,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-18T03:30:01.836Z"
-    },
-    "sdbullion": {
-      "price": 63.12,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-18T00:30:01.702Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": true,
     "monumentmetals": true,
     "providentmetals": true,
+    "sdbullion": true,
     "summitmetals": false,
     "bullionexchanges": true,
-    "jmbullion": true,
-    "sdbullion": true
+    "herobullion": true,
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-17T05:00:00.000Z",
-      "median": 61.01,
-      "low": 60.45,
-      "vendors": {
-        "providentmetals": 63.35,
-        "monumentmetals": 61.01,
-        "herobullion": 60.45
-      }
-    },
     {
       "window": "2026-07-17T06:00:00.000Z",
       "median": 65.55,
@@ -287,6 +277,15 @@
         "monumentmetals": 61.68,
         "apmex": 65.64,
         "providentmetals": 64.22
+      }
+    },
+    {
+      "window": "2026-07-18T06:00:00.000Z",
+      "median": 63.12,
+      "low": 61.68,
+      "vendors": {
+        "monumentmetals": 61.68,
+        "sdbullion": 63.12
       }
     }
   ]
