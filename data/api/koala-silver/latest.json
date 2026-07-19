@@ -1,30 +1,26 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-07-19T07:00:00Z",
-  "median_price": 64.02,
+  "window_start": "2026-07-19T07:30:00Z",
+  "median_price": 64.62,
   "lowest_price": 64.02,
   "vendors": {
+    "apmex": {
+      "price": 67.64,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "jmbullion": {
       "price": 64.02,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 67.64,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-19T02:30:01.948Z"
-    },
     "sdbullion": {
       "price": 64.62,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-19T02:30:01.948Z"
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "summitmetals": {
       "price": 59.8,
@@ -36,13 +32,13 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
+    "herobullion": false,
     "jmbullion": true,
     "monumentmetals": false,
     "providentmetals": false,
-    "apmex": true,
-    "bullionexchanges": true,
-    "herobullion": true,
     "sdbullion": true,
+    "bullionexchanges": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {
@@ -50,16 +46,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-18T06:00:00.000Z",
-      "median": 63.6,
-      "low": 62.12,
-      "vendors": {
-        "apmex": 67.64,
-        "jmbullion": 63.6,
-        "providentmetals": 62.12
-      }
-    },
     {
       "window": "2026-07-18T07:00:00.000Z",
       "median": 64.62,
@@ -240,6 +226,15 @@
       "low": 64.02,
       "vendors": {
         "jmbullion": 64.02
+      }
+    },
+    {
+      "window": "2026-07-19T07:00:00.000Z",
+      "median": 67.64,
+      "low": 64.62,
+      "vendors": {
+        "sdbullion": 64.62,
+        "apmex": 67.64
       }
     }
   ]
