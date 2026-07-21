@@ -1,28 +1,20 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-07-21T07:00:00Z",
-  "median_price": 66.48,
+  "window_start": "2026-07-21T07:30:00Z",
+  "median_price": 70.64,
   "lowest_price": 62.56,
   "vendors": {
-    "sdbullion": {
-      "price": 66.48,
-      "confidence": 80,
+    "apmex": {
+      "price": 70.64,
+      "confidence": 60,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
       "price": 62.56,
-      "confidence": 50,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 68.93,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-21T02:30:02.149Z"
     },
     "jmbullion": {
       "price": 64.79,
@@ -31,29 +23,31 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-21T00:30:01.444Z"
+    },
+    "sdbullion": {
+      "price": 66.48,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-21T05:30:01.245Z"
     }
   },
   "availability_by_site": {
-    "monumentmetals": false,
-    "sdbullion": true,
-    "summitmetals": true,
     "apmex": true,
+    "monumentmetals": false,
+    "providentmetals": false,
+    "summitmetals": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "providentmetals": true
+    "sdbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "providentmetals": 62.12
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-20T06:00:00.000Z",
-      "median": 65.71,
-      "low": 65.71,
-      "vendors": {
-        "sdbullion": 65.71
-      }
-    },
     {
       "window": "2026-07-20T08:00:00.000Z",
       "median": 63.87,
@@ -216,6 +210,14 @@
       "low": 62.56,
       "vendors": {
         "summitmetals": 62.56
+      }
+    },
+    {
+      "window": "2026-07-21T07:00:00.000Z",
+      "median": 70.64,
+      "low": 70.64,
+      "vendors": {
+        "apmex": 70.64
       }
     }
   ]
