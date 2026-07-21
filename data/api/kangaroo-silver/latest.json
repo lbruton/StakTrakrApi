@@ -1,15 +1,9 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-07-21T12:00:00Z",
-  "median_price": 64.56,
+  "window_start": "2026-07-21T12:30:00Z",
+  "median_price": 63.98,
   "lowest_price": 62.76,
   "vendors": {
-    "apmex": {
-      "price": 69.84,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 62.76,
       "confidence": 80,
@@ -17,7 +11,7 @@
       "inStock": true
     },
     "herobullion": {
-      "price": 64.56,
+      "price": 64.83,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -40,6 +34,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 69.84,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-21T10:30:02.286Z"
+    },
     "providentmetals": {
       "price": 64.64,
       "confidence": null,
@@ -50,29 +52,20 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "providentmetals": true,
-    "summitmetals": true
+    "summitmetals": false,
+    "apmex": true,
+    "providentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 59.39
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-20T11:00:00.000Z",
-      "median": 63.4,
-      "low": 60.75,
-      "vendors": {
-        "apmex": 67.69,
-        "bullionexchanges": 60.75,
-        "jmbullion": 63.4,
-        "sdbullion": 63.33
-      }
-    },
     {
       "window": "2026-07-20T12:00:00.000Z",
       "median": 61.36,
@@ -301,6 +294,15 @@
         "sdbullion": 65.66,
         "bullionexchanges": 62.76,
         "jmbullion": 63.98
+      }
+    },
+    {
+      "window": "2026-07-21T12:00:00.000Z",
+      "median": 64.83,
+      "low": 62.76,
+      "vendors": {
+        "herobullion": 64.83,
+        "bullionexchanges": 62.76
       }
     }
   ]
