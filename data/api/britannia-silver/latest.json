@@ -1,6 +1,6 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-07-22T22:00:00Z",
+  "window_start": "2026-07-22T22:30:00Z",
   "median_price": 70.21,
   "lowest_price": 64.12,
   "vendors": {
@@ -19,6 +19,12 @@
     "monumentmetals": {
       "price": 64.12,
       "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 65.35,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -45,48 +51,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-22T19:30:01.935Z"
-    },
-    "sdbullion": {
-      "price": 65.66,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-22T19:30:01.935Z"
-    },
-    "summitmetals": {
-      "price": 65.32,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-22T14:30:01.423Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "jmbullion": true,
     "monumentmetals": true,
+    "sdbullion": true,
+    "summitmetals": false,
     "bullionexchanges": true,
     "herobullion": true,
-    "providentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "providentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 65.32
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-21T21:00:00.000Z",
-      "median": 67.01,
-      "low": 64.28,
-      "vendors": {
-        "sdbullion": 64.44,
-        "herobullion": 64.28,
-        "jmbullion": 69.41,
-        "providentmetals": 67.01
-      }
-    },
     {
       "window": "2026-07-21T22:00:00.000Z",
       "median": 63.92,
@@ -329,6 +310,14 @@
         "monumentmetals": 64.12,
         "jmbullion": 70.21,
         "apmex": 70.48
+      }
+    },
+    {
+      "window": "2026-07-22T22:00:00.000Z",
+      "median": 65.35,
+      "low": 65.35,
+      "vendors": {
+        "sdbullion": 65.35
       }
     }
   ]
