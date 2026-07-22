@@ -1,14 +1,22 @@
 {
   "slug": "ase",
-  "window_start": "2026-07-22T18:00:00Z",
-  "median_price": 76.86,
-  "lowest_price": 76.86,
+  "window_start": "2026-07-22T18:30:00Z",
+  "median_price": 65.16,
+  "lowest_price": 65.16,
   "vendors": {
-    "apmex": {
-      "price": 76.86,
-      "confidence": 60,
+    "gainesvillecoins": {
+      "price": 65.16,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 76.86,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-22T16:30:02.045Z"
     },
     "bullionexchanges": {
       "price": 65.18,
@@ -17,14 +25,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-22T14:30:01.423Z"
-    },
-    "gainesvillecoins": {
-      "price": 65.53,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-22T15:30:01.701Z"
     },
     "herobullion": {
       "price": 66.6,
@@ -68,10 +68,10 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "providentmetals": false,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
+    "providentmetals": false,
+    "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
@@ -81,17 +81,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-21T17:00:00.000Z",
-      "median": 71.55,
-      "low": 64.18,
-      "vendors": {
-        "jmbullion": 75.63,
-        "gainesvillecoins": 64.18,
-        "sdbullion": 71.55,
-        "summitmetals": 68.11
-      }
-    },
     {
       "window": "2026-07-21T18:00:00.000Z",
       "median": 71.69,
@@ -329,6 +318,14 @@
       "low": 76.86,
       "vendors": {
         "apmex": 76.86
+      }
+    },
+    {
+      "window": "2026-07-22T18:00:00.000Z",
+      "median": 65.16,
+      "low": 65.16,
+      "vendors": {
+        "gainesvillecoins": 65.16
       }
     }
   ]
