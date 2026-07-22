@@ -1,51 +1,53 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-07-22T06:00:00Z",
-  "median_price": 68.36,
-  "lowest_price": 63.7,
+  "window_start": "2026-07-22T06:30:00Z",
+  "median_price": 71.07,
+  "lowest_price": 68.36,
   "vendors": {
     "apmex": {
-      "price": 71.43,
-      "confidence": 30,
+      "price": 71.07,
+      "confidence": 60,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 68.36,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 63.7,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 68.05,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-22T03:30:01.759Z"
+    },
+    "summitmetals": {
+      "price": 63.7,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-22T04:30:02.058Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "herobullion": false,
-    "jmbullion": false,
+    "monumentmetals": false,
+    "providentmetals": false,
     "sdbullion": true,
-    "summitmetals": true,
     "bullionexchanges": true,
-    "monumentmetals": true,
-    "providentmetals": true
+    "jmbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {
-    "jmbullion": 68.05
+    "providentmetals": 62.12
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-21T05:00:00.000Z",
-      "median": 66.48,
-      "low": 66.48,
-      "vendors": {
-        "sdbullion": 66.48
-      }
-    },
     {
       "window": "2026-07-21T06:00:00.000Z",
       "median": 62.56,
@@ -228,6 +230,15 @@
       "low": 71.43,
       "vendors": {
         "apmex": 71.43
+      }
+    },
+    {
+      "window": "2026-07-22T06:00:00.000Z",
+      "median": 71.07,
+      "low": 68.36,
+      "vendors": {
+        "apmex": 71.07,
+        "sdbullion": 68.36
       }
     }
   ]
