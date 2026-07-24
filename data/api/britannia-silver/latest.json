@@ -1,18 +1,24 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-07-24T17:00:00Z",
-  "median_price": 63.07,
+  "window_start": "2026-07-24T17:30:00Z",
+  "median_price": 64.57,
   "lowest_price": 62.19,
   "vendors": {
     "bullionexchanges": {
       "price": 62.19,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
       "price": 63.07,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "providentmetals": {
+      "price": 66.94,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -45,38 +51,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-24T14:30:01.635Z"
-    },
-    "providentmetals": {
-      "price": 66.83,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-24T14:30:01.635Z"
     }
   },
   "availability_by_site": {
     "bullionexchanges": true,
     "monumentmetals": true,
+    "providentmetals": true,
     "sdbullion": true,
+    "summitmetals": false,
     "apmex": true,
     "herobullion": true,
-    "jmbullion": true,
-    "providentmetals": true,
-    "summitmetals": true
+    "jmbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 65.32
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-23T16:00:00.000Z",
-      "median": 65.97,
-      "low": 61.98,
-      "vendors": {
-        "providentmetals": 65.97,
-        "monumentmetals": 61.98
-      }
-    },
     {
       "window": "2026-07-23T18:00:00.000Z",
       "median": 62.71,
@@ -308,6 +299,14 @@
         "monumentmetals": 63.07,
         "sdbullion": 64.57,
         "bullionexchanges": 62.19
+      }
+    },
+    {
+      "window": "2026-07-24T17:00:00.000Z",
+      "median": 66.94,
+      "low": 66.94,
+      "vendors": {
+        "providentmetals": 66.94
       }
     }
   ]
