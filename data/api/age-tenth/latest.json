@@ -1,20 +1,22 @@
 {
   "slug": "age-tenth",
-  "window_start": "2026-07-24T16:00:00Z",
+  "window_start": "2026-07-24T16:30:00Z",
   "median_price": 478.59,
-  "lowest_price": 478.34,
+  "lowest_price": 478.59,
   "vendors": {
-    "apmex": {
-      "price": 478.34,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 478.59,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 478.34,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-24T14:30:01.635Z"
     },
     "monumentmetals": {
       "price": 464.43,
@@ -42,8 +44,8 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "jmbullion": true,
