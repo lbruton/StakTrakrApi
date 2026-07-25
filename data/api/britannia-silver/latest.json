@@ -1,11 +1,17 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-07-25T11:00:00Z",
+  "window_start": "2026-07-25T11:30:00Z",
   "median_price": 66.37,
-  "lowest_price": 63.38,
+  "lowest_price": 61.49,
   "vendors": {
     "apmex": {
       "price": 68.89,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 61.49,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -17,7 +23,7 @@
       "inStock": true
     },
     "jmbullion": {
-      "price": 68.59,
+      "price": 68.77,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -33,14 +39,6 @@
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 61.49,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-25T07:30:01.437Z"
     },
     "monumentmetals": {
       "price": 62.56,
@@ -61,27 +59,17 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "providentmetals": true,
     "sdbullion": true,
-    "bullionexchanges": true,
     "monumentmetals": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-24T10:00:00.000Z",
-      "median": 62.89,
-      "low": 61.87,
-      "vendors": {
-        "bullionexchanges": 61.87,
-        "sdbullion": 64.02,
-        "monumentmetals": 62.89
-      }
-    },
     {
       "window": "2026-07-24T11:00:00.000Z",
       "median": 66.62,
@@ -320,6 +308,18 @@
         "herobullion": 63.38,
         "sdbullion": 63.87,
         "apmex": 68.89
+      }
+    },
+    {
+      "window": "2026-07-25T11:00:00.000Z",
+      "median": 63.87,
+      "low": 61.49,
+      "vendors": {
+        "sdbullion": 63.87,
+        "providentmetals": 66.37,
+        "bullionexchanges": 61.49,
+        "herobullion": 63.38,
+        "jmbullion": 68.77
       }
     }
   ]
