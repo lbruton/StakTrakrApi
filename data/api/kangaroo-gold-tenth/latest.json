@@ -1,12 +1,12 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-07-26T16:00:00Z",
-  "median_price": 470.39,
+  "window_start": "2026-07-26T16:30:00Z",
+  "median_price": 465.09,
   "lowest_price": 444.16,
   "vendors": {
     "apmex": {
       "price": 480.09,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -22,29 +22,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 481.63,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "monumentmetals": {
       "price": 444.16,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 471.41,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 470.39,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "jmbullion": {
+      "price": 481.63,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-26T14:30:01.870Z"
     },
     "providentmetals": {
       "price": 464.63,
@@ -53,30 +43,37 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-26T13:30:02.183Z"
+    },
+    "sdbullion": {
+      "price": 471.41,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-26T14:30:01.870Z"
+    },
+    "summitmetals": {
+      "price": 470.39,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-26T14:30:01.870Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
     "monumentmetals": true,
+    "jmbullion": true,
+    "providentmetals": true,
     "sdbullion": true,
-    "summitmetals": true,
-    "providentmetals": true
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-25T15:00:00.000Z",
-      "median": 480.09,
-      "low": 465.09,
-      "vendors": {
-        "herobullion": 465.09,
-        "apmex": 480.09
-      }
-    },
     {
       "window": "2026-07-25T16:00:00.000Z",
       "median": 450.78,
@@ -312,6 +309,14 @@
         "herobullion": 465.09,
         "bullionexchanges": 450.78,
         "apmex": 480.09
+      }
+    },
+    {
+      "window": "2026-07-26T16:00:00.000Z",
+      "median": 444.16,
+      "low": 444.16,
+      "vendors": {
+        "monumentmetals": 444.16
       }
     }
   ]
