@@ -1,9 +1,21 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-07-27T16:00:00Z",
-  "median_price": 8.01,
+  "window_start": "2026-07-27T16:30:00Z",
+  "median_price": 8.05,
   "lowest_price": 7.91,
   "vendors": {
+    "apmex": {
+      "price": 8.01,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 8.39,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "jmbullion": {
       "price": 7.91,
       "confidence": 80,
@@ -11,29 +23,13 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 8.01,
+      "price": 8.05,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 7.98,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-27T13:30:01.321Z"
-    },
     "bullionexchanges": {
       "price": 7.83,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-27T12:30:01.377Z"
-    },
-    "herobullion": {
-      "price": 8.39,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
@@ -50,24 +46,16 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
+    "herobullion": true,
     "jmbullion": true,
     "summitmetals": true,
-    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-26T15:00:00.000Z",
-      "median": 8.32,
-      "low": 8.32,
-      "vendors": {
-        "herobullion": 8.32
-      }
-    },
     {
       "window": "2026-07-26T16:00:00.000Z",
       "median": 7.98,
@@ -266,6 +254,16 @@
       "low": 7.91,
       "vendors": {
         "jmbullion": 7.91
+      }
+    },
+    {
+      "window": "2026-07-27T16:00:00.000Z",
+      "median": 8.05,
+      "low": 8.01,
+      "vendors": {
+        "herobullion": 8.39,
+        "summitmetals": 8.05,
+        "apmex": 8.01
       }
     }
   ]
