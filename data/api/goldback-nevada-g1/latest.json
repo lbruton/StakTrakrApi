@@ -1,20 +1,28 @@
 {
   "slug": "goldback-nevada-g1",
-  "window_start": "2026-07-27T09:00:00Z",
-  "median_price": 8.03,
+  "window_start": "2026-07-27T09:30:00Z",
+  "median_price": 8.89,
   "lowest_price": 7.93,
   "vendors": {
-    "apmex": {
-      "price": 8.03,
-      "confidence": 80,
+    "herobullion": {
+      "price": 8.89,
+      "confidence": 60,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 7.93,
-      "confidence": 80,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.03,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-27T07:30:01.402Z"
     },
     "bullionexchanges": {
       "price": 7.83,
@@ -23,14 +31,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-27T03:30:02.207Z"
-    },
-    "herobullion": {
-      "price": 8.89,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-27T05:30:02.160Z"
     },
     "sdbullion": {
       "price": 8.03,
@@ -42,24 +42,15 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "jmbullion": true,
-    "bullionexchanges": true,
     "herobullion": true,
+    "jmbullion": true,
+    "apmex": true,
+    "bullionexchanges": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-26T08:00:00.000Z",
-      "median": 8.82,
-      "low": 7.9,
-      "vendors": {
-        "jmbullion": 7.9,
-        "herobullion": 8.82
-      }
-    },
     {
       "window": "2026-07-26T10:00:00.000Z",
       "median": 7.79,
@@ -255,6 +246,14 @@
       "low": 7.93,
       "vendors": {
         "jmbullion": 7.93
+      }
+    },
+    {
+      "window": "2026-07-27T09:00:00.000Z",
+      "median": 8.89,
+      "low": 8.89,
+      "vendors": {
+        "herobullion": 8.89
       }
     }
   ]
