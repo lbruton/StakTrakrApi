@@ -1,32 +1,36 @@
 {
   "slug": "age-tenth",
-  "window_start": "2026-07-28T17:00:00Z",
-  "median_price": 462.12,
-  "lowest_price": 447.63,
+  "window_start": "2026-07-28T17:30:00Z",
+  "median_price": 494.36,
+  "lowest_price": 461.1,
   "vendors": {
     "apmex": {
-      "price": 494.31,
+      "price": 494.36,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 461.1,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
       "price": 447.63,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-28T15:30:01.713Z"
     },
     "gainesvillecoins": {
       "price": 450.56,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "monumentmetals": {
-      "price": 462.12,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-28T15:30:01.713Z"
     },
     "herobullion": {
       "price": 472.26,
@@ -63,26 +67,18 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "monumentmetals": true,
+    "providentmetals": false,
     "bullionexchanges": true,
     "gainesvillecoins": true,
-    "monumentmetals": true,
     "herobullion": true,
     "jmbullion": true,
-    "providentmetals": true,
     "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-27T16:00:00.000Z",
-      "median": 472.85,
-      "low": 472.85,
-      "vendors": {
-        "summitmetals": 472.85
-      }
-    },
     {
       "window": "2026-07-27T17:00:00.000Z",
       "median": 471.5,
@@ -304,6 +300,15 @@
       "low": 462.12,
       "vendors": {
         "monumentmetals": 462.12
+      }
+    },
+    {
+      "window": "2026-07-28T17:00:00.000Z",
+      "median": 494.36,
+      "low": 461.1,
+      "vendors": {
+        "apmex": 494.36,
+        "monumentmetals": 461.1
       }
     }
   ]
