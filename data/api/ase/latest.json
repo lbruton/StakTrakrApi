@@ -1,8 +1,8 @@
 {
   "slug": "ase",
-  "window_start": "2026-07-29T05:00:00Z",
+  "window_start": "2026-07-29T05:30:00Z",
   "median_price": 64.5,
-  "lowest_price": 62.39,
+  "lowest_price": 63.02,
   "vendors": {
     "apmex": {
       "price": 74.15,
@@ -10,14 +10,8 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 62.39,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "gainesvillecoins": {
-      "price": 62.74,
+      "price": 63.02,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -28,11 +22,21 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "bullionexchanges": {
+      "price": 62.39,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-29T03:30:01.367Z"
+    },
     "jmbullion": {
       "price": 74.12,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-29T03:30:01.367Z"
     },
     "monumentmetals": {
       "price": 64.29,
@@ -61,9 +65,9 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
+    "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
     "providentmetals": true,
@@ -73,14 +77,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-28T04:00:00.000Z",
-      "median": 73.95,
-      "low": 73.95,
-      "vendors": {
-        "jmbullion": 73.95
-      }
-    },
     {
       "window": "2026-07-28T05:00:00.000Z",
       "median": 69.95,
@@ -301,6 +297,14 @@
         "apmex": 74.15,
         "herobullion": 64.5,
         "gainesvillecoins": 62.74
+      }
+    },
+    {
+      "window": "2026-07-29T05:00:00.000Z",
+      "median": 63.02,
+      "low": 63.02,
+      "vendors": {
+        "gainesvillecoins": 63.02
       }
     }
   ]
