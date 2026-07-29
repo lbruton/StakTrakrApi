@@ -1,11 +1,11 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-07-29T11:00:00Z",
-  "median_price": 630.13,
+  "window_start": "2026-07-29T11:30:00Z",
+  "median_price": 626.23,
   "lowest_price": 594.3,
   "vendors": {
     "apmex": {
-      "price": 663.1,
+      "price": 664.1,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -29,22 +29,24 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 605.3,
+      "price": 606.7,
       "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 626.23,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 635.82,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 630.13,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-29T09:30:02.148Z"
     }
   },
   "availability_by_site": {
@@ -54,23 +56,15 @@
     "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
     "summitmetals": true,
-    "providentmetals": true
+    "providentmetals": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "herobullion": 609.16
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-28T10:00:00.000Z",
-      "median": 628.79,
-      "low": 628.79,
-      "vendors": {
-        "sdbullion": 628.79
-      }
-    },
     {
       "window": "2026-07-28T12:00:00.000Z",
       "median": 631.23,
@@ -263,6 +257,16 @@
         "apmex": 663.1,
         "monumentmetals": 605.3,
         "summitmetals": 630.13
+      }
+    },
+    {
+      "window": "2026-07-29T11:00:00.000Z",
+      "median": 626.23,
+      "low": 606.7,
+      "vendors": {
+        "summitmetals": 626.23,
+        "monumentmetals": 606.7,
+        "apmex": 664.1
       }
     }
   ]
