@@ -1,20 +1,28 @@
 {
   "slug": "kookaburra-gold-tenth",
-  "window_start": "2026-07-30T19:00:00Z",
-  "median_price": 532.11,
-  "lowest_price": 453.33,
+  "window_start": "2026-07-30T19:30:00Z",
+  "median_price": 454.52,
+  "lowest_price": 453.73,
   "vendors": {
-    "apmex": {
-      "price": 532.11,
-      "confidence": 60,
+    "monumentmetals": {
+      "price": 454.52,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 453.33,
-      "confidence": 35,
+    "summitmetals": {
+      "price": 453.73,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 532.11,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-30T17:30:02.139Z"
     },
     "herobullion": {
       "price": 471.16,
@@ -23,40 +31,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-30T14:30:01.672Z"
-    },
-    "summitmetals": {
-      "price": 454.02,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-30T16:30:01.755Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "jmbullion": false,
     "monumentmetals": true,
-    "providentmetals": false,
+    "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "providentmetals": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "jmbullion": 458.89
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-29T18:00:00.000Z",
-      "median": 448.88,
-      "low": 448.48,
-      "vendors": {
-        "monumentmetals": 448.48,
-        "summitmetals": 448.88
-      }
-    },
     {
       "window": "2026-07-29T19:00:00.000Z",
       "median": 470.81,
@@ -205,6 +196,15 @@
       "vendors": {
         "apmex": 532.11,
         "monumentmetals": 453.33
+      }
+    },
+    {
+      "window": "2026-07-30T19:00:00.000Z",
+      "median": 454.52,
+      "low": 453.73,
+      "vendors": {
+        "monumentmetals": 454.52,
+        "summitmetals": 453.73
       }
     }
   ]
