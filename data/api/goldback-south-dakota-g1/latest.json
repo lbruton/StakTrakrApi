@@ -1,9 +1,15 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-07-31T11:00:00Z",
+  "window_start": "2026-07-31T11:30:00Z",
   "median_price": 7.9,
   "lowest_price": 7.84,
   "vendors": {
+    "apmex": {
+      "price": 7.95,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
       "price": 7.84,
       "confidence": 80,
@@ -16,20 +22,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 7.96,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "apmex": {
-      "price": 7.95,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-31T08:30:01.490Z"
-    },
     "herobullion": {
       "price": 8.83,
       "confidence": null,
@@ -37,26 +29,26 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-31T08:30:01.490Z"
+    },
+    "sdbullion": {
+      "price": 7.96,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-31T09:30:01.592Z"
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "sdbullion": true,
-    "apmex": true,
-    "herobullion": true
+    "herobullion": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-30T10:00:00.000Z",
-      "median": 7.91,
-      "low": 7.91,
-      "vendors": {
-        "jmbullion": 7.91
-      }
-    },
     {
       "window": "2026-07-30T11:00:00.000Z",
       "median": 8.87,
@@ -249,6 +241,15 @@
       "vendors": {
         "jmbullion": 7.9,
         "bullionexchanges": 7.84
+      }
+    },
+    {
+      "window": "2026-07-31T11:00:00.000Z",
+      "median": 7.95,
+      "low": 7.9,
+      "vendors": {
+        "jmbullion": 7.9,
+        "apmex": 7.95
       }
     }
   ]
