@@ -1,17 +1,17 @@
 {
   "slug": "ape",
-  "window_start": "2026-07-31T08:00:00Z",
-  "median_price": 1954.39,
-  "lowest_price": 1778.19,
+  "window_start": "2026-07-31T08:30:00Z",
+  "median_price": 1990.99,
+  "lowest_price": 1954.39,
   "vendors": {
-    "bullionexchanges": {
-      "price": 1778.19,
-      "confidence": 35,
+    "apmex": {
+      "price": 2000.59,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
-      "price": 1988.99,
+      "price": 1990.99,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -22,13 +22,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 2000.09,
+    "bullionexchanges": {
+      "price": 1778.19,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-07-31T05:30:01.752Z"
+      "stale_since": "2026-07-31T06:30:01.390Z"
     },
     "herobullion": {
       "price": 1827.53,
@@ -64,28 +64,21 @@
     }
   },
   "availability_by_site": {
-    "bullionexchanges": true,
+    "apmex": true,
     "jmbullion": true,
     "sdbullion": true,
-    "apmex": true,
+    "summitmetals": false,
+    "bullionexchanges": true,
     "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
-    "providentmetals": true,
-    "summitmetals": true
+    "providentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 1696.73
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-30T07:00:00.000Z",
-      "median": 1956.99,
-      "low": 1736.4,
-      "vendors": {
-        "apmex": 1956.99,
-        "mintbuilder": 1736.4
-      }
-    },
     {
       "window": "2026-07-30T08:00:00.000Z",
       "median": 1775.9,
@@ -287,6 +280,15 @@
       "vendors": {
         "sdbullion": 1954.39,
         "jmbullion": 1988.99
+      }
+    },
+    {
+      "window": "2026-07-31T08:00:00.000Z",
+      "median": 2000.59,
+      "low": 1990.99,
+      "vendors": {
+        "apmex": 2000.59,
+        "jmbullion": 1990.99
       }
     }
   ]
