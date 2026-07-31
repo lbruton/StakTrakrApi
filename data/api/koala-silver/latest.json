@@ -1,26 +1,30 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-07-31T10:00:00Z",
-  "median_price": 66.89,
-  "lowest_price": 64.16,
+  "window_start": "2026-07-31T10:30:00Z",
+  "median_price": 64.2,
+  "lowest_price": 64.2,
   "vendors": {
-    "apmex": {
-      "price": 69.81,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 66.89,
+    "providentmetals": {
+      "price": 64.2,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "providentmetals": {
-      "price": 64.16,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 69.81,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-31T08:30:01.490Z"
+    },
+    "jmbullion": {
+      "price": 66.89,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-31T08:30:01.490Z"
     },
     "sdbullion": {
       "price": 67.28,
@@ -32,28 +36,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "herobullion": false,
-    "jmbullion": true,
     "monumentmetals": false,
     "providentmetals": true,
-    "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
-    "sdbullion": true
+    "herobullion": true,
+    "jmbullion": true,
+    "sdbullion": true,
+    "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "summitmetals": 63.53
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-30T09:00:00.000Z",
-      "median": 66.51,
-      "low": 66.51,
-      "vendors": {
-        "sdbullion": 66.51
-      }
-    },
     {
       "window": "2026-07-30T11:00:00.000Z",
       "median": 69.77,
@@ -200,6 +194,14 @@
       "low": 64.16,
       "vendors": {
         "providentmetals": 64.16
+      }
+    },
+    {
+      "window": "2026-07-31T10:00:00.000Z",
+      "median": 64.2,
+      "low": 64.2,
+      "vendors": {
+        "providentmetals": 64.2
       }
     }
   ]

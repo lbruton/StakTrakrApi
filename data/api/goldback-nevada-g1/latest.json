@@ -1,17 +1,11 @@
 {
   "slug": "goldback-nevada-g1",
-  "window_start": "2026-07-31T10:00:00Z",
-  "median_price": 7.94,
-  "lowest_price": 7.85,
+  "window_start": "2026-07-31T10:30:00Z",
+  "median_price": 7.96,
+  "lowest_price": 7.94,
   "vendors": {
     "apmex": {
       "price": 7.94,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 7.85,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -22,6 +16,20 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "sdbullion": {
+      "price": 7.96,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 7.85,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-07-31T08:30:01.490Z"
+    },
     "jmbullion": {
       "price": 7.95,
       "confidence": null,
@@ -29,37 +37,18 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-07-31T06:30:01.390Z"
-    },
-    "sdbullion": {
-      "price": 8.01,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-07-31T01:30:01.391Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
-    "jmbullion": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "bullionexchanges": true,
+    "jmbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-07-30T09:00:00.000Z",
-      "median": 7.97,
-      "low": 7.92,
-      "vendors": {
-        "jmbullion": 7.92,
-        "apmex": 7.96,
-        "sdbullion": 7.97,
-        "herobullion": 8.84
-      }
-    },
     {
       "window": "2026-07-30T11:00:00.000Z",
       "median": 7.99,
@@ -212,6 +201,14 @@
       "vendors": {
         "herobullion": 8.82,
         "apmex": 7.94
+      }
+    },
+    {
+      "window": "2026-07-31T10:00:00.000Z",
+      "median": 7.96,
+      "low": 7.96,
+      "vendors": {
+        "sdbullion": 7.96
       }
     }
   ]
