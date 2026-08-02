@@ -1,12 +1,18 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-08-02T02:00:00Z",
-  "median_price": 68.25,
-  "lowest_price": 68.25,
+  "window_start": "2026-08-02T02:30:00Z",
+  "median_price": 68.33,
+  "lowest_price": 64.75,
   "vendors": {
     "jmbullion": {
-      "price": 68.25,
+      "price": 68.33,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 64.75,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -49,48 +55,22 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-01T20:30:01.309Z"
-    },
-    "sdbullion": {
-      "price": 64.75,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-01T16:30:01.912Z"
     }
   },
   "availability_by_site": {
     "jmbullion": true,
+    "sdbullion": true,
+    "summitmetals": false,
     "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
-    "providentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "providentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-01T00:00:00.000Z",
-      "median": 63.44,
-      "low": 63.44,
-      "vendors": {
-        "herobullion": 63.44
-      }
-    },
-    {
-      "window": "2026-08-01T01:00:00.000Z",
-      "median": 67.78,
-      "low": 64.93,
-      "vendors": {
-        "sdbullion": 64.93,
-        "apmex": 68.45,
-        "jmbullion": 67.78
-      }
-    },
     {
       "window": "2026-08-01T02:00:00.000Z",
       "median": 68.85,
@@ -299,6 +279,15 @@
       "low": 68.25,
       "vendors": {
         "jmbullion": 68.25
+      }
+    },
+    {
+      "window": "2026-08-02T02:00:00.000Z",
+      "median": 68.33,
+      "low": 64.75,
+      "vendors": {
+        "sdbullion": 64.75,
+        "jmbullion": 68.33
       }
     }
   ]
