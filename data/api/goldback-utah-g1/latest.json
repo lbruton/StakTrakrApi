@@ -1,32 +1,36 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-08-02T20:00:00Z",
-  "median_price": 7.92,
+  "window_start": "2026-08-02T20:30:00Z",
+  "median_price": 8.3,
   "lowest_price": 7.8,
   "vendors": {
-    "apmex": {
-      "price": 7.92,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 7.8,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 8.3,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 7.88,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 7.92,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-02T18:30:01.667Z"
+    },
+    "jmbullion": {
+      "price": 7.88,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-02T18:30:01.667Z"
     },
     "sdbullion": {
       "price": 7.95,
@@ -38,24 +42,15 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
+    "apmex": true,
     "jmbullion": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-01T19:00:00.000Z",
-      "median": 7.92,
-      "low": 7.8,
-      "vendors": {
-        "bullionexchanges": 7.8,
-        "apmex": 7.92
-      }
-    },
     {
       "window": "2026-08-01T20:00:00.000Z",
       "median": 8.3,
@@ -238,6 +233,15 @@
       "low": 8.3,
       "vendors": {
         "herobullion": 8.3
+      }
+    },
+    {
+      "window": "2026-08-02T20:00:00.000Z",
+      "median": 8.3,
+      "low": 7.8,
+      "vendors": {
+        "herobullion": 8.3,
+        "bullionexchanges": 7.8
       }
     }
   ]
