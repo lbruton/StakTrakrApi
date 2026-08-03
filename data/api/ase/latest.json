@@ -1,26 +1,46 @@
 {
   "slug": "ase",
-  "window_start": "2026-08-03T11:00:00Z",
-  "median_price": 74.88,
-  "lowest_price": 67.92,
+  "window_start": "2026-08-03T11:30:00Z",
+  "median_price": 67.49,
+  "lowest_price": 64.27,
   "vendors": {
-    "apmex": {
-      "price": 74.88,
-      "confidence": 60,
+    "herobullion": {
+      "price": 65.14,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 75.12,
-      "confidence": 60,
+      "confidence": 15,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 64.27,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 70.85,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
-      "price": 67.92,
-      "confidence": 35,
+      "price": 67.49,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 74.88,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-03T09:30:01.628Z"
     },
     "bullionexchanges": {
       "price": 62.86,
@@ -38,14 +58,6 @@
       "stale": true,
       "stale_since": "2026-08-03T08:30:01.987Z"
     },
-    "herobullion": {
-      "price": 65.46,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-03T07:30:01.334Z"
-    },
     "mintbuilder": {
       "price": 61.16,
       "confidence": null,
@@ -53,47 +65,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-03T06:30:02.165Z"
-    },
-    "monumentmetals": {
-      "price": 64.6,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-03T05:30:01.364Z"
-    },
-    "sdbullion": {
-      "price": 70.99,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-03T08:30:01.987Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
+    "herobullion": true,
     "jmbullion": true,
+    "monumentmetals": true,
     "providentmetals": false,
+    "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
-    "herobullion": true,
-    "mintbuilder": true,
-    "monumentmetals": true,
-    "sdbullion": true
+    "mintbuilder": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-02T10:00:00.000Z",
-      "median": 62.83,
-      "low": 62.83,
-      "vendors": {
-        "gainesvillecoins": 62.83
-      }
-    },
     {
       "window": "2026-08-02T11:00:00.000Z",
       "median": 64.11,
@@ -302,6 +290,17 @@
       "low": 75.12,
       "vendors": {
         "jmbullion": 75.12
+      }
+    },
+    {
+      "window": "2026-08-03T11:00:00.000Z",
+      "median": 67.49,
+      "low": 64.27,
+      "vendors": {
+        "sdbullion": 70.85,
+        "summitmetals": 67.49,
+        "herobullion": 65.14,
+        "monumentmetals": 64.27
       }
     }
   ]
