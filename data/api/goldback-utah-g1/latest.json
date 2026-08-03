@@ -1,32 +1,28 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-08-03T07:00:00Z",
-  "median_price": 7.98,
+  "window_start": "2026-08-03T07:30:00Z",
+  "median_price": 8.33,
   "lowest_price": 7.88,
   "vendors": {
-    "apmex": {
-      "price": 7.95,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 8.34,
-      "confidence": 50,
+      "price": 8.33,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 7.88,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 7.98,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 7.95,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-03T05:30:01.364Z"
     },
     "bullionexchanges": {
       "price": 7.81,
@@ -35,28 +31,26 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-03T03:30:02.130Z"
+    },
+    "sdbullion": {
+      "price": 7.98,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-03T05:30:01.364Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
-    "sdbullion": true,
-    "bullionexchanges": true
+    "apmex": true,
+    "bullionexchanges": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-02T06:00:00.000Z",
-      "median": 7.92,
-      "low": 7.8,
-      "vendors": {
-        "bullionexchanges": 7.8,
-        "jmbullion": 7.92,
-        "herobullion": 8.3
-      }
-    },
     {
       "window": "2026-08-02T07:00:00.000Z",
       "median": 8.3,
@@ -234,6 +228,14 @@
       "vendors": {
         "herobullion": 8.34,
         "jmbullion": 7.88
+      }
+    },
+    {
+      "window": "2026-08-03T07:00:00.000Z",
+      "median": 8.33,
+      "low": 8.33,
+      "vendors": {
+        "herobullion": 8.33
       }
     }
   ]
