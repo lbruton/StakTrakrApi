@@ -1,26 +1,28 @@
 {
   "slug": "goldback-oklahoma-g1",
-  "window_start": "2026-08-03T19:00:00Z",
-  "median_price": 7.91,
-  "lowest_price": 7.88,
+  "window_start": "2026-08-03T19:30:00Z",
+  "median_price": 8.82,
+  "lowest_price": 7.9,
   "vendors": {
-    "apmex": {
-      "price": 7.91,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 8.78,
-      "confidence": 15,
+      "price": 8.82,
+      "confidence": 60,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
-      "price": 7.88,
-      "confidence": 80,
+      "price": 7.9,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 7.91,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-03T17:30:01.599Z"
     },
     "bullionexchanges": {
       "price": 7.81,
@@ -40,33 +42,15 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-02T17:00:00.000Z",
-      "median": 8.8,
-      "low": 7.88,
-      "vendors": {
-        "jmbullion": 7.88,
-        "herobullion": 8.8
-      }
-    },
-    {
-      "window": "2026-08-02T18:00:00.000Z",
-      "median": 7.95,
-      "low": 7.8,
-      "vendors": {
-        "bullionexchanges": 7.8,
-        "sdbullion": 7.95
-      }
-    },
     {
       "window": "2026-08-02T20:00:00.000Z",
       "median": 7.95,
@@ -250,6 +234,15 @@
         "jmbullion": 7.88,
         "herobullion": 8.78,
         "apmex": 7.91
+      }
+    },
+    {
+      "window": "2026-08-03T19:00:00.000Z",
+      "median": 8.82,
+      "low": 7.9,
+      "vendors": {
+        "jmbullion": 7.9,
+        "herobullion": 8.82
       }
     }
   ]
