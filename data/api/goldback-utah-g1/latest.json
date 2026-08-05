@@ -1,22 +1,26 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-08-05T02:00:00Z",
-  "median_price": 8.39,
-  "lowest_price": 8.39,
+  "window_start": "2026-08-05T02:30:00Z",
+  "median_price": 8.05,
+  "lowest_price": 7.98,
   "vendors": {
-    "herobullion": {
-      "price": 8.39,
+    "apmex": {
+      "price": 8.05,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 7.97,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-04T23:30:01.439Z"
+    "herobullion": {
+      "price": 8.39,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 7.98,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "bullionexchanges": {
       "price": 7.83,
@@ -25,34 +29,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-04T23:30:01.439Z"
-    },
-    "sdbullion": {
-      "price": 7.99,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-04T23:30:01.439Z"
     }
   },
   "availability_by_site": {
-    "herobullion": true,
     "apmex": true,
-    "bullionexchanges": true,
-    "sdbullion": true
+    "herobullion": true,
+    "sdbullion": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-04T01:00:00.000Z",
-      "median": 7.97,
-      "low": 7.81,
-      "vendors": {
-        "sdbullion": 7.97,
-        "bullionexchanges": 7.81
-      }
-    },
     {
       "window": "2026-08-04T02:00:00.000Z",
       "median": 8.33,
@@ -231,6 +218,15 @@
       "low": 8.39,
       "vendors": {
         "herobullion": 8.39
+      }
+    },
+    {
+      "window": "2026-08-05T02:00:00.000Z",
+      "median": 8.05,
+      "low": 7.98,
+      "vendors": {
+        "sdbullion": 7.98,
+        "apmex": 8.05
       }
     }
   ]
