@@ -1,32 +1,36 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-08-05T20:00:00Z",
-  "median_price": 68.17,
-  "lowest_price": 65.57,
+  "window_start": "2026-08-05T20:30:00Z",
+  "median_price": 67.99,
+  "lowest_price": 65.23,
   "vendors": {
-    "apmex": {
-      "price": 73.04,
-      "confidence": 30,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 68.17,
+      "price": 67.99,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "mintbuilder": {
-      "price": 65.57,
+      "price": 65.23,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 73.04,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-05T18:30:02.187Z"
+    },
     "monumentmetals": {
       "price": 68,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-05T18:30:02.187Z"
     },
     "sdbullion": {
       "price": 69.21,
@@ -38,25 +42,17 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "mintbuilder": true,
-    "monumentmetals": true,
     "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
+    "monumentmetals": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-04T19:00:00.000Z",
-      "median": 65.35,
-      "low": 65.35,
-      "vendors": {
-        "monumentmetals": 65.35
-      }
-    },
     {
       "window": "2026-08-04T21:00:00.000Z",
       "median": 65.37,
@@ -251,6 +247,15 @@
       "low": 68.17,
       "vendors": {
         "herobullion": 68.17
+      }
+    },
+    {
+      "window": "2026-08-05T20:00:00.000Z",
+      "median": 67.99,
+      "low": 65.23,
+      "vendors": {
+        "herobullion": 67.99,
+        "mintbuilder": 65.23
       }
     }
   ]
