@@ -1,15 +1,9 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-08-06T11:00:00Z",
-  "median_price": 67.69,
+  "window_start": "2026-08-06T11:30:00Z",
+  "median_price": 67.66,
   "lowest_price": 65.13,
   "vendors": {
-    "apmex": {
-      "price": 72.78,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "mintbuilder": {
       "price": 65.13,
       "confidence": 50,
@@ -17,10 +11,24 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 67.69,
+      "price": 67.66,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "sdbullion": {
+      "price": 69.15,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 72.78,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-06T09:30:01.868Z"
     },
     "herobullion": {
       "price": 67.88,
@@ -29,37 +37,20 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-06T08:30:01.823Z"
-    },
-    "sdbullion": {
-      "price": 69.16,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-06T08:30:01.823Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "mintbuilder": true,
     "monumentmetals": true,
+    "sdbullion": true,
     "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "sdbullion": true
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-05T10:00:00.000Z",
-      "median": 68.7,
-      "low": 64.51,
-      "vendors": {
-        "sdbullion": 68.7,
-        "mintbuilder": 64.51
-      }
-    },
     {
       "window": "2026-08-05T11:00:00.000Z",
       "median": 67.83,
@@ -280,6 +271,15 @@
       "vendors": {
         "mintbuilder": 65.13,
         "monumentmetals": 67.69
+      }
+    },
+    {
+      "window": "2026-08-06T11:00:00.000Z",
+      "median": 69.15,
+      "low": 67.66,
+      "vendors": {
+        "monumentmetals": 67.66,
+        "sdbullion": 69.15
       }
     }
   ]
