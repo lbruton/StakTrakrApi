@@ -1,26 +1,30 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-08-08T21:00:00Z",
-  "median_price": 8.5,
+  "window_start": "2026-08-08T21:30:00Z",
+  "median_price": 8.35,
   "lowest_price": 8.35,
   "vendors": {
-    "apmex": {
-      "price": 8.5,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 8.35,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 8.5,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-08T19:30:02.034Z"
+    },
     "herobullion": {
       "price": 8.88,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-08T19:30:02.034Z"
     },
     "sdbullion": {
       "price": 8.25,
@@ -32,23 +36,14 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
+    "apmex": true,
     "herobullion": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-07T20:00:00.000Z",
-      "median": 8.35,
-      "low": 8.25,
-      "vendors": {
-        "bullionexchanges": 8.35,
-        "sdbullion": 8.25
-      }
-    },
     {
       "window": "2026-08-07T21:00:00.000Z",
       "median": 8.88,
@@ -232,6 +227,14 @@
     },
     {
       "window": "2026-08-08T20:00:00.000Z",
+      "median": 8.35,
+      "low": 8.35,
+      "vendors": {
+        "bullionexchanges": 8.35
+      }
+    },
+    {
+      "window": "2026-08-08T21:00:00.000Z",
       "median": 8.35,
       "low": 8.35,
       "vendors": {
