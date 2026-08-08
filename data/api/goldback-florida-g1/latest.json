@@ -1,18 +1,24 @@
 {
   "slug": "goldback-florida-g1",
-  "window_start": "2026-08-08T15:00:00Z",
-  "median_price": 9.38,
-  "lowest_price": 8.35,
+  "window_start": "2026-08-08T15:30:00Z",
+  "median_price": 8.35,
+  "lowest_price": 8.25,
   "vendors": {
     "bullionexchanges": {
       "price": 8.35,
-      "confidence": 35,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 9.38,
-      "confidence": 60,
+      "confidence": 15,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.25,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -23,42 +29,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-08T10:30:01.281Z"
-    },
-    "sdbullion": {
-      "price": 8.25,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-08T08:30:01.817Z"
     }
   },
   "availability_by_site": {
     "bullionexchanges": true,
     "herobullion": true,
-    "apmex": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "apmex": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-07T13:00:00.000Z",
-      "median": 9.41,
-      "low": 8.53,
-      "vendors": {
-        "herobullion": 9.41,
-        "apmex": 8.53
-      }
-    },
-    {
-      "window": "2026-08-07T14:00:00.000Z",
-      "median": 8.52,
-      "low": 8.52,
-      "vendors": {
-        "apmex": 8.52
-      }
-    },
     {
       "window": "2026-08-07T15:00:00.000Z",
       "median": 9.39,
@@ -232,6 +213,16 @@
       "vendors": {
         "herobullion": 9.38,
         "bullionexchanges": 8.35
+      }
+    },
+    {
+      "window": "2026-08-08T15:00:00.000Z",
+      "median": 8.35,
+      "low": 8.25,
+      "vendors": {
+        "bullionexchanges": 8.35,
+        "sdbullion": 8.25,
+        "herobullion": 9.38
       }
     }
   ]
