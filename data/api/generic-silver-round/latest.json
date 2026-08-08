@@ -1,18 +1,12 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-08-08T07:00:00Z",
-  "median_price": 67.74,
-  "lowest_price": 63.95,
+  "window_start": "2026-08-08T07:30:00Z",
+  "median_price": 67.3,
+  "lowest_price": 64.14,
   "vendors": {
     "apmex": {
       "price": 73.32,
       "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 63.95,
-      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -34,11 +28,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 69.8,
-      "confidence": 50,
+    "summitmetals": {
+      "price": 67.05,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 63.95,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-08T05:30:01.267Z"
     },
     "mintbuilder": {
       "price": 63.6,
@@ -48,36 +50,28 @@
       "stale": true,
       "stale_since": "2026-08-08T01:30:01.496Z"
     },
-    "summitmetals": {
-      "price": 67.05,
+    "sdbullion": {
+      "price": 69.8,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-08-08T04:30:01.725Z"
+      "stale_since": "2026-08-08T05:30:01.267Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
+    "summitmetals": true,
+    "bullionexchanges": true,
     "mintbuilder": true,
-    "summitmetals": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-07T06:00:00.000Z",
-      "median": 68.6,
-      "low": 68.6,
-      "vendors": {
-        "sdbullion": 68.6
-      }
-    },
     {
       "window": "2026-08-07T07:00:00.000Z",
       "median": 68.6,
@@ -320,6 +314,15 @@
         "herobullion": 67.74,
         "monumentmetals": 67.3,
         "apmex": 73.32
+      }
+    },
+    {
+      "window": "2026-08-08T07:00:00.000Z",
+      "median": 67.74,
+      "low": 67.05,
+      "vendors": {
+        "herobullion": 67.74,
+        "summitmetals": 67.05
       }
     }
   ]
