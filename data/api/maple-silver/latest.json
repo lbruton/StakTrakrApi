@@ -1,12 +1,18 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-08-08T05:00:00Z",
-  "median_price": 71.02,
+  "window_start": "2026-08-08T05:30:00Z",
+  "median_price": 69.5,
   "lowest_price": 63.9,
   "vendors": {
     "apmex": {
       "price": 75.32,
-      "confidence": 30,
+      "confidence": 15,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 67.29,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -30,7 +36,7 @@
     },
     "sdbullion": {
       "price": 71.8,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -39,14 +45,6 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 67.29,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-08T02:30:01.932Z"
     },
     "gainesvillecoins": {
       "price": 65.89,
@@ -59,30 +57,17 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-07T04:00:00.000Z",
-      "median": 68.05,
-      "low": 62.55,
-      "vendors": {
-        "monumentmetals": 68.05,
-        "bullionexchanges": 66.01,
-        "summitmetals": 67.29,
-        "herobullion": 69.66,
-        "apmex": 74.12,
-        "mintbuilder": 62.55
-      }
-    },
     {
       "window": "2026-08-07T05:00:00.000Z",
       "median": 68.13,
@@ -310,6 +295,18 @@
         "apmex": 75.32,
         "mintbuilder": 63.9,
         "herobullion": 71.02
+      }
+    },
+    {
+      "window": "2026-08-08T05:00:00.000Z",
+      "median": 69.5,
+      "low": 63.9,
+      "vendors": {
+        "bullionexchanges": 67.29,
+        "apmex": 75.32,
+        "herobullion": 71.02,
+        "mintbuilder": 63.9,
+        "monumentmetals": 69.5
       }
     }
   ]
