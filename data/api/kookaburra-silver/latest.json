@@ -1,8 +1,8 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-08-09T12:00:00Z",
-  "median_price": 75.22,
-  "lowest_price": 70.1,
+  "window_start": "2026-08-09T12:30:00Z",
+  "median_price": 75.3,
+  "lowest_price": 72.53,
   "vendors": {
     "apmex": {
       "price": 82.33,
@@ -16,23 +16,27 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "mintbuilder": {
-      "price": 75.22,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "monumentmetals": {
-      "price": 70.1,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 75.3,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "mintbuilder": {
+      "price": 75.22,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-09T10:30:01.454Z"
+    },
+    "monumentmetals": {
+      "price": 70.1,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-09T10:30:01.454Z"
     },
     "summitmetals": {
       "price": 73.53,
@@ -46,25 +50,15 @@
   "availability_by_site": {
     "apmex": true,
     "herobullion": true,
-    "mintbuilder": true,
-    "monumentmetals": true,
     "sdbullion": true,
     "bullionexchanges": true,
+    "mintbuilder": true,
+    "monumentmetals": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-08T11:00:00.000Z",
-      "median": 73.53,
-      "low": 70.1,
-      "vendors": {
-        "summitmetals": 73.53,
-        "apmex": 82.33,
-        "monumentmetals": 70.1
-      }
-    },
     {
       "window": "2026-08-08T12:00:00.000Z",
       "median": 75.3,
@@ -301,6 +295,14 @@
         "apmex": 82.33,
         "herobullion": 72.53,
         "sdbullion": 75.3
+      }
+    },
+    {
+      "window": "2026-08-09T12:00:00.000Z",
+      "median": 82.33,
+      "low": 82.33,
+      "vendors": {
+        "apmex": 82.33
       }
     }
   ]
