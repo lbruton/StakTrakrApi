@@ -1,18 +1,30 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-08-09T04:00:00Z",
-  "median_price": 733.2,
-  "lowest_price": 692.96,
+  "window_start": "2026-08-09T04:30:00Z",
+  "median_price": 692.96,
+  "lowest_price": 667.4,
   "vendors": {
     "apmex": {
       "price": 733.2,
-      "confidence": 80,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 667.4,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 692.96,
-      "confidence": 50,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 687.55,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -31,47 +43,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-08T21:30:01.568Z"
-    },
-    "monumentmetals": {
-      "price": 667.4,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-09T00:30:02.099Z"
-    },
-    "summitmetals": {
-      "price": 687.55,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-09T01:30:02.057Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "herobullion": false,
+    "monumentmetals": true,
     "sdbullion": true,
+    "summitmetals": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
-    "mintbuilder": true,
-    "monumentmetals": true,
-    "summitmetals": true
+    "mintbuilder": true
   },
   "last_known_price_by_site": {
     "herobullion": 612.21
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-08T03:00:00.000Z",
-      "median": 681.4,
-      "low": 681.4,
-      "vendors": {
-        "gainesvillecoins": 681.4
-      }
-    },
     {
       "window": "2026-08-08T04:00:00.000Z",
       "median": 667.4,
@@ -293,6 +281,17 @@
       "vendors": {
         "apmex": 733.2,
         "sdbullion": 692.96
+      }
+    },
+    {
+      "window": "2026-08-09T04:00:00.000Z",
+      "median": 692.96,
+      "low": 667.4,
+      "vendors": {
+        "monumentmetals": 667.4,
+        "sdbullion": 692.96,
+        "summitmetals": 687.55,
+        "apmex": 733.2
       }
     }
   ]
