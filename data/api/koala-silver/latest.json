@@ -1,9 +1,15 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-08-10T12:00:00Z",
-  "median_price": 72.13,
-  "lowest_price": 70.14,
+  "window_start": "2026-08-10T12:30:00Z",
+  "median_price": 73.54,
+  "lowest_price": 69.95,
   "vendors": {
+    "apmex": {
+      "price": 75.69,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "herobullion": {
       "price": 72.13,
       "confidence": 80,
@@ -11,47 +17,31 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 70.14,
-      "confidence": 80,
+      "price": 69.95,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 73.88,
+      "price": 73.54,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 76.18,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-10T08:30:01.357Z"
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "herobullion": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "apmex": true,
-    "bullionexchanges": true,
-    "summitmetals": true
+    "summitmetals": false,
+    "bullionexchanges": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 63.53
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-09T11:00:00.000Z",
-      "median": 73.3,
-      "low": 69.69,
-      "vendors": {
-        "apmex": 75.33,
-        "sdbullion": 73.3,
-        "monumentmetals": 69.69
-      }
-    },
     {
       "window": "2026-08-09T12:00:00.000Z",
       "median": 75.33,
@@ -240,6 +230,16 @@
         "sdbullion": 73.88,
         "monumentmetals": 70.14,
         "herobullion": 72.13
+      }
+    },
+    {
+      "window": "2026-08-10T12:00:00.000Z",
+      "median": 73.54,
+      "low": 69.95,
+      "vendors": {
+        "monumentmetals": 69.95,
+        "apmex": 75.69,
+        "sdbullion": 73.54
       }
     }
   ]
