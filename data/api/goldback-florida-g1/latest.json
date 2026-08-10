@@ -1,20 +1,28 @@
 {
   "slug": "goldback-florida-g1",
-  "window_start": "2026-08-10T07:00:00Z",
-  "median_price": 8.5,
+  "window_start": "2026-08-10T07:30:00Z",
+  "median_price": 9.4,
   "lowest_price": 8.24,
   "vendors": {
-    "apmex": {
-      "price": 8.5,
-      "confidence": 80,
+    "herobullion": {
+      "price": 9.4,
+      "confidence": 60,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 8.24,
-      "confidence": 50,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.5,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-10T05:30:01.631Z"
     },
     "bullionexchanges": {
       "price": 8.34,
@@ -23,44 +31,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-10T04:30:02.118Z"
-    },
-    "herobullion": {
-      "price": 9.35,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-10T03:30:02.125Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
+    "herobullion": true,
     "sdbullion": true,
-    "bullionexchanges": true,
-    "herobullion": true
+    "apmex": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-09T05:00:00.000Z",
-      "median": 8.5,
-      "low": 8.35,
-      "vendors": {
-        "bullionexchanges": 8.35,
-        "apmex": 8.5
-      }
-    },
-    {
-      "window": "2026-08-09T06:00:00.000Z",
-      "median": 8.5,
-      "low": 8.35,
-      "vendors": {
-        "apmex": 8.5,
-        "bullionexchanges": 8.35,
-        "herobullion": 9.38
-      }
-    },
     {
       "window": "2026-08-09T07:00:00.000Z",
       "median": 8.25,
@@ -254,6 +235,15 @@
       "vendors": {
         "sdbullion": 8.24,
         "apmex": 8.5
+      }
+    },
+    {
+      "window": "2026-08-10T07:00:00.000Z",
+      "median": 9.4,
+      "low": 8.24,
+      "vendors": {
+        "herobullion": 9.4,
+        "sdbullion": 8.24
       }
     }
   ]
