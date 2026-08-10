@@ -1,12 +1,18 @@
 {
   "slug": "goldback-wyoming-g1",
-  "window_start": "2026-08-10T02:00:00Z",
-  "median_price": 8.5,
+  "window_start": "2026-08-10T02:30:00Z",
+  "median_price": 8.33,
   "lowest_price": 8.25,
   "vendors": {
-    "apmex": {
-      "price": 8.5,
+    "bullionexchanges": {
+      "price": 8.33,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 9.35,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -16,48 +22,24 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 8.35,
+    "apmex": {
+      "price": 8.5,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-08-09T20:30:01.878Z"
-    },
-    "herobullion": {
-      "price": 9.38,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-09T22:30:01.861Z"
+      "stale_since": "2026-08-10T00:30:01.481Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "sdbullion": true,
     "bullionexchanges": true,
-    "herobullion": true
+    "herobullion": true,
+    "sdbullion": true,
+    "apmex": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-09T00:00:00.000Z",
-      "median": 9.38,
-      "low": 9.38,
-      "vendors": {
-        "herobullion": 9.38
-      }
-    },
-    {
-      "window": "2026-08-09T01:00:00.000Z",
-      "median": 8.5,
-      "low": 8.5,
-      "vendors": {
-        "apmex": 8.5
-      }
-    },
     {
       "window": "2026-08-09T02:00:00.000Z",
       "median": 8.25,
@@ -229,6 +211,16 @@
       "low": 8.25,
       "vendors": {
         "apmex": 8.5,
+        "sdbullion": 8.25
+      }
+    },
+    {
+      "window": "2026-08-10T02:00:00.000Z",
+      "median": 8.33,
+      "low": 8.25,
+      "vendors": {
+        "bullionexchanges": 8.33,
+        "herobullion": 9.35,
         "sdbullion": 8.25
       }
     }
