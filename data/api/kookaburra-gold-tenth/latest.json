@@ -1,50 +1,43 @@
 {
   "slug": "kookaburra-gold-tenth",
-  "window_start": "2026-08-11T10:00:00Z",
-  "median_price": 502.54,
-  "lowest_price": 481.85,
+  "window_start": "2026-08-11T10:30:00Z",
+  "median_price": 503.51,
+  "lowest_price": 503.51,
   "vendors": {
-    "apmex": {
-      "price": 559.13,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 502.54,
+      "price": 503.51,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 559.13,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-11T08:30:01.608Z"
+    },
     "monumentmetals": {
       "price": 481.85,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-11T08:30:01.608Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
-    "monumentmetals": true,
-    "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
-    "sdbullion": true
+    "monumentmetals": true,
+    "sdbullion": true,
+    "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "summitmetals": 433.97
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-10T09:00:00.000Z",
-      "median": 556.39,
-      "low": 499.15,
-      "vendors": {
-        "apmex": 556.39,
-        "herobullion": 499.15
-      }
-    },
     {
       "window": "2026-08-10T10:00:00.000Z",
       "median": 478.57,
@@ -200,6 +193,14 @@
         "apmex": 559.13,
         "herobullion": 502.54,
         "monumentmetals": 481.85
+      }
+    },
+    {
+      "window": "2026-08-11T10:00:00.000Z",
+      "median": 503.51,
+      "low": 503.51,
+      "vendors": {
+        "herobullion": 503.51
       }
     }
   ]
