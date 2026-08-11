@@ -1,8 +1,8 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-08-11T20:00:00Z",
+  "window_start": "2026-08-11T20:30:00Z",
   "median_price": 4474.33,
-  "lowest_price": 4380,
+  "lowest_price": 4380.2,
   "vendors": {
     "apmex": {
       "price": 4541.59,
@@ -11,7 +11,13 @@
       "inStock": true
     },
     "bullionexchanges": {
-      "price": 4380,
+      "price": 4380.2,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 4428.15,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -38,14 +44,6 @@
       "stale": true,
       "stale_since": "2026-08-11T17:30:01.687Z"
     },
-    "monumentmetals": {
-      "price": 4440.25,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-11T17:30:01.687Z"
-    },
     "summitmetals": {
       "price": 4482.87,
       "confidence": null,
@@ -58,24 +56,15 @@
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
+    "monumentmetals": true,
     "sdbullion": true,
     "gainesvillecoins": true,
     "herobullion": true,
-    "monumentmetals": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-10T19:00:00.000Z",
-      "median": 4450,
-      "low": 4449.49,
-      "vendors": {
-        "monumentmetals": 4450,
-        "summitmetals": 4449.49
-      }
-    },
     {
       "window": "2026-08-10T20:00:00.000Z",
       "median": 4478.3,
@@ -300,6 +289,15 @@
         "apmex": 4541.59,
         "bullionexchanges": 4380,
         "sdbullion": 4474.33
+      }
+    },
+    {
+      "window": "2026-08-11T20:00:00.000Z",
+      "median": 4428.15,
+      "low": 4380.2,
+      "vendors": {
+        "bullionexchanges": 4380.2,
+        "monumentmetals": 4428.15
       }
     }
   ]
