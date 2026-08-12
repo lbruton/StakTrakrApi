@@ -1,17 +1,17 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-08-12T17:00:00Z",
-  "median_price": 70.21,
+  "window_start": "2026-08-12T17:30:00Z",
+  "median_price": 70.32,
   "lowest_price": 68.45,
   "vendors": {
     "apmex": {
-      "price": 70.21,
+      "price": 70.32,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
-      "price": 69,
+      "price": 68.75,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -30,15 +30,19 @@
     },
     "monumentmetals": {
       "price": 70.15,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-12T15:30:01.230Z"
     },
     "sdbullion": {
       "price": 71.79,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-12T15:30:01.230Z"
     }
   },
   "availability_by_site": {
@@ -46,23 +50,15 @@
     "bullionexchanges": true,
     "herobullion": true,
     "mintbuilder": true,
+    "summitmetals": false,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": false
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "summitmetals": 65.51
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-11T16:00:00.000Z",
-      "median": 70.77,
-      "low": 70.77,
-      "vendors": {
-        "herobullion": 70.77
-      }
-    },
     {
       "window": "2026-08-11T17:00:00.000Z",
       "median": 70.39,
@@ -263,6 +259,15 @@
         "bullionexchanges": 69,
         "apmex": 70.21,
         "herobullion": 71.15
+      }
+    },
+    {
+      "window": "2026-08-12T17:00:00.000Z",
+      "median": 70.32,
+      "low": 68.75,
+      "vendors": {
+        "bullionexchanges": 68.75,
+        "apmex": 70.32
       }
     }
   ]
