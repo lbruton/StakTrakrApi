@@ -1,15 +1,9 @@
 {
   "slug": "ape",
-  "window_start": "2026-08-12T08:00:00Z",
+  "window_start": "2026-08-12T08:30:00Z",
   "median_price": 1892.63,
   "lowest_price": 1856.6,
   "vendors": {
-    "apmex": {
-      "price": 2118.59,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "mintbuilder": {
       "price": 1856.6,
       "confidence": 80,
@@ -22,16 +16,22 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 1859.89,
+    "sdbullion": {
+      "price": 2076.09,
+      "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 2118.59,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-08-12T05:30:01.928Z"
+      "stale_since": "2026-08-12T06:30:01.898Z"
     },
-    "sdbullion": {
-      "price": 2069.69,
+    "bullionexchanges": {
+      "price": 1859.89,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
@@ -40,26 +40,20 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
+    "herobullion": false,
     "mintbuilder": true,
     "monumentmetals": true,
-    "bullionexchanges": true,
-    "herobullion": true,
     "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": false,
+    "apmex": true,
+    "bullionexchanges": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 1941.77,
+    "summitmetals": 1696.73
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-11T07:00:00.000Z",
-      "median": 2110.99,
-      "low": 1881.08,
-      "vendors": {
-        "monumentmetals": 1881.08,
-        "apmex": 2110.99
-      }
-    },
     {
       "window": "2026-08-11T08:00:00.000Z",
       "median": 1848.8,
@@ -254,6 +248,14 @@
       "vendors": {
         "mintbuilder": 1856.6,
         "monumentmetals": 1892.63
+      }
+    },
+    {
+      "window": "2026-08-12T08:00:00.000Z",
+      "median": 2076.09,
+      "low": 2076.09,
+      "vendors": {
+        "sdbullion": 2076.09
       }
     }
   ]
