@@ -1,17 +1,11 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-08-13T16:00:00Z",
+  "window_start": "2026-08-13T16:30:00Z",
   "median_price": 76.16,
-  "lowest_price": 71.84,
+  "lowest_price": 71.74,
   "vendors": {
-    "apmex": {
-      "price": 83.27,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 73.51,
+      "price": 73.8,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -23,16 +17,24 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 71.84,
+      "price": 71.74,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 76.76,
+      "price": 76.24,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 83.27,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-13T14:30:01.587Z"
     },
     "summitmetals": {
       "price": 74.91,
@@ -44,26 +46,17 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-12T15:00:00.000Z",
-      "median": 75.94,
-      "low": 72.79,
-      "vendors": {
-        "summitmetals": 75.94,
-        "monumentmetals": 72.79
-      }
-    },
     {
       "window": "2026-08-12T16:00:00.000Z",
       "median": 75.44,
@@ -266,6 +259,16 @@
       "vendors": {
         "mintbuilder": 76.16,
         "herobullion": 73.51
+      }
+    },
+    {
+      "window": "2026-08-13T16:00:00.000Z",
+      "median": 73.8,
+      "low": 71.74,
+      "vendors": {
+        "monumentmetals": 71.74,
+        "sdbullion": 76.24,
+        "herobullion": 73.8
       }
     }
   ]
