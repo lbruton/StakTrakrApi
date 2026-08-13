@@ -1,32 +1,28 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-08-13T11:00:00Z",
-  "median_price": 71.66,
-  "lowest_price": 70.25,
+  "window_start": "2026-08-13T11:30:00Z",
+  "median_price": 75.65,
+  "lowest_price": 70.75,
   "vendors": {
     "apmex": {
-      "price": 75.64,
+      "price": 75.65,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 70.75,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 70.25,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "monumentmetals": {
-      "price": 70.43,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 71.66,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-13T09:30:01.775Z"
     },
     "mintbuilder": {
       "price": 67.91,
@@ -35,16 +31,24 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-13T07:30:01.557Z"
+    },
+    "sdbullion": {
+      "price": 71.66,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-13T09:30:01.775Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
     "summitmetals": false,
     "bullionexchanges": true,
-    "mintbuilder": true
+    "herobullion": true,
+    "mintbuilder": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -270,6 +274,15 @@
       "low": 75.64,
       "vendors": {
         "apmex": 75.64
+      }
+    },
+    {
+      "window": "2026-08-13T11:00:00.000Z",
+      "median": 75.65,
+      "low": 70.75,
+      "vendors": {
+        "apmex": 75.65,
+        "monumentmetals": 70.75
       }
     }
   ]
