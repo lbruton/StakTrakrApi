@@ -1,7 +1,7 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-08-13T14:00:00Z",
-  "median_price": 71.56,
+  "window_start": "2026-08-13T14:30:00Z",
+  "median_price": 70.43,
   "lowest_price": 68.71,
   "vendors": {
     "apmex": {
@@ -12,12 +12,18 @@
     },
     "bullionexchanges": {
       "price": 68.71,
-      "confidence": 50,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 70.43,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 69.69,
+      "price": 69.64,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -27,39 +33,22 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "herobullion": {
-      "price": 70.49,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-13T09:30:01.775Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
+    "herobullion": true,
     "mintbuilder": false,
     "monumentmetals": true,
     "sdbullion": true,
-    "herobullion": true,
-    "summitmetals": true
+    "summitmetals": false
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 62.01
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-12T13:00:00.000Z",
-      "median": 72.6,
-      "low": 70.38,
-      "vendors": {
-        "monumentmetals": 70.38,
-        "apmex": 76.61,
-        "herobullion": 71.86,
-        "sdbullion": 72.6
-      }
-    },
     {
       "window": "2026-08-12T14:00:00.000Z",
       "median": 72.6,
@@ -264,6 +253,15 @@
         "bullionexchanges": 68.71,
         "apmex": 75.66,
         "sdbullion": 71.56
+      }
+    },
+    {
+      "window": "2026-08-13T14:00:00.000Z",
+      "median": 70.43,
+      "low": 69.64,
+      "vendors": {
+        "herobullion": 70.43,
+        "monumentmetals": 69.64
       }
     }
   ]
