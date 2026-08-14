@@ -1,17 +1,11 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-08-14T23:00:00Z",
+  "window_start": "2026-08-14T23:30:00Z",
   "median_price": 69.4,
   "lowest_price": 67.01,
   "vendors": {
     "apmex": {
       "price": 70.47,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 68.34,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -28,11 +22,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "summitmetals": {
-      "price": 73.18,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+    "bullionexchanges": {
+      "price": 68.34,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-14T21:30:02.013Z"
     },
     "herobullion": {
       "price": 72.05,
@@ -57,30 +53,29 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-14T15:30:02.383Z"
+    },
+    "summitmetals": {
+      "price": 73.18,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-14T21:30:02.013Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "sdbullion": true,
-    "summitmetals": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "mintbuilder": true,
-    "monumentmetals": true
+    "monumentmetals": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-13T22:00:00.000Z",
-      "median": 71.72,
-      "low": 70.4,
-      "vendors": {
-        "herobullion": 71.72,
-        "monumentmetals": 70.4
-      }
-    },
     {
       "window": "2026-08-13T23:00:00.000Z",
       "median": 72.94,
@@ -329,6 +324,14 @@
         "sdbullion": 69.4,
         "apmex": 70.47,
         "gainesvillecoins": 67.01
+      }
+    },
+    {
+      "window": "2026-08-14T23:00:00.000Z",
+      "median": 69.4,
+      "low": 69.4,
+      "vendors": {
+        "sdbullion": 69.4
       }
     }
   ]
