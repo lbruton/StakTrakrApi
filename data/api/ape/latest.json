@@ -1,17 +1,11 @@
 {
   "slug": "ape",
-  "window_start": "2026-08-14T05:00:00Z",
-  "median_price": 1850,
-  "lowest_price": 1814.6,
+  "window_start": "2026-08-14T05:30:00Z",
+  "median_price": 1834.21,
+  "lowest_price": 1813.19,
   "vendors": {
-    "apmex": {
-      "price": 2075.49,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
-      "price": 1819.19,
+      "price": 1813.19,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -39,31 +33,36 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 2075.49,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-14T03:30:02.150Z"
+    },
+    "herobullion": {
+      "price": 1915.31,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-13T14:30:01.587Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": false,
     "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": true,
+    "apmex": true,
+    "herobullion": true
   },
-  "last_known_price_by_site": {
-    "herobullion": 1915.31
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-13T04:00:00.000Z",
-      "median": 2109.49,
-      "low": 1881.6,
-      "vendors": {
-        "apmex": 2109.49,
-        "monumentmetals": 1881.6
-      }
-    },
     {
       "window": "2026-08-13T05:00:00.000Z",
       "median": 2111.99,
@@ -285,6 +284,15 @@
         "monumentmetals": 1850,
         "bullionexchanges": 1819.19,
         "mintbuilder": 1814.6
+      }
+    },
+    {
+      "window": "2026-08-14T05:00:00.000Z",
+      "median": 2029.99,
+      "low": 1813.19,
+      "vendors": {
+        "sdbullion": 2029.99,
+        "bullionexchanges": 1813.19
       }
     }
   ]
