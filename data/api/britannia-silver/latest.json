@@ -1,11 +1,11 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-08-14T09:00:00Z",
-  "median_price": 69.14,
+  "window_start": "2026-08-14T09:30:00Z",
+  "median_price": 69.51,
   "lowest_price": 67.38,
   "vendors": {
     "apmex": {
-      "price": 69.14,
+      "price": 69.51,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -16,23 +16,25 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 69.89,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "mintbuilder": {
       "price": 67.38,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 69.7,
+      "price": 70.38,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "herobullion": {
+      "price": 69.89,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-14T07:30:01.394Z"
     },
     "monumentmetals": {
       "price": 68.5,
@@ -46,10 +48,10 @@
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "mintbuilder": true,
     "sdbullion": true,
     "summitmetals": false,
+    "herobullion": true,
     "monumentmetals": true
   },
   "last_known_price_by_site": {
@@ -57,17 +59,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-13T08:00:00.000Z",
-      "median": 68.93,
-      "low": 67.33,
-      "vendors": {
-        "sdbullion": 70.08,
-        "monumentmetals": 68.93,
-        "summitmetals": 68.9,
-        "mintbuilder": 67.33
-      }
-    },
     {
       "window": "2026-08-13T09:00:00.000Z",
       "median": 70.29,
@@ -286,6 +277,15 @@
       "vendors": {
         "mintbuilder": 67.38,
         "bullionexchanges": 67.56
+      }
+    },
+    {
+      "window": "2026-08-14T09:00:00.000Z",
+      "median": 70.38,
+      "low": 69.51,
+      "vendors": {
+        "apmex": 69.51,
+        "sdbullion": 70.38
       }
     }
   ]
