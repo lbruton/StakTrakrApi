@@ -1,7 +1,7 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-08-15T12:00:00Z",
-  "median_price": 491.3,
+  "window_start": "2026-08-15T12:30:00Z",
+  "median_price": 502.03,
   "lowest_price": 480.13,
   "vendors": {
     "apmex": {
@@ -12,7 +12,7 @@
     },
     "bullionexchanges": {
       "price": 483.28,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -24,15 +24,17 @@
     },
     "monumentmetals": {
       "price": 480.13,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 491.3,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-15T10:30:02.029Z"
     }
   },
   "availability_by_site": {
@@ -40,23 +42,14 @@
     "bullionexchanges": true,
     "herobullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": false
+    "summitmetals": false,
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "summitmetals": 492.25
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-14T11:00:00.000Z",
-      "median": 480.21,
-      "low": 477.99,
-      "vendors": {
-        "bullionexchanges": 480.21,
-        "monumentmetals": 477.99
-      }
-    },
     {
       "window": "2026-08-14T12:00:00.000Z",
       "median": 490.82,
@@ -279,6 +272,15 @@
         "bullionexchanges": 483.28,
         "apmex": 518.87,
         "monumentmetals": 480.13
+      }
+    },
+    {
+      "window": "2026-08-15T12:00:00.000Z",
+      "median": 502.03,
+      "low": 480.13,
+      "vendors": {
+        "monumentmetals": 480.13,
+        "herobullion": 502.03
       }
     }
   ]
