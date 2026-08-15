@@ -1,20 +1,28 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-08-15T03:00:00Z",
-  "median_price": 76.48,
+  "window_start": "2026-08-15T03:30:00Z",
+  "median_price": 74.42,
   "lowest_price": 72.68,
   "vendors": {
-    "apmex": {
-      "price": 76.48,
+    "herobullion": {
+      "price": 72.68,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 72.68,
-      "confidence": 50,
+    "sdbullion": {
+      "price": 74.42,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 76.48,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-15T01:30:01.649Z"
     },
     "monumentmetals": {
       "price": 70.81,
@@ -23,35 +31,19 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-15T00:30:01.215Z"
-    },
-    "sdbullion": {
-      "price": 74.51,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-14T19:30:01.961Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "monumentmetals": true,
-    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-14T02:00:00.000Z",
-      "median": 69.82,
-      "low": 69.82,
-      "vendors": {
-        "monumentmetals": 69.82
-      }
-    },
     {
       "window": "2026-08-14T03:00:00.000Z",
       "median": 74.21,
@@ -234,6 +226,15 @@
       "median": 72.68,
       "low": 72.68,
       "vendors": {
+        "herobullion": 72.68
+      }
+    },
+    {
+      "window": "2026-08-15T03:00:00.000Z",
+      "median": 74.42,
+      "low": 72.68,
+      "vendors": {
+        "sdbullion": 74.42,
         "herobullion": 72.68
       }
     }
