@@ -1,12 +1,12 @@
 {
   "slug": "buffalo",
-  "window_start": "2026-08-15T22:00:00Z",
-  "median_price": 4572.73,
+  "window_start": "2026-08-15T22:30:00Z",
+  "median_price": 4558.61,
   "lowest_price": 4511.78,
   "vendors": {
     "apmex": {
       "price": 4706.06,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -36,15 +36,11 @@
     },
     "monumentmetals": {
       "price": 4577.72,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 4681.57,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-15T20:30:01.517Z"
     },
     "sdbullion": {
       "price": 4621.56,
@@ -53,6 +49,14 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-15T18:30:01.753Z"
+    },
+    "summitmetals": {
+      "price": 4681.57,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-15T20:30:01.517Z"
     }
   },
   "availability_by_site": {
@@ -62,21 +66,12 @@
     "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
-    "summitmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-14T21:00:00.000Z",
-      "median": 4681.12,
-      "low": 4577.72,
-      "vendors": {
-        "monumentmetals": 4577.72,
-        "summitmetals": 4681.12
-      }
-    },
     {
       "window": "2026-08-14T22:00:00.000Z",
       "median": 4712.19,
@@ -299,6 +294,15 @@
         "gainesvillecoins": 4519.2,
         "herobullion": 4572.73,
         "bullionexchanges": 4558.61
+      }
+    },
+    {
+      "window": "2026-08-15T22:00:00.000Z",
+      "median": 4572.73,
+      "low": 4511.78,
+      "vendors": {
+        "herobullion": 4572.73,
+        "mintbuilder": 4511.78
       }
     }
   ]

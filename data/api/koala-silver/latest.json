@@ -1,8 +1,8 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-08-15T22:00:00Z",
+  "window_start": "2026-08-15T22:30:00Z",
   "median_price": 72.68,
-  "lowest_price": 72.68,
+  "lowest_price": 70.81,
   "vendors": {
     "herobullion": {
       "price": 72.68,
@@ -10,16 +10,14 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 76.35,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-15T19:30:01.723Z"
-    },
     "monumentmetals": {
       "price": 70.81,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 76.35,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
@@ -37,34 +35,17 @@
   },
   "availability_by_site": {
     "herobullion": true,
+    "monumentmetals": true,
+    "summitmetals": false,
     "apmex": true,
     "bullionexchanges": true,
-    "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 63.53
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-14T20:00:00.000Z",
-      "median": 72.75,
-      "low": 70.77,
-      "vendors": {
-        "herobullion": 72.75,
-        "monumentmetals": 70.77,
-        "apmex": 76.47
-      }
-    },
-    {
-      "window": "2026-08-14T21:00:00.000Z",
-      "median": 76.48,
-      "low": 72.79,
-      "vendors": {
-        "apmex": 76.48,
-        "herobullion": 72.79
-      }
-    },
     {
       "window": "2026-08-14T22:00:00.000Z",
       "median": 72.79,
@@ -260,6 +241,15 @@
       "low": 72.68,
       "vendors": {
         "herobullion": 72.68
+      }
+    },
+    {
+      "window": "2026-08-15T22:00:00.000Z",
+      "median": 72.68,
+      "low": 70.81,
+      "vendors": {
+        "herobullion": 72.68,
+        "monumentmetals": 70.81
       }
     }
   ]
