@@ -1,11 +1,11 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-08-15T04:00:00Z",
-  "median_price": 4466.56,
-  "lowest_price": 4465.93,
+  "window_start": "2026-08-15T04:30:00Z",
+  "median_price": 4465.93,
+  "lowest_price": 4454.4,
   "vendors": {
-    "apmex": {
-      "price": 4547.19,
+    "herobullion": {
+      "price": 4454.4,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -21,6 +21,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 4547.19,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-15T02:30:01.341Z"
     },
     "bullionexchanges": {
       "price": 4387.5,
@@ -38,14 +46,6 @@
       "stale": true,
       "stale_since": "2026-08-15T01:30:01.649Z"
     },
-    "herobullion": {
-      "price": 4454.4,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-15T01:30:01.649Z"
-    },
     "monumentmetals": {
       "price": 4435.6,
       "confidence": null,
@@ -56,30 +56,17 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
+    "herobullion": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
-    "herobullion": true,
     "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-14T03:00:00.000Z",
-      "median": 4403.91,
-      "low": 4334.8,
-      "vendors": {
-        "sdbullion": 4448.14,
-        "bullionexchanges": 4334.8,
-        "herobullion": 4403.91,
-        "gainesvillecoins": 4357.1,
-        "apmex": 4496.19,
-        "monumentmetals": 4383.6
-      }
-    },
     {
       "window": "2026-08-14T04:00:00.000Z",
       "median": 4381.5,
@@ -302,6 +289,14 @@
       "vendors": {
         "sdbullion": 4466.56,
         "summitmetals": 4465.93
+      }
+    },
+    {
+      "window": "2026-08-15T04:00:00.000Z",
+      "median": 4454.4,
+      "low": 4454.4,
+      "vendors": {
+        "herobullion": 4454.4
       }
     }
   ]
