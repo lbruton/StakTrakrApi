@@ -1,12 +1,24 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-08-16T05:00:00Z",
-  "median_price": 71.59,
-  "lowest_price": 70.34,
+  "window_start": "2026-08-16T05:30:00Z",
+  "median_price": 70.34,
+  "lowest_price": 66.91,
   "vendors": {
     "apmex": {
       "price": 70.34,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 68.38,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "gainesvillecoins": {
+      "price": 66.91,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -18,25 +30,9 @@
     },
     "summitmetals": {
       "price": 73.07,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 68.38,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-15T14:30:01.863Z"
-    },
-    "gainesvillecoins": {
-      "price": 66.91,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-16T00:30:01.247Z"
     },
     "mintbuilder": {
       "price": 64.98,
@@ -65,10 +61,10 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": true,
-    "summitmetals": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
+    "herobullion": true,
+    "summitmetals": true,
     "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true
@@ -76,14 +72,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-15T04:00:00.000Z",
-      "median": 66.91,
-      "low": 66.91,
-      "vendors": {
-        "gainesvillecoins": 66.91
-      }
-    },
     {
       "window": "2026-08-15T05:00:00.000Z",
       "median": 66.91,
@@ -317,6 +305,16 @@
         "herobullion": 71.59,
         "summitmetals": 73.07,
         "apmex": 70.34
+      }
+    },
+    {
+      "window": "2026-08-16T05:00:00.000Z",
+      "median": 68.38,
+      "low": 66.91,
+      "vendors": {
+        "herobullion": 71.59,
+        "gainesvillecoins": 66.91,
+        "bullionexchanges": 68.38
       }
     }
   ]
