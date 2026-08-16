@@ -1,12 +1,18 @@
 {
   "slug": "age-tenth",
-  "window_start": "2026-08-16T10:00:00Z",
-  "median_price": 513.78,
+  "window_start": "2026-08-16T10:30:00Z",
+  "median_price": 512.72,
   "lowest_price": 475.64,
   "vendors": {
     "apmex": {
       "price": 528.1,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 493.59,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -23,18 +29,10 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 512.39,
+      "price": 512.72,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 493.59,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-16T07:30:01.693Z"
     },
     "gainesvillecoins": {
       "price": 488.12,
@@ -63,10 +61,10 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "mintbuilder": true,
     "summitmetals": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "monumentmetals": true,
     "sdbullion": true
@@ -74,18 +72,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-15T09:00:00.000Z",
-      "median": 499.67,
-      "low": 475.64,
-      "vendors": {
-        "sdbullion": 513.23,
-        "summitmetals": 512.58,
-        "mintbuilder": 475.64,
-        "gainesvillecoins": 488.12,
-        "monumentmetals": 499.67
-      }
-    },
     {
       "window": "2026-08-15T10:00:00.000Z",
       "median": 499.67,
@@ -334,6 +320,17 @@
       "vendors": {
         "herobullion": 513.78,
         "mintbuilder": 475.64
+      }
+    },
+    {
+      "window": "2026-08-16T10:00:00.000Z",
+      "median": 513.78,
+      "low": 493.59,
+      "vendors": {
+        "summitmetals": 512.72,
+        "apmex": 528.1,
+        "herobullion": 513.78,
+        "bullionexchanges": 493.59
       }
     }
   ]
