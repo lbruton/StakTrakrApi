@@ -1,52 +1,47 @@
 {
   "slug": "goldback-utah-g1",
-  "window_start": "2026-08-16T00:00:00Z",
-  "median_price": 8.56,
+  "window_start": "2026-08-16T00:30:00Z",
+  "median_price": 8.39,
   "lowest_price": 8.29,
   "vendors": {
-    "apmex": {
-      "price": 8.56,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 8.39,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 8.94,
-      "confidence": 50,
+    "sdbullion": {
+      "price": 8.29,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 8.29,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 8.56,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-15T22:30:01.676Z"
+    },
+    "herobullion": {
+      "price": 8.94,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-15T22:30:01.676Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "apmex": true,
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-14T23:00:00.000Z",
-      "median": 8.94,
-      "low": 8.29,
-      "vendors": {
-        "sdbullion": 8.29,
-        "herobullion": 8.94
-      }
-    },
     {
       "window": "2026-08-15T00:00:00.000Z",
       "median": 8.39,
@@ -229,6 +224,14 @@
       "low": 8.29,
       "vendors": {
         "sdbullion": 8.29,
+        "bullionexchanges": 8.39
+      }
+    },
+    {
+      "window": "2026-08-16T00:00:00.000Z",
+      "median": 8.39,
+      "low": 8.39,
+      "vendors": {
         "bullionexchanges": 8.39
       }
     }
