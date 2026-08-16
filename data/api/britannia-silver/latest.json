@@ -1,7 +1,7 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-08-16T07:00:00Z",
-  "median_price": 69.34,
+  "window_start": "2026-08-16T07:30:00Z",
+  "median_price": 70.28,
   "lowest_price": 67.52,
   "vendors": {
     "apmex": {
@@ -10,15 +10,15 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 67.92,
+    "herobullion": {
+      "price": 70.28,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "mintbuilder": {
       "price": 67.52,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -28,13 +28,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 70.28,
+    "bullionexchanges": {
+      "price": 67.92,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-08-15T21:30:01.616Z"
+      "stale_since": "2026-08-16T05:30:01.772Z"
     },
     "monumentmetals": {
       "price": 69.07,
@@ -47,24 +47,18 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
+    "herobullion": true,
     "mintbuilder": true,
     "sdbullion": true,
-    "herobullion": true,
-    "monumentmetals": true,
-    "summitmetals": true
+    "summitmetals": false,
+    "bullionexchanges": true,
+    "monumentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 69.49
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-15T06:00:00.000Z",
-      "median": 67.52,
-      "low": 67.52,
-      "vendors": {
-        "mintbuilder": 67.52
-      }
-    },
     {
       "window": "2026-08-15T07:00:00.000Z",
       "median": 70.28,
@@ -281,6 +275,15 @@
       "vendors": {
         "sdbullion": 70.32,
         "mintbuilder": 67.52
+      }
+    },
+    {
+      "window": "2026-08-16T07:00:00.000Z",
+      "median": 70.28,
+      "low": 69.34,
+      "vendors": {
+        "herobullion": 70.28,
+        "apmex": 69.34
       }
     }
   ]
