@@ -1,22 +1,26 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-08-17T17:00:00Z",
+  "window_start": "2026-08-17T17:30:00Z",
   "median_price": 8.43,
-  "lowest_price": 8.43,
+  "lowest_price": 8.34,
   "vendors": {
+    "apmex": {
+      "price": 8.65,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
       "price": 8.43,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 8.66,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-17T14:30:01.700Z"
+    "sdbullion": {
+      "price": 8.34,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "herobullion": {
       "price": 9.48,
@@ -25,34 +29,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-17T09:30:01.853Z"
-    },
-    "sdbullion": {
-      "price": 8.31,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-17T11:30:02.422Z"
     }
   },
   "availability_by_site": {
-    "bullionexchanges": true,
     "apmex": true,
-    "herobullion": true,
-    "sdbullion": true
+    "bullionexchanges": true,
+    "sdbullion": true,
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-16T16:00:00.000Z",
-      "median": 9.44,
-      "low": 8.39,
-      "vendors": {
-        "bullionexchanges": 8.39,
-        "herobullion": 9.44
-      }
-    },
     {
       "window": "2026-08-16T18:00:00.000Z",
       "median": 8.39,
@@ -207,6 +194,15 @@
       "low": 8.43,
       "vendors": {
         "bullionexchanges": 8.43
+      }
+    },
+    {
+      "window": "2026-08-17T17:00:00.000Z",
+      "median": 8.65,
+      "low": 8.34,
+      "vendors": {
+        "apmex": 8.65,
+        "sdbullion": 8.34
       }
     }
   ]
