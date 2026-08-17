@@ -1,17 +1,23 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-08-17T11:00:00Z",
-  "median_price": 493.89,
-  "lowest_price": 485.57,
+  "window_start": "2026-08-17T11:30:00Z",
+  "median_price": 505.19,
+  "lowest_price": 485.66,
   "vendors": {
+    "apmex": {
+      "price": 522.04,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
-      "price": 485.57,
-      "confidence": 80,
+      "price": 485.66,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
-      "price": 504.53,
+      "price": 505.19,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -21,14 +27,6 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 522.4,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-17T07:30:01.338Z"
     },
     "monumentmetals": {
       "price": 482.56,
@@ -40,26 +38,18 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "sdbullion": true,
-    "apmex": true,
-    "monumentmetals": true,
-    "summitmetals": true
+    "summitmetals": false,
+    "monumentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 492.25
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-16T10:00:00.000Z",
-      "median": 491.3,
-      "low": 483.28,
-      "vendors": {
-        "apmex": 518.15,
-        "bullionexchanges": 483.28,
-        "sdbullion": 491.3
-      }
-    },
     {
       "window": "2026-08-16T12:00:00.000Z",
       "median": 502.03,
@@ -252,6 +242,17 @@
       "vendors": {
         "sdbullion": 493.89,
         "herobullion": 504.53
+      }
+    },
+    {
+      "window": "2026-08-17T11:00:00.000Z",
+      "median": 505.19,
+      "low": 485.66,
+      "vendors": {
+        "apmex": 522.04,
+        "herobullion": 505.19,
+        "bullionexchanges": 485.66,
+        "sdbullion": 493.89
       }
     }
   ]
