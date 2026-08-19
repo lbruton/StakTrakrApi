@@ -1,32 +1,34 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-08-19T01:00:00Z",
-  "median_price": 73.52,
+  "window_start": "2026-08-19T01:30:00Z",
+  "median_price": 68.66,
   "lowest_price": 65.82,
   "vendors": {
-    "apmex": {
-      "price": 73.52,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
-      "price": 74.48,
-      "confidence": 80,
+      "price": 74.45,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
     "mintbuilder": {
       "price": 65.82,
-      "confidence": 35,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 68.66,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 73.52,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-18T23:30:01.269Z"
     },
     "bullionexchanges": {
       "price": 66.45,
@@ -46,12 +48,12 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": false,
     "jmbullion": true,
     "mintbuilder": true,
     "sdbullion": true,
     "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
     "monumentmetals": true
   },
@@ -61,17 +63,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-18T00:00:00.000Z",
-      "median": 70.79,
-      "low": 69.12,
-      "vendors": {
-        "monumentmetals": 70.79,
-        "bullionexchanges": 69.12,
-        "jmbullion": 77.58,
-        "mintbuilder": 69.26
-      }
-    },
     {
       "window": "2026-08-18T01:00:00.000Z",
       "median": 77.37,
@@ -295,6 +286,14 @@
         "sdbullion": 68.66,
         "mintbuilder": 65.82,
         "jmbullion": 74.48
+      }
+    },
+    {
+      "window": "2026-08-19T01:00:00.000Z",
+      "median": 74.45,
+      "low": 74.45,
+      "vendors": {
+        "jmbullion": 74.45
       }
     }
   ]
