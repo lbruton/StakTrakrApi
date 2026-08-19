@@ -1,23 +1,17 @@
 {
   "slug": "ase",
-  "window_start": "2026-08-19T09:00:00Z",
-  "median_price": 69.9,
-  "lowest_price": 67.34,
+  "window_start": "2026-08-19T09:30:00Z",
+  "median_price": 68.45,
+  "lowest_price": 67.5,
   "vendors": {
-    "apmex": {
-      "price": 80.04,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
-      "price": 67.34,
-      "confidence": 50,
+      "price": 67.5,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "gainesvillecoins": {
-      "price": 68.46,
+      "price": 68.45,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -27,6 +21,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 80.04,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-19T07:30:02.166Z"
     },
     "herobullion": {
       "price": 69.98,
@@ -70,10 +72,10 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "monumentmetals": true,
+    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true,
@@ -83,17 +85,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-18T08:00:00.000Z",
-      "median": 77.95,
-      "low": 70.3,
-      "vendors": {
-        "summitmetals": 77.95,
-        "apmex": 81.74,
-        "monumentmetals": 71.74,
-        "gainesvillecoins": 70.3
-      }
-    },
     {
       "window": "2026-08-18T09:00:00.000Z",
       "median": 77.69,
@@ -354,6 +345,15 @@
       "vendors": {
         "monumentmetals": 69.9,
         "gainesvillecoins": 68.46
+      }
+    },
+    {
+      "window": "2026-08-19T09:00:00.000Z",
+      "median": 68.45,
+      "low": 67.5,
+      "vendors": {
+        "gainesvillecoins": 68.45,
+        "bullionexchanges": 67.5
       }
     }
   ]
