@@ -1,15 +1,9 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-08-19T14:00:00Z",
+  "window_start": "2026-08-19T14:30:00Z",
   "median_price": 71.27,
   "lowest_price": 68.57,
   "vendors": {
-    "apmex": {
-      "price": 74.52,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 68.57,
       "confidence": 50,
@@ -23,7 +17,7 @@
       "inStock": true
     },
     "jmbullion": {
-      "price": 74.45,
+      "price": 76.84,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -33,6 +27,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 74.52,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-19T12:30:01.692Z"
     },
     "sdbullion": {
       "price": 70.59,
@@ -44,31 +46,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "mintbuilder": false,
     "monumentmetals": true,
-    "summitmetals": false,
-    "sdbullion": true
+    "apmex": true,
+    "mintbuilder": true,
+    "sdbullion": true,
+    "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "summitmetals": 62.01
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-18T13:00:00.000Z",
-      "median": 71.56,
-      "low": 68.82,
-      "vendors": {
-        "jmbullion": 78.05,
-        "sdbullion": 71.56,
-        "bullionexchanges": 68.82,
-        "herobullion": 71.02
-      }
-    },
     {
       "window": "2026-08-18T14:00:00.000Z",
       "median": 71.56,
@@ -281,6 +270,14 @@
         "bullionexchanges": 68.57,
         "jmbullion": 74.45,
         "monumentmetals": 70.14
+      }
+    },
+    {
+      "window": "2026-08-19T14:00:00.000Z",
+      "median": 76.84,
+      "low": 76.84,
+      "vendors": {
+        "jmbullion": 76.84
       }
     }
   ]

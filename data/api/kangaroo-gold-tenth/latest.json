@@ -1,17 +1,17 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-08-19T14:00:00Z",
+  "window_start": "2026-08-19T14:30:00Z",
   "median_price": 490.23,
   "lowest_price": 484.24,
   "vendors": {
-    "apmex": {
-      "price": 522.52,
-      "confidence": 50,
+    "bullionexchanges": {
+      "price": 484.24,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 484.24,
+    "monumentmetals": {
+      "price": 492.21,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -22,6 +22,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 522.52,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-19T12:30:01.692Z"
+    },
     "jmbullion": {
       "price": 513.56,
       "confidence": null,
@@ -29,27 +37,20 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-19T11:30:01.588Z"
-    },
-    "monumentmetals": {
-      "price": 478.75,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-19T10:30:01.499Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": false,
-    "sdbullion": true,
-    "jmbullion": true,
     "monumentmetals": true,
-    "summitmetals": true
+    "sdbullion": true,
+    "summitmetals": false,
+    "apmex": true,
+    "jmbullion": true
   },
   "last_known_price_by_site": {
-    "herobullion": 497.5
+    "herobullion": 497.5,
+    "summitmetals": 492.25
   },
   "last_available_date_by_site": {},
   "windows_24h": [
@@ -247,6 +248,15 @@
       "vendors": {
         "sdbullion": 490.23,
         "bullionexchanges": 484.24
+      }
+    },
+    {
+      "window": "2026-08-19T14:00:00.000Z",
+      "median": 492.21,
+      "low": 490.23,
+      "vendors": {
+        "monumentmetals": 492.21,
+        "sdbullion": 490.23
       }
     }
   ]
