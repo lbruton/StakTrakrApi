@@ -1,29 +1,23 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-08-20T08:00:00Z",
-  "median_price": 73.64,
+  "window_start": "2026-08-20T08:30:00Z",
+  "median_price": 71.12,
   "lowest_price": 70.26,
   "vendors": {
     "apmex": {
-      "price": 77.82,
-      "confidence": 30,
+      "price": 77.42,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
       "price": 70.26,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
       "price": 71.12,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 73.64,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -43,6 +37,14 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-20T05:30:01.669Z"
+    },
+    "sdbullion": {
+      "price": 73.64,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-20T06:30:02.103Z"
     }
   },
   "availability_by_site": {
@@ -50,24 +52,16 @@
     "bullionexchanges": true,
     "mintbuilder": false,
     "monumentmetals": true,
-    "sdbullion": true,
     "summitmetals": false,
     "herobullion": true,
-    "jmbullion": true
+    "jmbullion": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "summitmetals": 62.01
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-19T07:00:00.000Z",
-      "median": 68.19,
-      "low": 68.19,
-      "vendors": {
-        "monumentmetals": 68.19
-      }
-    },
     {
       "window": "2026-08-19T08:00:00.000Z",
       "median": 73.96,
@@ -279,6 +273,15 @@
       "vendors": {
         "bullionexchanges": 70.26,
         "monumentmetals": 71.12
+      }
+    },
+    {
+      "window": "2026-08-20T08:00:00.000Z",
+      "median": 77.42,
+      "low": 70.26,
+      "vendors": {
+        "bullionexchanges": 70.26,
+        "apmex": 77.42
       }
     }
   ]
