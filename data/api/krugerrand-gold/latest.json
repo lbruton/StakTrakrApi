@@ -1,26 +1,34 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-08-20T14:00:00Z",
-  "median_price": 4625.59,
-  "lowest_price": 4543.76,
+  "window_start": "2026-08-20T14:30:00Z",
+  "median_price": 4589.14,
+  "lowest_price": 4553.55,
   "vendors": {
-    "apmex": {
-      "price": 4625.59,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
       "price": 4657.67,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 4543.76,
+    "monumentmetals": {
+      "price": 4553.55,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "sdbullion": {
+      "price": 4589.14,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 4625.59,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-20T12:30:01.873Z"
     },
     "bullionexchanges": {
       "price": 4503.9,
@@ -46,14 +54,6 @@
       "stale": true,
       "stale_since": "2026-08-20T09:30:01.913Z"
     },
-    "monumentmetals": {
-      "price": 4545.05,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-20T07:30:01.396Z"
-    },
     "summitmetals": {
       "price": 4573.35,
       "confidence": null,
@@ -64,29 +64,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "jmbullion": true,
+    "monumentmetals": true,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
-    "monumentmetals": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-19T13:00:00.000Z",
-      "median": 4504.96,
-      "low": 4471,
-      "vendors": {
-        "apmex": 4626.59,
-        "jmbullion": 4504.96,
-        "bullionexchanges": 4471,
-        "gainesvillecoins": 4483.18
-      }
-    },
     {
       "window": "2026-08-19T14:00:00.000Z",
       "median": 4546.8,
@@ -313,6 +302,15 @@
       "low": 4657.67,
       "vendors": {
         "jmbullion": 4657.67
+      }
+    },
+    {
+      "window": "2026-08-20T14:00:00.000Z",
+      "median": 4589.14,
+      "low": 4553.55,
+      "vendors": {
+        "sdbullion": 4589.14,
+        "monumentmetals": 4553.55
       }
     }
   ]
