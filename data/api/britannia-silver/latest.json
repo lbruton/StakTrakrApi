@@ -1,8 +1,8 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-08-20T18:00:00Z",
+  "window_start": "2026-08-20T18:30:00Z",
   "median_price": 78.97,
-  "lowest_price": 73.59,
+  "lowest_price": 71.41,
   "vendors": {
     "apmex": {
       "price": 78.97,
@@ -10,25 +10,23 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "bullionexchanges": {
+      "price": 71.41,
+      "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "jmbullion": {
-      "price": 79.85,
+      "price": 79.78,
       "confidence": 60,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 73.59,
+      "price": 73.58,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 71.89,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-20T15:30:01.490Z"
     },
     "mintbuilder": {
       "price": 70.34,
@@ -49,27 +47,19 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
+    "herobullion": false,
     "jmbullion": true,
     "sdbullion": true,
-    "bullionexchanges": true,
-    "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 71.44
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-19T17:00:00.000Z",
-      "median": 71.65,
-      "low": 70.25,
-      "vendors": {
-        "monumentmetals": 70.25,
-        "sdbullion": 71.65,
-        "jmbullion": 74.75
-      }
-    },
     {
       "window": "2026-08-19T18:00:00.000Z",
       "median": 70.2,
@@ -292,6 +282,16 @@
       "vendors": {
         "apmex": 78.97,
         "jmbullion": 79.85
+      }
+    },
+    {
+      "window": "2026-08-20T18:00:00.000Z",
+      "median": 73.58,
+      "low": 71.41,
+      "vendors": {
+        "jmbullion": 79.78,
+        "bullionexchanges": 71.41,
+        "sdbullion": 73.58
       }
     }
   ]
