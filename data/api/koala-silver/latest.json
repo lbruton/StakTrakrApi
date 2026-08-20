@@ -1,6 +1,6 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-08-20T07:00:00Z",
+  "window_start": "2026-08-20T07:30:00Z",
   "median_price": 76.8,
   "lowest_price": 73.23,
   "vendors": {
@@ -16,12 +16,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 78.6,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "monumentmetals": {
       "price": 73.23,
       "confidence": 50,
@@ -33,30 +27,30 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 78.6,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-20T05:30:01.669Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "herobullion": true,
-    "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
+    "summitmetals": false,
     "bullionexchanges": true,
-    "summitmetals": true
+    "jmbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 63.53
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-19T06:00:00.000Z",
-      "median": 74.56,
-      "low": 70.79,
-      "vendors": {
-        "jmbullion": 74.87,
-        "herobullion": 70.79,
-        "apmex": 74.56
-      }
-    },
     {
       "window": "2026-08-19T07:00:00.000Z",
       "median": 74.41,
@@ -285,6 +279,14 @@
         "sdbullion": 76.8,
         "herobullion": 75.33,
         "monumentmetals": 73.23
+      }
+    },
+    {
+      "window": "2026-08-20T07:00:00.000Z",
+      "median": 76.8,
+      "low": 76.8,
+      "vendors": {
+        "sdbullion": 76.8
       }
     }
   ]
