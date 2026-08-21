@@ -1,26 +1,28 @@
 {
   "slug": "kookaburra-gold-tenth",
-  "window_start": "2026-08-21T07:00:00Z",
-  "median_price": 521.69,
-  "lowest_price": 496.93,
+  "window_start": "2026-08-21T07:30:00Z",
+  "median_price": 521.93,
+  "lowest_price": 500,
   "vendors": {
-    "apmex": {
-      "price": 585.4,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 521.69,
+      "price": 521.93,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 496.93,
+      "price": 500,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 585.4,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-21T05:30:02.138Z"
     },
     "summitmetals": {
       "price": 497.38,
@@ -32,9 +34,9 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "monumentmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "sdbullion": true,
@@ -43,14 +45,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-20T06:00:00.000Z",
-      "median": 493.44,
-      "low": 493.44,
-      "vendors": {
-        "summitmetals": 493.44
-      }
-    },
     {
       "window": "2026-08-20T07:00:00.000Z",
       "median": 492.46,
@@ -197,6 +191,15 @@
       "low": 521.69,
       "vendors": {
         "herobullion": 521.69
+      }
+    },
+    {
+      "window": "2026-08-21T07:00:00.000Z",
+      "median": 521.93,
+      "low": 500,
+      "vendors": {
+        "monumentmetals": 500,
+        "herobullion": 521.93
       }
     }
   ]
