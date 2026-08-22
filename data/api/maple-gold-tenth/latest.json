@@ -1,15 +1,9 @@
 {
   "slug": "maple-gold-tenth",
-  "window_start": "2026-08-22T09:00:00Z",
-  "median_price": 506.98,
+  "window_start": "2026-08-22T09:30:00Z",
+  "median_price": 503.26,
   "lowest_price": 493.84,
   "vendors": {
-    "apmex": {
-      "price": 554.27,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "gainesvillecoins": {
       "price": 493.84,
       "confidence": 80,
@@ -22,17 +16,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 507.57,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "summitmetals": {
       "price": 506.98,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 554.27,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-22T07:30:01.308Z"
     },
     "herobullion": {
       "price": 521.88,
@@ -57,32 +53,30 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-21T23:30:01.864Z"
+    },
+    "sdbullion": {
+      "price": 507.57,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-22T07:30:01.308Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "gainesvillecoins": true,
     "mintbuilder": true,
-    "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "monumentmetals": true
+    "monumentmetals": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-21T08:00:00.000Z",
-      "median": 504.82,
-      "low": 501.9,
-      "vendors": {
-        "apmex": 551.82,
-        "sdbullion": 504.82,
-        "summitmetals": 501.9
-      }
-    },
     {
       "window": "2026-08-21T09:00:00.000Z",
       "median": 502.48,
@@ -313,6 +307,14 @@
         "gainesvillecoins": 493.84,
         "summitmetals": 506.98,
         "mintbuilder": 503.26
+      }
+    },
+    {
+      "window": "2026-08-22T09:00:00.000Z",
+      "median": 493.84,
+      "low": 493.84,
+      "vendors": {
+        "gainesvillecoins": 493.84
       }
     }
   ]
