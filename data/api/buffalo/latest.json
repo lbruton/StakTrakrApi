@@ -1,17 +1,11 @@
 {
   "slug": "buffalo",
-  "window_start": "2026-08-22T07:00:00Z",
-  "median_price": 4799.18,
+  "window_start": "2026-08-22T07:30:00Z",
+  "median_price": 4814.48,
   "lowest_price": 4732,
   "vendors": {
     "apmex": {
       "price": 4933.89,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 4799.18,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -41,10 +35,18 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 4907.34,
+      "price": 4882.63,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 4799.18,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-22T05:30:01.691Z"
     },
     "jmbullion": {
       "price": 4882.64,
@@ -65,29 +67,18 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
     "summitmetals": true,
+    "bullionexchanges": true,
     "jmbullion": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-21T06:00:00.000Z",
-      "median": 4810.47,
-      "low": 4682.57,
-      "vendors": {
-        "summitmetals": 4859.15,
-        "mintbuilder": 4682.57,
-        "sdbullion": 4810.47,
-        "monumentmetals": 4773.85
-      }
-    },
     {
       "window": "2026-08-21T07:00:00.000Z",
       "median": 4808,
@@ -343,6 +334,17 @@
         "summitmetals": 4907.34,
         "monumentmetals": 4814.48,
         "herobullion": 4798.52
+      }
+    },
+    {
+      "window": "2026-08-22T07:00:00.000Z",
+      "median": 4882.63,
+      "low": 4732,
+      "vendors": {
+        "summitmetals": 4882.63,
+        "apmex": 4933.89,
+        "mintbuilder": 4732,
+        "monumentmetals": 4814.48
       }
     }
   ]
