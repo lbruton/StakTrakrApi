@@ -1,20 +1,30 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-08-23T07:00:00Z",
-  "median_price": 9.01,
-  "lowest_price": 8.82,
+  "window_start": "2026-08-23T07:30:00Z",
+  "median_price": 8.51,
+  "lowest_price": 8.51,
   "vendors": {
-    "apmex": {
-      "price": 9.01,
+    "sdbullion": {
+      "price": 8.51,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 9.01,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-23T05:30:02.052Z"
+    },
     "bullionexchanges": {
       "price": 8.82,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-23T05:30:02.052Z"
     },
     "herobullion": {
       "price": 9.88,
@@ -23,44 +33,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-23T03:30:01.553Z"
-    },
-    "sdbullion": {
-      "price": 8.51,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-23T02:30:01.954Z"
     }
   },
   "availability_by_site": {
+    "sdbullion": true,
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "sdbullion": true
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-22T05:00:00.000Z",
-      "median": 8.82,
-      "low": 8.51,
-      "vendors": {
-        "bullionexchanges": 8.82,
-        "herobullion": 9.88,
-        "sdbullion": 8.51
-      }
-    },
-    {
-      "window": "2026-08-22T06:00:00.000Z",
-      "median": 9.88,
-      "low": 8.51,
-      "vendors": {
-        "sdbullion": 8.51,
-        "herobullion": 9.88
-      }
-    },
     {
       "window": "2026-08-22T07:00:00.000Z",
       "median": 8.51,
@@ -247,6 +230,14 @@
       "vendors": {
         "bullionexchanges": 8.82,
         "apmex": 9.01
+      }
+    },
+    {
+      "window": "2026-08-23T07:00:00.000Z",
+      "median": 8.51,
+      "low": 8.51,
+      "vendors": {
+        "sdbullion": 8.51
       }
     }
   ]
