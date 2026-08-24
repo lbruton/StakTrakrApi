@@ -1,26 +1,28 @@
 {
   "slug": "ape",
-  "window_start": "2026-08-24T13:00:00Z",
-  "median_price": 2018.83,
-  "lowest_price": 1986.39,
+  "window_start": "2026-08-24T13:30:00Z",
+  "median_price": 2240.09,
+  "lowest_price": 1996,
   "vendors": {
     "apmex": {
       "price": 2240.09,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "mintbuilder": {
+      "price": 1996,
       "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
       "price": 1986.39,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 2018.83,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-24T11:30:01.317Z"
     },
     "jmbullion": {
       "price": 2184.59,
@@ -29,14 +31,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-24T10:30:02.282Z"
-    },
-    "mintbuilder": {
-      "price": 1982.8,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-24T05:30:02.083Z"
     },
     "monumentmetals": {
       "price": 2045.75,
@@ -53,32 +47,31 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-24T09:30:02.230Z"
+    },
+    "summitmetals": {
+      "price": 2018.83,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-24T11:30:01.317Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": false,
-    "summitmetals": true,
-    "jmbullion": true,
     "mintbuilder": true,
+    "bullionexchanges": true,
+    "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {
     "herobullion": 1915.31
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-23T12:00:00.000Z",
-      "median": 2246.29,
-      "low": 1985.39,
-      "vendors": {
-        "apmex": 2246.29,
-        "bullionexchanges": 1985.39
-      }
-    },
     {
       "window": "2026-08-23T13:00:00.000Z",
       "median": 1986.2,
@@ -318,6 +311,14 @@
       "low": 2240.09,
       "vendors": {
         "apmex": 2240.09
+      }
+    },
+    {
+      "window": "2026-08-24T13:00:00.000Z",
+      "median": 1996,
+      "low": 1996,
+      "vendors": {
+        "mintbuilder": 1996
       }
     }
   ]
