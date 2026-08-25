@@ -1,11 +1,17 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-08-25T15:00:00Z",
+  "window_start": "2026-08-25T15:30:00Z",
   "median_price": 4796.49,
-  "lowest_price": 4711.04,
+  "lowest_price": 4661.9,
   "vendors": {
     "apmex": {
       "price": 4796.49,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 4661.9,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -16,24 +22,14 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 4634.6,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-25T10:30:01.518Z"
+    "jmbullion": {
+      "price": 4806.18,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "gainesvillecoins": {
       "price": 4674.24,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-25T11:30:01.752Z"
-    },
-    "jmbullion": {
-      "price": 4808.84,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
@@ -67,10 +63,10 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": true,
     "bullionexchanges": true,
-    "gainesvillecoins": true,
+    "herobullion": true,
     "jmbullion": true,
+    "gainesvillecoins": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true
@@ -78,16 +74,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-24T14:00:00.000Z",
-      "median": 4833.52,
-      "low": 4763.8,
-      "vendors": {
-        "sdbullion": 4763.8,
-        "apmex": 4843.09,
-        "jmbullion": 4833.52
-      }
-    },
     {
       "window": "2026-08-24T15:00:00.000Z",
       "median": 4765.59,
@@ -319,6 +305,15 @@
       "vendors": {
         "apmex": 4796.49,
         "herobullion": 4711.04
+      }
+    },
+    {
+      "window": "2026-08-25T15:00:00.000Z",
+      "median": 4806.18,
+      "low": 4661.9,
+      "vendors": {
+        "jmbullion": 4806.18,
+        "bullionexchanges": 4661.9
       }
     }
   ]
