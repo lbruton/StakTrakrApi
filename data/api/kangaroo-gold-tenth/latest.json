@@ -1,17 +1,11 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-08-25T04:00:00Z",
+  "window_start": "2026-08-25T04:30:00Z",
   "median_price": 544.28,
-  "lowest_price": 511.52,
+  "lowest_price": 512.18,
   "vendors": {
-    "apmex": {
-      "price": 550.34,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
-      "price": 513.45,
+      "price": 512.18,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -22,11 +16,21 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 550.34,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-25T02:30:02.257Z"
+    },
     "monumentmetals": {
       "price": 511.52,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-25T02:30:02.257Z"
     },
     "sdbullion": {
       "price": 552.11,
@@ -38,28 +42,20 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": false,
     "jmbullion": true,
+    "summitmetals": false,
+    "apmex": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {
-    "herobullion": 519.42
+    "herobullion": 519.42,
+    "summitmetals": 492.25
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-24T03:00:00.000Z",
-      "median": 550.95,
-      "low": 536.67,
-      "vendors": {
-        "jmbullion": 536.67,
-        "apmex": 550.95
-      }
-    },
     {
       "window": "2026-08-24T04:00:00.000Z",
       "median": 548.26,
@@ -270,6 +266,14 @@
       "vendors": {
         "jmbullion": 544.28,
         "bullionexchanges": 513.45
+      }
+    },
+    {
+      "window": "2026-08-25T04:00:00.000Z",
+      "median": 512.18,
+      "low": 512.18,
+      "vendors": {
+        "bullionexchanges": 512.18
       }
     }
   ]

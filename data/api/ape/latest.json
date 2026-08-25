@@ -1,15 +1,9 @@
 {
   "slug": "ape",
-  "window_start": "2026-08-25T04:00:00Z",
-  "median_price": 2012.45,
+  "window_start": "2026-08-25T04:30:00Z",
+  "median_price": 1982.9,
   "lowest_price": 1954,
   "vendors": {
-    "apmex": {
-      "price": 2241.19,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "mintbuilder": {
       "price": 1954,
       "confidence": 80,
@@ -22,17 +16,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 2190.09,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "summitmetals": {
-      "price": 2005.57,
+      "price": 1982.9,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 2241.19,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-25T02:30:02.257Z"
     },
     "bullionexchanges": {
       "price": 1986.39,
@@ -49,17 +45,25 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-24T10:30:02.282Z"
+    },
+    "sdbullion": {
+      "price": 2190.09,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-25T02:30:02.257Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": false,
     "mintbuilder": true,
     "monumentmetals": true,
-    "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
-    "jmbullion": true
+    "jmbullion": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "herobullion": 1915.31
@@ -275,6 +279,14 @@
       "vendors": {
         "monumentmetals": 2012.45,
         "mintbuilder": 1954
+      }
+    },
+    {
+      "window": "2026-08-25T04:00:00.000Z",
+      "median": 1982.9,
+      "low": 1982.9,
+      "vendors": {
+        "summitmetals": 1982.9
       }
     }
   ]
