@@ -1,12 +1,18 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-08-26T21:00:00Z",
+  "window_start": "2026-08-26T21:30:00Z",
   "median_price": 74.46,
-  "lowest_price": 71.92,
+  "lowest_price": 71.78,
   "vendors": {
     "bullionexchanges": {
-      "price": 71.92,
+      "price": 71.78,
       "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 74.85,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -17,7 +23,7 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 73.38,
+      "price": 73.42,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -35,40 +41,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-26T16:30:01.555Z"
-    },
-    "herobullion": {
-      "price": 74.18,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-26T16:30:01.555Z"
     }
   },
   "availability_by_site": {
     "bullionexchanges": true,
+    "herobullion": true,
     "jmbullion": true,
     "mintbuilder": false,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": false,
-    "apmex": true,
-    "herobullion": true
+    "apmex": true
   },
   "last_known_price_by_site": {
     "summitmetals": 62.01
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-25T20:00:00.000Z",
-      "median": 75.26,
-      "low": 74.3,
-      "vendors": {
-        "monumentmetals": 74.3,
-        "sdbullion": 75.26
-      }
-    },
     {
       "window": "2026-08-25T21:00:00.000Z",
       "median": 74.07,
@@ -281,6 +270,16 @@
         "bullionexchanges": 71.92,
         "jmbullion": 81.08,
         "sdbullion": 74.46
+      }
+    },
+    {
+      "window": "2026-08-26T21:00:00.000Z",
+      "median": 73.42,
+      "low": 71.78,
+      "vendors": {
+        "monumentmetals": 73.42,
+        "herobullion": 74.85,
+        "bullionexchanges": 71.78
       }
     }
   ]
