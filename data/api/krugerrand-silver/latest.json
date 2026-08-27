@@ -1,32 +1,40 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-08-27T09:00:00Z",
-  "median_price": 74.27,
-  "lowest_price": 71.07,
+  "window_start": "2026-08-27T09:30:00Z",
+  "median_price": 74.1,
+  "lowest_price": 70.97,
   "vendors": {
-    "apmex": {
-      "price": 79.09,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
-      "price": 71.07,
+      "price": 71.21,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
-      "price": 74.27,
+      "price": 74.34,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
+    "mintbuilder": {
+      "price": 70.97,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "monumentmetals": {
-      "price": 74.2,
+      "price": 74.1,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 79.09,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-27T07:30:01.659Z"
     },
     "jmbullion": {
       "price": 78.86,
@@ -35,14 +43,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-27T04:30:01.636Z"
-    },
-    "mintbuilder": {
-      "price": 71.62,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-27T01:30:01.477Z"
     },
     "sdbullion": {
       "price": 75.83,
@@ -54,29 +54,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "monumentmetals": true,
-    "jmbullion": true,
     "mintbuilder": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "monumentmetals": true,
+    "summitmetals": false,
+    "apmex": true,
+    "jmbullion": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-26T08:00:00.000Z",
-      "median": 74.34,
-      "low": 71.21,
-      "vendors": {
-        "monumentmetals": 74.34,
-        "mintbuilder": 71.21,
-        "bullionexchanges": 71.66,
-        "jmbullion": 79.41
-      }
-    },
     {
       "window": "2026-08-26T09:00:00.000Z",
       "median": 74.32,
@@ -316,6 +305,17 @@
       "low": 71.07,
       "vendors": {
         "bullionexchanges": 71.07
+      }
+    },
+    {
+      "window": "2026-08-27T09:00:00.000Z",
+      "median": 74.1,
+      "low": 70.97,
+      "vendors": {
+        "mintbuilder": 70.97,
+        "herobullion": 74.34,
+        "bullionexchanges": 71.21,
+        "monumentmetals": 74.1
       }
     }
   ]
