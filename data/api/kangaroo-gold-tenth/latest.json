@@ -1,32 +1,34 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-08-27T06:00:00Z",
-  "median_price": 546.44,
-  "lowest_price": 509.97,
+  "window_start": "2026-08-27T06:30:00Z",
+  "median_price": 539.04,
+  "lowest_price": 508.94,
   "vendors": {
-    "apmex": {
-      "price": 547.64,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
-      "price": 509.97,
+      "price": 508.94,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
-      "price": 539.84,
+      "price": 539.04,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 546.44,
+      "price": 545.27,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 547.64,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-27T04:30:01.636Z"
     },
     "monumentmetals": {
       "price": 510.42,
@@ -38,11 +40,11 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": false,
     "jmbullion": true,
     "sdbullion": true,
+    "apmex": true,
     "monumentmetals": true,
     "summitmetals": true
   },
@@ -51,16 +53,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-26T05:00:00.000Z",
-      "median": 540.71,
-      "low": 511.81,
-      "vendors": {
-        "jmbullion": 540.71,
-        "sdbullion": 549.59,
-        "monumentmetals": 511.81
-      }
-    },
     {
       "window": "2026-08-26T06:00:00.000Z",
       "median": 548.66,
@@ -275,6 +267,16 @@
       "low": 539.84,
       "vendors": {
         "jmbullion": 539.84
+      }
+    },
+    {
+      "window": "2026-08-27T06:00:00.000Z",
+      "median": 539.04,
+      "low": 508.94,
+      "vendors": {
+        "sdbullion": 545.27,
+        "jmbullion": 539.04,
+        "bullionexchanges": 508.94
       }
     }
   ]
