@@ -1,15 +1,9 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-08-28T23:00:00Z",
+  "window_start": "2026-08-28T23:30:00Z",
   "median_price": 76.33,
   "lowest_price": 70.19,
   "vendors": {
-    "apmex": {
-      "price": 78.11,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 70.19,
       "confidence": 35,
@@ -22,9 +16,9 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 72.49,
-      "confidence": 50,
+    "jmbullion": {
+      "price": 78.09,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -40,6 +34,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 78.11,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-28T21:30:01.907Z"
+    },
     "gainesvillecoins": {
       "price": 68.84,
       "confidence": null,
@@ -48,14 +50,6 @@
       "stale": true,
       "stale_since": "2026-08-28T19:30:01.855Z"
     },
-    "jmbullion": {
-      "price": 78.16,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-28T20:30:02.067Z"
-    },
     "mintbuilder": {
       "price": 66.64,
       "confidence": null,
@@ -63,31 +57,30 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-28T18:30:01.815Z"
+    },
+    "monumentmetals": {
+      "price": 72.49,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-28T21:30:01.907Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "monumentmetals": true,
+    "jmbullion": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "gainesvillecoins": true,
-    "jmbullion": true,
-    "mintbuilder": true
+    "mintbuilder": true,
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-27T22:00:00.000Z",
-      "median": 81.19,
-      "low": 76.46,
-      "vendors": {
-        "herobullion": 76.46,
-        "apmex": 81.19
-      }
-    },
     {
       "window": "2026-08-28T00:00:00.000Z",
       "median": 76.33,
@@ -317,6 +310,15 @@
         "herobullion": 73.14,
         "sdbullion": 76.99,
         "bullionexchanges": 70.19
+      }
+    },
+    {
+      "window": "2026-08-28T23:00:00.000Z",
+      "median": 78.09,
+      "low": 76.33,
+      "vendors": {
+        "jmbullion": 78.09,
+        "summitmetals": 76.33
       }
     }
   ]
