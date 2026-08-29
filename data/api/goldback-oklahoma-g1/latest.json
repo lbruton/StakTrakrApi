@@ -1,16 +1,20 @@
 {
   "slug": "goldback-oklahoma-g1",
-  "window_start": "2026-08-29T11:00:00Z",
-  "median_price": null,
-  "lowest_price": null,
+  "window_start": "2026-08-29T11:30:00Z",
+  "median_price": 8.72,
+  "lowest_price": 8.37,
   "vendors": {
     "apmex": {
       "price": 8.72,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-29T06:30:01.559Z"
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.37,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
     },
     "bullionexchanges": {
       "price": 8.75,
@@ -27,50 +31,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-29T02:30:01.992Z"
-    },
-    "sdbullion": {
-      "price": 8.37,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-08-29T06:30:01.559Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "sdbullion": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "sdbullion": true
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-28T08:00:00.000Z",
-      "median": 9.89,
-      "low": 9.03,
-      "vendors": {
-        "apmex": 9.03,
-        "herobullion": 9.89
-      }
-    },
-    {
-      "window": "2026-08-28T09:00:00.000Z",
-      "median": 8.51,
-      "low": 8.51,
-      "vendors": {
-        "sdbullion": 8.51
-      }
-    },
-    {
-      "window": "2026-08-28T10:00:00.000Z",
-      "median": 9.02,
-      "low": 9.02,
-      "vendors": {
-        "apmex": 9.02
-      }
-    },
     {
       "window": "2026-08-28T11:00:00.000Z",
       "median": 8.94,
@@ -230,6 +201,15 @@
       "low": 8.75,
       "vendors": {
         "bullionexchanges": 8.75
+      }
+    },
+    {
+      "window": "2026-08-29T11:00:00.000Z",
+      "median": 8.72,
+      "low": 8.37,
+      "vendors": {
+        "apmex": 8.72,
+        "sdbullion": 8.37
       }
     }
   ]
