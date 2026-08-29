@@ -1,15 +1,9 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-08-29T06:00:00Z",
+  "window_start": "2026-08-29T06:30:00Z",
   "median_price": 72.06,
   "lowest_price": 69.74,
   "vendors": {
-    "apmex": {
-      "price": 77.11,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 69.74,
       "confidence": 50,
@@ -22,17 +16,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 71.09,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "summitmetals": {
       "price": 72.06,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 77.11,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-29T04:30:01.479Z"
     },
     "herobullion": {
       "price": 72.17,
@@ -50,6 +46,14 @@
       "stale": true,
       "stale_since": "2026-08-28T20:30:02.067Z"
     },
+    "monumentmetals": {
+      "price": 71.09,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-29T04:30:01.479Z"
+    },
     "sdbullion": {
       "price": 72.52,
       "confidence": null,
@@ -60,29 +64,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "monumentmetals": true,
     "summitmetals": true,
+    "apmex": true,
     "herobullion": true,
     "mintbuilder": true,
+    "monumentmetals": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-28T05:00:00.000Z",
-      "median": 79.51,
-      "low": 71.65,
-      "vendors": {
-        "mintbuilder": 71.65,
-        "jmbullion": 80.49,
-        "apmex": 79.51,
-        "monumentmetals": 73.45
-      }
-    },
     {
       "window": "2026-08-28T06:00:00.000Z",
       "median": 74.96,
@@ -310,6 +303,15 @@
       "vendors": {
         "jmbullion": 77.99,
         "bullionexchanges": 69.74
+      }
+    },
+    {
+      "window": "2026-08-29T06:00:00.000Z",
+      "median": 72.06,
+      "low": 69.74,
+      "vendors": {
+        "bullionexchanges": 69.74,
+        "summitmetals": 72.06
       }
     }
   ]
