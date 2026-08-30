@@ -1,17 +1,11 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-08-30T18:00:00Z",
-  "median_price": 78.08,
-  "lowest_price": 72.34,
+  "window_start": "2026-08-30T18:30:00Z",
+  "median_price": 81.09,
+  "lowest_price": 75.55,
   "vendors": {
     "apmex": {
       "price": 85.12,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 72.34,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -24,15 +18,23 @@
     },
     "jmbullion": {
       "price": 81.09,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "mintbuilder": {
       "price": 78.08,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 72.34,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-30T16:30:01.781Z"
     },
     "monumentmetals": {
       "price": 73.59,
@@ -61,10 +63,10 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true,
+    "bullionexchanges": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true
@@ -72,17 +74,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-29T17:00:00.000Z",
-      "median": 77.99,
-      "low": 72.34,
-      "vendors": {
-        "mintbuilder": 78.08,
-        "summitmetals": 76.68,
-        "bullionexchanges": 72.34,
-        "sdbullion": 77.99
-      }
-    },
     {
       "window": "2026-08-29T18:00:00.000Z",
       "median": 76.68,
@@ -317,6 +308,16 @@
         "herobullion": 75.55,
         "jmbullion": 81.09,
         "apmex": 85.12
+      }
+    },
+    {
+      "window": "2026-08-30T18:00:00.000Z",
+      "median": 78.08,
+      "low": 75.55,
+      "vendors": {
+        "apmex": 85.12,
+        "mintbuilder": 78.08,
+        "herobullion": 75.55
       }
     }
   ]
