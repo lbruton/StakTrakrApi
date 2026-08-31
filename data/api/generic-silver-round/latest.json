@@ -1,17 +1,11 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-08-31T09:00:00Z",
-  "median_price": 70.84,
-  "lowest_price": 67.05,
+  "window_start": "2026-08-31T09:30:00Z",
+  "median_price": 73.11,
+  "lowest_price": 67.55,
   "vendors": {
     "apmex": {
-      "price": 76.69,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 67.05,
+      "price": 76.84,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -24,21 +18,23 @@
     },
     "monumentmetals": {
       "price": 70.84,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 73.11,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 69.91,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 67.05,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-31T07:30:02.028Z"
     },
     "herobullion": {
       "price": 70.24,
@@ -55,32 +51,29 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-08-31T05:30:02.232Z"
+    },
+    "summitmetals": {
+      "price": 69.91,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-31T07:30:02.028Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": true,
+    "bullionexchanges": true,
     "herobullion": true,
-    "mintbuilder": true
+    "mintbuilder": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-30T08:00:00.000Z",
-      "median": 70.03,
-      "low": 66.25,
-      "vendors": {
-        "apmex": 76.11,
-        "mintbuilder": 66.25,
-        "herobullion": 70.03,
-        "bullionexchanges": 66.49
-      }
-    },
     {
       "window": "2026-08-30T09:00:00.000Z",
       "median": 70.48,
@@ -321,6 +314,14 @@
         "monumentmetals": 70.84,
         "gainesvillecoins": 67.55,
         "sdbullion": 73.11
+      }
+    },
+    {
+      "window": "2026-08-31T09:00:00.000Z",
+      "median": 76.84,
+      "low": 76.84,
+      "vendors": {
+        "apmex": 76.84
       }
     }
   ]
