@@ -1,7 +1,7 @@
 {
   "slug": "ase",
-  "window_start": "2026-09-01T01:00:00Z",
-  "median_price": 79.38,
+  "window_start": "2026-09-01T01:30:00Z",
+  "median_price": 79.13,
   "lowest_price": 69.47,
   "vendors": {
     "apmex": {
@@ -10,14 +10,8 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 70.91,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
-      "price": 84.3,
+      "price": 84.42,
       "confidence": 30,
       "source": "firecrawl",
       "inStock": true
@@ -35,10 +29,18 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 79.38,
+      "price": 79.13,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 70.91,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-08-31T23:30:01.642Z"
     },
     "gainesvillecoins": {
       "price": 71.85,
@@ -67,11 +69,11 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "jmbullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "summitmetals": true
@@ -79,15 +81,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-08-31T00:00:00.000Z",
-      "median": 84.12,
-      "low": 71.89,
-      "vendors": {
-        "gainesvillecoins": 71.89,
-        "jmbullion": 84.12
-      }
-    },
     {
       "window": "2026-08-31T01:00:00.000Z",
       "median": 78.94,
@@ -332,6 +325,15 @@
         "apmex": 83.55,
         "mintbuilder": 69.47,
         "sdbullion": 79.38
+      }
+    },
+    {
+      "window": "2026-09-01T01:00:00.000Z",
+      "median": 84.42,
+      "low": 79.13,
+      "vendors": {
+        "jmbullion": 84.42,
+        "sdbullion": 79.13
       }
     }
   ]
