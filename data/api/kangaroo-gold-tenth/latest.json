@@ -1,12 +1,24 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-09-02T08:00:00Z",
+  "window_start": "2026-09-02T08:30:00Z",
   "median_price": 511.92,
-  "lowest_price": 477.34,
+  "lowest_price": 477.2,
   "vendors": {
+    "apmex": {
+      "price": 512.36,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
-      "price": 477.34,
+      "price": 477.2,
       "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 511.1,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -15,22 +27,6 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 512.63,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-02T00:30:01.875Z"
-    },
-    "jmbullion": {
-      "price": 507.05,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-02T05:30:01.915Z"
     },
     "monumentmetals": {
       "price": 476.57,
@@ -42,11 +38,11 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": false,
-    "sdbullion": true,
-    "apmex": true,
     "jmbullion": true,
+    "sdbullion": true,
     "monumentmetals": true,
     "summitmetals": true
   },
@@ -55,14 +51,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-01T07:00:00.000Z",
-      "median": 524.5,
-      "low": 524.5,
-      "vendors": {
-        "apmex": 524.5
-      }
-    },
     {
       "window": "2026-09-01T08:00:00.000Z",
       "median": 518.9,
@@ -278,6 +266,16 @@
       "low": 511.92,
       "vendors": {
         "sdbullion": 511.92
+      }
+    },
+    {
+      "window": "2026-09-02T08:00:00.000Z",
+      "median": 511.1,
+      "low": 477.2,
+      "vendors": {
+        "bullionexchanges": 477.2,
+        "jmbullion": 511.1,
+        "apmex": 512.36
       }
     }
   ]
