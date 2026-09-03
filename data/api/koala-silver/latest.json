@@ -1,9 +1,15 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-09-03T20:00:00Z",
-  "median_price": 77.45,
-  "lowest_price": 75.21,
+  "window_start": "2026-09-03T20:30:00Z",
+  "median_price": 75.21,
+  "lowest_price": 71.41,
   "vendors": {
+    "apmex": {
+      "price": 75.7,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "herobullion": {
       "price": 75.21,
       "confidence": 80,
@@ -16,21 +22,17 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 75.83,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-03T16:30:02.109Z"
-    },
     "monumentmetals": {
-      "price": 73.62,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-03T15:30:02.084Z"
+      "price": 73.07,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 71.41,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
     },
     "sdbullion": {
       "price": 76.69,
@@ -39,24 +41,16 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-03T16:30:02.109Z"
-    },
-    "summitmetals": {
-      "price": 71.67,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-03T16:30:02.109Z"
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
-    "apmex": true,
-    "bullionexchanges": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": true,
+    "bullionexchanges": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -269,6 +263,16 @@
       "vendors": {
         "jmbullion": 77.45,
         "herobullion": 75.21
+      }
+    },
+    {
+      "window": "2026-09-03T20:00:00.000Z",
+      "median": 73.07,
+      "low": 71.41,
+      "vendors": {
+        "summitmetals": 71.41,
+        "monumentmetals": 73.07,
+        "apmex": 75.7
       }
     }
   ]
