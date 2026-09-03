@@ -1,6 +1,6 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-09-03T16:00:00Z",
+  "window_start": "2026-09-03T16:30:00Z",
   "median_price": 73.74,
   "lowest_price": 70.98,
   "vendors": {
@@ -16,12 +16,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 72.9,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
       "price": 78.87,
       "confidence": 30,
@@ -29,8 +23,8 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 71.44,
-      "confidence": 50,
+      "price": 72.01,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -39,30 +33,31 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "herobullion": {
+      "price": 72.9,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-03T14:30:01.778Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "jmbullion": true,
+    "mintbuilder": false,
     "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": false,
-    "mintbuilder": true
+    "herobullion": true,
+    "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "mintbuilder": 67.99
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-02T15:00:00.000Z",
-      "median": 71.53,
-      "low": 69.89,
-      "vendors": {
-        "monumentmetals": 69.89,
-        "sdbullion": 71.53
-      }
-    },
     {
       "window": "2026-09-02T16:00:00.000Z",
       "median": 78.95,
@@ -274,6 +269,14 @@
         "sdbullion": 73.74,
         "jmbullion": 78.87,
         "bullionexchanges": 70.98
+      }
+    },
+    {
+      "window": "2026-09-03T16:00:00.000Z",
+      "median": 72.01,
+      "low": 72.01,
+      "vendors": {
+        "monumentmetals": 72.01
       }
     }
   ]
