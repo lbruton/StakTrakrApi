@@ -1,15 +1,9 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-09-03T10:00:00Z",
-  "median_price": 4527.45,
+  "window_start": "2026-09-03T10:30:00Z",
+  "median_price": 4513.96,
   "lowest_price": 4468.12,
   "vendors": {
-    "apmex": {
-      "price": 4607.49,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 4472.19,
       "confidence": 80,
@@ -35,16 +29,24 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 4527.45,
+      "price": 4513.96,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
-      "price": 4663.14,
-      "confidence": 80,
+      "price": 4663.95,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 4607.49,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-03T08:30:01.640Z"
     },
     "herobullion": {
       "price": 4501.41,
@@ -56,29 +58,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-02T09:00:00.000Z",
-      "median": 4479.29,
-      "low": 4345.69,
-      "vendors": {
-        "jmbullion": 4490.8,
-        "apmex": 4479.29,
-        "monumentmetals": 4364.1,
-        "bullionexchanges": 4345.69
-      }
-    },
     {
       "window": "2026-09-02T10:00:00.000Z",
       "median": 4365.6,
@@ -297,6 +288,15 @@
         "gainesvillecoins": 4468.12,
         "bullionexchanges": 4472.19,
         "jmbullion": 4559.37
+      }
+    },
+    {
+      "window": "2026-09-03T10:00:00.000Z",
+      "median": 4663.95,
+      "low": 4513.96,
+      "vendors": {
+        "sdbullion": 4513.96,
+        "summitmetals": 4663.95
       }
     }
   ]
