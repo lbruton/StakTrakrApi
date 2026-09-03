@@ -1,18 +1,12 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-09-03T04:00:00Z",
+  "window_start": "2026-09-03T04:30:00Z",
   "median_price": 76.67,
-  "lowest_price": 69.31,
+  "lowest_price": 72.56,
   "vendors": {
     "apmex": {
       "price": 76.67,
       "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 69.31,
-      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -22,11 +16,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 70.5,
-      "confidence": 35,
+    "sdbullion": {
+      "price": 72.56,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 69.31,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-03T02:30:01.600Z"
     },
     "herobullion": {
       "price": 71.48,
@@ -36,24 +38,24 @@
       "stale": true,
       "stale_since": "2026-09-03T00:30:01.349Z"
     },
-    "sdbullion": {
-      "price": 71.59,
+    "monumentmetals": {
+      "price": 70.5,
       "confidence": null,
       "source": "turso_last_known",
       "inStock": true,
       "stale": true,
-      "stale_since": "2026-09-02T19:30:02.161Z"
+      "stale_since": "2026-09-03T02:30:01.600Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "jmbullion": true,
     "mintbuilder": false,
-    "monumentmetals": true,
-    "herobullion": true,
     "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": false,
+    "bullionexchanges": true,
+    "herobullion": true,
+    "monumentmetals": true
   },
   "last_known_price_by_site": {
     "mintbuilder": 67.99
@@ -259,6 +261,14 @@
       "vendors": {
         "apmex": 76.67,
         "jmbullion": 77.57
+      }
+    },
+    {
+      "window": "2026-09-03T04:00:00.000Z",
+      "median": 72.56,
+      "low": 72.56,
+      "vendors": {
+        "sdbullion": 72.56
       }
     }
   ]

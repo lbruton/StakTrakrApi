@@ -1,32 +1,34 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-09-03T04:00:00Z",
-  "median_price": 75.55,
-  "lowest_price": 74.01,
+  "window_start": "2026-09-03T04:30:00Z",
+  "median_price": 75.76,
+  "lowest_price": 74.9,
   "vendors": {
     "apmex": {
-      "price": 74.7,
+      "price": 74.9,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 77.72,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 75.76,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 74.01,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 77.52,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 75.55,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-03T02:30:01.600Z"
     },
     "monumentmetals": {
       "price": 71.12,
@@ -47,25 +49,16 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": true,
     "jmbullion": true,
     "sdbullion": true,
     "bullionexchanges": true,
+    "herobullion": true,
     "monumentmetals": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-02T03:00:00.000Z",
-      "median": 71.57,
-      "low": 69.61,
-      "vendors": {
-        "herobullion": 71.57,
-        "monumentmetals": 69.61
-      }
-    },
     {
       "window": "2026-09-02T04:00:00.000Z",
       "median": 69.79,
@@ -256,6 +249,16 @@
         "jmbullion": 77.52,
         "apmex": 74.7,
         "sdbullion": 75.55
+      }
+    },
+    {
+      "window": "2026-09-03T04:00:00.000Z",
+      "median": 75.76,
+      "low": 74.9,
+      "vendors": {
+        "jmbullion": 77.72,
+        "sdbullion": 75.76,
+        "apmex": 74.9
       }
     }
   ]
