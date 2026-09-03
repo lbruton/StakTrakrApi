@@ -1,15 +1,9 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-09-03T00:00:00Z",
+  "window_start": "2026-09-03T00:30:00Z",
   "median_price": 71.02,
   "lowest_price": 67.62,
   "vendors": {
-    "apmex": {
-      "price": 76.19,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 67.62,
       "confidence": 50,
@@ -29,16 +23,26 @@
       "inStock": true
     },
     "mintbuilder": {
-      "price": 67.8,
+      "price": 67.86,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 76.19,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-02T22:30:01.560Z"
+    },
     "monumentmetals": {
       "price": 70.95,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-02T22:30:01.560Z"
     },
     "sdbullion": {
       "price": 72.44,
@@ -50,27 +54,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true,
+    "apmex": true,
     "monumentmetals": true,
-    "summitmetals": false,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-01T23:00:00.000Z",
-      "median": 69.76,
-      "low": 66.64,
-      "vendors": {
-        "mintbuilder": 66.64,
-        "herobullion": 69.76
-      }
-    },
     {
       "window": "2026-09-02T00:00:00.000Z",
       "median": 77.82,
@@ -290,6 +285,14 @@
         "herobullion": 71.02,
         "bullionexchanges": 67.62,
         "mintbuilder": 67.8
+      }
+    },
+    {
+      "window": "2026-09-03T00:00:00.000Z",
+      "median": 67.86,
+      "low": 67.86,
+      "vendors": {
+        "mintbuilder": 67.86
       }
     }
   ]
