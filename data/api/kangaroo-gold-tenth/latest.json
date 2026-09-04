@@ -1,18 +1,12 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-09-04T22:00:00Z",
-  "median_price": 511.77,
-  "lowest_price": 488.02,
+  "window_start": "2026-09-04T22:30:00Z",
+  "median_price": 511.2,
+  "lowest_price": 488.3,
   "vendors": {
     "apmex": {
-      "price": 511.77,
+      "price": 511.2,
       "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 489.06,
-      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -23,10 +17,18 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 488.02,
+      "price": 488.3,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 489.06,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-04T20:30:01.733Z"
     },
     "sdbullion": {
       "price": 522.6,
@@ -39,11 +41,11 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
     "summitmetals": false,
+    "bullionexchanges": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {
@@ -52,17 +54,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-03T21:00:00.000Z",
-      "median": 523.66,
-      "low": 492.93,
-      "vendors": {
-        "monumentmetals": 492.93,
-        "bullionexchanges": 493.84,
-        "sdbullion": 529.14,
-        "jmbullion": 523.66
-      }
-    },
     {
       "window": "2026-09-03T23:00:00.000Z",
       "median": 517.3,
@@ -254,6 +245,15 @@
       "vendors": {
         "jmbullion": 519.34,
         "apmex": 511.77
+      }
+    },
+    {
+      "window": "2026-09-04T22:00:00.000Z",
+      "median": 511.2,
+      "low": 488.3,
+      "vendors": {
+        "monumentmetals": 488.3,
+        "apmex": 511.2
       }
     }
   ]
