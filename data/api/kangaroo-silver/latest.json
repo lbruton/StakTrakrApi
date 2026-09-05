@@ -1,11 +1,17 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-09-05T21:00:00Z",
+  "window_start": "2026-09-05T21:30:00Z",
   "median_price": 72.63,
-  "lowest_price": 71.07,
+  "lowest_price": 69.97,
   "vendors": {
     "apmex": {
       "price": 76.95,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 69.97,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -17,7 +23,7 @@
       "inStock": true
     },
     "jmbullion": {
-      "price": 78.35,
+      "price": 77.93,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -33,40 +39,23 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 69.97,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-05T18:30:02.033Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "mintbuilder": false,
     "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": false,
-    "bullionexchanges": true
+    "summitmetals": false
   },
   "last_known_price_by_site": {
     "mintbuilder": 67.99
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-04T20:00:00.000Z",
-      "median": 78.74,
-      "low": 69.85,
-      "vendors": {
-        "jmbullion": 78.74,
-        "bullionexchanges": 69.85
-      }
-    },
     {
       "window": "2026-09-04T21:00:00.000Z",
       "median": 76.98,
@@ -282,6 +271,17 @@
         "herobullion": 72.54,
         "sdbullion": 72.63,
         "apmex": 76.95
+      }
+    },
+    {
+      "window": "2026-09-05T21:00:00.000Z",
+      "median": 72.63,
+      "low": 69.97,
+      "vendors": {
+        "sdbullion": 72.63,
+        "bullionexchanges": 69.97,
+        "jmbullion": 77.93,
+        "monumentmetals": 71.07
       }
     }
   ]
