@@ -1,17 +1,11 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-09-05T05:00:00Z",
+  "window_start": "2026-09-05T05:30:00Z",
   "median_price": 689.7,
   "lowest_price": 660.2,
   "vendors": {
     "apmex": {
       "price": 689.5,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 674.7,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -40,44 +34,42 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 718.34,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "summitmetals": {
       "price": 685.86,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 674.7,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-05T03:30:02.463Z"
+    },
+    "sdbullion": {
+      "price": 718.34,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-05T03:30:02.463Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": true,
+    "bullionexchanges": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-04T04:00:00.000Z",
-      "median": 685.87,
-      "low": 664.6,
-      "vendors": {
-        "sdbullion": 723.61,
-        "mintbuilder": 664.6,
-        "bullionexchanges": 678.9,
-        "herobullion": 705.98,
-        "summitmetals": 685.87
-      }
-    },
     {
       "window": "2026-09-04T05:00:00.000Z",
       "median": 723.08,
@@ -336,6 +328,18 @@
       "vendors": {
         "monumentmetals": 689.7,
         "gainesvillecoins": 707.7
+      }
+    },
+    {
+      "window": "2026-09-05T05:00:00.000Z",
+      "median": 689.5,
+      "low": 660.2,
+      "vendors": {
+        "apmex": 689.5,
+        "summitmetals": 685.86,
+        "herobullion": 699.72,
+        "gainesvillecoins": 707.7,
+        "mintbuilder": 660.2
       }
     }
   ]
