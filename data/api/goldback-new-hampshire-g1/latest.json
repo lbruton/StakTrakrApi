@@ -1,24 +1,12 @@
 {
   "slug": "goldback-new-hampshire-g1",
-  "window_start": "2026-09-05T19:00:00Z",
-  "median_price": 8.67,
+  "window_start": "2026-09-05T19:30:00Z",
+  "median_price": 8.62,
   "lowest_price": 8.34,
   "vendors": {
-    "apmex": {
-      "price": 8.67,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 8.62,
       "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 9.47,
-      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -27,34 +15,33 @@
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.67,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-05T17:30:02.028Z"
+    },
+    "herobullion": {
+      "price": 9.47,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-05T17:30:02.028Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "apmex": true,
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-04T17:00:00.000Z",
-      "median": 8.62,
-      "low": 8.34,
-      "vendors": {
-        "sdbullion": 8.34,
-        "bullionexchanges": 8.62
-      }
-    },
-    {
-      "window": "2026-09-04T18:00:00.000Z",
-      "median": 8.67,
-      "low": 8.67,
-      "vendors": {
-        "apmex": 8.67
-      }
-    },
     {
       "window": "2026-09-04T19:00:00.000Z",
       "median": 8.69,
@@ -258,6 +245,15 @@
         "apmex": 8.67,
         "herobullion": 9.47,
         "bullionexchanges": 8.62
+      }
+    },
+    {
+      "window": "2026-09-05T19:00:00.000Z",
+      "median": 8.62,
+      "low": 8.34,
+      "vendors": {
+        "bullionexchanges": 8.62,
+        "sdbullion": 8.34
       }
     }
   ]
