@@ -1,11 +1,17 @@
 {
   "slug": "age-tenth",
-  "window_start": "2026-09-05T20:00:00Z",
+  "window_start": "2026-09-05T20:30:00Z",
   "median_price": 519.6,
   "lowest_price": 481.65,
   "vendors": {
     "bullionexchanges": {
       "price": 493.36,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 549.04,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -23,8 +29,8 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 535.08,
-      "confidence": 80,
+      "price": 535.79,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -52,14 +58,6 @@
       "stale": true,
       "stale_since": "2026-09-05T17:30:02.028Z"
     },
-    "jmbullion": {
-      "price": 549.04,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-05T17:30:02.028Z"
-    },
     "monumentmetals": {
       "price": 501.78,
       "confidence": null,
@@ -71,26 +69,18 @@
   },
   "availability_by_site": {
     "bullionexchanges": true,
+    "jmbullion": true,
     "mintbuilder": true,
     "sdbullion": true,
     "summitmetals": true,
     "apmex": true,
     "gainesvillecoins": true,
     "herobullion": true,
-    "jmbullion": true,
     "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-04T19:00:00.000Z",
-      "median": 482,
-      "low": 482,
-      "vendors": {
-        "mintbuilder": 482
-      }
-    },
     {
       "window": "2026-09-04T20:00:00.000Z",
       "median": 519.54,
@@ -343,6 +333,17 @@
         "bullionexchanges": 493.36,
         "sdbullion": 519.6,
         "summitmetals": 535.08
+      }
+    },
+    {
+      "window": "2026-09-05T20:00:00.000Z",
+      "median": 535.79,
+      "low": 481.65,
+      "vendors": {
+        "sdbullion": 519.6,
+        "mintbuilder": 481.65,
+        "jmbullion": 549.04,
+        "summitmetals": 535.79
       }
     }
   ]
