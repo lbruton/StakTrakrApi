@@ -1,15 +1,9 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-09-07T17:00:00Z",
-  "median_price": 77.88,
+  "window_start": "2026-09-07T17:30:00Z",
+  "median_price": 77.82,
   "lowest_price": 72.22,
   "vendors": {
-    "apmex": {
-      "price": 85.07,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 72.22,
       "confidence": 50,
@@ -29,7 +23,7 @@
       "inStock": true
     },
     "mintbuilder": {
-      "price": 78.01,
+      "price": 77.82,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -40,21 +34,31 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 85.07,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-07T15:30:01.904Z"
+    },
     "summitmetals": {
       "price": 76.6,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-07T15:30:01.904Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true,
     "monumentmetals": false,
     "sdbullion": true,
+    "apmex": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {
@@ -62,14 +66,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-06T16:00:00.000Z",
-      "median": 80.93,
-      "low": 80.93,
-      "vendors": {
-        "jmbullion": 80.93
-      }
-    },
     {
       "window": "2026-09-06T17:00:00.000Z",
       "median": 77.86,
@@ -316,6 +312,15 @@
         "bullionexchanges": 72.22,
         "herobullion": 75.47,
         "sdbullion": 77.88
+      }
+    },
+    {
+      "window": "2026-09-07T17:00:00.000Z",
+      "median": 80.93,
+      "low": 77.82,
+      "vendors": {
+        "mintbuilder": 77.82,
+        "jmbullion": 80.93
       }
     }
   ]
