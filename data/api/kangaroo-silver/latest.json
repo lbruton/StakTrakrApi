@@ -1,9 +1,15 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-09-07T06:00:00Z",
-  "median_price": 72.46,
+  "window_start": "2026-09-07T06:30:00Z",
+  "median_price": 72.14,
   "lowest_price": 69.82,
   "vendors": {
+    "apmex": {
+      "price": 76.44,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "bullionexchanges": {
       "price": 69.82,
       "confidence": 50,
@@ -12,7 +18,7 @@
     },
     "jmbullion": {
       "price": 77.93,
-      "confidence": 50,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -23,18 +29,10 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 72.46,
+      "price": 72.14,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 76.64,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-07T03:30:01.487Z"
     },
     "herobullion": {
       "price": 72.45,
@@ -46,29 +44,18 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "mintbuilder": false,
     "monumentmetals": true,
     "sdbullion": true,
-    "apmex": true,
     "herobullion": true,
+    "mintbuilder": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "mintbuilder": 67.99
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-06T05:00:00.000Z",
-      "median": 77.93,
-      "low": 76.95,
-      "vendors": {
-        "jmbullion": 77.93,
-        "apmex": 76.95
-      }
-    },
     {
       "window": "2026-09-06T06:00:00.000Z",
       "median": 76.95,
@@ -272,6 +259,15 @@
         "bullionexchanges": 69.82,
         "jmbullion": 77.93,
         "sdbullion": 72.46
+      }
+    },
+    {
+      "window": "2026-09-07T06:00:00.000Z",
+      "median": 76.44,
+      "low": 72.14,
+      "vendors": {
+        "apmex": 76.44,
+        "sdbullion": 72.14
       }
     }
   ]
