@@ -1,7 +1,7 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-09-07T03:00:00Z",
-  "median_price": 72.28,
+  "window_start": "2026-09-07T03:30:00Z",
+  "median_price": 72,
   "lowest_price": 66.28,
   "vendors": {
     "apmex": {
@@ -12,12 +12,18 @@
     },
     "bullionexchanges": {
       "price": 66.28,
-      "confidence": 35,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 69.74,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 72.28,
+      "price": 72,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -45,37 +51,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-07T00:30:01.727Z"
-    },
-    "monumentmetals": {
-      "price": 70.07,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-06T20:30:01.743Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
+    "monumentmetals": true,
     "sdbullion": true,
+    "summitmetals": false,
     "gainesvillecoins": true,
     "herobullion": true,
-    "mintbuilder": true,
-    "monumentmetals": true,
-    "summitmetals": true
+    "mintbuilder": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 67.55
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-06T02:00:00.000Z",
-      "median": 66.77,
-      "low": 66.77,
-      "vendors": {
-        "gainesvillecoins": 66.77
-      }
-    },
     {
       "window": "2026-09-06T03:00:00.000Z",
       "median": 75.95,
@@ -294,6 +286,15 @@
         "apmex": 75.94,
         "bullionexchanges": 66.28,
         "sdbullion": 72.28
+      }
+    },
+    {
+      "window": "2026-09-07T03:00:00.000Z",
+      "median": 72,
+      "low": 69.74,
+      "vendors": {
+        "sdbullion": 72,
+        "monumentmetals": 69.74
       }
     }
   ]
