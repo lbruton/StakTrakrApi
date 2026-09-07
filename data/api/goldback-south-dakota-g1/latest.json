@@ -1,26 +1,30 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-09-07T09:00:00Z",
-  "median_price": 8.59,
-  "lowest_price": 8.31,
+  "window_start": "2026-09-07T09:30:00Z",
+  "median_price": 8.32,
+  "lowest_price": 8.32,
   "vendors": {
-    "apmex": {
-      "price": 8.62,
+    "sdbullion": {
+      "price": 8.32,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.62,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-07T07:30:01.373Z"
     },
     "bullionexchanges": {
       "price": 8.59,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 8.31,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-07T07:30:01.373Z"
     },
     "herobullion": {
       "price": 9.4,
@@ -32,31 +36,14 @@
     }
   },
   "availability_by_site": {
+    "sdbullion": true,
     "apmex": true,
     "bullionexchanges": true,
-    "sdbullion": true,
     "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-06T07:00:00.000Z",
-      "median": 9.47,
-      "low": 9.47,
-      "vendors": {
-        "herobullion": 9.47
-      }
-    },
-    {
-      "window": "2026-09-06T08:00:00.000Z",
-      "median": 9.47,
-      "low": 8.67,
-      "vendors": {
-        "herobullion": 9.47,
-        "apmex": 8.67
-      }
-    },
     {
       "window": "2026-09-06T09:00:00.000Z",
       "median": 8.34,
@@ -243,6 +230,14 @@
         "bullionexchanges": 8.59,
         "sdbullion": 8.31,
         "apmex": 8.62
+      }
+    },
+    {
+      "window": "2026-09-07T09:00:00.000Z",
+      "median": 8.32,
+      "low": 8.32,
+      "vendors": {
+        "sdbullion": 8.32
       }
     }
   ]
