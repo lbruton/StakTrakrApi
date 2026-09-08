@@ -1,8 +1,8 @@
 {
   "slug": "goldback-nevada-g1",
-  "window_start": "2026-09-08T17:00:00Z",
+  "window_start": "2026-09-08T17:30:00Z",
   "median_price": 8.61,
-  "lowest_price": 8.31,
+  "lowest_price": 8.3,
   "vendors": {
     "apmex": {
       "price": 8.61,
@@ -10,46 +10,34 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 8.31,
-      "confidence": 50,
+    "bullionexchanges": {
+      "price": 8.58,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 8.59,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-08T14:30:02.176Z"
-    },
     "herobullion": {
       "price": 9.4,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-08T14:30:02.176Z"
+      "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.3,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "sdbullion": true,
     "bullionexchanges": true,
-    "herobullion": true
+    "herobullion": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-07T16:00:00.000Z",
-      "median": 8.65,
-      "low": 8.65,
-      "vendors": {
-        "apmex": 8.65
-      }
-    },
     {
       "window": "2026-09-07T17:00:00.000Z",
       "median": 8.61,
@@ -231,6 +219,17 @@
       "vendors": {
         "apmex": 8.61,
         "sdbullion": 8.31
+      }
+    },
+    {
+      "window": "2026-09-08T17:00:00.000Z",
+      "median": 8.61,
+      "low": 8.3,
+      "vendors": {
+        "sdbullion": 8.3,
+        "herobullion": 9.4,
+        "bullionexchanges": 8.58,
+        "apmex": 8.61
       }
     }
   ]
