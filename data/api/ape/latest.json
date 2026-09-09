@@ -1,32 +1,34 @@
 {
   "slug": "ape",
-  "window_start": "2026-09-09T06:00:00Z",
-  "median_price": 2155.79,
+  "window_start": "2026-09-09T06:30:00Z",
+  "median_price": 2025.3,
   "lowest_price": 1997.15,
   "vendors": {
-    "apmex": {
-      "price": 2194.99,
-      "confidence": 60,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 2016.25,
-      "confidence": 50,
+      "price": 2025.3,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
       "price": 1997.15,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 2155.79,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 2194.99,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-09T04:30:01.907Z"
     },
     "mintbuilder": {
       "price": 1935.4,
@@ -38,29 +40,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "mintbuilder": true
+    "mintbuilder": true,
+    "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "summitmetals": 1951.48
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-08T05:00:00.000Z",
-      "median": 2147.19,
-      "low": 1933.5,
-      "vendors": {
-        "sdbullion": 2147.19,
-        "mintbuilder": 1933.5
-      }
-    },
     {
       "window": "2026-09-08T06:00:00.000Z",
       "median": 1916.1,
@@ -278,6 +269,14 @@
         "monumentmetals": 1997.15,
         "herobullion": 2016.25,
         "sdbullion": 2155.79
+      }
+    },
+    {
+      "window": "2026-09-09T06:00:00.000Z",
+      "median": 2025.3,
+      "low": 2025.3,
+      "vendors": {
+        "herobullion": 2025.3
       }
     }
   ]
