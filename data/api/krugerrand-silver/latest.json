@@ -1,8 +1,8 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-09-09T18:00:00Z",
+  "window_start": "2026-09-09T18:30:00Z",
   "median_price": 73.69,
-  "lowest_price": 69.81,
+  "lowest_price": 73.32,
   "vendors": {
     "apmex": {
       "price": 73.69,
@@ -10,14 +10,8 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 69.81,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "monumentmetals": {
-      "price": 73.45,
+      "price": 73.32,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -27,6 +21,14 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 69.81,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-09T16:30:02.211Z"
     },
     "herobullion": {
       "price": 73.36,
@@ -55,29 +57,17 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "monumentmetals": true,
     "sdbullion": true,
+    "summitmetals": false,
+    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "mintbuilder": true,
-    "summitmetals": true
+    "mintbuilder": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-08T17:00:00.000Z",
-      "median": 72.13,
-      "low": 68.6,
-      "vendors": {
-        "herobullion": 72.23,
-        "mintbuilder": 68.95,
-        "bullionexchanges": 68.6,
-        "sdbullion": 73.52,
-        "apmex": 72.13
-      }
-    },
     {
       "window": "2026-09-08T18:00:00.000Z",
       "median": 72.02,
@@ -310,6 +300,14 @@
         "apmex": 73.69,
         "monumentmetals": 73.45,
         "sdbullion": 75
+      }
+    },
+    {
+      "window": "2026-09-09T18:00:00.000Z",
+      "median": 73.32,
+      "low": 73.32,
+      "vendors": {
+        "monumentmetals": 73.32
       }
     }
   ]
