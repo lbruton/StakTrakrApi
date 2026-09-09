@@ -1,18 +1,12 @@
 {
   "slug": "ase",
-  "window_start": "2026-09-09T20:00:00Z",
-  "median_price": 80.38,
+  "window_start": "2026-09-09T20:30:00Z",
+  "median_price": 84.12,
   "lowest_price": 67.65,
   "vendors": {
     "apmex": {
       "price": 84.12,
-      "confidence": 30,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 72.3,
-      "confidence": 35,
+      "confidence": 60,
       "source": "firecrawl",
       "inStock": true
     },
@@ -24,7 +18,7 @@
     },
     "jmbullion": {
       "price": 84.51,
-      "confidence": 30,
+      "confidence": 60,
       "source": "firecrawl",
       "inStock": true
     },
@@ -34,11 +28,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "sdbullion": {
-      "price": 80.38,
-      "confidence": 60,
-      "source": "firecrawl",
-      "inStock": true
+    "bullionexchanges": {
+      "price": 72.3,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-09T18:30:01.767Z"
     },
     "herobullion": {
       "price": 75.19,
@@ -56,6 +52,14 @@
       "stale": true,
       "stale_since": "2026-09-09T17:30:02.156Z"
     },
+    "sdbullion": {
+      "price": 80.38,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-09T18:30:01.767Z"
+    },
     "summitmetals": {
       "price": 72.24,
       "confidence": null,
@@ -67,28 +71,18 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "jmbullion": true,
     "mintbuilder": true,
-    "sdbullion": true,
+    "bullionexchanges": true,
     "herobullion": true,
     "monumentmetals": true,
+    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-08T19:00:00.000Z",
-      "median": 82.66,
-      "low": 71.53,
-      "vendors": {
-        "jmbullion": 84.51,
-        "summitmetals": 71.53,
-        "apmex": 82.66
-      }
-    },
     {
       "window": "2026-09-08T20:00:00.000Z",
       "median": 78.3,
@@ -339,6 +333,14 @@
         "apmex": 84.12,
         "mintbuilder": 67.65,
         "gainesvillecoins": 72.59
+      }
+    },
+    {
+      "window": "2026-09-09T20:00:00.000Z",
+      "median": 84.51,
+      "low": 84.51,
+      "vendors": {
+        "jmbullion": 84.51
       }
     }
   ]
