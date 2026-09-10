@@ -1,32 +1,34 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-09-10T23:00:00Z",
-  "median_price": 73.12,
-  "lowest_price": 69.64,
+  "window_start": "2026-09-10T23:30:00Z",
+  "median_price": 70.21,
+  "lowest_price": 69.7,
   "vendors": {
-    "apmex": {
-      "price": 75.36,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "monumentmetals": {
-      "price": 69.64,
-      "confidence": 50,
+      "price": 69.7,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 73.12,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
-      "price": 70.27,
-      "confidence": 50,
+      "price": 70.21,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 75.36,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-10T21:30:02.133Z"
     },
     "herobullion": {
       "price": 71.59,
@@ -38,10 +40,10 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true
@@ -49,15 +51,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-09T22:00:00.000Z",
-      "median": 79.11,
-      "low": 74.18,
-      "vendors": {
-        "apmex": 79.11,
-        "summitmetals": 74.18
-      }
-    },
     {
       "window": "2026-09-09T23:00:00.000Z",
       "median": 75.52,
@@ -251,6 +244,15 @@
       "vendors": {
         "sdbullion": 73.12,
         "monumentmetals": 69.64
+      }
+    },
+    {
+      "window": "2026-09-10T23:00:00.000Z",
+      "median": 70.21,
+      "low": 69.7,
+      "vendors": {
+        "monumentmetals": 69.7,
+        "summitmetals": 70.21
       }
     }
   ]
