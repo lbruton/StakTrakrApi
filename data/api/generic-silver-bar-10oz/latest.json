@@ -1,20 +1,28 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-09-10T20:00:00Z",
-  "median_price": 665.8,
-  "lowest_price": 641.9,
+  "window_start": "2026-09-10T20:30:00Z",
+  "median_price": 667.81,
+  "lowest_price": 663.2,
   "vendors": {
     "apmex": {
-      "price": 665.8,
+      "price": 663.2,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 667.81,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
       "price": 641.9,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-10T18:30:01.275Z"
     },
     "gainesvillecoins": {
       "price": 690,
@@ -23,14 +31,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-10T15:30:01.467Z"
-    },
-    "herobullion": {
-      "price": 676.68,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-10T17:30:01.296Z"
     },
     "mintbuilder": {
       "price": 646.3,
@@ -67,9 +67,9 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "herobullion": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
-    "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
@@ -78,26 +78,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-09T18:00:00.000Z",
-      "median": 712.43,
-      "low": 685.86,
-      "vendors": {
-        "summitmetals": 685.86,
-        "herobullion": 712.43
-      }
-    },
-    {
-      "window": "2026-09-09T19:00:00.000Z",
-      "median": 701.4,
-      "low": 679,
-      "vendors": {
-        "monumentmetals": 701.4,
-        "bullionexchanges": 679,
-        "gainesvillecoins": 719.2,
-        "apmex": 701.3
-      }
-    },
     {
       "window": "2026-09-09T20:00:00.000Z",
       "median": 699.7,
@@ -335,6 +315,15 @@
       "vendors": {
         "apmex": 665.8,
         "bullionexchanges": 641.9
+      }
+    },
+    {
+      "window": "2026-09-10T20:00:00.000Z",
+      "median": 667.81,
+      "low": 663.2,
+      "vendors": {
+        "apmex": 663.2,
+        "herobullion": 667.81
       }
     }
   ]
