@@ -1,15 +1,9 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-09-10T10:00:00Z",
-  "median_price": 72.74,
+  "window_start": "2026-09-10T10:30:00Z",
+  "median_price": 71.56,
   "lowest_price": 69.28,
   "vendors": {
-    "apmex": {
-      "price": 72.74,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 69.28,
       "confidence": 50,
@@ -17,16 +11,26 @@
       "inStock": true
     },
     "herobullion": {
-      "price": 72.17,
+      "price": 71.56,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 72.74,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-10T08:30:01.348Z"
+    },
     "jmbullion": {
       "price": 78.09,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-10T08:30:01.348Z"
     },
     "mintbuilder": {
       "price": 69.74,
@@ -54,27 +58,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
+    "apmex": true,
     "jmbullion": true,
-    "summitmetals": false,
     "mintbuilder": true,
     "monumentmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-09T09:00:00.000Z",
-      "median": 72.29,
-      "low": 68.9,
-      "vendors": {
-        "bullionexchanges": 68.9,
-        "apmex": 72.29
-      }
-    },
     {
       "window": "2026-09-09T10:00:00.000Z",
       "median": 73.41,
@@ -296,6 +291,14 @@
       "vendors": {
         "herobullion": 72.17,
         "bullionexchanges": 69.28
+      }
+    },
+    {
+      "window": "2026-09-10T10:00:00.000Z",
+      "median": 71.56,
+      "low": 71.56,
+      "vendors": {
+        "herobullion": 71.56
       }
     }
   ]
