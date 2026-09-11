@@ -1,26 +1,34 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-09-11T00:00:00Z",
-  "median_price": 498.9,
-  "lowest_price": 476.96,
+  "window_start": "2026-09-11T00:30:00Z",
+  "median_price": 508.33,
+  "lowest_price": 477.56,
   "vendors": {
-    "apmex": {
-      "price": 498.9,
+    "jmbullion": {
+      "price": 508.33,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 476.96,
+      "price": 477.56,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 510.88,
+      "price": 511.48,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 498.9,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-10T22:30:01.278Z"
     },
     "bullionexchanges": {
       "price": 481.9,
@@ -29,24 +37,16 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-10T17:30:01.296Z"
-    },
-    "jmbullion": {
-      "price": 507.96,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-10T19:30:01.945Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": false,
+    "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": false,
-    "bullionexchanges": true,
-    "jmbullion": true
+    "apmex": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {
     "herobullion": 527.52,
@@ -54,17 +54,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-09T23:00:00.000Z",
-      "median": 508.16,
-      "low": 484.67,
-      "vendors": {
-        "monumentmetals": 484.67,
-        "apmex": 508.16,
-        "sdbullion": 520.1,
-        "bullionexchanges": 486
-      }
-    },
     {
       "window": "2026-09-10T01:00:00.000Z",
       "median": 521.94,
@@ -254,6 +243,16 @@
       "low": 510.88,
       "vendors": {
         "sdbullion": 510.88
+      }
+    },
+    {
+      "window": "2026-09-11T00:00:00.000Z",
+      "median": 508.33,
+      "low": 477.56,
+      "vendors": {
+        "sdbullion": 511.48,
+        "jmbullion": 508.33,
+        "monumentmetals": 477.56
       }
     }
   ]
