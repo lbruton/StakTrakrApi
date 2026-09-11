@@ -1,20 +1,22 @@
 {
   "slug": "ape",
-  "window_start": "2026-09-11T17:00:00Z",
-  "median_price": 2156.49,
-  "lowest_price": 1973.4,
+  "window_start": "2026-09-11T17:30:00Z",
+  "median_price": 2158.89,
+  "lowest_price": 2158.89,
   "vendors": {
     "apmex": {
-      "price": 2156.49,
+      "price": 2158.89,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 1973.4,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-11T15:30:01.576Z"
     },
     "mintbuilder": {
       "price": 1908.7,
@@ -43,9 +45,9 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": true,
     "summitmetals": false,
     "bullionexchanges": true,
+    "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
@@ -56,15 +58,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-10T16:00:00.000Z",
-      "median": 1967.1,
-      "low": 1901,
-      "vendors": {
-        "monumentmetals": 1967.1,
-        "mintbuilder": 1901
-      }
-    },
     {
       "window": "2026-09-10T17:00:00.000Z",
       "median": 1975.17,
@@ -293,6 +286,14 @@
       "low": 2156.49,
       "vendors": {
         "apmex": 2156.49
+      }
+    },
+    {
+      "window": "2026-09-11T17:00:00.000Z",
+      "median": 2158.89,
+      "low": 2158.89,
+      "vendors": {
+        "apmex": 2158.89
       }
     }
   ]
