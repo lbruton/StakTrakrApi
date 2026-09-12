@@ -1,26 +1,28 @@
 {
   "slug": "goldback-wyoming-g1",
-  "window_start": "2026-09-12T14:00:00Z",
-  "median_price": 8.51,
-  "lowest_price": 8.4,
+  "window_start": "2026-09-12T14:30:00Z",
+  "median_price": 9.31,
+  "lowest_price": 8.51,
   "vendors": {
     "apmex": {
       "price": 8.51,
+      "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 9.31,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
       "price": 8.4,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 9.31,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-12T12:30:01.416Z"
     },
     "sdbullion": {
       "price": 8.46,
@@ -33,21 +35,13 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
+    "bullionexchanges": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-11T13:00:00.000Z",
-      "median": 8.4,
-      "low": 8.4,
-      "vendors": {
-        "bullionexchanges": 8.4
-      }
-    },
     {
       "window": "2026-09-11T14:00:00.000Z",
       "median": 9.36,
@@ -200,6 +194,15 @@
       "median": 8.51,
       "low": 8.51,
       "vendors": {
+        "apmex": 8.51
+      }
+    },
+    {
+      "window": "2026-09-12T14:00:00.000Z",
+      "median": 9.31,
+      "low": 8.51,
+      "vendors": {
+        "herobullion": 9.31,
         "apmex": 8.51
       }
     }
