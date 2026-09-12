@@ -1,11 +1,23 @@
 {
   "slug": "goldback-new-hampshire-g1",
-  "window_start": "2026-09-12T12:00:00Z",
+  "window_start": "2026-09-12T12:30:00Z",
   "median_price": 8.51,
-  "lowest_price": 8.51,
+  "lowest_price": 8.46,
   "vendors": {
     "apmex": {
       "price": 8.51,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 9.31,
+      "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.46,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -17,41 +29,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-12T09:30:01.829Z"
-    },
-    "herobullion": {
-      "price": 9.31,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-12T09:30:01.829Z"
-    },
-    "sdbullion": {
-      "price": 8.46,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-12T08:30:01.901Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-11T11:00:00.000Z",
-      "median": 8.24,
-      "low": 8.24,
-      "vendors": {
-        "sdbullion": 8.24
-      }
-    },
     {
       "window": "2026-09-11T13:00:00.000Z",
       "median": 8.59,
@@ -198,6 +186,15 @@
       "low": 8.51,
       "vendors": {
         "apmex": 8.51
+      }
+    },
+    {
+      "window": "2026-09-12T12:00:00.000Z",
+      "median": 9.31,
+      "low": 8.46,
+      "vendors": {
+        "herobullion": 9.31,
+        "sdbullion": 8.46
       }
     }
   ]
