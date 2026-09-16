@@ -1,26 +1,28 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-09-16T19:00:00Z",
-  "median_price": 71.23,
-  "lowest_price": 68.33,
+  "window_start": "2026-09-16T19:30:00Z",
+  "median_price": 75.06,
+  "lowest_price": 67.87,
   "vendors": {
-    "apmex": {
-      "price": 71.23,
+    "jmbullion": {
+      "price": 75.06,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 76.22,
-      "confidence": 50,
+    "monumentmetals": {
+      "price": 67.87,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 68.33,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 71.23,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-16T17:30:01.966Z"
     },
     "sdbullion": {
       "price": 70.96,
@@ -32,14 +34,14 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": false,
     "jmbullion": true,
     "mintbuilder": false,
     "monumentmetals": true,
+    "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "herobullion": 70.69,
@@ -47,15 +49,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-15T18:00:00.000Z",
-      "median": 70.08,
-      "low": 68.83,
-      "vendors": {
-        "monumentmetals": 68.83,
-        "sdbullion": 70.08
-      }
-    },
     {
       "window": "2026-09-15T20:00:00.000Z",
       "median": 70.06,
@@ -250,6 +243,15 @@
       "low": 68.33,
       "vendors": {
         "monumentmetals": 68.33
+      }
+    },
+    {
+      "window": "2026-09-16T19:00:00.000Z",
+      "median": 75.06,
+      "low": 67.87,
+      "vendors": {
+        "jmbullion": 75.06,
+        "monumentmetals": 67.87
       }
     }
   ]
