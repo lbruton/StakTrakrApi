@@ -1,26 +1,22 @@
 {
   "slug": "goldback-new-hampshire-g1",
-  "window_start": "2026-09-17T12:00:00Z",
-  "median_price": 8.45,
-  "lowest_price": 8.42,
+  "window_start": "2026-09-17T12:30:00Z",
+  "median_price": 8.49,
+  "lowest_price": 8.49,
   "vendors": {
+    "sdbullion": {
+      "price": 8.49,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "apmex": {
       "price": 8.45,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "herobullion": {
-      "price": 9.25,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 8.42,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-17T10:30:01.307Z"
     },
     "bullionexchanges": {
       "price": 8.42,
@@ -29,35 +25,25 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-17T06:30:01.691Z"
+    },
+    "herobullion": {
+      "price": 9.25,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-17T10:30:01.307Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
-    "herobullion": true,
     "sdbullion": true,
-    "bullionexchanges": true
+    "apmex": true,
+    "bullionexchanges": true,
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-16T10:00:00.000Z",
-      "median": 8.52,
-      "low": 8.46,
-      "vendors": {
-        "sdbullion": 8.46,
-        "apmex": 8.52
-      }
-    },
-    {
-      "window": "2026-09-16T11:00:00.000Z",
-      "median": 8.52,
-      "low": 8.46,
-      "vendors": {
-        "sdbullion": 8.46,
-        "apmex": 8.52
-      }
-    },
     {
       "window": "2026-09-16T12:00:00.000Z",
       "median": 8.45,
@@ -256,6 +242,14 @@
         "sdbullion": 8.42,
         "apmex": 8.45,
         "herobullion": 9.25
+      }
+    },
+    {
+      "window": "2026-09-17T12:00:00.000Z",
+      "median": 8.49,
+      "low": 8.49,
+      "vendors": {
+        "sdbullion": 8.49
       }
     }
   ]
