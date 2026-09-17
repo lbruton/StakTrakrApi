@@ -1,11 +1,11 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-09-17T05:00:00Z",
-  "median_price": 71.38,
-  "lowest_price": 69.55,
+  "window_start": "2026-09-17T05:30:00Z",
+  "median_price": 71.64,
+  "lowest_price": 71.44,
   "vendors": {
     "apmex": {
-      "price": 71.38,
+      "price": 71.44,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -18,15 +18,11 @@
     },
     "monumentmetals": {
       "price": 69.55,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 70.07,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-17T03:30:01.511Z"
     },
     "sdbullion": {
       "price": 72.94,
@@ -35,30 +31,28 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-17T02:30:02.161Z"
+    },
+    "summitmetals": {
+      "price": 70.07,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-17T03:30:01.511Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "herobullion": true,
-    "monumentmetals": true,
-    "summitmetals": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "sdbullion": true
+    "monumentmetals": true,
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-16T04:00:00.000Z",
-      "median": 72.33,
-      "low": 70.71,
-      "vendors": {
-        "apmex": 72.33,
-        "monumentmetals": 70.71,
-        "herobullion": 72.67
-      }
-    },
     {
       "window": "2026-09-16T05:00:00.000Z",
       "median": 72.77,
@@ -257,6 +251,15 @@
       "vendors": {
         "apmex": 71.38,
         "herobullion": 71.64
+      }
+    },
+    {
+      "window": "2026-09-17T05:00:00.000Z",
+      "median": 71.64,
+      "low": 71.44,
+      "vendors": {
+        "herobullion": 71.64,
+        "apmex": 71.44
       }
     }
   ]
