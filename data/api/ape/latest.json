@@ -1,32 +1,34 @@
 {
   "slug": "ape",
-  "window_start": "2026-09-18T10:00:00Z",
-  "median_price": 2138.19,
-  "lowest_price": 1923,
+  "window_start": "2026-09-18T10:30:00Z",
+  "median_price": 1998.05,
+  "lowest_price": 1916.5,
   "vendors": {
-    "apmex": {
-      "price": 2172.89,
-      "confidence": 60,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 1998.05,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "mintbuilder": {
-      "price": 1923,
-      "confidence": 35,
+      "price": 1916.5,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 2138.19,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 2172.89,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-18T08:30:01.783Z"
     },
     "monumentmetals": {
       "price": 1985.2,
@@ -46,10 +48,10 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "mintbuilder": true,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
@@ -58,16 +60,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-17T09:00:00.000Z",
-      "median": 1951.3,
-      "low": 1911.6,
-      "vendors": {
-        "summitmetals": 1911.6,
-        "monumentmetals": 1951.3,
-        "herobullion": 1958.74
-      }
-    },
     {
       "window": "2026-09-17T10:00:00.000Z",
       "median": 1950.3,
@@ -269,6 +261,14 @@
         "herobullion": 1998.05,
         "sdbullion": 2138.19,
         "mintbuilder": 1923
+      }
+    },
+    {
+      "window": "2026-09-18T10:00:00.000Z",
+      "median": 1916.5,
+      "low": 1916.5,
+      "vendors": {
+        "mintbuilder": 1916.5
       }
     }
   ]
