@@ -1,18 +1,24 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-09-21T21:00:00Z",
-  "median_price": 538.09,
+  "window_start": "2026-09-21T21:30:00Z",
+  "median_price": 513.86,
   "lowest_price": 480.69,
   "vendors": {
     "monumentmetals": {
       "price": 480.69,
-      "confidence": 35,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 513.86,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
       "price": 538.09,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -39,40 +45,20 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-21T18:30:01.613Z"
-    },
-    "sdbullion": {
-      "price": 514.65,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-21T16:30:02.333Z"
     }
   },
   "availability_by_site": {
-    "herobullion": false,
     "monumentmetals": true,
+    "sdbullion": true,
     "summitmetals": true,
     "apmex": true,
     "bullionexchanges": true,
-    "jmbullion": true,
-    "sdbullion": true
+    "herobullion": true,
+    "jmbullion": true
   },
-  "last_known_price_by_site": {
-    "herobullion": 509.48
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-20T20:00:00.000Z",
-      "median": 517.89,
-      "low": 484.46,
-      "vendors": {
-        "sdbullion": 517.89,
-        "monumentmetals": 484.46,
-        "summitmetals": 538
-      }
-    },
     {
       "window": "2026-09-20T21:00:00.000Z",
       "median": 484.46,
@@ -267,6 +253,14 @@
       "vendors": {
         "summitmetals": 538.09,
         "monumentmetals": 480.69
+      }
+    },
+    {
+      "window": "2026-09-21T21:00:00.000Z",
+      "median": 513.86,
+      "low": 513.86,
+      "vendors": {
+        "sdbullion": 513.86
       }
     }
   ]
