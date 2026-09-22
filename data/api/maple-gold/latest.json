@@ -1,20 +1,28 @@
 {
   "slug": "maple-gold",
-  "window_start": "2026-09-22T05:00:00Z",
-  "median_price": 4521.79,
-  "lowest_price": 4440.09,
+  "window_start": "2026-09-22T05:30:00Z",
+  "median_price": 4440.09,
+  "lowest_price": 4358.49,
   "vendors": {
-    "apmex": {
-      "price": 4521.79,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 4440.09,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "mintbuilder": {
+      "price": 4358.49,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 4521.79,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-22T03:30:01.936Z"
     },
     "gainesvillecoins": {
       "price": 4425.05,
@@ -31,14 +39,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-22T01:30:01.887Z"
-    },
-    "mintbuilder": {
-      "price": 4388.09,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-21T23:30:01.730Z"
     },
     "monumentmetals": {
       "price": 4441.65,
@@ -66,12 +66,12 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "mintbuilder": true,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "jmbullion": true,
-    "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true
@@ -79,15 +79,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-21T04:00:00.000Z",
-      "median": 4473.87,
-      "low": 4390.29,
-      "vendors": {
-        "mintbuilder": 4390.29,
-        "summitmetals": 4473.87
-      }
-    },
     {
       "window": "2026-09-21T05:00:00.000Z",
       "median": 4541.59,
@@ -304,6 +295,14 @@
       "low": 4440.09,
       "vendors": {
         "herobullion": 4440.09
+      }
+    },
+    {
+      "window": "2026-09-22T05:00:00.000Z",
+      "median": 4358.49,
+      "low": 4358.49,
+      "vendors": {
+        "mintbuilder": 4358.49
       }
     }
   ]
