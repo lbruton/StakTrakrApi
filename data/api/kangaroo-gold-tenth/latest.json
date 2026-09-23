@@ -1,8 +1,8 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-09-23T17:00:00Z",
+  "window_start": "2026-09-23T17:30:00Z",
   "median_price": 508.14,
-  "lowest_price": 472.68,
+  "lowest_price": 475.23,
   "vendors": {
     "apmex": {
       "price": 508.14,
@@ -10,23 +10,25 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 472.68,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "jmbullion": {
-      "price": 510.84,
+      "price": 508.2,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 475.66,
+      "price": 475.23,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 472.68,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-23T15:30:01.525Z"
     },
     "sdbullion": {
       "price": 508.95,
@@ -47,10 +49,10 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
+    "bullionexchanges": true,
     "sdbullion": true,
     "summitmetals": true
   },
@@ -59,18 +61,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-22T16:00:00.000Z",
-      "median": 512.85,
-      "low": 480.41,
-      "vendors": {
-        "apmex": 512.97,
-        "monumentmetals": 480.41,
-        "sdbullion": 511.89,
-        "jmbullion": 512.85,
-        "summitmetals": 537.78
-      }
-    },
     {
       "window": "2026-09-22T17:00:00.000Z",
       "median": 513.17,
@@ -262,6 +252,15 @@
         "apmex": 508.14,
         "monumentmetals": 475.66,
         "jmbullion": 510.84
+      }
+    },
+    {
+      "window": "2026-09-23T17:00:00.000Z",
+      "median": 508.2,
+      "low": 475.23,
+      "vendors": {
+        "jmbullion": 508.2,
+        "monumentmetals": 475.23
       }
     }
   ]
