@@ -1,11 +1,17 @@
 {
   "slug": "age-tenth",
-  "window_start": "2026-09-26T04:00:00Z",
+  "window_start": "2026-09-26T04:30:00Z",
   "median_price": 502.67,
-  "lowest_price": 478.07,
+  "lowest_price": 477.24,
   "vendors": {
     "apmex": {
-      "price": 519.6,
+      "price": 519.06,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 477.24,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -23,7 +29,7 @@
       "inStock": true
     },
     "jmbullion": {
-      "price": 534.57,
+      "price": 533.22,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -46,14 +52,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 477.24,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-26T01:30:01.884Z"
-    },
     "mintbuilder": {
       "price": 465.05,
       "confidence": null,
@@ -65,27 +63,18 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
-    "bullionexchanges": true,
     "mintbuilder": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-25T03:00:00.000Z",
-      "median": 518.8,
-      "low": 477.19,
-      "vendors": {
-        "apmex": 518.8,
-        "gainesvillecoins": 477.19
-      }
-    },
     {
       "window": "2026-09-25T04:00:00.000Z",
       "median": 531.42,
@@ -328,6 +317,18 @@
         "herobullion": 498.55,
         "summitmetals": 509.36,
         "gainesvillecoins": 478.07
+      }
+    },
+    {
+      "window": "2026-09-26T04:00:00.000Z",
+      "median": 502.67,
+      "low": 477.24,
+      "vendors": {
+        "jmbullion": 533.22,
+        "apmex": 519.06,
+        "sdbullion": 502.67,
+        "monumentmetals": 485.38,
+        "bullionexchanges": 477.24
       }
     }
   ]
