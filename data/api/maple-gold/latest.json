@@ -1,17 +1,11 @@
 {
   "slug": "maple-gold",
-  "window_start": "2026-09-26T13:00:00Z",
-  "median_price": 4455.7,
+  "window_start": "2026-09-26T13:30:00Z",
+  "median_price": 4456.56,
   "lowest_price": 4315.49,
   "vendors": {
     "apmex": {
       "price": 4455.7,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 4337.49,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -28,17 +22,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 4377.8,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "summitmetals": {
       "price": 4456.56,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 4337.49,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-26T11:30:01.629Z"
     },
     "gainesvillecoins": {
       "price": 4351.5,
@@ -47,6 +43,14 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-26T09:30:01.686Z"
+    },
+    "monumentmetals": {
+      "price": 4377.8,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-26T11:30:01.629Z"
     },
     "sdbullion": {
       "price": 4425.5,
@@ -59,13 +63,13 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": false,
     "jmbullion": true,
     "mintbuilder": true,
-    "monumentmetals": true,
     "summitmetals": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
+    "monumentmetals": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {
@@ -73,16 +77,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-25T12:00:00.000Z",
-      "median": 4447.42,
-      "low": 4441.68,
-      "vendors": {
-        "summitmetals": 4473.74,
-        "sdbullion": 4441.68,
-        "jmbullion": 4447.42
-      }
-    },
     {
       "window": "2026-09-25T13:00:00.000Z",
       "median": 4476.06,
@@ -335,6 +329,16 @@
         "summitmetals": 4456.56,
         "apmex": 4455.7,
         "mintbuilder": 4315.49
+      }
+    },
+    {
+      "window": "2026-09-26T13:00:00.000Z",
+      "median": 4455.7,
+      "low": 4315.49,
+      "vendors": {
+        "summitmetals": 4456.56,
+        "mintbuilder": 4315.49,
+        "apmex": 4455.7
       }
     }
   ]
