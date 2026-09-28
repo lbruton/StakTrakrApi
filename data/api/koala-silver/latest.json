@@ -1,17 +1,29 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-09-28T09:00:00Z",
+  "window_start": "2026-09-28T09:30:00Z",
   "median_price": 70.58,
-  "lowest_price": 67.14,
+  "lowest_price": 67.28,
   "vendors": {
     "apmex": {
-      "price": 72.89,
+      "price": 72.92,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "herobullion": {
+      "price": 69,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 73.36,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 67.14,
+      "price": 67.28,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -21,47 +33,22 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "herobullion": {
-      "price": 69.87,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-28T02:30:01.801Z"
-    },
-    "jmbullion": {
-      "price": 73.62,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-28T03:30:01.434Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "herobullion": true,
+    "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": false,
-    "bullionexchanges": true,
-    "herobullion": true,
-    "jmbullion": true
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {
     "summitmetals": 71.56
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-27T08:00:00.000Z",
-      "median": 75.4,
-      "low": 70.5,
-      "vendors": {
-        "monumentmetals": 70.5,
-        "jmbullion": 75.4
-      }
-    },
     {
       "window": "2026-09-27T09:00:00.000Z",
       "median": 75.47,
@@ -262,6 +249,17 @@
       "low": 70.58,
       "vendors": {
         "sdbullion": 70.58
+      }
+    },
+    {
+      "window": "2026-09-28T09:00:00.000Z",
+      "median": 72.92,
+      "low": 67.28,
+      "vendors": {
+        "apmex": 72.92,
+        "jmbullion": 73.36,
+        "monumentmetals": 67.28,
+        "herobullion": 69
       }
     }
   ]
