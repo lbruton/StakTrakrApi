@@ -1,20 +1,28 @@
 {
   "slug": "goldback-wyoming-g1",
-  "window_start": "2026-09-28T08:00:00Z",
-  "median_price": 8.29,
-  "lowest_price": 8.17,
+  "window_start": "2026-09-28T08:30:00Z",
+  "median_price": 8.93,
+  "lowest_price": 8.26,
   "vendors": {
-    "apmex": {
-      "price": 8.17,
+    "herobullion": {
+      "price": 8.93,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 8.29,
-      "confidence": 80,
+      "price": 8.26,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.17,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-09-28T06:30:01.553Z"
     },
     "bullionexchanges": {
       "price": 8.17,
@@ -23,35 +31,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-09-28T05:30:02.134Z"
-    },
-    "herobullion": {
-      "price": 9.02,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-28T03:30:01.434Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
+    "herobullion": true,
     "sdbullion": true,
-    "bullionexchanges": true,
-    "herobullion": true
+    "apmex": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-27T06:00:00.000Z",
-      "median": 8.39,
-      "low": 8.26,
-      "vendors": {
-        "bullionexchanges": 8.26,
-        "apmex": 8.39,
-        "sdbullion": 8.4
-      }
-    },
     {
       "window": "2026-09-27T08:00:00.000Z",
       "median": 9.19,
@@ -247,6 +237,15 @@
       "vendors": {
         "apmex": 8.17,
         "sdbullion": 8.29
+      }
+    },
+    {
+      "window": "2026-09-28T08:00:00.000Z",
+      "median": 8.93,
+      "low": 8.26,
+      "vendors": {
+        "herobullion": 8.93,
+        "sdbullion": 8.26
       }
     }
   ]
