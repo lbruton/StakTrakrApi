@@ -1,11 +1,17 @@
 {
   "slug": "ase",
-  "window_start": "2026-09-29T23:00:00Z",
+  "window_start": "2026-09-29T23:30:00Z",
   "median_price": 68.04,
-  "lowest_price": 63.99,
+  "lowest_price": 63.92,
   "vendors": {
     "apmex": {
-      "price": 69.22,
+      "price": 69.25,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 66.55,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -29,18 +35,10 @@
       "inStock": true
     },
     "mintbuilder": {
-      "price": 63.99,
-      "confidence": 50,
+      "price": 63.92,
+      "confidence": 30,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 66.44,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-09-29T20:30:01.866Z"
     },
     "monumentmetals": {
       "price": 67.94,
@@ -69,11 +67,11 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true,
-    "bullionexchanges": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true
@@ -81,16 +79,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-28T22:00:00.000Z",
-      "median": 68.14,
-      "low": 67.23,
-      "vendors": {
-        "sdbullion": 68.36,
-        "summitmetals": 68.14,
-        "herobullion": 67.23
-      }
-    },
     {
       "window": "2026-09-28T23:00:00.000Z",
       "median": 68.58,
@@ -347,6 +335,16 @@
         "herobullion": 68.04,
         "gainesvillecoins": 66.8,
         "mintbuilder": 63.99
+      }
+    },
+    {
+      "window": "2026-09-29T23:00:00.000Z",
+      "median": 66.55,
+      "low": 63.92,
+      "vendors": {
+        "mintbuilder": 63.92,
+        "bullionexchanges": 66.55,
+        "apmex": 69.25
       }
     }
   ]
