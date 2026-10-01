@@ -1,20 +1,28 @@
 {
   "slug": "kookaburra-gold-tenth",
-  "window_start": "2026-10-01T06:00:00Z",
-  "median_price": 539.48,
-  "lowest_price": 472.81,
+  "window_start": "2026-10-01T06:30:00Z",
+  "median_price": 472.81,
+  "lowest_price": 453.38,
   "vendors": {
-    "apmex": {
-      "price": 539.48,
-      "confidence": 60,
+    "herobullion": {
+      "price": 472.81,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 472.81,
-      "confidence": 35,
+    "summitmetals": {
+      "price": 453.38,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 539.48,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-01T04:30:01.656Z"
     },
     "monumentmetals": {
       "price": 450.72,
@@ -23,37 +31,20 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-01T03:30:02.239Z"
-    },
-    "summitmetals": {
-      "price": 450.52,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-01T03:30:02.239Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-30T05:00:00.000Z",
-      "median": 539.86,
-      "low": 470.78,
-      "vendors": {
-        "herobullion": 470.78,
-        "apmex": 539.86
-      }
-    },
     {
       "window": "2026-09-30T07:00:00.000Z",
       "median": 473.36,
@@ -188,6 +179,14 @@
       "low": 472.81,
       "vendors": {
         "herobullion": 472.81
+      }
+    },
+    {
+      "window": "2026-10-01T06:00:00.000Z",
+      "median": 453.38,
+      "low": 453.38,
+      "vendors": {
+        "summitmetals": 453.38
       }
     }
   ]
