@@ -1,32 +1,34 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-10-01T13:00:00Z",
-  "median_price": 66.25,
-  "lowest_price": 64.41,
+  "window_start": "2026-10-01T13:30:00Z",
+  "median_price": 64.89,
+  "lowest_price": 64.5,
   "vendors": {
     "apmex": {
       "price": 67.91,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
-      "price": 64.41,
+      "price": 64.5,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "mintbuilder": {
+      "price": 64.89,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 66.25,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "mintbuilder": {
-      "price": 64.93,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-01T11:30:01.689Z"
     },
     "jmbullion": {
       "price": 72.22,
@@ -56,8 +58,8 @@
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "mintbuilder": true,
+    "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
@@ -66,16 +68,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-09-30T12:00:00.000Z",
-      "median": 65.9,
-      "low": 64.25,
-      "vendors": {
-        "bullionexchanges": 64.25,
-        "monumentmetals": 65.9,
-        "sdbullion": 67.62
-      }
-    },
     {
       "window": "2026-09-30T13:00:00.000Z",
       "median": 67.49,
@@ -290,6 +282,15 @@
         "bullionexchanges": 64.41,
         "apmex": 67.91,
         "mintbuilder": 64.93
+      }
+    },
+    {
+      "window": "2026-10-01T13:00:00.000Z",
+      "median": 64.89,
+      "low": 64.5,
+      "vendors": {
+        "mintbuilder": 64.89,
+        "bullionexchanges": 64.5
       }
     }
   ]
