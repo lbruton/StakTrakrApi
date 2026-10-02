@@ -1,20 +1,28 @@
 {
   "slug": "goldback-new-hampshire-g1",
-  "window_start": "2026-10-02T04:00:00Z",
-  "median_price": 8.15,
-  "lowest_price": 7.93,
+  "window_start": "2026-10-02T04:30:00Z",
+  "median_price": 8.3,
+  "lowest_price": 8.2,
   "vendors": {
     "apmex": {
-      "price": 8.15,
+      "price": 8.2,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.3,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
       "price": 7.93,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-02T02:30:01.946Z"
     },
     "herobullion": {
       "price": 8.96,
@@ -23,43 +31,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-02T00:30:01.879Z"
-    },
-    "sdbullion": {
-      "price": 8.26,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-02T01:30:01.990Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "sdbullion": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "sdbullion": true
+    "herobullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-01T02:00:00.000Z",
-      "median": 8.26,
-      "low": 8.26,
-      "vendors": {
-        "sdbullion": 8.26
-      }
-    },
-    {
-      "window": "2026-10-01T03:00:00.000Z",
-      "median": 8.16,
-      "low": 8.02,
-      "vendors": {
-        "bullionexchanges": 8.02,
-        "apmex": 8.16,
-        "sdbullion": 8.28
-      }
-    },
     {
       "window": "2026-10-01T04:00:00.000Z",
       "median": 8.18,
@@ -218,6 +200,15 @@
       "vendors": {
         "bullionexchanges": 7.93,
         "apmex": 8.15
+      }
+    },
+    {
+      "window": "2026-10-02T04:00:00.000Z",
+      "median": 8.3,
+      "low": 8.2,
+      "vendors": {
+        "apmex": 8.2,
+        "sdbullion": 8.3
       }
     }
   ]
