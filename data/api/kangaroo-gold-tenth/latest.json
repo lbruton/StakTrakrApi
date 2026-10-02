@@ -1,15 +1,9 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-10-02T07:00:00Z",
-  "median_price": 493.6,
+  "window_start": "2026-10-02T07:30:00Z",
+  "median_price": 491.73,
   "lowest_price": 462.17,
   "vendors": {
-    "apmex": {
-      "price": 484.08,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 462.17,
       "confidence": 50,
@@ -17,16 +11,24 @@
       "inStock": true
     },
     "jmbullion": {
-      "price": 493.6,
+      "price": 491.73,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
-      "price": 538.47,
+      "price": 538.57,
       "confidence": 35,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 484.08,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-02T05:30:01.771Z"
     },
     "monumentmetals": {
       "price": 462.85,
@@ -46,29 +48,17 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": false,
     "jmbullion": true,
     "summitmetals": true,
+    "apmex": true,
+    "herobullion": true,
     "monumentmetals": true,
     "sdbullion": true
   },
-  "last_known_price_by_site": {
-    "herobullion": 509.48
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-01T06:00:00.000Z",
-      "median": 495.67,
-      "low": 465.79,
-      "vendors": {
-        "summitmetals": 538.19,
-        "sdbullion": 495.67,
-        "monumentmetals": 465.79
-      }
-    },
     {
       "window": "2026-10-01T07:00:00.000Z",
       "median": 492.39,
@@ -302,6 +292,15 @@
       "vendors": {
         "jmbullion": 493.6,
         "bullionexchanges": 462.17
+      }
+    },
+    {
+      "window": "2026-10-02T07:00:00.000Z",
+      "median": 538.57,
+      "low": 491.73,
+      "vendors": {
+        "jmbullion": 491.73,
+        "summitmetals": 538.57
       }
     }
   ]
