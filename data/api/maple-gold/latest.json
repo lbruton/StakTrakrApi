@@ -1,11 +1,17 @@
 {
   "slug": "maple-gold",
-  "window_start": "2026-10-02T21:00:00Z",
+  "window_start": "2026-10-02T21:30:00Z",
   "median_price": 4282.55,
   "lowest_price": 4174.09,
   "vendors": {
     "apmex": {
-      "price": 4317.49,
+      "price": 4317.59,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 4195.59,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -28,12 +34,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 4245.4,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
       "price": 4282.55,
       "confidence": 80,
@@ -45,35 +45,32 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "monumentmetals": {
+      "price": 4245.4,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-02T19:30:01.784Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": false,
     "jmbullion": true,
     "mintbuilder": true,
-    "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
-    "bullionexchanges": true
+    "monumentmetals": true
   },
   "last_known_price_by_site": {
     "herobullion": 4387.48
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-01T20:00:00.000Z",
-      "median": 4349.88,
-      "low": 4254.9,
-      "vendors": {
-        "apmex": 4350.59,
-        "jmbullion": 4349.88,
-        "mintbuilder": 4254.9,
-        "summitmetals": 4340.81
-      }
-    },
     {
       "window": "2026-10-01T21:00:00.000Z",
       "median": 4270.8,
@@ -301,6 +298,15 @@
         "gainesvillecoins": 4174.09,
         "sdbullion": 4282.55,
         "summitmetals": 4307.28
+      }
+    },
+    {
+      "window": "2026-10-02T21:00:00.000Z",
+      "median": 4317.59,
+      "low": 4195.59,
+      "vendors": {
+        "bullionexchanges": 4195.59,
+        "apmex": 4317.59
       }
     }
   ]
