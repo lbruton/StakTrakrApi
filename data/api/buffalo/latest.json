@@ -1,15 +1,9 @@
 {
   "slug": "buffalo",
-  "window_start": "2026-10-04T16:00:00Z",
-  "median_price": 4340.51,
+  "window_start": "2026-10-04T16:30:00Z",
+  "median_price": 4336.16,
   "lowest_price": 4277.38,
   "vendors": {
-    "apmex": {
-      "price": 4451.59,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 4319.75,
       "confidence": 80,
@@ -40,11 +34,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "summitmetals": {
-      "price": 4448.55,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 4451.59,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-04T14:30:01.877Z"
     },
     "mintbuilder": {
       "price": 4294.6,
@@ -61,32 +57,30 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-04T11:30:01.636Z"
+    },
+    "summitmetals": {
+      "price": 4448.55,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-04T14:30:01.877Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "summitmetals": true,
+    "apmex": true,
     "mintbuilder": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-03T15:00:00.000Z",
-      "median": 4319.75,
-      "low": 4294.6,
-      "vendors": {
-        "mintbuilder": 4294.6,
-        "sdbullion": 4386.79,
-        "bullionexchanges": 4319.75
-      }
-    },
     {
       "window": "2026-10-03T16:00:00.000Z",
       "median": 4386.79,
@@ -348,6 +342,15 @@
         "jmbullion": 4486.29,
         "gainesvillecoins": 4277.38,
         "bullionexchanges": 4319.75
+      }
+    },
+    {
+      "window": "2026-10-04T16:00:00.000Z",
+      "median": 4319.75,
+      "low": 4277.38,
+      "vendors": {
+        "bullionexchanges": 4319.75,
+        "gainesvillecoins": 4277.38
       }
     }
   ]
