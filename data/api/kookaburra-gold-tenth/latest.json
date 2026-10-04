@@ -1,14 +1,22 @@
 {
   "slug": "kookaburra-gold-tenth",
-  "window_start": "2026-10-04T19:00:00Z",
-  "median_price": 535.65,
-  "lowest_price": 535.65,
+  "window_start": "2026-10-04T19:30:00Z",
+  "median_price": 448.56,
+  "lowest_price": 448.56,
   "vendors": {
-    "apmex": {
-      "price": 535.65,
-      "confidence": 60,
+    "summitmetals": {
+      "price": 448.56,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 535.65,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-04T17:30:01.928Z"
     },
     "herobullion": {
       "price": 467.14,
@@ -25,46 +33,20 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-04T16:30:02.070Z"
-    },
-    "summitmetals": {
-      "price": 448.56,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-04T14:30:01.877Z"
     }
   },
   "availability_by_site": {
+    "summitmetals": true,
     "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-03T17:00:00.000Z",
-      "median": 535.65,
-      "low": 448.56,
-      "vendors": {
-        "summitmetals": 448.56,
-        "apmex": 535.65
-      }
-    },
-    {
-      "window": "2026-10-03T18:00:00.000Z",
-      "median": 535.65,
-      "low": 467.14,
-      "vendors": {
-        "herobullion": 467.14,
-        "apmex": 535.65
-      }
-    },
     {
       "window": "2026-10-03T20:00:00.000Z",
       "median": 442.78,
@@ -245,6 +227,14 @@
       "low": 535.65,
       "vendors": {
         "apmex": 535.65
+      }
+    },
+    {
+      "window": "2026-10-04T19:00:00.000Z",
+      "median": 448.56,
+      "low": 448.56,
+      "vendors": {
+        "summitmetals": 448.56
       }
     }
   ]
