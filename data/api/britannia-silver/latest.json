@@ -1,11 +1,17 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-10-06T00:00:00Z",
+  "window_start": "2026-10-06T00:30:00Z",
   "median_price": 67.96,
   "lowest_price": 62.29,
   "vendors": {
     "apmex": {
       "price": 71.84,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 72.67,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -23,18 +29,10 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 67.43,
+      "price": 67.4,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "jmbullion": {
-      "price": 72.01,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-05T21:30:01.290Z"
     },
     "monumentmetals": {
       "price": 64.75,
@@ -47,29 +45,17 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": false,
+    "jmbullion": true,
     "mintbuilder": true,
     "sdbullion": true,
     "summitmetals": true,
     "bullionexchanges": true,
-    "jmbullion": true,
+    "herobullion": true,
     "monumentmetals": true
   },
-  "last_known_price_by_site": {
-    "herobullion": 64.97
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-04T23:00:00.000Z",
-      "median": 71.49,
-      "low": 67.12,
-      "vendors": {
-        "jmbullion": 72.01,
-        "apmex": 71.49,
-        "summitmetals": 67.12
-      }
-    },
     {
       "window": "2026-10-05T00:00:00.000Z",
       "median": 67.48,
@@ -264,6 +250,16 @@
         "sdbullion": 67.96,
         "apmex": 71.84,
         "mintbuilder": 62.29
+      }
+    },
+    {
+      "window": "2026-10-06T00:00:00.000Z",
+      "median": 67.96,
+      "low": 67.4,
+      "vendors": {
+        "summitmetals": 67.4,
+        "jmbullion": 72.67,
+        "sdbullion": 67.96
       }
     }
   ]
