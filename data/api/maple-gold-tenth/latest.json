@@ -1,20 +1,22 @@
 {
   "slug": "maple-gold-tenth",
-  "window_start": "2026-10-06T15:00:00Z",
-  "median_price": 554.75,
-  "lowest_price": 446.51,
+  "window_start": "2026-10-06T15:30:00Z",
+  "median_price": 502.43,
+  "lowest_price": 502.43,
   "vendors": {
-    "gainesvillecoins": {
-      "price": 446.51,
-      "confidence": 35,
+    "apmex": {
+      "price": 502.43,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 554.75,
-      "confidence": 60,
-      "source": "firecrawl",
-      "inStock": true
+    "gainesvillecoins": {
+      "price": 446.51,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-06T13:30:02.226Z"
     },
     "herobullion": {
       "price": 472.52,
@@ -23,6 +25,14 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-06T08:30:01.446Z"
+    },
+    "jmbullion": {
+      "price": 554.75,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-06T13:30:02.226Z"
     },
     "mintbuilder": {
       "price": 455.7,
@@ -58,11 +68,11 @@
     }
   },
   "availability_by_site": {
-    "gainesvillecoins": true,
-    "jmbullion": true,
     "apmex": true,
     "bullionexchanges": true,
+    "gainesvillecoins": true,
     "herobullion": true,
+    "jmbullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
@@ -71,27 +81,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-05T13:00:00.000Z",
-      "median": 478.84,
-      "low": 464.79,
-      "vendors": {
-        "summitmetals": 479.55,
-        "sdbullion": 478.84,
-        "monumentmetals": 464.79,
-        "herobullion": 472.27
-      }
-    },
-    {
-      "window": "2026-10-05T14:00:00.000Z",
-      "median": 477.49,
-      "low": 451.05,
-      "vendors": {
-        "jmbullion": 557.82,
-        "mintbuilder": 451.05,
-        "summitmetals": 477.49
-      }
-    },
     {
       "window": "2026-10-05T15:00:00.000Z",
       "median": 477.09,
@@ -319,6 +308,14 @@
       "vendors": {
         "gainesvillecoins": 446.51,
         "jmbullion": 554.75
+      }
+    },
+    {
+      "window": "2026-10-06T15:00:00.000Z",
+      "median": 502.43,
+      "low": 502.43,
+      "vendors": {
+        "apmex": 502.43
       }
     }
   ]
