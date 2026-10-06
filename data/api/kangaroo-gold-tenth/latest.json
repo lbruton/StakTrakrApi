@@ -1,32 +1,34 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-10-06T01:00:00Z",
-  "median_price": 491.01,
-  "lowest_price": 457.13,
+  "window_start": "2026-10-06T01:30:00Z",
+  "median_price": 490.51,
+  "lowest_price": 489.43,
   "vendors": {
     "apmex": {
-      "price": 491.01,
+      "price": 490.51,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 457.13,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "sdbullion": {
-      "price": 489.75,
+      "price": 489.43,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
-      "price": 538.64,
+      "price": 538.06,
       "confidence": 35,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 457.13,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-05T23:30:01.827Z"
     },
     "jmbullion": {
       "price": 490.42,
@@ -47,10 +49,10 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "herobullion": false,
     "sdbullion": true,
     "summitmetals": true,
+    "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true
   },
@@ -59,15 +61,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-05T00:00:00.000Z",
-      "median": 491.56,
-      "low": 457.7,
-      "vendors": {
-        "sdbullion": 491.56,
-        "bullionexchanges": 457.7
-      }
-    },
     {
       "window": "2026-10-05T01:00:00.000Z",
       "median": 490.42,
@@ -282,6 +275,16 @@
       "vendors": {
         "apmex": 491.01,
         "summitmetals": 538.64
+      }
+    },
+    {
+      "window": "2026-10-06T01:00:00.000Z",
+      "median": 490.51,
+      "low": 489.43,
+      "vendors": {
+        "summitmetals": 538.06,
+        "sdbullion": 489.43,
+        "apmex": 490.51
       }
     }
   ]
