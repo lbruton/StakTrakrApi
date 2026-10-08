@@ -1,17 +1,11 @@
 {
   "slug": "age",
-  "window_start": "2026-10-08T16:00:00Z",
+  "window_start": "2026-10-08T16:30:00Z",
   "median_price": 4261.1,
   "lowest_price": 4189.05,
   "vendors": {
     "apmex": {
       "price": 4350.49,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 4291.62,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -35,16 +29,24 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 4255.77,
+      "price": 4260.47,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
-      "price": 4343.09,
+      "price": 4346.36,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 4291.62,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-08T14:30:02.192Z"
     },
     "jmbullion": {
       "price": 4404.13,
@@ -65,28 +67,18 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
+    "bullionexchanges": true,
     "jmbullion": true,
     "mintbuilder": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-07T15:00:00.000Z",
-      "median": 4244.68,
-      "low": 4240.08,
-      "vendors": {
-        "sdbullion": 4244.68,
-        "monumentmetals": 4240.08,
-        "apmex": 4345.09
-      }
-    },
     {
       "window": "2026-10-07T16:00:00.000Z",
       "median": 4339.61,
@@ -322,6 +314,15 @@
         "sdbullion": 4255.77,
         "gainesvillecoins": 4189.05,
         "monumentmetals": 4246
+      }
+    },
+    {
+      "window": "2026-10-08T16:00:00.000Z",
+      "median": 4346.36,
+      "low": 4260.47,
+      "vendors": {
+        "sdbullion": 4260.47,
+        "summitmetals": 4346.36
       }
     }
   ]
