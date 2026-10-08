@@ -1,16 +1,20 @@
 {
   "slug": "goldback-arizona-g1",
-  "window_start": "2026-10-08T19:30:00Z",
-  "median_price": null,
-  "lowest_price": null,
+  "window_start": "2026-10-08T20:30:00Z",
+  "median_price": 8.25,
+  "lowest_price": 8.1,
   "vendors": {
     "apmex": {
-      "price": 8.07,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-08T15:30:01.962Z"
+      "price": 8.1,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.25,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "bullionexchanges": {
       "price": 7.91,
@@ -19,50 +23,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-08T15:30:01.962Z"
-    },
-    "sdbullion": {
-      "price": 8.24,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-08T17:30:02.015Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
-    "herobullion": true,
-    "sdbullion": true
+    "herobullion": false,
+    "sdbullion": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-07T17:00:00.000Z",
-      "median": 8.06,
-      "low": 8.06,
-      "vendors": {
-        "apmex": 8.06
-      }
-    },
-    {
-      "window": "2026-10-07T18:00:00.000Z",
-      "median": 8.22,
-      "low": 8.22,
-      "vendors": {
-        "sdbullion": 8.22
-      }
-    },
-    {
-      "window": "2026-10-07T19:00:00.000Z",
-      "median": 8.22,
-      "low": 8.05,
-      "vendors": {
-        "sdbullion": 8.22,
-        "apmex": 8.05
-      }
-    },
     {
       "window": "2026-10-07T20:00:00.000Z",
       "median": 8.06,
@@ -188,6 +159,15 @@
       "low": 8.24,
       "vendors": {
         "sdbullion": 8.24
+      }
+    },
+    {
+      "window": "2026-10-08T20:00:00.000Z",
+      "median": 8.25,
+      "low": 8.1,
+      "vendors": {
+        "apmex": 8.1,
+        "sdbullion": 8.25
       }
     }
   ]
