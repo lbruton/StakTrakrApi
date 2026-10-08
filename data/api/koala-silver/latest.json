@@ -1,17 +1,17 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-10-08T00:00:00Z",
-  "median_price": 67.63,
+  "window_start": "2026-10-08T00:30:00Z",
+  "median_price": 67.43,
   "lowest_price": 63.84,
   "vendors": {
-    "apmex": {
-      "price": 68.49,
+    "herobullion": {
+      "price": 67.43,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 67.63,
+    "sdbullion": {
+      "price": 69.4,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -22,6 +22,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 68.49,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-07T22:30:01.691Z"
+    },
     "monumentmetals": {
       "price": 65.81,
       "confidence": null,
@@ -29,37 +37,20 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-07T21:30:01.263Z"
-    },
-    "sdbullion": {
-      "price": 69.55,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-07T17:30:02.016Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "monumentmetals": true,
-    "sdbullion": true
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-06T23:00:00.000Z",
-      "median": 71.02,
-      "low": 65.54,
-      "vendors": {
-        "summitmetals": 65.54,
-        "sdbullion": 71.02
-      }
-    },
     {
       "window": "2026-10-07T00:00:00.000Z",
       "median": 70,
@@ -263,6 +254,15 @@
       "vendors": {
         "herobullion": 67.63,
         "summitmetals": 63.84
+      }
+    },
+    {
+      "window": "2026-10-08T00:00:00.000Z",
+      "median": 69.4,
+      "low": 67.43,
+      "vendors": {
+        "herobullion": 67.43,
+        "sdbullion": 69.4
       }
     }
   ]
