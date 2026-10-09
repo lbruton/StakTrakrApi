@@ -1,32 +1,34 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-10-09T13:00:00Z",
-  "median_price": 70.18,
+  "window_start": "2026-10-09T13:30:00Z",
+  "median_price": 67.18,
   "lowest_price": 65.65,
   "vendors": {
-    "apmex": {
-      "price": 70.18,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 65.65,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
       "price": 70.84,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 66.82,
-      "confidence": 50,
+      "price": 67.18,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 70.18,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-09T11:30:01.551Z"
     },
     "bullionexchanges": {
       "price": 63.69,
@@ -62,10 +64,10 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
     "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "mintbuilder": true,
     "monumentmetals": true,
@@ -74,17 +76,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-08T12:00:00.000Z",
-      "median": 63.92,
-      "low": 62.67,
-      "vendors": {
-        "sdbullion": 65.28,
-        "monumentmetals": 63.01,
-        "mintbuilder": 62.67,
-        "herobullion": 63.92
-      }
-    },
     {
       "window": "2026-10-08T13:00:00.000Z",
       "median": 65.58,
@@ -313,6 +304,14 @@
       "vendors": {
         "herobullion": 65.65,
         "jmbullion": 70.84
+      }
+    },
+    {
+      "window": "2026-10-09T13:00:00.000Z",
+      "median": 67.18,
+      "low": 67.18,
+      "vendors": {
+        "sdbullion": 67.18
       }
     }
   ]
