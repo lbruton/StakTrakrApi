@@ -1,7 +1,7 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-10-10T04:00:00Z",
-  "median_price": 68.64,
+  "window_start": "2026-10-10T04:30:00Z",
+  "median_price": 69.56,
   "lowest_price": 66.9,
   "vendors": {
     "apmex": {
@@ -10,17 +10,19 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "herobullion": {
-      "price": 68.64,
-      "confidence": 80,
+    "monumentmetals": {
+      "price": 66.9,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 66.9,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "herobullion": {
+      "price": 68.64,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-10T02:30:01.820Z"
     },
     "jmbullion": {
       "price": 70.5,
@@ -37,30 +39,28 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-09T21:30:01.729Z"
+    },
+    "summitmetals": {
+      "price": 64.87,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-09T16:30:01.629Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": true,
     "monumentmetals": true,
-    "summitmetals": false,
     "bullionexchanges": true,
+    "herobullion": true,
     "jmbullion": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "summitmetals": 64.87
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-09T03:00:00.000Z",
-      "median": 64.15,
-      "low": 64.15,
-      "vendors": {
-        "summitmetals": 64.15
-      }
-    },
     {
       "window": "2026-10-09T04:00:00.000Z",
       "median": 71.48,
@@ -274,6 +274,15 @@
       "low": 66.9,
       "vendors": {
         "monumentmetals": 66.9
+      }
+    },
+    {
+      "window": "2026-10-10T04:00:00.000Z",
+      "median": 69.56,
+      "low": 66.9,
+      "vendors": {
+        "monumentmetals": 66.9,
+        "apmex": 69.56
       }
     }
   ]
