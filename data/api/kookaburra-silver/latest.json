@@ -1,12 +1,12 @@
 {
   "slug": "kookaburra-silver",
-  "window_start": "2026-10-10T11:00:00Z",
+  "window_start": "2026-10-10T11:30:00Z",
   "median_price": 70.52,
   "lowest_price": 67.56,
   "vendors": {
-    "apmex": {
-      "price": 78.57,
-      "confidence": 15,
+    "mintbuilder": {
+      "price": 72.21,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -22,6 +22,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 78.57,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-10T09:30:01.926Z"
+    },
     "herobullion": {
       "price": 69.55,
       "confidence": null,
@@ -29,14 +37,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-10T08:30:01.916Z"
-    },
-    "mintbuilder": {
-      "price": 72.17,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-09T14:30:01.428Z"
     },
     "sdbullion": {
       "price": 72.44,
@@ -48,27 +48,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
+    "mintbuilder": true,
     "monumentmetals": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "mintbuilder": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-09T10:00:00.000Z",
-      "median": 69.89,
-      "low": 68.94,
-      "vendors": {
-        "summitmetals": 69.89,
-        "herobullion": 68.94
-      }
-    },
     {
       "window": "2026-10-09T11:00:00.000Z",
       "median": 71.76,
@@ -279,6 +270,14 @@
       "vendors": {
         "summitmetals": 70.52,
         "monumentmetals": 67.56
+      }
+    },
+    {
+      "window": "2026-10-10T11:00:00.000Z",
+      "median": 72.21,
+      "low": 72.21,
+      "vendors": {
+        "mintbuilder": 72.21
       }
     }
   ]
