@@ -1,15 +1,9 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-10-11T14:00:00Z",
+  "window_start": "2026-10-11T14:30:00Z",
   "median_price": 65.96,
   "lowest_price": 64.71,
   "vendors": {
-    "apmex": {
-      "price": 66.56,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 65.96,
       "confidence": 80,
@@ -21,6 +15,20 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "sdbullion": {
+      "price": 67.24,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 66.56,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-11T12:30:02.066Z"
     },
     "bullionexchanges": {
       "price": 64.46,
@@ -46,14 +54,6 @@
       "stale": true,
       "stale_since": "2026-10-11T11:30:02.184Z"
     },
-    "sdbullion": {
-      "price": 67.24,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-11T11:30:02.184Z"
-    },
     "summitmetals": {
       "price": 65.32,
       "confidence": null,
@@ -64,26 +64,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "mintbuilder": true,
+    "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-10T13:00:00.000Z",
-      "median": 64.46,
-      "low": 64.46,
-      "vendors": {
-        "bullionexchanges": 64.46
-      }
-    },
     {
       "window": "2026-10-10T14:00:00.000Z",
       "median": 65.32,
@@ -327,6 +319,15 @@
       "low": 65.96,
       "vendors": {
         "herobullion": 65.96
+      }
+    },
+    {
+      "window": "2026-10-11T14:00:00.000Z",
+      "median": 67.24,
+      "low": 64.71,
+      "vendors": {
+        "mintbuilder": 64.71,
+        "sdbullion": 67.24
       }
     }
   ]
