@@ -1,8 +1,8 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-10-12T17:00:00Z",
+  "window_start": "2026-10-12T17:30:00Z",
   "median_price": 64.64,
-  "lowest_price": 61.35,
+  "lowest_price": 61.24,
   "vendors": {
     "bullionexchanges": {
       "price": 64.64,
@@ -11,13 +11,19 @@
       "inStock": true
     },
     "mintbuilder": {
-      "price": 61.35,
+      "price": 61.24,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
+    "sdbullion": {
+      "price": 63.85,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "summitmetals": {
-      "price": 67.47,
+      "price": 66.6,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -53,39 +59,22 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-12T13:30:01.421Z"
-    },
-    "sdbullion": {
-      "price": 64.12,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-12T14:30:02.001Z"
     }
   },
   "availability_by_site": {
     "bullionexchanges": true,
     "mintbuilder": true,
+    "sdbullion": true,
     "summitmetals": true,
     "apmex": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "jmbullion": true,
-    "monumentmetals": true,
-    "sdbullion": true
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-11T16:00:00.000Z",
-      "median": 65.21,
-      "low": 64.44,
-      "vendors": {
-        "sdbullion": 64.44,
-        "bullionexchanges": 65.21
-      }
-    },
     {
       "window": "2026-10-11T17:00:00.000Z",
       "median": 64.44,
@@ -322,6 +311,16 @@
       "vendors": {
         "mintbuilder": 61.35,
         "bullionexchanges": 64.64
+      }
+    },
+    {
+      "window": "2026-10-12T17:00:00.000Z",
+      "median": 63.85,
+      "low": 61.24,
+      "vendors": {
+        "mintbuilder": 61.24,
+        "summitmetals": 66.6,
+        "sdbullion": 63.85
       }
     }
   ]
