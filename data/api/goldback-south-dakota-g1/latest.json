@@ -1,20 +1,28 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-10-14T04:00:00Z",
+  "window_start": "2026-10-14T04:30:00Z",
   "median_price": 8.96,
-  "lowest_price": 8.15,
+  "lowest_price": 8.27,
   "vendors": {
-    "apmex": {
-      "price": 8.15,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 8.96,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "sdbullion": {
+      "price": 8.27,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "apmex": {
+      "price": 8.15,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-14T02:30:01.879Z"
     },
     "bullionexchanges": {
       "price": 8,
@@ -23,33 +31,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-13T23:30:02.165Z"
-    },
-    "sdbullion": {
-      "price": 8.27,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-14T00:30:01.616Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
-    "bullionexchanges": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "apmex": true,
+    "bullionexchanges": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-13T03:00:00.000Z",
-      "median": 8.29,
-      "low": 8.29,
-      "vendors": {
-        "sdbullion": 8.29
-      }
-    },
     {
       "window": "2026-10-13T04:00:00.000Z",
       "median": 9.01,
@@ -192,6 +184,14 @@
       "low": 8.96,
       "vendors": {
         "herobullion": 8.96
+      }
+    },
+    {
+      "window": "2026-10-14T04:00:00.000Z",
+      "median": 8.27,
+      "low": 8.27,
+      "vendors": {
+        "sdbullion": 8.27
       }
     }
   ]
