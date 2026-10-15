@@ -1,8 +1,8 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-10-15T08:00:00Z",
+  "window_start": "2026-10-15T08:30:00Z",
   "median_price": 59.93,
-  "lowest_price": 56.98,
+  "lowest_price": 55.2,
   "vendors": {
     "gainesvillecoins": {
       "price": 56.98,
@@ -10,9 +10,21 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "mintbuilder": {
+      "price": 55.2,
+      "confidence": 30,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "monumentmetals": {
       "price": 59.93,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 62.31,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -39,41 +51,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-15T05:30:02.016Z"
-    },
-    "sdbullion": {
-      "price": 61.4,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-15T05:30:02.016Z"
     }
   },
   "availability_by_site": {
     "gainesvillecoins": true,
-    "mintbuilder": false,
+    "mintbuilder": true,
     "monumentmetals": true,
+    "sdbullion": true,
     "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "sdbullion": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "mintbuilder": 55.6
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-14T07:00:00.000Z",
-      "median": 64.19,
-      "low": 59.14,
-      "vendors": {
-        "apmex": 68.35,
-        "gainesvillecoins": 59.14,
-        "sdbullion": 64.19
-      }
-    },
     {
       "window": "2026-10-14T08:00:00.000Z",
       "median": 62.38,
@@ -271,6 +263,15 @@
       "vendors": {
         "monumentmetals": 59.93,
         "gainesvillecoins": 56.98
+      }
+    },
+    {
+      "window": "2026-10-15T08:00:00.000Z",
+      "median": 62.31,
+      "low": 55.2,
+      "vendors": {
+        "sdbullion": 62.31,
+        "mintbuilder": 55.2
       }
     }
   ]
