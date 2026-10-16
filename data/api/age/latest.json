@@ -1,20 +1,22 @@
 {
   "slug": "age",
-  "window_start": "2026-10-16T20:00:00Z",
+  "window_start": "2026-10-16T20:30:00Z",
   "median_price": 4385.96,
-  "lowest_price": 4373.19,
+  "lowest_price": 4385.96,
   "vendors": {
-    "apmex": {
-      "price": 4373.19,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "summitmetals": {
       "price": 4385.96,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 4373.19,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-16T18:30:02.133Z"
     },
     "bullionexchanges": {
       "price": 4347.93,
@@ -74,8 +76,8 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
