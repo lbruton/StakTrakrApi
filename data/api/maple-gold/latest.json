@@ -1,15 +1,9 @@
 {
   "slug": "maple-gold",
-  "window_start": "2026-10-16T21:00:00Z",
-  "median_price": 4309.14,
+  "window_start": "2026-10-16T21:30:00Z",
+  "median_price": 4216.59,
   "lowest_price": 4201.18,
   "vendors": {
-    "apmex": {
-      "price": 4356.59,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "gainesvillecoins": {
       "price": 4201.18,
       "confidence": 80,
@@ -17,8 +11,8 @@
       "inStock": true
     },
     "jmbullion": {
-      "price": 4345.71,
-      "confidence": 80,
+      "price": 4343.22,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -28,17 +22,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "monumentmetals": {
-      "price": 4271.4,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "sdbullion": {
-      "price": 4309.14,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 4356.59,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-16T19:30:01.855Z"
     },
     "bullionexchanges": {
       "price": 4217.09,
@@ -47,6 +37,22 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-16T17:30:01.366Z"
+    },
+    "monumentmetals": {
+      "price": 4271.4,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-16T19:30:01.855Z"
+    },
+    "sdbullion": {
+      "price": 4309.14,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-16T19:30:01.855Z"
     },
     "summitmetals": {
       "price": 4314.42,
@@ -58,14 +64,14 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "gainesvillecoins": true,
     "herobullion": false,
     "jmbullion": true,
     "mintbuilder": true,
+    "apmex": true,
+    "bullionexchanges": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "bullionexchanges": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {
@@ -73,15 +79,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-15T20:00:00.000Z",
-      "median": 4325.3,
-      "low": 4311.76,
-      "vendors": {
-        "sdbullion": 4311.76,
-        "summitmetals": 4325.3
-      }
-    },
     {
       "window": "2026-10-15T21:00:00.000Z",
       "median": 4311.84,
@@ -271,6 +268,14 @@
         "gainesvillecoins": 4201.18,
         "mintbuilder": 4216.59,
         "jmbullion": 4345.71
+      }
+    },
+    {
+      "window": "2026-10-16T21:00:00.000Z",
+      "median": 4343.22,
+      "low": 4343.22,
+      "vendors": {
+        "jmbullion": 4343.22
       }
     }
   ]
