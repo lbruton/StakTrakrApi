@@ -1,22 +1,26 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-10-17T04:00:00Z",
+  "window_start": "2026-10-17T04:30:00Z",
   "median_price": 61.67,
-  "lowest_price": 61.67,
+  "lowest_price": 59.07,
   "vendors": {
+    "apmex": {
+      "price": 67.73,
+      "confidence": 35,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "mintbuilder": {
+      "price": 59.07,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "monumentmetals": {
       "price": 61.67,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 67.75,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-16T20:30:01.700Z"
     },
     "herobullion": {
       "price": 62.4,
@@ -34,14 +38,6 @@
       "stale": true,
       "stale_since": "2026-10-17T01:30:02.042Z"
     },
-    "mintbuilder": {
-      "price": 59.07,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-16T22:30:01.255Z"
-    },
     "sdbullion": {
       "price": 62.61,
       "confidence": null,
@@ -52,26 +48,18 @@
     }
   },
   "availability_by_site": {
-    "monumentmetals": true,
     "apmex": true,
+    "mintbuilder": true,
+    "monumentmetals": true,
     "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
-    "mintbuilder": true,
     "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-16T03:00:00.000Z",
-      "median": 63,
-      "low": 63,
-      "vendors": {
-        "herobullion": 63
-      }
-    },
     {
       "window": "2026-10-16T04:00:00.000Z",
       "median": 68.53,
@@ -259,6 +247,15 @@
       "low": 61.67,
       "vendors": {
         "monumentmetals": 61.67
+      }
+    },
+    {
+      "window": "2026-10-17T04:00:00.000Z",
+      "median": 67.73,
+      "low": 59.07,
+      "vendors": {
+        "mintbuilder": 59.07,
+        "apmex": 67.73
       }
     }
   ]
