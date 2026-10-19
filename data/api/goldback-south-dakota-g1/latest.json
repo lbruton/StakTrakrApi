@@ -1,14 +1,22 @@
 {
   "slug": "goldback-south-dakota-g1",
-  "window_start": "2026-10-19T20:00:00Z",
-  "median_price": 8.12,
-  "lowest_price": 8.12,
+  "window_start": "2026-10-19T20:30:00Z",
+  "median_price": 8.91,
+  "lowest_price": 8.91,
   "vendors": {
-    "apmex": {
-      "price": 8.12,
+    "herobullion": {
+      "price": 8.91,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 8.12,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-19T18:30:01.943Z"
     },
     "bullionexchanges": {
       "price": 7.98,
@@ -17,14 +25,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-19T17:30:01.830Z"
-    },
-    "herobullion": {
-      "price": 8.92,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-19T16:30:01.510Z"
     },
     "sdbullion": {
       "price": 8.25,
@@ -36,33 +36,14 @@
     }
   },
   "availability_by_site": {
+    "herobullion": true,
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-18T18:00:00.000Z",
-      "median": 8.28,
-      "low": 8.15,
-      "vendors": {
-        "apmex": 8.15,
-        "sdbullion": 8.28,
-        "herobullion": 8.96
-      }
-    },
-    {
-      "window": "2026-10-18T19:00:00.000Z",
-      "median": 8.28,
-      "low": 8.02,
-      "vendors": {
-        "bullionexchanges": 8.02,
-        "sdbullion": 8.28
-      }
-    },
     {
       "window": "2026-10-18T20:00:00.000Z",
       "median": 8.28,
@@ -248,6 +229,14 @@
       "low": 8.12,
       "vendors": {
         "apmex": 8.12
+      }
+    },
+    {
+      "window": "2026-10-19T20:00:00.000Z",
+      "median": 8.91,
+      "low": 8.91,
+      "vendors": {
+        "herobullion": 8.91
       }
     }
   ]
