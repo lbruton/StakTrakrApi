@@ -1,38 +1,46 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-10-19T18:00:00Z",
-  "median_price": 57.74,
-  "lowest_price": 57.22,
+  "window_start": "2026-10-19T18:30:00Z",
+  "median_price": 60.85,
+  "lowest_price": 57.73,
   "vendors": {
     "apmex": {
-      "price": 66.92,
+      "price": 66.97,
       "confidence": 15,
       "source": "firecrawl",
       "inStock": true
     },
     "bullionexchanges": {
       "price": 57.74,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "gainesvillecoins": {
       "price": 57.73,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
       "price": 60.85,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 62.87,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "mintbuilder": {
       "price": 57.22,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-19T16:30:01.510Z"
     },
     "monumentmetals": {
       "price": 60.76,
@@ -41,14 +49,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-19T15:30:01.621Z"
-    },
-    "sdbullion": {
-      "price": 63.3,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-19T11:30:02.208Z"
     }
   },
   "availability_by_site": {
@@ -56,9 +56,9 @@
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
+    "sdbullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
-    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
@@ -289,6 +289,15 @@
         "gainesvillecoins": 57.73,
         "bullionexchanges": 57.74,
         "herobullion": 60.85
+      }
+    },
+    {
+      "window": "2026-10-19T18:00:00.000Z",
+      "median": 66.97,
+      "low": 62.87,
+      "vendors": {
+        "sdbullion": 62.87,
+        "apmex": 66.97
       }
     }
   ]
