@@ -1,12 +1,18 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-10-20T22:00:00Z",
-  "median_price": 64.61,
+  "window_start": "2026-10-20T22:30:00Z",
+  "median_price": 64.26,
   "lowest_price": 60.3,
   "vendors": {
     "apmex": {
       "price": 69.75,
-      "confidence": 30,
+      "confidence": 15,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 61.84,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -17,7 +23,7 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 64.61,
+      "price": 64.63,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -27,14 +33,6 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 61.61,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-20T19:30:02.229Z"
     },
     "jmbullion": {
       "price": 69.57,
@@ -63,10 +61,10 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
     "sdbullion": true,
     "summitmetals": true,
-    "bullionexchanges": true,
     "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true,
@@ -75,17 +73,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-19T21:00:00.000Z",
-      "median": 62.78,
-      "low": 59.4,
-      "vendors": {
-        "bullionexchanges": 60.93,
-        "apmex": 68.84,
-        "monumentmetals": 62.78,
-        "gainesvillecoins": 59.4
-      }
-    },
     {
       "window": "2026-10-19T22:00:00.000Z",
       "median": 63.25,
@@ -322,6 +309,15 @@
         "apmex": 69.75,
         "sdbullion": 64.61,
         "gainesvillecoins": 60.3
+      }
+    },
+    {
+      "window": "2026-10-20T22:00:00.000Z",
+      "median": 64.63,
+      "low": 61.84,
+      "vendors": {
+        "bullionexchanges": 61.84,
+        "sdbullion": 64.63
       }
     }
   ]
