@@ -1,20 +1,28 @@
 {
   "slug": "maple-gold-tenth",
-  "window_start": "2026-10-21T18:00:00Z",
-  "median_price": 553.99,
-  "lowest_price": 498.17,
+  "window_start": "2026-10-21T18:30:00Z",
+  "median_price": 553.91,
+  "lowest_price": 477.38,
   "vendors": {
-    "apmex": {
-      "price": 498.17,
+    "jmbullion": {
+      "price": 553.91,
+      "confidence": 60,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 477.38,
       "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
-    "jmbullion": {
-      "price": 553.99,
-      "confidence": 60,
-      "source": "firecrawl",
-      "inStock": true
+    "apmex": {
+      "price": 498.17,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-21T16:30:01.520Z"
     },
     "gainesvillecoins": {
       "price": 443.96,
@@ -48,14 +56,6 @@
       "stale": true,
       "stale_since": "2026-10-21T14:30:01.497Z"
     },
-    "sdbullion": {
-      "price": 477.5,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-21T15:30:01.897Z"
-    },
     "summitmetals": {
       "price": 474.24,
       "confidence": null,
@@ -66,28 +66,19 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "jmbullion": true,
+    "sdbullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
-    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-20T17:00:00.000Z",
-      "median": 553.45,
-      "low": 475.4,
-      "vendors": {
-        "jmbullion": 553.45,
-        "sdbullion": 475.4
-      }
-    },
     {
       "window": "2026-10-20T18:00:00.000Z",
       "median": 553.91,
@@ -321,6 +312,15 @@
       "low": 553.99,
       "vendors": {
         "jmbullion": 553.99
+      }
+    },
+    {
+      "window": "2026-10-21T18:00:00.000Z",
+      "median": 553.91,
+      "low": 477.38,
+      "vendors": {
+        "jmbullion": 553.91,
+        "sdbullion": 477.38
       }
     }
   ]
