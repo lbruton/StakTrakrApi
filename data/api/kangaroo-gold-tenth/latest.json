@@ -1,8 +1,8 @@
 {
   "slug": "kangaroo-gold-tenth",
-  "window_start": "2026-10-21T17:00:00Z",
+  "window_start": "2026-10-21T17:30:00Z",
   "median_price": 489.81,
-  "lowest_price": 457.21,
+  "lowest_price": 460.09,
   "vendors": {
     "apmex": {
       "price": 489.81,
@@ -10,23 +10,27 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "bullionexchanges": {
-      "price": 457.21,
+    "monumentmetals": {
+      "price": 460.09,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 457.21,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-21T15:30:01.897Z"
     },
     "herobullion": {
       "price": 489.91,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "monumentmetals": {
-      "price": 460.02,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-21T15:30:01.897Z"
     },
     "jmbullion": {
       "price": 489.12,
@@ -55,9 +59,9 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "monumentmetals": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "monumentmetals": true,
     "jmbullion": true,
     "sdbullion": true,
     "summitmetals": true
@@ -65,17 +69,6 @@
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-20T16:00:00.000Z",
-      "median": 488.29,
-      "low": 486.42,
-      "vendors": {
-        "summitmetals": 486.42,
-        "jmbullion": 487.61,
-        "apmex": 489.13,
-        "sdbullion": 488.29
-      }
-    },
     {
       "window": "2026-10-20T17:00:00.000Z",
       "median": 486.43,
@@ -294,6 +287,14 @@
       "vendors": {
         "monumentmetals": 460.02,
         "apmex": 489.81
+      }
+    },
+    {
+      "window": "2026-10-21T17:00:00.000Z",
+      "median": 460.09,
+      "low": 460.09,
+      "vendors": {
+        "monumentmetals": 460.09
       }
     }
   ]
