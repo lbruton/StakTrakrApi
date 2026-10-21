@@ -1,8 +1,8 @@
 {
   "slug": "generic-silver-bar-10oz",
-  "window_start": "2026-10-21T19:00:00Z",
-  "median_price": 622.5,
-  "lowest_price": 577.3,
+  "window_start": "2026-10-21T19:30:00Z",
+  "median_price": 623.3,
+  "lowest_price": 576,
   "vendors": {
     "apmex": {
       "price": 675.2,
@@ -17,22 +17,26 @@
       "inStock": true
     },
     "mintbuilder": {
-      "price": 577.3,
+      "price": 576,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
       "price": 599.5,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-21T17:30:01.559Z"
     },
     "summitmetals": {
       "price": 622.5,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-21T17:30:01.559Z"
     }
   },
   "availability_by_site": {
@@ -40,25 +44,16 @@
     "gainesvillecoins": true,
     "herobullion": false,
     "mintbuilder": true,
-    "monumentmetals": true,
-    "summitmetals": true,
     "bullionexchanges": true,
-    "sdbullion": true
+    "monumentmetals": true,
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {
     "herobullion": 615.8
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-20T18:00:00.000Z",
-      "median": 625,
-      "low": 614.31,
-      "vendors": {
-        "herobullion": 614.31,
-        "summitmetals": 625
-      }
-    },
     {
       "window": "2026-10-20T19:00:00.000Z",
       "median": 613.36,
@@ -254,6 +249,14 @@
         "mintbuilder": 577.3,
         "apmex": 675.2,
         "gainesvillecoins": 623.3
+      }
+    },
+    {
+      "window": "2026-10-21T19:00:00.000Z",
+      "median": 576,
+      "low": 576,
+      "vendors": {
+        "mintbuilder": 576
       }
     }
   ]
