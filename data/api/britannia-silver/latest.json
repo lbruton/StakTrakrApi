@@ -1,18 +1,24 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-10-21T01:00:00Z",
-  "median_price": 68.54,
-  "lowest_price": 64.6,
+  "window_start": "2026-10-21T01:30:00Z",
+  "median_price": 64.6,
+  "lowest_price": 61.65,
   "vendors": {
     "apmex": {
-      "price": 68.54,
-      "confidence": 80,
+      "price": 68.43,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 61.65,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 64.6,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -32,14 +38,6 @@
       "stale": true,
       "stale_since": "2026-10-20T22:30:01.415Z"
     },
-    "monumentmetals": {
-      "price": 61.96,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-20T21:30:01.748Z"
-    },
     "summitmetals": {
       "price": 63.99,
       "confidence": null,
@@ -51,27 +49,19 @@
   },
   "availability_by_site": {
     "apmex": true,
+    "herobullion": false,
+    "monumentmetals": true,
     "sdbullion": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true,
-    "monumentmetals": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 64.97
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-20T00:00:00.000Z",
-      "median": 67.65,
-      "low": 63.27,
-      "vendors": {
-        "apmex": 67.65,
-        "jmbullion": 68.59,
-        "summitmetals": 63.27
-      }
-    },
     {
       "window": "2026-10-20T01:00:00.000Z",
       "median": 60.65,
@@ -278,6 +268,15 @@
       "low": 64.6,
       "vendors": {
         "sdbullion": 64.6
+      }
+    },
+    {
+      "window": "2026-10-21T01:00:00.000Z",
+      "median": 68.43,
+      "low": 61.65,
+      "vendors": {
+        "monumentmetals": 61.65,
+        "apmex": 68.43
       }
     }
   ]
