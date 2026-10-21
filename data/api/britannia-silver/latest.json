@@ -1,38 +1,40 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-10-21T12:00:00Z",
-  "median_price": 63.97,
-  "lowest_price": 60.29,
+  "window_start": "2026-10-21T12:30:00Z",
+  "median_price": 68.15,
+  "lowest_price": 60.04,
   "vendors": {
     "apmex": {
-      "price": 68.37,
-      "confidence": 50,
+      "price": 68.15,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
-      "price": 69.14,
-      "confidence": 35,
+      "price": 69.06,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "mintbuilder": {
-      "price": 60.29,
-      "confidence": 50,
+      "price": 60.04,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 61.28,
-      "confidence": 50,
+      "price": 61.35,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 63.97,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-21T10:30:01.743Z"
     },
     "summitmetals": {
       "price": 63.43,
@@ -49,8 +51,8 @@
     "jmbullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
-    "sdbullion": true,
     "bullionexchanges": true,
+    "sdbullion": true,
     "summitmetals": true
   },
   "last_known_price_by_site": {
@@ -58,17 +60,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-20T11:00:00.000Z",
-      "median": 63.67,
-      "low": 59.95,
-      "vendors": {
-        "apmex": 67.96,
-        "mintbuilder": 59.95,
-        "monumentmetals": 61.26,
-        "summitmetals": 63.67
-      }
-    },
     {
       "window": "2026-10-20T12:00:00.000Z",
       "median": 63.17,
@@ -272,6 +263,17 @@
         "jmbullion": 69.14,
         "mintbuilder": 60.29,
         "apmex": 68.37
+      }
+    },
+    {
+      "window": "2026-10-21T12:00:00.000Z",
+      "median": 68.15,
+      "low": 60.04,
+      "vendors": {
+        "jmbullion": 69.06,
+        "monumentmetals": 61.35,
+        "apmex": 68.15,
+        "mintbuilder": 60.04
       }
     }
   ]
