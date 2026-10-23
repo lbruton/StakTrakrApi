@@ -1,15 +1,9 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-10-23T19:00:00Z",
-  "median_price": 60.15,
+  "window_start": "2026-10-23T19:30:00Z",
+  "median_price": 58.68,
   "lowest_price": 56.38,
   "vendors": {
-    "apmex": {
-      "price": 65.73,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 58.68,
       "confidence": 80,
@@ -23,22 +17,30 @@
       "inStock": true
     },
     "mintbuilder": {
-      "price": 56.53,
+      "price": 56.47,
       "confidence": 30,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 60.54,
-      "confidence": 80,
+      "price": 60.58,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
-      "price": 60.15,
+      "price": 60.08,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 65.73,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-23T17:30:01.414Z"
     },
     "jmbullion": {
       "price": 66.68,
@@ -58,13 +60,13 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": false,
     "mintbuilder": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "jmbullion": true,
     "monumentmetals": true
   },
@@ -73,14 +75,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-22T18:00:00.000Z",
-      "median": 61.45,
-      "low": 61.45,
-      "vendors": {
-        "sdbullion": 61.45
-      }
-    },
     {
       "window": "2026-10-22T19:00:00.000Z",
       "median": 60.84,
@@ -316,6 +310,16 @@
         "mintbuilder": 56.53,
         "bullionexchanges": 58.68,
         "summitmetals": 60.15
+      }
+    },
+    {
+      "window": "2026-10-23T19:00:00.000Z",
+      "median": 60.08,
+      "low": 56.47,
+      "vendors": {
+        "mintbuilder": 56.47,
+        "sdbullion": 60.58,
+        "summitmetals": 60.08
       }
     }
   ]
