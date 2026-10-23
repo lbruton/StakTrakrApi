@@ -1,24 +1,24 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-10-23T01:00:00Z",
-  "median_price": 65.13,
-  "lowest_price": 57.06,
+  "window_start": "2026-10-23T01:30:00Z",
+  "median_price": 60.1,
+  "lowest_price": 57.05,
   "vendors": {
     "apmex": {
       "price": 65.13,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 69.22,
-      "confidence": 50,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
     "mintbuilder": {
-      "price": 57.06,
-      "confidence": 15,
+      "price": 57.05,
+      "confidence": 30,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 60.1,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -29,6 +29,14 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-22T22:30:01.948Z"
+    },
+    "jmbullion": {
+      "price": 69.22,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-22T23:30:01.804Z"
     },
     "monumentmetals": {
       "price": 58.48,
@@ -45,25 +53,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-22T20:30:02.072Z"
-    },
-    "summitmetals": {
-      "price": 60.65,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-22T19:30:02.008Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "jmbullion": true,
     "mintbuilder": true,
+    "summitmetals": true,
     "bullionexchanges": true,
     "herobullion": true,
+    "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -286,6 +286,15 @@
       "vendors": {
         "mintbuilder": 57.06,
         "apmex": 65.13
+      }
+    },
+    {
+      "window": "2026-10-23T01:00:00.000Z",
+      "median": 60.1,
+      "low": 57.05,
+      "vendors": {
+        "summitmetals": 60.1,
+        "mintbuilder": 57.05
       }
     }
   ]
