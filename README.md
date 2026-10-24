@@ -1,133 +1,146 @@
-# StakTrakrApi
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/lbruton/StakTrakr/main/images/banner-logo-compact.svg" alt="StakTrakr" height="64">
+</h1>
 
-Data repository for [StakTrakr](https://staktrakr.com) — precious metals inventory tracker.
-Served via GitHub Pages at **[api.staktrakr.com](https://api.staktrakr.com)**.
+<p align="center">
+  Free, keyless precious metals price data. Spot, retail and Goldback feeds as static JSON.
+</p>
 
----
-
-## Architecture
-
-Three independent data feeds write to this repo's `api` branch. A merge workflow publishes them to `main` every 15 minutes, which GitHub Pages serves at `api.staktrakr.com`.
-
-```
-Fly.io container (staktrakr)          GitHub Actions
-  retail-poller cron (*/15 min)         spot-poller.yml (:05 and :35/hr)
-  goldback cron (daily 17:01 UTC)              │
-        │                                      │
-        ▼                                      ▼
-  StakTrakrApi api branch ◄─────────────────────
-        │
-        │  Merge Poller Branches (*/15 min GHA)
-        ▼
-  StakTrakrApi main branch
-        │
-        │  GitHub Pages deploy (~3 min)
-        ▼
-  api.staktrakr.com  ◄── StakTrakr UI
-```
-
-### Data feeds
-
-| Feed | File | Updated by | Frequency |
-|------|------|-----------|-----------|
-| **Market prices** | `data/api/manifest.json` | Fly.io retail-poller | Every 15 min |
-| **Spot prices** | `data/hourly/YYYY/MM/DD/HH.json` | `spot-poller.yml` GHA (MetalPriceAPI) | Twice per hour |
-| **Goldback** | `data/api/goldback-spot.json` | Fly.io goldback cron | Daily |
+<p align="center">
+  <a href="https://api.staktrakr.com">api.staktrakr.com</a> &bull;
+  <a href="https://github.com/lbruton/StakTrakr">StakTrakr app repo</a> &bull;
+  <a href="https://www.staktrakr.com">Launch App</a> &bull;
+  <a href="https://github.com/sponsors/lbruton">Sponsor</a>
+</p>
 
 ---
 
-## Branches
+This repository holds the published data behind [StakTrakr](https://github.com/lbruton/StakTrakr). GitHub Pages serves its `api` branch at `https://api.staktrakr.com`. There is no account, no API key and no rate-limit tier. Every endpoint is a static JSON file with `Access-Control-Allow-Origin: *`, so a browser can fetch it directly.
 
-| Branch | Purpose |
-|--------|---------|
-| `api` | Live write target — pollers push here |
-| `main` | Merged + served — GitHub Pages reads from here |
+The code that builds these files lives in the StakTrakr repo under `devops/pollers/`. Open issues and pull requests there, not here.
 
 ---
 
-## Directory Structure
-
-```
-data/
-├── api/
-│   ├── manifest.json          ← market prices (all coins, generated_at timestamp)
-│   ├── goldback-spot.json     ← Goldback G1 exchange rate (scraped_at timestamp)
-│   └── {coin-slug}/
-│       └── latest.json        ← per-coin retail price data
-├── hourly/
-│   └── YYYY/
-│       └── MM/
-│           └── DD/
-│               └── HH.json    ← spot prices for that UTC hour (array of entries)
-├── retail/
-│   └── providers.json         ← vendor configuration
-├── spot-history-YYYY.json     ← daily noon UTC seed entries (not live data)
-└── spot-history-bundle.js     ← bundled multi-year history for fast app load
-```
-
----
-
-## API Endpoints
-
-All endpoints are served from `https://api.staktrakr.com/data/`.
-
-| Endpoint | Description |
-|----------|-------------|
-| `/data/api/manifest.json` | Market prices — all tracked coins, `generated_at` freshness field |
-| `/data/hourly/YYYY/MM/DD/HH.json` | Spot prices for a UTC hour — array of `{timestamp, gold, silver, ...}` entries |
-| `/data/api/goldback-spot.json` | Goldback G1 exchange rate — `scraped_at` freshness field |
-| `/data/api/{coin-slug}/latest.json` | Latest retail price for a specific coin |
-| `/data/spot-history-YYYY.json` | Yearly spot price seed file (noon UTC daily entries) |
-
----
-
-## Pollers
-
-The pollers that write to this repo live in the main [StakTrakr](https://github.com/lbruton/StakTrakr) repo:
-
-| Poller | Location | Runtime |
-|--------|---------|---------|
-| Retail + Goldback | `devops/retail-poller/` | Fly.io (`fly deploy` from that directory) |
-| Spot prices | `devops/spot-poller/` + `.github/workflows/spot-poller.yml` | GitHub Actions |
-| Merge Poller Branches | `.github/workflows/` (in this repo) | GitHub Actions |
-
----
-
-## Quick Health Check
+## Quick Start
 
 ```bash
-python3 << 'HEALTHCHECK'
-import urllib.request, json, re
-from datetime import datetime, timezone, timedelta
-
-def age_min(ts):
-    ts = ts.strip()
-    if not re.search(r'[zZ]$|[+-]\d{2}:?\d{2}$', ts):
-        ts = ts.replace(' ', 'T') + 'Z'
-    return (datetime.now(timezone.utc) - datetime.fromisoformat(ts.replace('Z','+00:00'))).total_seconds()/60
-
-def fetch(url):
-    with urllib.request.urlopen(url, timeout=10) as r: return json.load(r)
-
-print(f"API Health — {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}
-")
-try:
-    d = fetch('https://api.staktrakr.com/data/api/manifest.json')
-    age = age_min(d['generated_at'])
-    print(f"Market   {'✅' if age<=30 else '⚠️'}  {age:.0f}m ago  ({len(d.get('coins',[]))} coins)")
-except Exception as e: print(f"Market   ❌  {e}")
-try:
-    now = datetime.now(timezone.utc)
-    def url(dt): return f"https://api.staktrakr.com/data/hourly/{dt.year}/{dt.month:02d}/{dt.day:02d}/{dt.hour:02d}.json"
-    try: d = fetch(url(now))
-    except: d = fetch(url(now - timedelta(hours=1)))
-    age = age_min(d[-1]['timestamp'])
-    print(f"Spot     {'✅' if age<=75 else '⚠️'}  {age:.0f}m ago")
-except Exception as e: print(f"Spot     ❌  {e}")
-try:
-    d = fetch('https://api.staktrakr.com/data/api/goldback-spot.json')
-    age = age_min(d['scraped_at'])
-    print(f"Goldback {'✅' if age<=1500 else '⚠️'}  {age:.0f}m ago  (${d.get('g1_usd')} G1)")
-except Exception as e: print(f"Goldback ❌  {e}")
-HEALTHCHECK
+curl https://api.staktrakr.com/data/v2/spot/latest.json
 ```
+
+```json
+{
+  "v": 2,
+  "generated_at": "2026-10-24T18:23:04.870Z",
+  "stale_after": 1200,
+  "data": {
+    "xau": { "price": 3995.84, "t": "2026-10-24T18:15:00Z", "ts": 1792865700 },
+    "xag": { "price": 53.89, "t": "2026-10-24T18:15:00Z", "ts": 1792865700 }
+  }
+}
+```
+
+Start from `data/v2/manifest.json`. It lists every metal, coin slug and vendor ID, plus the endpoint templates below.
+
+---
+
+## Endpoints
+
+Base URL: `https://api.staktrakr.com/data/v2/`. Every v2 endpoint updates every 15 minutes.
+
+| Endpoint                             | Returns                                            |
+| ------------------------------------ | -------------------------------------------------- |
+| **Discovery**                        |                                                    |
+| `manifest.json`                      | Metals, coin slugs, vendors and endpoint templates |
+| `providers.json`                     | Vendor product URLs per coin                       |
+| **Spot**                             |                                                    |
+| `spot/latest.json`                   | Current spot price for all five metals             |
+| `spot/{metal}/latest.json`           | One metal, with `change_24h` and `change_24h_pct`  |
+| `spot/{metal}/intraday.json`         | Rolling 24 hours of 15-minute OHLCA                |
+| `spot/{metal}/{YYYY}/{MM}/{DD}.json` | Hourly OHLCA for one UTC day                       |
+| `spot/{metal}/{YYYY}/{MM}.json`      | Daily OHLCA for one month                          |
+| `spot/history/{N}d.json`             | Daily OHLCA per metal; `N` is `7`, `30` or `90`    |
+| **Retail**                           |                                                    |
+| `retail/latest.json`                 | Median, low and high price for every coin          |
+| `retail/{slug}/latest.json`          | Per-vendor prices for one coin                     |
+| `retail/{slug}/intraday.json`        | Rolling 24 hours of 15-minute windows, per vendor  |
+| `retail/{slug}/{YYYY}/{MM}.json`     | Daily aggregates for one month                     |
+| `retail/{slug}/history-{N}d.json`    | Daily aggregates; `N` is `7`, `30` or `90`         |
+| `retail/vendors/index.json`          | Vendor list                                        |
+| `retail/vendors/{vendor}.json`       | Every coin price from one vendor                   |
+| **Goldback**                         |                                                    |
+| `goldback/latest.json`               | G1 rate in USD and denomination prices             |
+| `goldback/intraday.json`             | Hourly G1 rate for the last 72 hours               |
+| `goldback/{YYYY}/{MM}.json`          | Daily G1 rate for one month                        |
+| `goldback/history-30d.json`          | Daily G1 rate for 30 days                          |
+
+Path values:
+
+| Value      | Format                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------- |
+| `{metal}`  | `xau` Gold, `xag` Silver, `xpt` Platinum, `xpd` Palladium, `xcu` Copper                     |
+| `{slug}`   | A coin slug from the manifest, for example `ase`, `age`, `maple-silver`, `goldback-utah-g1` |
+| `{vendor}` | A vendor ID from the manifest, for example `apmex`, `jmbullion`, `sdbullion`                |
+| Dates      | UTC. `{YYYY}` four digits, `{MM}` and `{DD}` zero-padded                                    |
+
+Prices are USD per troy oz. Retail prices are USD per coin.
+
+### Response format
+
+Every v2 file has the same envelope:
+
+| Field          | Meaning                                                      |
+| -------------- | ------------------------------------------------------------ |
+| `v`            | Schema version, `2`                                          |
+| `generated_at` | Publish time, ISO 8601 UTC                                   |
+| `stale_after`  | Seconds after `generated_at` before the data counts as stale |
+| `data`         | The payload                                                  |
+
+Time-series points carry both `t` (ISO 8601 UTC) and `ts` (Unix seconds). Aggregates use OHLCA: `open`, `high`, `low`, `close`, `avg`, plus `n` for the sample count.
+
+### Spot history files
+
+These files sit outside `v2/` and use their own formats:
+
+| Path                                      | Returns                                                  |
+| ----------------------------------------- | -------------------------------------------------------- |
+| `data/spot-history-{YYYY}.json`           | One daily average per metal per UTC day, 1968 to present |
+| `data/spot-history-bundle.js`             | All years in one script for fast app load                |
+| `data/hourly/{YYYY}/{MM}/{DD}/{HH}.json`  | Raw spot readings for one UTC hour                       |
+| `data/15min/{YYYY}/{MM}/{DD}/{HHMM}.json` | Raw spot snapshot for one 15-minute poll                 |
+| `data/goldback-{YYYY}.json`               | Daily G1 rate, newest first                              |
+
+### Legacy v1
+
+`data/api/` holds the v1 files. The publisher still writes them for older clients, but the app reads only v2. Build new clients against v2.
+
+---
+
+## How It Works
+
+```text
+Home poller ──► sqld ◄── Fly.io poller (spot + publish)
+                           │
+                           │ every 15 min: export JSON, commit, push
+                           ▼
+              StakTrakrApi `api` branch ──► GitHub Pages ──► api.staktrakr.com
+```
+
+- Spot prices come from MetalPriceAPI. The Fly.io and home pollers each poll twice an hour, offset so a reading lands every 15 minutes.
+- Retail prices come from dealer product pages. The home poller scrapes them once an hour into sqld.
+- The Goldback rate comes from goldback.com once an hour.
+- The Fly.io publisher exports sqld to JSON, commits to the `api` branch and force-pushes. It is the only writer.
+- `api2.staktrakr.com` serves the same files from the Fly.io machine. The app fails over to it when GitHub Pages is stale.
+
+`api` is the only branch. Commits made on GitHub do not survive the next publish, so changes to this repo go through the publisher's checkout.
+
+---
+
+## Related
+
+- [StakTrakr](https://github.com/lbruton/StakTrakr): the app, the pollers and the issue tracker
+- [www.staktrakr.com](https://www.staktrakr.com): the hosted app
+- [r/staktrakr](https://www.reddit.com/r/staktrakr/): community
+
+## License
+
+The data comes with no warranty of accuracy or availability. The StakTrakr code is MIT licensed; see the [StakTrakr license](https://github.com/lbruton/StakTrakr/blob/main/LICENSE).

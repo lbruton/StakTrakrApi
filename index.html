@@ -63,116 +63,97 @@
 </head>
 <body>
 <div class="container">
-
   <header>
     <h1>StakTrakr API</h1>
-    <p>Public data feeds for precious metals prices &mdash; market, spot, and Goldback rates.<br>
-    Used by <a href="https://staktrakr.com" target="_blank">staktrakr.com</a> &middot;
-    Source: <a href="https://github.com/lbruton/StakTrakrApi" target="_blank">lbruton/StakTrakrApi</a></p>
+    <p>Free, keyless precious metals price data: spot, retail and Goldback feeds as static JSON.<br>
+    Used by <a href="https://www.staktrakr.com">www.staktrakr.com</a> &middot;
+    App source: <a href="https://github.com/lbruton/StakTrakr">lbruton/StakTrakr</a> &middot;
+    Data repo: <a href="https://github.com/lbruton/StakTrakrApi">lbruton/StakTrakrApi</a></p>
   </header>
-
-  <div class="badge"><span class="dot"></span> Free &amp; public &mdash; no auth required</div>
+  <div class="badge"><span class="dot"></span> Free and public. No key, no account.</div>
 
   <h2>Base URL</h2>
   <table>
     <tbody>
-      <tr><td><code>https://api.staktrakr.com/data/</code></td><td class="desc">All endpoints are relative to this base</td></tr>
+      <tr><td><code>https://api.staktrakr.com/data/v2/</code></td><td class="desc">Every path below is relative to this base. Start from <code>manifest.json</code>.</td></tr>
     </tbody>
   </table>
 
   <h2>Endpoints</h2>
   <table>
     <thead>
-      <tr><th>Path</th><th>Description</th><th>Updated</th></tr>
+      <tr><th>Path</th><th>Returns</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td><span class="endpoint-path">api/manifest.json</span></td>
-        <td>
-          Market (retail) prices for all tracked coins<br>
-          <span class="desc">Key fields: <code>coins[]</code>, <code>generated_at</code> (ISO 8601 UTC)</span>
-        </td>
-        <td><span class="tag tag-green">Every 15 min</span></td>
-      </tr>
-      <tr>
-        <td><span class="endpoint-path">hourly/<em>YYYY/MM/DD/HH</em>.json</span></td>
-        <td>
-          Spot prices for a specific UTC hour<br>
-          <span class="desc">Array of <code>{timestamp, gold, silver, platinum, palladium}</code> entries. Use current UTC hour; fall back to previous if not yet written.</span>
-        </td>
-        <td><span class="tag tag-green">Twice/hour</span></td>
-      </tr>
-      <tr>
-        <td><span class="endpoint-path">api/goldback-spot.json</span></td>
-        <td>
-          Goldback G1 exchange rate<br>
-          <span class="desc">Key fields: <code>g1_usd</code>, <code>scraped_at</code> (ISO 8601 UTC)</span>
-        </td>
-        <td><span class="tag tag-amber">Daily</span></td>
-      </tr>
-      <tr>
-        <td><span class="endpoint-path">api/<em>{coin-slug}</em>/latest.json</span></td>
-        <td>
-          Latest retail price for a specific coin<br>
-          <span class="desc">e.g. <code>api/ase/latest.json</code> for American Silver Eagle</span>
-        </td>
-        <td><span class="tag tag-green">Every 15 min</span></td>
-      </tr>
-      <tr>
-        <td><span class="endpoint-path">spot-history-<em>YYYY</em>.json</span></td>
-        <td>
-          Yearly spot price history (seed file)<br>
-          <span class="desc">One entry per day at noon UTC. For live data use the <code>hourly/</code> endpoint above.</span>
-        </td>
-        <td><span class="tag tag-blue">Daily (noon UTC)</span></td>
-      </tr>
+      <tr><td><span class="endpoint-path">manifest.json</span></td><td>Metals, coin slugs, vendors and endpoint templates</td></tr>
+      <tr><td><span class="endpoint-path">providers.json</span></td><td>Vendor product URLs per coin</td></tr>
+      <tr><td><span class="endpoint-path">spot/latest.json</span></td><td>Current spot price for all five metals</td></tr>
+      <tr><td><span class="endpoint-path">spot/<em>{metal}</em>/latest.json</span></td><td>One metal, with 24-hour change</td></tr>
+      <tr><td><span class="endpoint-path">spot/<em>{metal}</em>/intraday.json</span></td><td>Rolling 24 hours of 15-minute OHLCA</td></tr>
+      <tr><td><span class="endpoint-path">spot/<em>{metal}/{YYYY}/{MM}/{DD}</em>.json</span></td><td>Hourly OHLCA for one UTC day</td></tr>
+      <tr><td><span class="endpoint-path">spot/<em>{metal}/{YYYY}/{MM}</em>.json</span></td><td>Daily OHLCA for one month</td></tr>
+      <tr><td><span class="endpoint-path">spot/history/<em>{N}</em>d.json</span></td><td>Daily OHLCA per metal; <code>N</code> is 7, 30 or 90</td></tr>
+      <tr><td><span class="endpoint-path">retail/latest.json</span></td><td>Median, low and high price for every coin</td></tr>
+      <tr><td><span class="endpoint-path">retail/<em>{slug}</em>/latest.json</span></td><td>Per-vendor prices for one coin</td></tr>
+      <tr><td><span class="endpoint-path">retail/<em>{slug}</em>/intraday.json</span></td><td>Rolling 24 hours of 15-minute windows, per vendor</td></tr>
+      <tr><td><span class="endpoint-path">retail/<em>{slug}/{YYYY}/{MM}</em>.json</span></td><td>Daily aggregates for one month</td></tr>
+      <tr><td><span class="endpoint-path">retail/<em>{slug}</em>/history-<em>{N}</em>d.json</span></td><td>Daily aggregates; <code>N</code> is 7, 30 or 90</td></tr>
+      <tr><td><span class="endpoint-path">retail/vendors/index.json</span></td><td>Vendor list</td></tr>
+      <tr><td><span class="endpoint-path">retail/vendors/<em>{vendor}</em>.json</span></td><td>Every coin price from one vendor</td></tr>
+      <tr><td><span class="endpoint-path">goldback/latest.json</span></td><td>G1 rate in USD and denomination prices</td></tr>
+      <tr><td><span class="endpoint-path">goldback/intraday.json</span></td><td>Hourly G1 rate for the last 72 hours</td></tr>
+      <tr><td><span class="endpoint-path">goldback/<em>{YYYY}/{MM}</em>.json</span></td><td>Daily G1 rate for one month</td></tr>
+      <tr><td><span class="endpoint-path">goldback/history-30d.json</span></td><td>Daily G1 rate for 30 days</td></tr>
     </tbody>
   </table>
 
-  <h2>Example: Current spot price</h2>
+  <h2>Path values</h2>
+  <table>
+    <tbody>
+      <tr><td><code>{metal}</code></td><td class="desc"><code>xau</code> Gold, <code>xag</code> Silver, <code>xpt</code> Platinum, <code>xpd</code> Palladium, <code>xcu</code> Copper</td></tr>
+      <tr><td><code>{slug}</code></td><td class="desc">A coin slug from the manifest, for example <code>ase</code>, <code>age</code>, <code>goldback-utah-g1</code></td></tr>
+      <tr><td><code>{vendor}</code></td><td class="desc">A vendor ID from the manifest, for example <code>apmex</code>, <code>jmbullion</code></td></tr>
+      <tr><td>Dates</td><td class="desc">UTC. Four-digit year, zero-padded month and day</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Example: current spot price</h2>
   <div class="example">
     <pre>
-<span class="key">const</span> now = <span class="key">new</span> Date();
-<span class="key">const</span> y  = now.getUTCFullYear();
-<span class="key">const</span> mo = String(now.getUTCMonth() + <span class="num">1</span>).padStart(<span class="num">2</span>, <span class="str">"0"</span>);
-<span class="key">const</span> d  = String(now.getUTCDate()).padStart(<span class="num">2</span>, <span class="str">"0"</span>);
-<span class="key">const</span> hr = String(now.getUTCHours()).padStart(<span class="num">2</span>, <span class="str">"0"</span>);
-
-<span class="key">const</span> url = <span class="str">`https://api.staktrakr.com/data/hourly/${y}/${mo}/${d}/${hr}.json`</span>;
-<span class="key">const</span> entries = <span class="key">await</span> fetch(url).then(r => r.json());
-<span class="key">const</span> latest  = entries.at(<span class="num">-1</span>);  <span class="key">// most recent entry in the hour</span>
-console.log(latest);
-<span class="key">// { timestamp: "2026-02-22 18:00:00", gold: 2910.50, silver: 32.14, ... }</span>
+<span class="key">const</span> res = <span class="key">await</span> fetch(<span class="str">"https://api.staktrakr.com/data/v2/spot/xag/latest.json"</span>);
+<span class="key">const</span> { generated_at, stale_after, data } = <span class="key">await</span> res.json();
+console.log(data.price, data.change_24h_pct);
+<span class="key">// 53.92 -0.17</span>
     </pre>
   </div>
 
-  <h2>Example: Market prices</h2>
+  <h2>Example: retail prices for one coin</h2>
   <div class="example">
     <pre>
-<span class="key">const</span> manifest = <span class="key">await</span> fetch(<span class="str">"https://api.staktrakr.com/data/api/manifest.json"</span>)
-  .then(r => r.json());
-
-console.log(manifest.generated_at);  <span class="key">// "2026-02-22T18:05:00Z"</span>
-console.log(manifest.coins);         <span class="key">// [ { slug: "ase", name: "American Silver Eagle", ... }, ... ]</span>
+<span class="key">const</span> res = <span class="key">await</span> fetch(<span class="str">"https://api.staktrakr.com/data/v2/retail/ase/latest.json"</span>);
+<span class="key">const</span> { data } = <span class="key">await</span> res.json();
+console.log(data.median, data.low, Object.keys(data.vendors));
     </pre>
   </div>
 
   <h2>Notes</h2>
   <table>
     <tbody>
-      <tr><td>All timestamps</td><td class="desc">ISO 8601 UTC (<code>Z</code> suffix) or naive <code>"YYYY-MM-DD HH:MM:SS"</code> (treat as UTC)</td></tr>
-      <tr><td>CORS</td><td class="desc">GitHub Pages serves permissive headers &mdash; suitable for browser <code>fetch()</code> calls</td></tr>
-      <tr><td>Rate limiting</td><td class="desc">No enforced limit, but please cache responses &mdash; data only changes on the schedule above</td></tr>
-      <tr><td>Availability</td><td class="desc">Served via GitHub Pages &mdash; no SLA, but historically very reliable</td></tr>
+      <tr><td>Envelope</td><td class="desc">Every v2 file returns <code>v</code>, <code>generated_at</code>, <code>stale_after</code> (seconds) and <code>data</code></td></tr>
+      <tr><td>Timestamps</td><td class="desc">Time-series points carry <code>t</code> (ISO 8601 UTC) and <code>ts</code> (Unix seconds)</td></tr>
+      <tr><td>Units</td><td class="desc">Spot in USD per troy oz. Retail in USD per coin</td></tr>
+      <tr><td>Updates</td><td class="desc">Every 15 minutes. Cache responses; the data does not change between publishes</td></tr>
+      <tr><td>CORS</td><td class="desc"><code>Access-Control-Allow-Origin: *</code>. Browser <code>fetch()</code> works</td></tr>
+      <tr><td>Legacy v1</td><td class="desc"><code>data/api/</code> is still published for older clients. Build new clients against v2</td></tr>
+      <tr><td>Availability</td><td class="desc">Served by GitHub Pages, with no SLA. The data comes with no warranty of accuracy</td></tr>
     </tbody>
   </table>
 
   <footer>
-    Data provided by <a href="https://staktrakr.com">StakTrakr</a> &mdash;
-    <a href="https://github.com/lbruton/StakTrakrApi">GitHub</a> &mdash;
-    Prices sourced from MetalPriceAPI, dealer scrapes via Firecrawl, and Goldback.com
+    Data from <a href="https://www.staktrakr.com">StakTrakr</a>.
+    Spot prices from MetalPriceAPI, retail prices from dealer product pages, Goldback rates from goldback.com.
+    Source: <a href="https://github.com/lbruton/StakTrakr">StakTrakr</a> &middot; <a href="https://github.com/lbruton/StakTrakrApi">StakTrakrApi</a>
   </footer>
-
 </div>
 </body>
 </html>
