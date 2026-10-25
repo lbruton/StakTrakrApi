@@ -1,12 +1,12 @@
 {
   "slug": "ape",
-  "window_start": "2026-10-25T09:00:00Z",
-  "median_price": 1864.79,
-  "lowest_price": 1713.8,
+  "window_start": "2026-10-25T09:30:00Z",
+  "median_price": 1921.99,
+  "lowest_price": 1864.79,
   "vendors": {
-    "monumentmetals": {
-      "price": 1713.8,
-      "confidence": 35,
+    "jmbullion": {
+      "price": 1921.99,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -24,14 +24,6 @@
       "stale": true,
       "stale_since": "2026-10-25T06:30:01.238Z"
     },
-    "jmbullion": {
-      "price": 1921.99,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-25T06:30:01.238Z"
-    },
     "mintbuilder": {
       "price": 1709.6,
       "confidence": null,
@@ -39,31 +31,31 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-25T04:30:01.479Z"
+    },
+    "monumentmetals": {
+      "price": 1713.8,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-25T07:30:01.374Z"
     }
   },
   "availability_by_site": {
-    "monumentmetals": true,
+    "herobullion": false,
+    "jmbullion": true,
     "sdbullion": true,
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "jmbullion": true,
     "mintbuilder": true,
+    "monumentmetals": true,
     "summitmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 1800.97
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-24T08:00:00.000Z",
-      "median": 1913.79,
-      "low": 1709.6,
-      "vendors": {
-        "jmbullion": 1921.99,
-        "apmex": 1913.79,
-        "mintbuilder": 1709.6
-      }
-    },
     {
       "window": "2026-10-24T09:00:00.000Z",
       "median": 1864.79,
@@ -258,6 +250,15 @@
       "vendors": {
         "sdbullion": 1864.79,
         "monumentmetals": 1713.8
+      }
+    },
+    {
+      "window": "2026-10-25T09:00:00.000Z",
+      "median": 1921.99,
+      "low": 1864.79,
+      "vendors": {
+        "sdbullion": 1864.79,
+        "jmbullion": 1921.99
       }
     }
   ]
