@@ -1,11 +1,11 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-10-25T11:00:00Z",
-  "median_price": 60.54,
-  "lowest_price": 59.74,
+  "window_start": "2026-10-25T11:30:00Z",
+  "median_price": 59.74,
+  "lowest_price": 57.91,
   "vendors": {
-    "apmex": {
-      "price": 64.66,
+    "monumentmetals": {
+      "price": 57.91,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -22,6 +22,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 64.66,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-25T09:30:01.707Z"
+    },
     "jmbullion": {
       "price": 69.22,
       "confidence": null,
@@ -37,40 +45,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-25T05:30:01.942Z"
-    },
-    "monumentmetals": {
-      "price": 57.91,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-25T04:30:01.479Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": false,
+    "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "mintbuilder": true,
-    "monumentmetals": true
+    "mintbuilder": true
   },
   "last_known_price_by_site": {
     "herobullion": 58.47
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-24T10:00:00.000Z",
-      "median": 69.22,
-      "low": 60.54,
-      "vendors": {
-        "jmbullion": 69.22,
-        "sdbullion": 60.54
-      }
-    },
     {
       "window": "2026-10-24T11:00:00.000Z",
       "median": 64.66,
@@ -289,6 +280,15 @@
       "vendors": {
         "summitmetals": 59.74,
         "sdbullion": 60.54
+      }
+    },
+    {
+      "window": "2026-10-25T11:00:00.000Z",
+      "median": 59.74,
+      "low": 57.91,
+      "vendors": {
+        "monumentmetals": 57.91,
+        "summitmetals": 59.74
       }
     }
   ]
