@@ -1,18 +1,24 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-10-25T21:30:00Z",
-  "median_price": 69.22,
-  "lowest_price": 60.54,
+  "window_start": "2026-10-25T22:30:00Z",
+  "median_price": 60.69,
+  "lowest_price": 59.87,
   "vendors": {
     "jmbullion": {
       "price": 69.22,
-      "confidence": 60,
+      "confidence": 15,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 60.54,
-      "confidence": 35,
+      "price": 60.69,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 59.87,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -39,41 +45,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-25T19:30:02.123Z"
-    },
-    "summitmetals": {
-      "price": 59.74,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-25T19:30:02.123Z"
     }
   },
   "availability_by_site": {
     "herobullion": false,
     "jmbullion": true,
     "sdbullion": true,
+    "summitmetals": true,
     "apmex": true,
     "bullionexchanges": true,
     "mintbuilder": true,
-    "monumentmetals": true,
-    "summitmetals": true
+    "monumentmetals": true
   },
   "last_known_price_by_site": {
     "herobullion": 58.47
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-24T21:00:00.000Z",
-      "median": 64.66,
-      "low": 60.54,
-      "vendors": {
-        "jmbullion": 69.22,
-        "sdbullion": 60.54,
-        "apmex": 64.66
-      }
-    },
     {
       "window": "2026-10-24T22:00:00.000Z",
       "median": 69.22,
@@ -265,6 +253,16 @@
       "low": 60.54,
       "vendors": {
         "sdbullion": 60.54
+      }
+    },
+    {
+      "window": "2026-10-25T22:00:00.000Z",
+      "median": 60.69,
+      "low": 59.87,
+      "vendors": {
+        "summitmetals": 59.87,
+        "sdbullion": 60.69,
+        "jmbullion": 69.22
       }
     }
   ]
