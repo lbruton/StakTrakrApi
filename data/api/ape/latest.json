@@ -1,18 +1,24 @@
 {
   "slug": "ape",
-  "window_start": "2026-10-27T12:00:00Z",
-  "median_price": 1921.99,
-  "lowest_price": 1816.09,
+  "window_start": "2026-10-27T12:30:00Z",
+  "median_price": 1816.09,
+  "lowest_price": 1662.1,
   "vendors": {
     "jmbullion": {
       "price": 1921.99,
-      "confidence": 80,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "mintbuilder": {
+      "price": 1662.1,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 1816.09,
-      "confidence": 50,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -24,14 +30,6 @@
       "stale": true,
       "stale_since": "2026-10-27T07:30:01.531Z"
     },
-    "mintbuilder": {
-      "price": 1648.4,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-27T09:30:01.805Z"
-    },
     "monumentmetals": {
       "price": 1650.8,
       "confidence": null,
@@ -42,28 +40,20 @@
     }
   },
   "availability_by_site": {
+    "herobullion": false,
     "jmbullion": true,
+    "mintbuilder": true,
     "sdbullion": true,
-    "summitmetals": false,
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
-    "mintbuilder": true,
-    "monumentmetals": true
+    "monumentmetals": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {
-    "summitmetals": 1774.77
+    "herobullion": 1800.97
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-26T11:00:00.000Z",
-      "median": 1698.5,
-      "low": 1698.5,
-      "vendors": {
-        "monumentmetals": 1698.5
-      }
-    },
     {
       "window": "2026-10-26T12:00:00.000Z",
       "median": 1903.39,
@@ -244,6 +234,15 @@
       "low": 1816.09,
       "vendors": {
         "sdbullion": 1816.09
+      }
+    },
+    {
+      "window": "2026-10-27T12:00:00.000Z",
+      "median": 1921.99,
+      "low": 1662.1,
+      "vendors": {
+        "jmbullion": 1921.99,
+        "mintbuilder": 1662.1
       }
     }
   ]
