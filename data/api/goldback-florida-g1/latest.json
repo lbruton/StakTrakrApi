@@ -1,20 +1,22 @@
 {
   "slug": "goldback-florida-g1",
-  "window_start": "2026-10-28T03:00:00Z",
+  "window_start": "2026-10-28T03:30:00Z",
   "median_price": 8.73,
-  "lowest_price": 7.95,
+  "lowest_price": 8.73,
   "vendors": {
-    "apmex": {
-      "price": 7.95,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 8.73,
       "confidence": 60,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 7.95,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-28T01:30:02.093Z"
     },
     "bullionexchanges": {
       "price": 7.8,
@@ -26,8 +28,8 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
+    "apmex": true,
     "bullionexchanges": true,
     "sdbullion": true
   },
