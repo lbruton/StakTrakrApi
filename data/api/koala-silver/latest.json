@@ -1,18 +1,12 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-10-30T12:00:00Z",
-  "median_price": 60.1,
-  "lowest_price": 57.55,
+  "window_start": "2026-10-30T12:30:00Z",
+  "median_price": 59.84,
+  "lowest_price": 57.16,
   "vendors": {
-    "apmex": {
-      "price": 62.42,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 57.66,
-      "confidence": 50,
+      "price": 57.16,
+      "confidence": 30,
       "source": "firecrawl",
       "inStock": true
     },
@@ -23,7 +17,7 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 60.1,
+      "price": 59.84,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -33,6 +27,14 @@
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 62.42,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-10-30T10:30:02.045Z"
     },
     "monumentmetals": {
       "price": 57.82,
@@ -44,26 +46,17 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
     "sdbullion": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-29T11:00:00.000Z",
-      "median": 64.59,
-      "low": 62.41,
-      "vendors": {
-        "apmex": 64.59,
-        "sdbullion": 62.41
-      }
-    },
     {
       "window": "2026-10-29T12:00:00.000Z",
       "median": 64.34,
@@ -263,6 +256,16 @@
         "sdbullion": 60.1,
         "summitmetals": 57.55,
         "jmbullion": 67.69
+      }
+    },
+    {
+      "window": "2026-10-30T12:00:00.000Z",
+      "median": 59.84,
+      "low": 57.16,
+      "vendors": {
+        "herobullion": 57.16,
+        "jmbullion": 67.69,
+        "sdbullion": 59.84
       }
     }
   ]

@@ -1,18 +1,24 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-10-30T12:00:00Z",
-  "median_price": 66.32,
-  "lowest_price": 56.9,
+  "window_start": "2026-10-30T12:30:00Z",
+  "median_price": 56.59,
+  "lowest_price": 54.25,
   "vendors": {
     "jmbullion": {
       "price": 66.32,
-      "confidence": 60,
+      "confidence": 15,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 54.25,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 56.9,
-      "confidence": 35,
+      "price": 56.59,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -47,41 +53,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-10-30T05:30:02.232Z"
-    },
-    "monumentmetals": {
-      "price": 54.94,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-30T09:30:02.147Z"
     }
   },
   "availability_by_site": {
     "jmbullion": true,
+    "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": false,
     "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
-    "mintbuilder": true,
-    "monumentmetals": true
+    "mintbuilder": true
   },
   "last_known_price_by_site": {
     "summitmetals": 55.97
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-29T11:00:00.000Z",
-      "median": 56.6,
-      "low": 56.11,
-      "vendors": {
-        "mintbuilder": 56.6,
-        "summitmetals": 56.83,
-        "bullionexchanges": 56.11
-      }
-    },
     {
       "window": "2026-10-29T12:00:00.000Z",
       "median": 57.15,
@@ -309,6 +297,16 @@
       "low": 56.9,
       "vendors": {
         "sdbullion": 56.9
+      }
+    },
+    {
+      "window": "2026-10-30T12:00:00.000Z",
+      "median": 56.59,
+      "low": 54.25,
+      "vendors": {
+        "jmbullion": 66.32,
+        "monumentmetals": 54.25,
+        "sdbullion": 56.59
       }
     }
   ]
