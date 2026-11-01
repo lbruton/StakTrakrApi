@@ -1,14 +1,22 @@
 {
   "slug": "maple-gold",
-  "window_start": "2026-11-01T21:00:00Z",
-  "median_price": 4056.09,
-  "lowest_price": 4056.09,
+  "window_start": "2026-11-01T21:30:00Z",
+  "median_price": 4030.81,
+  "lowest_price": 4030.81,
   "vendors": {
-    "apmex": {
-      "price": 4056.09,
+    "summitmetals": {
+      "price": 4030.81,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 4056.09,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-01T19:30:02.133Z"
     },
     "gainesvillecoins": {
       "price": 3942.15,
@@ -41,43 +49,24 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-01T16:30:02.166Z"
-    },
-    "summitmetals": {
-      "price": 4030.81,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-01T18:30:01.247Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "monumentmetals": false,
+    "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "monumentmetals": 3967.1
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-31T20:00:00.000Z",
-      "median": 4030.81,
-      "low": 3942.15,
-      "vendors": {
-        "gainesvillecoins": 3942.15,
-        "jmbullion": 4051.02,
-        "sdbullion": 3996.14,
-        "summitmetals": 4030.81
-      }
-    },
     {
       "window": "2026-10-31T21:00:00.000Z",
       "median": 4030.81,
@@ -272,6 +261,14 @@
       "low": 4056.09,
       "vendors": {
         "apmex": 4056.09
+      }
+    },
+    {
+      "window": "2026-11-01T21:00:00.000Z",
+      "median": 4030.81,
+      "low": 4030.81,
+      "vendors": {
+        "summitmetals": 4030.81
       }
     }
   ]
