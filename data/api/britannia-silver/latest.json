@@ -1,8 +1,8 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-11-01T05:00:00Z",
-  "median_price": 60.77,
-  "lowest_price": 59.85,
+  "window_start": "2026-11-01T05:30:00Z",
+  "median_price": 59.85,
+  "lowest_price": 55.09,
   "vendors": {
     "apmex": {
       "price": 59.85,
@@ -13,6 +13,12 @@
     "jmbullion": {
       "price": 60.77,
       "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 55.09,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -39,39 +45,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-01T01:30:02.226Z"
-    },
-    "summitmetals": {
-      "price": 55.09,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-01T02:30:02.011Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "herobullion": false,
     "jmbullion": true,
+    "summitmetals": true,
     "bullionexchanges": true,
+    "herobullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "sdbullion": true
   },
-  "last_known_price_by_site": {
-    "herobullion": 56.46
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-31T03:00:00.000Z",
-      "median": 51.88,
-      "low": 51.88,
-      "vendors": {
-        "mintbuilder": 51.88
-      }
-    },
     {
       "window": "2026-10-31T05:00:00.000Z",
       "median": 53.22,
@@ -270,6 +258,16 @@
       "vendors": {
         "apmex": 59.85,
         "jmbullion": 60.77
+      }
+    },
+    {
+      "window": "2026-11-01T05:00:00.000Z",
+      "median": 59.85,
+      "low": 55.09,
+      "vendors": {
+        "jmbullion": 60.77,
+        "summitmetals": 55.09,
+        "apmex": 59.85
       }
     }
   ]

@@ -1,9 +1,21 @@
 {
   "slug": "ase",
-  "window_start": "2026-11-01T05:00:00Z",
+  "window_start": "2026-11-01T05:30:00Z",
   "median_price": 56.31,
   "lowest_price": 54.45,
   "vendors": {
+    "apmex": {
+      "price": 58.85,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 55.03,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "gainesvillecoins": {
       "price": 54.45,
       "confidence": 50,
@@ -40,22 +52,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 58.85,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-01T01:30:02.226Z"
-    },
-    "bullionexchanges": {
-      "price": 55.03,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-31T22:30:01.736Z"
-    },
     "mintbuilder": {
       "price": 53.73,
       "confidence": null,
@@ -66,27 +62,19 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
-    "apmex": true,
-    "bullionexchanges": true,
     "mintbuilder": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-31T04:00:00.000Z",
-      "median": 56.12,
-      "low": 56.12,
-      "vendors": {
-        "summitmetals": 56.12
-      }
-    },
     {
       "window": "2026-10-31T05:00:00.000Z",
       "median": 56.12,
@@ -330,6 +318,19 @@
         "summitmetals": 56.12,
         "monumentmetals": 55.72,
         "gainesvillecoins": 54.45
+      }
+    },
+    {
+      "window": "2026-11-01T05:00:00.000Z",
+      "median": 58.77,
+      "low": 54.45,
+      "vendors": {
+        "gainesvillecoins": 54.45,
+        "apmex": 58.85,
+        "bullionexchanges": 55.03,
+        "sdbullion": 58.77,
+        "summitmetals": 56.12,
+        "jmbullion": 66.87
       }
     }
   ]
