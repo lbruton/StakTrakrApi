@@ -1,23 +1,11 @@
 {
   "slug": "kookaburra-gold-tenth",
-  "window_start": "2026-11-01T07:00:00Z",
+  "window_start": "2026-11-01T07:30:00Z",
   "median_price": 447.11,
   "lowest_price": 424.15,
   "vendors": {
-    "apmex": {
-      "price": 509.1,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 424.15,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "monumentmetals": {
-      "price": 425.15,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -27,29 +15,36 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 509.1,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-01T05:30:01.727Z"
+    },
+    "monumentmetals": {
+      "price": 425.15,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-01T05:30:01.727Z"
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
-    "monumentmetals": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
+    "monumentmetals": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-10-31T06:00:00.000Z",
-      "median": 447.11,
-      "low": 425.15,
-      "vendors": {
-        "summitmetals": 447.11,
-        "monumentmetals": 425.15
-      }
-    },
     {
       "window": "2026-10-31T07:00:00.000Z",
       "median": 509.1,
@@ -236,6 +231,14 @@
       "low": 424.15,
       "vendors": {
         "herobullion": 424.15,
+        "summitmetals": 447.11
+      }
+    },
+    {
+      "window": "2026-11-01T07:00:00.000Z",
+      "median": 447.11,
+      "low": 447.11,
+      "vendors": {
         "summitmetals": 447.11
       }
     }
