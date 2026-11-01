@@ -1,17 +1,29 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-11-01T03:00:00Z",
-  "median_price": 58.85,
-  "lowest_price": 54.77,
+  "window_start": "2026-11-01T03:30:00Z",
+  "median_price": 54.77,
+  "lowest_price": 52.25,
   "vendors": {
     "apmex": {
       "price": 58.85,
-      "confidence": 60,
+      "confidence": 30,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "monumentmetals": {
+      "price": 52.42,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 54.77,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 52.25,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -47,33 +59,17 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-01T00:30:01.310Z"
-    },
-    "monumentmetals": {
-      "price": 52.42,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-01T00:30:01.310Z"
-    },
-    "summitmetals": {
-      "price": 52.25,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-10-31T20:30:01.861Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
+    "monumentmetals": true,
     "sdbullion": true,
+    "summitmetals": true,
     "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
-    "mintbuilder": true,
-    "monumentmetals": true,
-    "summitmetals": true
+    "mintbuilder": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
@@ -273,6 +269,15 @@
       "vendors": {
         "sdbullion": 54.77,
         "apmex": 58.85
+      }
+    },
+    {
+      "window": "2026-11-01T03:00:00.000Z",
+      "median": 52.42,
+      "low": 52.25,
+      "vendors": {
+        "monumentmetals": 52.42,
+        "summitmetals": 52.25
       }
     }
   ]
