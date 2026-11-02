@@ -1,9 +1,15 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-11-02T19:00:00Z",
-  "median_price": 55.63,
+  "window_start": "2026-11-02T19:30:00Z",
+  "median_price": 56.16,
   "lowest_price": 53.26,
   "vendors": {
+    "apmex": {
+      "price": 61.42,
+      "confidence": 15,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "herobullion": {
       "price": 55.63,
       "confidence": 80,
@@ -16,13 +22,11 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 57.71,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-02T14:30:02.190Z"
+    "sdbullion": {
+      "price": 56.16,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "monumentmetals": {
       "price": 54.3,
@@ -31,38 +35,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-02T12:30:01.910Z"
-    },
-    "sdbullion": {
-      "price": 56.48,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-02T15:30:01.753Z"
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "herobullion": true,
     "mintbuilder": true,
-    "summitmetals": false,
-    "apmex": true,
+    "sdbullion": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-01T18:00:00.000Z",
-      "median": 54.76,
-      "low": 53.42,
-      "vendors": {
-        "sdbullion": 54.76,
-        "monumentmetals": 53.42
-      }
-    },
     {
       "window": "2026-11-01T19:00:00.000Z",
       "median": 54.76,
@@ -244,6 +231,15 @@
       "vendors": {
         "mintbuilder": 53.26,
         "herobullion": 55.63
+      }
+    },
+    {
+      "window": "2026-11-02T19:00:00.000Z",
+      "median": 61.42,
+      "low": 56.16,
+      "vendors": {
+        "apmex": 61.42,
+        "sdbullion": 56.16
       }
     }
   ]
