@@ -1,17 +1,11 @@
 {
   "slug": "krugerrand-gold",
-  "window_start": "2026-11-03T02:00:00Z",
+  "window_start": "2026-11-03T02:30:00Z",
   "median_price": 4026.59,
   "lowest_price": 3982.36,
   "vendors": {
     "apmex": {
-      "price": 4120.49,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 3996.19,
+      "price": 4116.19,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -28,11 +22,13 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "summitmetals": {
-      "price": 4035.89,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+    "bullionexchanges": {
+      "price": 3996.19,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-03T00:30:01.969Z"
     },
     "monumentmetals": {
       "price": 4001.9,
@@ -49,30 +45,29 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-02T22:30:01.864Z"
+    },
+    "summitmetals": {
+      "price": 4035.89,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-03T00:30:01.969Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
     "herobullion": true,
-    "summitmetals": true,
+    "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-02T01:00:00.000Z",
-      "median": 4063.09,
-      "low": 3969.7,
-      "vendors": {
-        "apmex": 4063.09,
-        "monumentmetals": 3969.7
-      }
-    },
     {
       "window": "2026-11-02T02:00:00.000Z",
       "median": 3992.63,
@@ -290,6 +285,14 @@
         "herobullion": 4026.59,
         "gainesvillecoins": 3982.36,
         "apmex": 4120.49
+      }
+    },
+    {
+      "window": "2026-11-03T02:00:00.000Z",
+      "median": 4116.19,
+      "low": 4116.19,
+      "vendors": {
+        "apmex": 4116.19
       }
     }
   ]
