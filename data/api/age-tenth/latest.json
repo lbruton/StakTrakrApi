@@ -1,18 +1,12 @@
 {
   "slug": "age-tenth",
-  "window_start": "2026-11-03T21:00:00Z",
-  "median_price": 450.93,
+  "window_start": "2026-11-03T21:30:00Z",
+  "median_price": 451.5,
   "lowest_price": 437.64,
   "vendors": {
-    "apmex": {
-      "price": 483.45,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "gainesvillecoins": {
       "price": 437.64,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -29,10 +23,18 @@
       "inStock": true
     },
     "summitmetals": {
-      "price": 450.93,
+      "price": 451.5,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 483.45,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-03T19:30:01.762Z"
     },
     "bullionexchanges": {
       "price": 457.14,
@@ -60,29 +62,21 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "gainesvillecoins": true,
+    "herobullion": false,
     "mintbuilder": true,
     "monumentmetals": true,
     "summitmetals": true,
+    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "jmbullion": true,
     "sdbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 434.53
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-02T20:00:00.000Z",
-      "median": 454.46,
-      "low": 452.97,
-      "vendors": {
-        "sdbullion": 454.46,
-        "bullionexchanges": 458.2,
-        "monumentmetals": 452.97
-      }
-    },
     {
       "window": "2026-11-02T22:00:00.000Z",
       "median": 453.46,
@@ -316,6 +310,14 @@
         "mintbuilder": 438.34,
         "gainesvillecoins": 437.64,
         "monumentmetals": 454.9
+      }
+    },
+    {
+      "window": "2026-11-03T21:00:00.000Z",
+      "median": 451.5,
+      "low": 451.5,
+      "vendors": {
+        "summitmetals": 451.5
       }
     }
   ]
