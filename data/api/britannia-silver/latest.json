@@ -1,22 +1,26 @@
 {
   "slug": "britannia-silver",
-  "window_start": "2026-11-03T07:00:00Z",
-  "median_price": 52.1,
+  "window_start": "2026-11-03T07:30:00Z",
+  "median_price": 55.76,
   "lowest_price": 52.1,
   "vendors": {
-    "mintbuilder": {
-      "price": 52.1,
-      "confidence": 80,
+    "apmex": {
+      "price": 60.04,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 61.23,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-03T01:30:02.042Z"
+    "mintbuilder": {
+      "price": 52.1,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 55.76,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
     },
     "jmbullion": {
       "price": 54.45,
@@ -33,40 +37,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-03T01:30:02.042Z"
-    },
-    "sdbullion": {
-      "price": 56.41,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-03T03:30:01.859Z"
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "herobullion": false,
     "mintbuilder": true,
-    "summitmetals": false,
-    "apmex": true,
+    "sdbullion": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true
+    "summitmetals": true
   },
   "last_known_price_by_site": {
-    "herobullion": 56.46,
-    "summitmetals": 55.66
+    "herobullion": 56.46
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-02T06:00:00.000Z",
-      "median": 52.95,
-      "low": 52.95,
-      "vendors": {
-        "mintbuilder": 52.95
-      }
-    },
     {
       "window": "2026-11-02T07:00:00.000Z",
       "median": 61.18,
@@ -210,6 +197,15 @@
       "low": 52.1,
       "vendors": {
         "mintbuilder": 52.1
+      }
+    },
+    {
+      "window": "2026-11-03T07:00:00.000Z",
+      "median": 60.04,
+      "low": 55.76,
+      "vendors": {
+        "sdbullion": 55.76,
+        "apmex": 60.04
       }
     }
   ]
