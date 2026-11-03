@@ -1,26 +1,28 @@
 {
   "slug": "ape",
-  "window_start": "2026-11-03T09:00:00Z",
-  "median_price": 1577.5,
-  "lowest_price": 1577.06,
+  "window_start": "2026-11-03T09:30:00Z",
+  "median_price": 1572.8,
+  "lowest_price": 1572.48,
   "vendors": {
-    "apmex": {
-      "price": 1791.49,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
-      "price": 1577.06,
+      "price": 1572.48,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "mintbuilder": {
-      "price": 1577.5,
+      "price": 1572.8,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 1791.49,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-03T07:30:01.227Z"
     },
     "monumentmetals": {
       "price": 1585.3,
@@ -40,30 +42,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "mintbuilder": true,
-    "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
     "monumentmetals": true,
-    "sdbullion": true
+    "sdbullion": true,
+    "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "summitmetals": 1630.03
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-02T08:00:00.000Z",
-      "median": 1592.4,
-      "low": 1584.75,
-      "vendors": {
-        "mintbuilder": 1592.4,
-        "sdbullion": 1749.89,
-        "monumentmetals": 1584.75
-      }
-    },
     {
       "window": "2026-11-02T09:00:00.000Z",
       "median": 1744.89,
@@ -210,6 +200,15 @@
       "vendors": {
         "mintbuilder": 1577.5,
         "herobullion": 1577.06
+      }
+    },
+    {
+      "window": "2026-11-03T09:00:00.000Z",
+      "median": 1572.8,
+      "low": 1572.48,
+      "vendors": {
+        "herobullion": 1572.48,
+        "mintbuilder": 1572.8
       }
     }
   ]
