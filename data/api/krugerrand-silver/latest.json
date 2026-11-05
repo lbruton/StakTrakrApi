@@ -1,15 +1,9 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-11-05T04:00:00Z",
+  "window_start": "2026-11-05T04:30:00Z",
   "median_price": 58.14,
-  "lowest_price": 55.55,
+  "lowest_price": 55.45,
   "vendors": {
-    "apmex": {
-      "price": 64.05,
-      "confidence": 15,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 58.14,
       "confidence": 80,
@@ -17,16 +11,26 @@
       "inStock": true
     },
     "mintbuilder": {
-      "price": 55.55,
+      "price": 55.45,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 64.05,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-05T02:30:01.679Z"
+    },
     "monumentmetals": {
       "price": 57.49,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-05T02:30:01.679Z"
     },
     "sdbullion": {
       "price": 58.04,
@@ -38,26 +42,18 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "mintbuilder": true,
-    "monumentmetals": true,
     "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
+    "monumentmetals": true,
     "sdbullion": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-04T03:00:00.000Z",
-      "median": 51.85,
-      "low": 51.85,
-      "vendors": {
-        "mintbuilder": 51.85
-      }
-    },
     {
       "window": "2026-11-04T04:00:00.000Z",
       "median": 54.91,
@@ -256,6 +252,14 @@
       "vendors": {
         "herobullion": 58.14,
         "mintbuilder": 55.55
+      }
+    },
+    {
+      "window": "2026-11-05T04:00:00.000Z",
+      "median": 55.45,
+      "low": 55.45,
+      "vendors": {
+        "mintbuilder": 55.45
       }
     }
   ]
