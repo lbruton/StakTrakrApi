@@ -1,8 +1,8 @@
 {
   "slug": "krugerrand-silver",
-  "window_start": "2026-11-05T06:00:00Z",
+  "window_start": "2026-11-05T06:30:00Z",
   "median_price": 57.5,
-  "lowest_price": 55.45,
+  "lowest_price": 55.2,
   "vendors": {
     "herobullion": {
       "price": 57.5,
@@ -11,8 +11,14 @@
       "inStock": true
     },
     "mintbuilder": {
-      "price": 55.45,
+      "price": 55.2,
       "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "sdbullion": {
+      "price": 58.34,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -31,39 +37,21 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-05T02:30:01.679Z"
-    },
-    "sdbullion": {
-      "price": 58.04,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-05T00:30:02.073Z"
     }
   },
   "availability_by_site": {
     "herobullion": true,
     "mintbuilder": true,
+    "sdbullion": true,
     "summitmetals": false,
     "apmex": true,
     "bullionexchanges": true,
     "jmbullion": true,
-    "monumentmetals": true,
-    "sdbullion": true
+    "monumentmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-04T05:00:00.000Z",
-      "median": 55.12,
-      "low": 54.65,
-      "vendors": {
-        "herobullion": 55.12,
-        "apmex": 61.23,
-        "monumentmetals": 54.65
-      }
-    },
     {
       "window": "2026-11-04T06:00:00.000Z",
       "median": 55.92,
@@ -259,6 +247,15 @@
       "low": 57.5,
       "vendors": {
         "herobullion": 57.5
+      }
+    },
+    {
+      "window": "2026-11-05T06:00:00.000Z",
+      "median": 58.34,
+      "low": 55.2,
+      "vendors": {
+        "sdbullion": 58.34,
+        "mintbuilder": 55.2
       }
     }
   ]
