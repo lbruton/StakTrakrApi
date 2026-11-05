@@ -1,9 +1,15 @@
 {
   "slug": "age",
-  "window_start": "2026-11-05T17:00:00Z",
+  "window_start": "2026-11-05T17:30:00Z",
   "median_price": 4298.4,
   "lowest_price": 4190.18,
   "vendors": {
+    "apmex": {
+      "price": 4346.59,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "gainesvillecoins": {
       "price": 4190.18,
       "confidence": 80,
@@ -17,7 +23,7 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 4280.34,
+      "price": 4281.89,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -27,14 +33,6 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
-    },
-    "apmex": {
-      "price": 4353.19,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-05T13:30:01.417Z"
     },
     "bullionexchanges": {
       "price": 4346.56,
@@ -62,29 +60,21 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
     "gainesvillecoins": true,
+    "herobullion": false,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
-    "apmex": true,
     "bullionexchanges": true,
-    "herobullion": true,
     "jmbullion": true,
     "mintbuilder": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 4072.24
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-04T16:00:00.000Z",
-      "median": 4216.86,
-      "low": 4197.3,
-      "vendors": {
-        "sdbullion": 4216.86,
-        "jmbullion": 4313.17,
-        "monumentmetals": 4197.3
-      }
-    },
     {
       "window": "2026-11-04T17:00:00.000Z",
       "median": 4302.99,
@@ -325,6 +315,15 @@
         "sdbullion": 4280.34,
         "monumentmetals": 4298.4,
         "gainesvillecoins": 4190.18
+      }
+    },
+    {
+      "window": "2026-11-05T17:00:00.000Z",
+      "median": 4346.59,
+      "low": 4281.89,
+      "vendors": {
+        "apmex": 4346.59,
+        "sdbullion": 4281.89
       }
     }
   ]
