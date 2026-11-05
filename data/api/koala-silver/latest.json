@@ -1,24 +1,30 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-11-05T20:00:00Z",
-  "median_price": 59.42,
+  "window_start": "2026-11-05T20:30:00Z",
+  "median_price": 61.57,
   "lowest_price": 58.15,
   "vendors": {
     "herobullion": {
       "price": 59.42,
+      "confidence": 50,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 63.4,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
       "price": 58.15,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 61.85,
-      "confidence": 50,
+      "price": 61.57,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -29,39 +35,20 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-05T16:30:02.104Z"
-    },
-    "jmbullion": {
-      "price": 64.17,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-05T16:30:02.104Z"
     }
   },
   "availability_by_site": {
     "herobullion": true,
+    "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": false,
     "apmex": true,
     "bullionexchanges": true,
-    "jmbullion": true
+    "summitmetals": true
   },
-  "last_known_price_by_site": {
-    "summitmetals": 57.43
-  },
+  "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-04T19:00:00.000Z",
-      "median": 66.18,
-      "low": 63.29,
-      "vendors": {
-        "apmex": 66.18,
-        "jmbullion": 63.29
-      }
-    },
     {
       "window": "2026-11-04T21:00:00.000Z",
       "median": 63.91,
@@ -235,6 +222,15 @@
         "sdbullion": 61.85,
         "herobullion": 59.42,
         "monumentmetals": 58.15
+      }
+    },
+    {
+      "window": "2026-11-05T20:00:00.000Z",
+      "median": 63.4,
+      "low": 61.57,
+      "vendors": {
+        "sdbullion": 61.57,
+        "jmbullion": 63.4
       }
     }
   ]
