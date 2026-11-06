@@ -1,15 +1,9 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-11-06T12:00:00Z",
-  "median_price": 63.58,
+  "window_start": "2026-11-06T12:30:00Z",
+  "median_price": 61.71,
   "lowest_price": 59.27,
   "vendors": {
-    "apmex": {
-      "price": 65.92,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "herobullion": {
       "price": 59.27,
       "confidence": 50,
@@ -18,15 +12,23 @@
     },
     "jmbullion": {
       "price": 63.58,
-      "confidence": 80,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 61.66,
-      "confidence": 50,
+      "price": 61.71,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "apmex": {
+      "price": 65.92,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-06T10:30:02.146Z"
     },
     "monumentmetals": {
       "price": 57.85,
@@ -38,27 +40,19 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "herobullion": true,
     "jmbullion": true,
     "sdbullion": true,
+    "summitmetals": false,
+    "apmex": true,
     "bullionexchanges": true,
-    "monumentmetals": true,
-    "summitmetals": true
+    "monumentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 57.43
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-05T11:00:00.000Z",
-      "median": 60.12,
-      "low": 58.65,
-      "vendors": {
-        "monumentmetals": 58.65,
-        "herobullion": 60.12,
-        "jmbullion": 64.4
-      }
-    },
     {
       "window": "2026-11-05T12:00:00.000Z",
       "median": 59.76,
@@ -251,6 +245,14 @@
       "vendors": {
         "jmbullion": 63.58,
         "herobullion": 59.27
+      }
+    },
+    {
+      "window": "2026-11-06T12:00:00.000Z",
+      "median": 61.71,
+      "low": 61.71,
+      "vendors": {
+        "sdbullion": 61.71
       }
     }
   ]
