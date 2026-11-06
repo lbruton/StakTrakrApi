@@ -1,9 +1,21 @@
 {
   "slug": "maple-silver",
-  "window_start": "2026-11-06T19:00:00Z",
+  "window_start": "2026-11-06T19:30:00Z",
   "median_price": 58.51,
   "lowest_price": 54.33,
   "vendors": {
+    "apmex": {
+      "price": 63.82,
+      "confidence": 15,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "bullionexchanges": {
+      "price": 57.01,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "gainesvillecoins": {
       "price": 54.33,
       "confidence": 50,
@@ -34,22 +46,6 @@
       "source": "firecrawl",
       "inStock": true
     },
-    "apmex": {
-      "price": 63.94,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-06T16:30:01.940Z"
-    },
-    "bullionexchanges": {
-      "price": 56.9,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-05T22:30:02.181Z"
-    },
     "mintbuilder": {
       "price": 55.96,
       "confidence": null,
@@ -60,27 +56,21 @@
     }
   },
   "availability_by_site": {
+    "apmex": true,
+    "bullionexchanges": true,
     "gainesvillecoins": true,
+    "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
-    "apmex": true,
-    "bullionexchanges": true,
-    "herobullion": true,
     "mintbuilder": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 55.09
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-05T18:00:00.000Z",
-      "median": 58.09,
-      "low": 58.09,
-      "vendors": {
-        "monumentmetals": 58.09
-      }
-    },
     {
       "window": "2026-11-05T19:00:00.000Z",
       "median": 60.35,
@@ -320,6 +310,15 @@
         "sdbullion": 60.16,
         "gainesvillecoins": 54.33,
         "monumentmetals": 57.65
+      }
+    },
+    {
+      "window": "2026-11-06T19:00:00.000Z",
+      "median": 63.82,
+      "low": 57.01,
+      "vendors": {
+        "bullionexchanges": 57.01,
+        "apmex": 63.82
       }
     }
   ]
