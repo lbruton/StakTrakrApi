@@ -1,32 +1,34 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-11-06T08:00:00Z",
-  "median_price": 63.12,
-  "lowest_price": 57.17,
+  "window_start": "2026-11-06T08:30:00Z",
+  "median_price": 59.12,
+  "lowest_price": 57.85,
   "vendors": {
     "apmex": {
       "price": 65.19,
-      "confidence": 50,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
-      "price": 58.43,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 63.12,
+      "price": 59.12,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "monumentmetals": {
-      "price": 57.17,
-      "confidence": 35,
+      "price": 57.85,
+      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 63.12,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-06T06:30:01.444Z"
     },
     "sdbullion": {
       "price": 61.1,
@@ -40,24 +42,17 @@
   "availability_by_site": {
     "apmex": true,
     "herobullion": true,
-    "jmbullion": true,
     "monumentmetals": true,
+    "summitmetals": false,
     "bullionexchanges": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "jmbullion": true,
+    "sdbullion": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "summitmetals": 57.43
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-05T07:00:00.000Z",
-      "median": 63.84,
-      "low": 59.74,
-      "vendors": {
-        "jmbullion": 63.84,
-        "herobullion": 59.74
-      }
-    },
     {
       "window": "2026-11-05T08:00:00.000Z",
       "median": 62.37,
@@ -232,6 +227,15 @@
         "monumentmetals": 57.17,
         "herobullion": 58.43,
         "apmex": 65.19
+      }
+    },
+    {
+      "window": "2026-11-06T08:00:00.000Z",
+      "median": 59.12,
+      "low": 57.85,
+      "vendors": {
+        "herobullion": 59.12,
+        "monumentmetals": 57.85
       }
     }
   ]
