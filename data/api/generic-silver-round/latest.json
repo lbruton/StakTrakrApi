@@ -1,15 +1,9 @@
 {
   "slug": "generic-silver-round",
-  "window_start": "2026-11-07T11:00:00Z",
+  "window_start": "2026-11-07T11:30:00Z",
   "median_price": 55.75,
   "lowest_price": 53.01,
   "vendors": {
-    "apmex": {
-      "price": 60.68,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
     "bullionexchanges": {
       "price": 54.57,
       "confidence": 80,
@@ -34,6 +28,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "apmex": {
+      "price": 60.68,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-07T09:30:02.384Z"
+    },
     "gainesvillecoins": {
       "price": 52.49,
       "confidence": null,
@@ -52,12 +54,12 @@
     }
   },
   "availability_by_site": {
-    "apmex": true,
     "bullionexchanges": true,
     "herobullion": true,
     "mintbuilder": true,
     "sdbullion": true,
     "summitmetals": false,
+    "apmex": true,
     "gainesvillecoins": true,
     "monumentmetals": true
   },
@@ -66,16 +68,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-06T10:00:00.000Z",
-      "median": 55.38,
-      "low": 52.57,
-      "vendors": {
-        "monumentmetals": 55.38,
-        "herobullion": 55.87,
-        "gainesvillecoins": 52.57
-      }
-    },
     {
       "window": "2026-11-06T11:00:00.000Z",
       "median": 57.68,
@@ -303,6 +295,14 @@
         "bullionexchanges": 54.57,
         "herobullion": 55.75,
         "mintbuilder": 53.01
+      }
+    },
+    {
+      "window": "2026-11-07T11:00:00.000Z",
+      "median": 57.55,
+      "low": 57.55,
+      "vendors": {
+        "sdbullion": 57.55
       }
     }
   ]
