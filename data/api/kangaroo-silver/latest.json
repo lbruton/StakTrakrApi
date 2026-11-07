@@ -1,8 +1,8 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-11-07T20:00:00Z",
+  "window_start": "2026-11-07T20:30:00Z",
   "median_price": 59.05,
-  "lowest_price": 55.76,
+  "lowest_price": 55.82,
   "vendors": {
     "apmex": {
       "price": 61.68,
@@ -12,18 +12,6 @@
     },
     "bullionexchanges": {
       "price": 55.82,
-      "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 63.65,
-      "confidence": 30,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "mintbuilder": {
-      "price": 55.76,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
@@ -39,34 +27,39 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 63.65,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-07T18:30:01.972Z"
+    },
+    "mintbuilder": {
+      "price": 55.76,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-07T18:30:01.972Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "bullionexchanges": true,
-    "herobullion": false,
-    "jmbullion": true,
-    "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": false,
+    "herobullion": true,
+    "jmbullion": true,
+    "mintbuilder": true
   },
   "last_known_price_by_site": {
-    "herobullion": 56.48
+    "summitmetals": 55.97
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-06T19:00:00.000Z",
-      "median": 61.83,
-      "low": 56.34,
-      "vendors": {
-        "monumentmetals": 56.34,
-        "apmex": 61.83,
-        "sdbullion": 59.02,
-        "jmbullion": 64.07
-      }
-    },
     {
       "window": "2026-11-06T20:00:00.000Z",
       "median": 59.11,
@@ -297,6 +290,16 @@
       "vendors": {
         "sdbullion": 59.05,
         "monumentmetals": 56.37
+      }
+    },
+    {
+      "window": "2026-11-07T20:00:00.000Z",
+      "median": 56.37,
+      "low": 55.82,
+      "vendors": {
+        "bullionexchanges": 55.82,
+        "monumentmetals": 56.37,
+        "apmex": 61.68
       }
     }
   ]
