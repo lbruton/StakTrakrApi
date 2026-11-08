@@ -1,9 +1,15 @@
 {
   "slug": "age-tenth",
-  "window_start": "2026-11-08T15:00:00Z",
-  "median_price": 469.21,
+  "window_start": "2026-11-08T15:30:00Z",
+  "median_price": 469.49,
   "lowest_price": 455.12,
   "vendors": {
+    "bullionexchanges": {
+      "price": 469.49,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
     "mintbuilder": {
       "price": 455.12,
       "confidence": 50,
@@ -29,14 +35,6 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-08T10:30:02.148Z"
-    },
-    "bullionexchanges": {
-      "price": 469.49,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-08T12:30:02.130Z"
     },
     "gainesvillecoins": {
       "price": 454.16,
@@ -64,30 +62,21 @@
     }
   },
   "availability_by_site": {
+    "bullionexchanges": true,
+    "herobullion": false,
     "mintbuilder": true,
     "sdbullion": true,
     "summitmetals": true,
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
-    "herobullion": true,
     "jmbullion": true,
     "monumentmetals": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 434.53
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-07T14:00:00.000Z",
-      "median": 469.49,
-      "low": 468.12,
-      "vendors": {
-        "jmbullion": 513.38,
-        "summitmetals": 469.21,
-        "monumentmetals": 468.12,
-        "bullionexchanges": 469.49
-      }
-    },
     {
       "window": "2026-11-07T15:00:00.000Z",
       "median": 477.52,
@@ -339,6 +328,17 @@
         "mintbuilder": 455.12,
         "summitmetals": 469.21,
         "sdbullion": 477.52
+      }
+    },
+    {
+      "window": "2026-11-08T15:00:00.000Z",
+      "median": 469.49,
+      "low": 455.12,
+      "vendors": {
+        "mintbuilder": 455.12,
+        "sdbullion": 477.52,
+        "summitmetals": 469.21,
+        "bullionexchanges": 469.49
       }
     }
   ]
