@@ -1,18 +1,12 @@
 {
   "slug": "age-tenth",
-  "window_start": "2026-11-08T04:00:00Z",
-  "median_price": 469.49,
+  "window_start": "2026-11-08T04:30:00Z",
+  "median_price": 477.52,
   "lowest_price": 454.16,
   "vendors": {
     "apmex": {
       "price": 497.17,
       "confidence": 50,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "bullionexchanges": {
-      "price": 469.49,
-      "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
@@ -24,7 +18,7 @@
     },
     "jmbullion": {
       "price": 513.38,
-      "confidence": 35,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -46,6 +40,14 @@
       "source": "firecrawl",
       "inStock": true
     },
+    "bullionexchanges": {
+      "price": 469.49,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-08T02:30:01.360Z"
+    },
     "mintbuilder": {
       "price": 455.12,
       "confidence": null,
@@ -57,28 +59,20 @@
   },
   "availability_by_site": {
     "apmex": true,
-    "bullionexchanges": true,
     "gainesvillecoins": true,
+    "herobullion": false,
     "jmbullion": true,
     "monumentmetals": true,
     "sdbullion": true,
     "summitmetals": true,
-    "herobullion": true,
+    "bullionexchanges": true,
     "mintbuilder": true
   },
-  "last_known_price_by_site": {},
+  "last_known_price_by_site": {
+    "herobullion": 434.53
+  },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-07T03:00:00.000Z",
-      "median": 477.52,
-      "low": 455.12,
-      "vendors": {
-        "mintbuilder": 455.12,
-        "apmex": 497.17,
-        "sdbullion": 477.52
-      }
-    },
     {
       "window": "2026-11-07T05:00:00.000Z",
       "median": 477.52,
@@ -318,6 +312,16 @@
         "summitmetals": 469.21,
         "gainesvillecoins": 454.16,
         "apmex": 497.17
+      }
+    },
+    {
+      "window": "2026-11-08T04:00:00.000Z",
+      "median": 469.21,
+      "low": 468.12,
+      "vendors": {
+        "monumentmetals": 468.12,
+        "apmex": 497.17,
+        "summitmetals": 469.21
       }
     }
   ]
