@@ -1,8 +1,8 @@
 {
   "slug": "age-tenth",
-  "window_start": "2026-11-09T15:00:00Z",
+  "window_start": "2026-11-09T15:30:00Z",
   "median_price": 475.5,
-  "lowest_price": 460.4,
+  "lowest_price": 459.75,
   "vendors": {
     "apmex": {
       "price": 503.49,
@@ -17,14 +17,14 @@
       "inStock": true
     },
     "gainesvillecoins": {
-      "price": 460.4,
+      "price": 459.75,
       "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
     "jmbullion": {
-      "price": 519.01,
-      "confidence": 15,
+      "price": 515.09,
+      "confidence": 35,
       "source": "firecrawl",
       "inStock": true
     },
@@ -35,22 +35,24 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 474.49,
+      "price": 473.63,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
-      "price": 483.94,
+      "price": 483.33,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "summitmetals": {
       "price": 475.48,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-09T13:30:02.291Z"
     }
   },
   "availability_by_site": {
@@ -61,22 +63,12 @@
     "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": true,
-    "herobullion": true
+    "herobullion": true,
+    "summitmetals": true
   },
   "last_known_price_by_site": {},
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-08T14:00:00.000Z",
-      "median": 469.21,
-      "low": 455.12,
-      "vendors": {
-        "mintbuilder": 455.12,
-        "summitmetals": 469.21,
-        "sdbullion": 477.52
-      }
-    },
     {
       "window": "2026-11-08T15:00:00.000Z",
       "median": 469.49,
@@ -330,6 +322,17 @@
         "sdbullion": 483.94,
         "bullionexchanges": 475.5,
         "mintbuilder": 460.61
+      }
+    },
+    {
+      "window": "2026-11-09T15:00:00.000Z",
+      "median": 483.33,
+      "low": 459.75,
+      "vendors": {
+        "sdbullion": 483.33,
+        "gainesvillecoins": 459.75,
+        "jmbullion": 515.09,
+        "monumentmetals": 473.63
       }
     }
   ]
