@@ -1,11 +1,17 @@
 {
   "slug": "kangaroo-silver",
-  "window_start": "2026-11-09T10:00:00Z",
-  "median_price": 59.58,
+  "window_start": "2026-11-09T10:30:00Z",
+  "median_price": 59.7,
   "lowest_price": 56.25,
   "vendors": {
     "apmex": {
       "price": 62.38,
+      "confidence": 30,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "jmbullion": {
+      "price": 63.85,
       "confidence": 30,
       "source": "firecrawl",
       "inStock": true
@@ -23,7 +29,7 @@
       "inStock": true
     },
     "sdbullion": {
-      "price": 59.58,
+      "price": 59.7,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
@@ -35,42 +41,23 @@
       "inStock": true,
       "stale": true,
       "stale_since": "2026-11-09T07:30:01.301Z"
-    },
-    "jmbullion": {
-      "price": 64.8,
-      "confidence": null,
-      "source": "turso_last_known",
-      "inStock": true,
-      "stale": true,
-      "stale_since": "2026-11-09T07:30:01.301Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "herobullion": false,
+    "jmbullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
     "sdbullion": true,
-    "summitmetals": false,
     "bullionexchanges": true,
-    "jmbullion": true
+    "summitmetals": true
   },
   "last_known_price_by_site": {
-    "herobullion": 56.48,
-    "summitmetals": 55.97
+    "herobullion": 56.48
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-08T09:00:00.000Z",
-      "median": 56.37,
-      "low": 55.82,
-      "vendors": {
-        "monumentmetals": 56.37,
-        "bullionexchanges": 55.82,
-        "apmex": 61.68
-      }
-    },
     {
       "window": "2026-11-08T10:00:00.000Z",
       "median": 56.37,
@@ -293,6 +280,15 @@
         "mintbuilder": 56.25,
         "apmex": 62.38,
         "monumentmetals": 56.87
+      }
+    },
+    {
+      "window": "2026-11-09T10:00:00.000Z",
+      "median": 63.85,
+      "low": 59.7,
+      "vendors": {
+        "jmbullion": 63.85,
+        "sdbullion": 59.7
       }
     }
   ]
