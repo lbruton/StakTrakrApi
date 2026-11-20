@@ -1,12 +1,12 @@
 {
   "slug": "buffalo",
-  "window_start": "2026-11-20T22:00:00Z",
-  "median_price": 3801.59,
+  "window_start": "2026-11-20T22:30:00Z",
+  "median_price": 3790.66,
   "lowest_price": 3644.49,
   "vendors": {
     "apmex": {
-      "price": 3911.39,
-      "confidence": 80,
+      "price": 3925.09,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -35,22 +35,24 @@
       "inStock": true
     },
     "monumentmetals": {
-      "price": 3774.86,
+      "price": 3790.66,
+      "confidence": 80,
+      "source": "firecrawl",
+      "inStock": true
+    },
+    "summitmetals": {
+      "price": 3841.44,
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
     },
     "sdbullion": {
       "price": 3801.59,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "summitmetals": {
-      "price": 3824.08,
-      "confidence": 80,
-      "source": "firecrawl",
-      "inStock": true
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-20T20:30:01.588Z"
     }
   },
   "availability_by_site": {
@@ -61,27 +63,14 @@
     "jmbullion": true,
     "mintbuilder": true,
     "monumentmetals": true,
-    "sdbullion": true,
-    "summitmetals": true
+    "summitmetals": true,
+    "sdbullion": true
   },
   "last_known_price_by_site": {
     "herobullion": 3657.83
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-19T21:00:00.000Z",
-      "median": 3928.72,
-      "low": 3747.63,
-      "vendors": {
-        "monumentmetals": 3871.24,
-        "mintbuilder": 3786.6,
-        "apmex": 4008.89,
-        "jmbullion": 4059.75,
-        "gainesvillecoins": 3747.63,
-        "summitmetals": 3928.72
-      }
-    },
     {
       "window": "2026-11-19T22:00:00.000Z",
       "median": 3926.34,
@@ -408,6 +397,16 @@
         "apmex": 3911.39,
         "jmbullion": 3922.48,
         "gainesvillecoins": 3644.49
+      }
+    },
+    {
+      "window": "2026-11-20T22:00:00.000Z",
+      "median": 3841.44,
+      "low": 3790.66,
+      "vendors": {
+        "monumentmetals": 3790.66,
+        "apmex": 3925.09,
+        "summitmetals": 3841.44
       }
     }
   ]
