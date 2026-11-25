@@ -1,24 +1,18 @@
 {
   "slug": "koala-silver",
-  "window_start": "2026-11-25T19:00:00Z",
-  "median_price": 51.22,
-  "lowest_price": 46.77,
+  "window_start": "2026-11-25T19:30:00Z",
+  "median_price": 50.02,
+  "lowest_price": 47.16,
   "vendors": {
     "apmex": {
-      "price": 54.11,
-      "confidence": 50,
+      "price": 54.52,
+      "confidence": 15,
       "source": "firecrawl",
       "inStock": true
     },
     "herobullion": {
-      "price": 46.77,
-      "confidence": 35,
-      "source": "firecrawl",
-      "inStock": true
-    },
-    "jmbullion": {
-      "price": 51.22,
-      "confidence": 80,
+      "price": 47.16,
+      "confidence": 50,
       "source": "firecrawl",
       "inStock": true
     },
@@ -27,16 +21,24 @@
       "confidence": 80,
       "source": "firecrawl",
       "inStock": true
+    },
+    "jmbullion": {
+      "price": 51.22,
+      "confidence": null,
+      "source": "turso_last_known",
+      "inStock": true,
+      "stale": true,
+      "stale_since": "2026-11-25T17:30:01.869Z"
     }
   },
   "availability_by_site": {
     "apmex": true,
     "herobullion": true,
-    "jmbullion": true,
     "monumentmetals": false,
     "sdbullion": true,
     "summitmetals": false,
-    "bullionexchanges": true
+    "bullionexchanges": true,
+    "jmbullion": true
   },
   "last_known_price_by_site": {
     "monumentmetals": 44.09,
@@ -44,17 +46,6 @@
   },
   "last_available_date_by_site": {},
   "windows_24h": [
-    {
-      "window": "2026-11-24T18:00:00.000Z",
-      "median": 50.65,
-      "low": 45.68,
-      "vendors": {
-        "herobullion": 47.5,
-        "sdbullion": 50.65,
-        "monumentmetals": 45.68,
-        "apmex": 54.62
-      }
-    },
     {
       "window": "2026-11-24T19:00:00.000Z",
       "median": 50.58,
@@ -313,6 +304,15 @@
         "herobullion": 46.77,
         "sdbullion": 50.02,
         "apmex": 54.11
+      }
+    },
+    {
+      "window": "2026-11-25T19:00:00.000Z",
+      "median": 54.52,
+      "low": 47.16,
+      "vendors": {
+        "apmex": 54.52,
+        "herobullion": 47.16
       }
     }
   ]
